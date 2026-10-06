@@ -1,0 +1,13 @@
+# robots.txt untuk riozzjr18.github.io/portoforiozz/
+# Dibuat: 2026-10-06
+
+# Izinkan semua mesin pencari crawl seluruh website
+User-agent: *
+Allow: /
+
+# Blokir folder sensitif (kalau ada nanti)
+Disallow: /assets/cv/
+Disallow: /*.pdf$
+
+# Sitemap location
+Sitemap: https://riozzjr18.github.io/portoforiozz/sitemap.xml
