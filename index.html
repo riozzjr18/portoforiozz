@@ -1,642 +1,860 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Jasa editing video vertikal untuk UMKM, toko online, dan brand. Cepat, terjangkau, siap posting di TikTok, Reels, dan Shorts. Mulai Rp75.000 per video.">
-    <meta name="keywords" content="jasa editing video, editor video vertikal, TikTok editor, Reels editor, video promosi produk, video talking head, jasa edit video UMKM">
+    <meta name="description"
+        content="Jasa editing video vertikal untuk UMKM, toko online, dan brand. Hook 3 detik, subtitle, b-roll. Mulai Rp75.000 per video. Cepat, terjangkau, siap posting di TikTok, Reels, dan Shorts.">
+    <meta name="keywords"
+        content="jasa editing video, editor video vertikal, TikTok editor, Reels editor, video promosi produk, video talking head, jasa edit video UMKM">
     <meta property="og:title" content="Riozz — Jasa Editing Video Vertikal">
-    <meta property="og:description" content="Editing video vertikal untuk UMKM, toko online, dan brand. Mulai Rp75.000 per video.">
+    <meta property="og:description"
+        content="Editing video vertikal untuk UMKM, toko online, dan brand. Hook 3 detik, subtitle, b-roll. Mulai Rp75.000 per video.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://riozzjr18.github.io/portoforiozz/">
-    <title>Riozz — Jasa Editing Video Vertikal untuk UMKM, Toko Online & Brand</title>
+    <title>Riozz</title>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
+
+    <!-- Google Fonts: Unbounded + Space Grotesk -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Space+Grotesk:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+                        display: ['"Unbounded"', 'sans-serif'],
                     },
                     colors: {
-                        brand: {
-                            50: '#f0fdfa',
-                            400: '#2dd4bf', 
-                            500: '#14b8a6',
-                            900: '#134e4a',
-                            950: '#042f2e',
-                        },
-                        dark: {
-                            900: '#0f172a',
-                            950: '#020617',
-                        }
-                    },
-                    animation: {
-                        'blob': 'blob 7s infinite',
-                    },
-                    keyframes: {
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        }
+                        cream: '#F5F0E8',
+                        ink: '#0A0A0A',
+                        muted: '#4A4A4A',
+                        dimcream: '#E5DDD0',
                     }
                 }
             }
         }
     </script>
+
     <style>
+        /* ── Base ─────────────────────────────── */
+        html {
+            scroll-padding-top: 80px;
+        }
+
         body {
-            background-color: #020617;
-            color: #cbd5e1;
+            background-color: #F5F0E8;
+            color: #0A0A0A;
+            font-family: 'Space Grotesk', system-ui, sans-serif;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+
+        /* ── Navbar ───────────────────────────── */
+        #navbar {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            background: rgba(245, 240, 232, 0.92);
         }
-        .glass-nav {
-            background: rgba(2, 6, 23, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+        /* ── Hover underline (left to right) ──── */
+        .nav-link {
+            position: relative;
+            text-decoration: none;
         }
-        .gradient-text {
-            background: linear-gradient(to right, #2dd4bf, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #0A0A0A;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
         }
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
         }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+
+        /* ── Marquee ─────────────────────────── */
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 30s linear infinite;
         }
-        /* Filter Button Active State */
-        .filter-btn.active {
-            background-color: #14b8a6; /* brand-500 */
-            color: #042f2e; /* brand-950 */
-            border-color: #14b8a6;
+
+        .marquee-track:hover {
+            animation-play-state: paused;
         }
-        /* WhatsApp Floating Button */
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ── Work Carousel ───────────────────── */
+        .carousel-track {
+            display: flex;
+            gap: 1.25rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 12px;
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        .carousel-track::-webkit-scrollbar-track {
+            background: #F5F0E8;
+        }
+
+        .carousel-track::-webkit-scrollbar-thumb {
+            background: #0A0A0A;
+        }
+
+        .carousel-card {
+            flex: 0 0 280px;
+            scroll-snap-align: start;
+            will-change: transform;
+        }
+
+        @media (min-width: 768px) {
+            .carousel-card {
+                flex: 0 0 320px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .carousel-card {
+                flex: 0 0 360px;
+            }
+        }
+
+        /* Card hover lift (CSS fallback, GSAP handles on JS) */
+        .card-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            will-change: transform;
+        }
+
+        /* ── Stripe pattern (Style 4) ─────────── */
+        .stripe-bg {
+            background-image: repeating-linear-gradient(-45deg,
+                    transparent, transparent 8px,
+                    rgba(10, 10, 10, 0.06) 8px, rgba(10, 10, 10, 0.06) 9px);
+        }
+
+        /* ── Mobile Menu ─────────────────────── */
+        #mobile-menu {
+            display: none;
+        }
+
+        #mobile-menu.open {
+            display: block;
+        }
+
+        /* ── WhatsApp Float ──────────────────── */
         .wa-float {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+            width: 3.5rem;
+            height: 3.5rem;
+            background: #0A0A0A;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            will-change: transform;
         }
+
         .wa-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(34, 197, 94, 0.4);
+            transform: scale(1.08);
+        }
+
+        /* ── Hover underline for CTA links ──── */
+        .cta-underline {
+            position: relative;
+        }
+
+        .cta-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #F5F0E8;
+            transition: width 0.3s ease;
+        }
+
+        .cta-underline:hover::after {
+            width: 100%;
+        }
+
+        .cta-underline-ink::after {
+            background: #0A0A0A;
+        }
+
+        /* Highlight Box (per-line wrapping) */
+        .highlight-box {
+            background-color: #E5DDD0;
+            padding: 0 8px;
+            display: inline;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            line-height: inherit;
+        }
+
+        /* ── word span for text reveal ───────── */
+        .word {
+            display: inline-block;
+            will-change: transform, opacity;
         }
     </style>
 </head>
-<body class="antialiased selection:bg-brand-500 selection:text-white relative overflow-x-hidden">
 
-    <!-- Ambient Background -->
-    <div class="absolute top-0 -left-4 w-72 h-72 bg-brand-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob pointer-events-none"></div>
-    <div class="absolute top-0 -right-4 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-2000 pointer-events-none"></div>
+<body class="antialiased overflow-x-hidden">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold tracking-tighter text-white">Rioz<span class="text-brand-400">.</span></a>
-            
-            <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
-                <a href="#about" class="text-sm font-medium hover:text-brand-400 transition-colors" data-i18n="nav_about">About</a>
-                <a href="#services" class="text-sm font-medium hover:text-brand-400 transition-colors" data-i18n="nav_services">Services</a>
-                <a href="#experience" class="text-sm font-medium hover:text-brand-400 transition-colors" data-i18n="nav_experience">Experience</a>
-                <a href="#portfolio" class="text-sm font-medium hover:text-brand-400 transition-colors" data-i18n="nav_portfolio">Portfolio</a>
-                <a href="#blog" class="text-sm font-medium hover:text-brand-400 transition-colors" data-i18n="nav_blog">Blog</a>
-                <a href="#testimonials" class="text-sm font-medium hover:text-brand-400 transition-colors" data-i18n="nav_testimonials">Reviews</a>
-                <a href="#achievements" class="text-sm font-medium hover:text-brand-400 transition-colors" data-i18n="nav_achievements">Awards</a>
-                <a href="#contact" class="text-sm font-medium hover:text-brand-400 transition-colors" data-i18n="nav_contact">Contact</a>
-                
-                <!-- Language Toggle -->
-                <div class="flex items-center space-x-2 bg-white/5 rounded-full p-1 border border-white/10">
-                    <button onclick="setLang('en')" id="btn-en" class="text-xs font-bold px-3 py-1 rounded-full bg-brand-500 text-white transition-all">EN</button>
-                    <button onclick="setLang('id')" id="btn-id" class="text-xs font-bold px-3 py-1 rounded-full text-slate-400 hover:text-white transition-all">ID</button>
+    <!-- ═══════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════ -->
+    <nav id="navbar" class="fixed w-full z-50 border-b border-ink/10 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+            <!-- Logo -->
+            <a href="#" class="font-display font-black text-xl text-ink tracking-tight">Rioz<span
+                    class="text-ink">.</span></a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center gap-7">
+                <a href="#work" class="nav-link text-sm font-medium text-ink" data-i18n="nav_work">Work</a>
+                <a href="#about" class="nav-link text-sm font-medium text-ink" data-i18n="nav_about">About</a>
+                <a href="#layanan" class="nav-link text-sm font-medium text-ink" data-i18n="nav_layanan">Layanan</a>
+                <a href="#review" class="nav-link text-sm font-medium text-ink" data-i18n="nav_review">Review</a>
+                <a href="#contact" class="nav-link text-sm font-medium text-ink" data-i18n="nav_contact">Kontak</a>
+
+                <!-- Lang toggle -->
+                <div class="flex items-center border border-ink rounded-sm overflow-hidden">
+                    <button onclick="setLang('id')" id="btn-id"
+                        class="text-xs font-bold px-3 py-1.5 bg-ink text-cream transition-all">ID</button>
+                    <button onclick="setLang('en')" id="btn-en"
+                        class="text-xs font-bold px-3 py-1.5 text-ink transition-all">EN</button>
                 </div>
             </div>
 
-            <!-- Mobile Menu Toggle -->
-            <button class="md:hidden text-2xl text-white" id="mobile-menu-btn">
-                <i class="ph ph-list"></i>
+            <!-- Mobile hamburger -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-ink" aria-label="Toggle menu">
+                <i class="ph ph-list" id="menu-icon-open"></i>
+                <i class="ph ph-x hidden" id="menu-icon-close"></i>
             </button>
         </div>
 
-        <!-- Mobile Nav -->
-        <div class="md:hidden hidden bg-dark-950 border-b border-white/10" id="mobile-menu">
-            <div class="flex flex-col px-6 py-4 space-y-4">
-                <a href="#about" class="text-sm font-medium hover:text-brand-400" data-i18n="nav_about">About</a>
-                <a href="#services" class="text-sm font-medium hover:text-brand-400" data-i18n="nav_services">Services</a>
-                <a href="#experience" class="text-sm font-medium hover:text-brand-400" data-i18n="nav_experience">Experience</a>
-                <a href="#portfolio" class="text-sm font-medium hover:text-brand-400" data-i18n="nav_portfolio">Portfolio</a>
-                <a href="#blog" class="text-sm font-medium hover:text-brand-400" data-i18n="nav_blog">Blog</a>
-                <a href="#testimonials" class="text-sm font-medium hover:text-brand-400" data-i18n="nav_testimonials">Reviews</a>
-                <a href="#achievements" class="text-sm font-medium hover:text-brand-400" data-i18n="nav_achievements">Awards</a>
-                <a href="#contact" class="text-sm font-medium hover:text-brand-400" data-i18n="nav_contact">Contact</a>
-                <div class="flex items-center space-x-2 pt-2 border-t border-white/10">
-                    <button onclick="setLang('en')" class="text-xs font-bold px-3 py-1 rounded-full border border-brand-500 text-brand-400">EN</button>
-                    <button onclick="setLang('id')" class="text-xs font-bold px-3 py-1 rounded-full border border-slate-600 text-slate-400">ID</button>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden border-t border-ink" style="background-color:#F5F0E8;">
+            <div class="max-w-6xl mx-auto px-6 py-5 flex flex-col gap-5">
+                <a href="#work" class="text-base font-medium text-ink" data-i18n="nav_work">Work</a>
+                <a href="#about" class="text-base font-medium text-ink" data-i18n="nav_about">About</a>
+                <a href="#layanan" class="text-base font-medium text-ink" data-i18n="nav_layanan">Layanan</a>
+                <a href="#review" class="text-base font-medium text-ink" data-i18n="nav_review">Review</a>
+                <a href="#contact" class="text-base font-medium text-ink" data-i18n="nav_contact">Kontak</a>
+                <div class="flex items-center border border-ink rounded-sm overflow-hidden w-fit">
+                    <button onclick="setLang('id')" class="text-xs font-bold px-3 py-1.5 bg-ink text-cream">ID</button>
+                    <button onclick="setLang('en')" class="text-xs font-bold px-3 py-1.5 text-ink">EN</button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center pt-20 relative px-6">
-        <div class="max-w-4xl mx-auto text-center reveal">
-            <!-- UPDATED: Badge text changed to "Open for Video Editing Projects" -->
-            <div class="inline-flex items-center space-x-2 bg-brand-500/10 text-brand-400 px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-brand-500/20">
-                <span class="relative flex h-2 w-2">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
-                </span>
-                <span data-i18n="hero_badge">Open for Video Editing Projects</span>
-            </div>
-            
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6">
-                <span data-i18n="hero_hi">Hi, I'm Damarioz Indra Wibowo.</span> <br>
-                <!-- UPDATED: hero_role changed to "Vertical Video Editor & Content Creator" -->
-                <span class="gradient-text block mt-2" data-i18n="hero_role">Vertical Video Editor & Content Creator</span>
-            </h1>
-            
-            <!-- UPDATED: hero_desc updated to focus on vertical video editing services -->
-            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed" data-i18n="hero_desc">
-                Specializing in vertical video editing for UMKM, online shops, and brands. Fast turnaround, affordable pricing, ready to post on TikTok, Reels, and Shorts.
+    <!-- ═══════════════════════════════════════
+     HERO
+═══════════════════════════════════════ -->
+    <section id="home" class="pt-40 pb-20 px-6" style="border-bottom: 1px solid #0A0A0A;">
+        <div class="max-w-6xl mx-auto">
+
+            <p class="text-xs font-sans font-medium uppercase tracking-widest text-muted mb-8" data-i18n="hero_eyebrow">
+                Editor Video Vertikal · TikTok · Reels · Shorts
             </p>
-            
-            <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <a href="#portfolio" class="w-full sm:w-auto px-8 py-3.5 bg-brand-500 hover:bg-brand-400 text-dark-950 font-bold rounded-lg transition-all transform hover:-translate-y-1" data-i18n="btn_work">View Portfolio</a>
-                
-                <a href="https://drive.google.com/file/d/11WC1K-IE0FJb7NVCzSWL7n8p2ZW-LWSq/view?usp=sharing" target="_blank" class="w-full sm:w-auto px-8 py-3.5 glass-card hover:bg-white/10 text-white font-semibold rounded-lg transition-all flex items-center justify-center gap-2 group">
-                    <i class="ph ph-download-simple text-xl group-hover:-translate-y-1 transition-transform"></i>
-                    <span data-i18n="btn_cv">Download CV</span>
+
+            <h1 id="hero-headline"
+                class="font-display font-black text-5xl md:text-7xl lg:text-8xl text-ink leading-none mb-10"
+                style="max-width: 18ch;">
+                <span data-i18n="hero_line1">Bikin video shortform kamu</span> <span data-i18n="hero_highlight1"
+                    class="highlight-box">naik algoritma.</span><br>
+                <span data-i18n="hero_line2"><strong>Hook 3 detik.</strong> Subtitle. B-roll. Beres.</span>
+            </h1>
+
+            <p class="text-base text-muted mb-12" style="max-width:42ch;" data-i18n="hero_sub">
+                Editor video vertikal untuk UMKM, toko online, dan content creator.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya."
+                    target="_blank" rel="noopener noreferrer"
+                    class="inline-block px-8 py-4 font-sans font-semibold text-sm tracking-wide cta-underline"
+                    style="background:#0A0A0A;color:#F5F0E8;" data-i18n="hero_cta_primary">
+                    Konsultasi Gratis dulu →
+                </a>
+                <a href="#work"
+                    class="inline-block px-8 py-4 font-sans font-semibold text-sm tracking-wide text-ink cta-underline cta-underline-ink"
+                    style="border:1px solid #0A0A0A;" data-i18n="hero_cta_secondary">
+                    Lihat Work ↓
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-24 px-6 relative bg-dark-900/30">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <!-- Image Placeholder -->
-                <div class="reveal relative group">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-brand-500 to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                    <div class="relative aspect-[4/5] rounded-2xl bg-dark-900 border border-white/10 overflow-hidden glass-card group">
-                        <img 
-                            src="assets/img/profile.jpg" 
-                            alt="Damarioz Indra Wibowo — Vertical Video Editor"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="absolute inset-0 hidden items-center justify-center text-center p-6 bg-dark-900">
-                            <div>
-                                <i class="ph ph-user-focus text-6xl text-slate-600 mb-4 inline-block"></i>
-                                <p class="text-slate-500 text-sm font-medium">[Foto Profil Menyusul]</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- ═══════════════════════════════════════
+     MARQUEE BAR
+═══════════════════════════════════════ -->
+    <div class="overflow-hidden"
+        style="background:#0A0A0A;border-top:1px solid #0A0A0A;border-bottom:1px solid #0A0A0A;padding:12px 0;">
+        <div class="marquee-track">
+            <span class="font-sans text-sm uppercase tracking-wider px-6" style="color:#F5F0E8;white-space:nowrap;"
+                data-i18n="marquee_text">
+                500+ VIDEO SELESAI · 5+ TAHUN PENGALAMAN · 5+ KLIEN AKTIF · MULAI RP150RB · BOOKING VIA WHATSAPP ·
+                RESPON CEPAT ·&nbsp;
+            </span>
+            <span class="font-sans text-sm uppercase tracking-wider px-6" style="color:#F5F0E8;white-space:nowrap;"
+                aria-hidden="true" data-i18n="marquee_text">
+                500+ VIDEO SELESAI · 5+ TAHUN PENGALAMAN · 5+ KLIEN AKTIF · MULAI RP150RB · BOOKING VIA WHATSAPP ·
+                RESPON CEPAT ·&nbsp;
+            </span>
+        </div>
+    </div>
 
-                <!-- Text Content -->
-                <div class="reveal">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6" data-i18n="about_title">The Bridge Between Data and Design.</h2>
-                    <p class="text-slate-300 text-lg leading-relaxed mb-6" data-i18n="about_p1">
-                        Currently studying Informatics Engineering at Universitas Widya Kartika, I am not your typical creative. I bring an analytical, algorithm-aware mindset to every branding and content strategy I touch.
+    <!-- ═══════════════════════════════════════
+     STATS
+═══════════════════════════════════════ -->
+    <section id="stats" style="border-bottom:1px solid #0A0A0A;">
+        <div class="max-w-6xl mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 md:divide-x" style="border-color:#0A0A0A;">
+
+                <div class="py-10 md:py-0 md:pr-12">
+                    <p class="font-display font-black text-6xl text-ink mb-2">
+                        <span class="stat-num" data-target="5" data-suffix="+">0+</span>
                     </p>
-                    <p class="text-slate-300 text-lg leading-relaxed mb-8" data-i18n="about_p2">
-                        I am currently a Part-time Content Creator at FULLSTOP Branding Agency, while also having a strong background as a Brand Consultant and Live Stream Host. From organizing community events to driving online engagement, I blend logic with imagination to create strategies that actually perform.
+                    <p class="text-xs font-sans font-semibold uppercase tracking-widest text-muted"
+                        data-i18n="stat_1_label">Tahun Pengalaman</p>
+                </div>
+
+                <div class="py-10 md:py-0 md:px-12 border-t md:border-t-0" style="border-color:#0A0A0A;">
+                    <p class="font-display font-black text-6xl text-ink mb-2">
+                        <span class="stat-num" data-target="500" data-suffix="+">0+</span>
                     </p>
-                    
-                    <!-- Skills Grid -->
-                    <div class="grid grid-cols-2 gap-4 pt-6 border-t border-white/10">
-                        <div class="glass-card p-4 rounded-lg flex items-center gap-3">
-                            <i class="ph ph-bezier-curve text-2xl text-brand-400"></i>
-                            <span class="font-medium text-white text-sm" data-i18n="skill_graphic">Graphic Design</span>
-                        </div>
-                        <div class="glass-card p-4 rounded-lg flex items-center gap-3">
-                            <i class="ph ph-video-camera text-2xl text-blue-400"></i>
-                            <span class="font-medium text-white text-sm" data-i18n="skill_video">Video & Photo</span>
-                        </div>
-                        <div class="glass-card p-4 rounded-lg flex items-center gap-3">
-                            <i class="ph ph-microphone-stage text-2xl text-purple-400"></i>
-                            <span class="font-medium text-white text-sm" data-i18n="skill_host">Live Hosting</span>
-                        </div>
-                        <div class="glass-card p-4 rounded-lg flex items-center gap-3">
-                            <i class="ph ph-code text-2xl text-orange-400"></i>
-                            <span class="font-medium text-white text-sm" data-i18n="skill_it">IT & Analytical</span>
-                        </div>
-                    </div>
+                    <p class="text-xs font-sans font-semibold uppercase tracking-widest text-muted"
+                        data-i18n="stat_2_label">Video Selesai</p>
                 </div>
+
+                <div class="py-10 md:py-0 md:pl-12 border-t md:border-t-0" style="border-color:#0A0A0A;">
+                    <p class="font-display font-black text-6xl text-ink mb-2">
+                        <span class="stat-num" data-target="5" data-suffix="+">0+</span>
+                    </p>
+                    <p class="text-xs font-sans font-semibold uppercase tracking-widest text-muted"
+                        data-i18n="stat_3_label">Klien Aktif</p>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Services & Pricing Section -->
-    <section id="services" class="py-24 px-6 relative bg-dark-900/30">
+    <!-- ═══════════════════════════════════════
+     WORK — 12 CARDS
+═══════════════════════════════════════ -->
+    <!-- GANTI CARD: ganti card "Coming Soon" dengan iframe YouTube ketika video asli sudah siap -->
+    <section id="work" class="py-24 px-6" style="border-bottom:1px solid #0A0A0A;">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-i18n="svc_title">Services & Pricing</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto" data-i18n="svc_subtitle">Paket editing video vertikal yang fleksibel untuk kebutuhan Anda.</p>
-            </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-
-                <!-- Card 1: Single Video -->
-                <div class="glass-card rounded-2xl p-6 flex flex-col gap-4 border border-white/5 hover:-translate-y-2 transition-transform duration-300 reveal">
-                    <div class="w-12 h-12 rounded-xl bg-brand-500/15 flex items-center justify-center">
-                        <i class="ph ph-video-camera text-2xl text-brand-400"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-white mb-1" data-i18n="svc_1_title">Single Video</h3>
-                        <p class="text-brand-400 font-semibold text-sm mb-3" data-i18n="svc_1_price">Rp75.000 – Rp100.000</p>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="svc_1_desc">1 video vertikal siap posting. Revisi 2–3x. Pengerjaan 2–3 hari.</p>
-                    </div>
-                </div>
-
-                <!-- Card 2: Paket Starter -->
-                <div class="glass-card rounded-2xl p-6 flex flex-col gap-4 border border-white/5 hover:-translate-y-2 transition-transform duration-300 reveal">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/15 flex items-center justify-center">
-                        <i class="ph ph-stack text-2xl text-blue-400"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-white mb-1" data-i18n="svc_2_title">Paket Starter</h3>
-                        <p class="text-blue-400 font-semibold text-sm mb-3" data-i18n="svc_2_price">Rp300.000</p>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="svc_2_desc">4 video vertikal. Hemat untuk toko online yang aktif posting.</p>
-                    </div>
-                </div>
-
-                <!-- Card 3: Paket Growth -->
-                <div class="glass-card rounded-2xl p-6 flex flex-col gap-4 border border-brand-500/30 hover:-translate-y-2 transition-transform duration-300 reveal relative overflow-hidden">
-                    <div class="absolute top-0 right-0 bg-brand-500 text-dark-950 text-[10px] font-bold px-3 py-1 rounded-bl-lg" data-i18n="svc_popular">POPULER</div>
-                    <div class="w-12 h-12 rounded-xl bg-purple-500/15 flex items-center justify-center">
-                        <i class="ph ph-rocket text-2xl text-purple-400"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-white mb-1" data-i18n="svc_3_title">Paket Growth</h3>
-                        <p class="text-purple-400 font-semibold text-sm mb-3" data-i18n="svc_3_price">Rp600.000</p>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="svc_3_desc">8 video vertikal. Cocok untuk brand yang butuh konten rutin.</p>
-                    </div>
-                </div>
-
-                <!-- Card 4: Add-on -->
-                <div class="glass-card rounded-2xl p-6 flex flex-col gap-4 border border-white/5 hover:-translate-y-2 transition-transform duration-300 reveal">
-                    <div class="w-12 h-12 rounded-xl bg-orange-500/15 flex items-center justify-center">
-                        <i class="ph ph-plus-circle text-2xl text-orange-400"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-white mb-1" data-i18n="svc_4_title">Add-on</h3>
-                        <p class="text-orange-400 font-semibold text-sm mb-3" data-i18n="svc_4_price">Mulai Rp15.000</p>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="svc_4_desc">Rush, voice over, motion graphic, subtitle, thumbnail, shooting.</p>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- CTA Button -->
-            <div class="text-center reveal">
-                <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20tertarik%20jasa%20editing%20video"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105 shadow-lg shadow-green-500/25">
-                    <i class="ph ph-whatsapp-logo text-2xl"></i>
-                    <span data-i18n="svc_cta">Pesan via WhatsApp</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="py-24 px-6 relative">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-i18n="exp_title">Professional Experience</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto" data-i18n="exp_subtitle">A track record of content execution, brand consultation, and leadership.</p>
-            </div>
-            
-            <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-brand-500/50 before:via-white/10 before:to-transparent">
-                
-                <!-- NEW Highlighted Exp: Freelance Video Editor -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active reveal">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark-950 bg-brand-500 text-dark-950 font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow shadow-brand-500/50 z-10">
-                        <i class="ph ph-film-strip"></i>
-                    </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card p-6 rounded-xl border border-brand-500/50 relative overflow-hidden">
-                        <div class="absolute top-0 right-0 bg-brand-500 text-dark-950 text-[10px] font-bold px-3 py-1 rounded-bl-lg" data-i18n="badge_highlight">HIGHLIGHT</div>
-                        <h3 class="font-bold text-white text-lg mt-2" data-i18n="exp_0_company">Freelance Video Editor</h3>
-                        <h4 class="text-brand-400 font-medium text-sm mb-1" data-i18n="exp_0_role">Vertical Video Editor</h4>
-                        <p class="text-xs text-slate-500 mb-3">2023 - Present</p>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="exp_0_desc">Editing vertical videos for online shops (Wije.id, Melaminku.id) and parenting platforms (MyLO). Specializing in product promos, talking head, and educational content. 75K–100K per video, 2–3 days turnaround.</p>
-                    </div>
-                </div>
-
-                <!-- Highlighted Exp: FULLSTOP -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active reveal">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark-950 bg-brand-500 text-dark-950 font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow shadow-brand-500/50 z-10">
-                        <i class="ph ph-star-four"></i>
-                    </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card p-6 rounded-xl border border-brand-500/50 relative overflow-hidden">
-                        <div class="absolute top-0 right-0 bg-brand-500 text-dark-950 text-[10px] font-bold px-3 py-1 rounded-bl-lg" data-i18n="badge_highlight">HIGHLIGHT</div>
-                        
-                        <h3 class="font-bold text-white text-lg mt-2">FULLSTOP Branding Agency</h3>
-                        <h4 class="text-brand-400 font-medium text-sm mb-3" data-i18n="exp_1_role">Part-time Content Creator</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="exp_1_desc">Collaborating with the creative team to conceptualize and execute branding campaigns. Ensuring visual outputs align with both creative standards and data-driven engagement strategies.</p>
-                    </div>
-                </div>
-
-                <!-- Exp: Inter Buana Mandiri -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark-950 bg-slate-700 text-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                        <i class="ph ph-storefront"></i>
-                    </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card p-6 rounded-xl">
-                        <h3 class="font-bold text-white text-lg">PT Inter Buana Mandiri</h3>
-                        <h4 class="text-slate-300 font-medium text-sm mb-1" data-i18n="exp_2_role">Brand Consultant & Live Host</h4>
-                        <p class="text-xs text-slate-500 mb-3">Oct 2022 - Present</p>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="exp_2_desc">Promoted F&B products (Madu Quick Fresh, Star Village) effectively via TikTok Live. Analyzed target markets to achieve operational and sales targets as a brand consultant.</p>
-                    </div>
-                </div>
-                
-                <!-- Exp: Leadership/Community -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark-950 bg-slate-700 text-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                        <i class="ph ph-users-three"></i>
-                    </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card p-6 rounded-xl">
-                        <h3 class="font-bold text-white text-lg" data-i18n="exp_3_title">Creative Team Leader</h3>
-                        <h4 class="text-slate-300 font-medium text-sm mb-1">GBI Kristus Pencipta</h4>
-                        <p class="text-xs text-slate-500 mb-3">2020 - Present</p>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="exp_3_desc">Leading a creative committee. Organized events, managed publication designs, conceptualized video shoots, and structured project proposals for large community gatherings.</p>
-                    </div>
-                </div>
-
-                <!-- Exp: Internships -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark-950 bg-slate-700 text-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                        <i class="ph ph-camera"></i>
-                    </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card p-6 rounded-xl">
-                        <h3 class="font-bold text-white text-lg" data-i18n="exp_4_title">Creative Internships</h3>
-                        <h4 class="text-slate-300 font-medium text-sm mb-1">JCK Enterprise & Vici Studiospace</h4>
-                        <p class="text-xs text-slate-500 mb-3">2021 - 2022</p>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="exp_4_desc">Produced high-engagement visual assets via Adobe Photoshop. Collaborated in fast-paced studio environments to execute daily visual tasks.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-24 px-6 bg-dark-900/30">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 reveal">
+            <div class="flex items-end justify-between mb-12">
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-i18n="port_title">Selected Works</h2>
-                    <p class="text-slate-400 max-w-xl" data-i18n="port_subtitle">Explore my projects across different creative disciplines.</p>
+                    <h2 class="font-display font-black text-5xl text-ink mb-3" data-i18n="work_title">Work</h2>
+                    <p class="text-muted text-sm font-sans" data-i18n="work_sub">Portofolio video shortform yang sudah
+                        saya kerjakan.</p>
                 </div>
+                <p class="hidden md:block text-xs text-muted font-sans italic" data-i18n="work_scroll_hint">scroll untuk
+                    lihat semua →</p>
             </div>
 
-            <!-- Portfolio Filters -->
-            <div class="flex flex-wrap gap-3 mb-10 reveal" id="portfolio-filters">
-                <button class="filter-btn active px-5 py-2 rounded-full border border-white/10 text-sm font-medium hover:bg-white/5 transition-colors text-white" data-filter="all" data-i18n="filter_all">All Projects</button>
-                <button class="filter-btn px-5 py-2 rounded-full border border-white/10 text-sm font-medium hover:bg-white/5 transition-colors text-slate-300" data-filter="video" data-i18n="filter_video">Video Editing</button>
+            <div class="carousel-track">
+
+                <!-- ── CARD 1 — Style 1 (bg dimcream) ── -->
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden flex flex-col items-center justify-center"
+                        style="background:#E5DDD0;border:1px solid #0A0A0A;">
+                        <span class="absolute top-4 left-4 font-display font-black text-7xl text-ink"
+                            style="opacity:0.12;">01</span>
+                        <p class="font-display font-black text-2xl text-ink text-center mb-2">COMING<br>SOON</p>
+                        <p class="font-sans text-xs text-muted mb-4">Video sedang diproses</p>
+                        <i class="ph ph-play-circle text-2xl text-ink" style="opacity:0.4;"></i>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink" data-i18n="work_c1_title">Project Baru #01</p>
+                        <p class="font-sans text-xs text-muted mt-0.5" data-i18n="work_c1_cat">Talking Head</p>
+                    </div>
+                </div>
+
+                <!-- ── CARD 2 — Style 2 (bg hitam) ── -->
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden flex flex-col items-center justify-center"
+                        style="background:#0A0A0A;border:1px solid #0A0A0A;">
+                        <div class="absolute inset-4" style="border:1px solid rgba(245,240,232,0.15);"></div>
+                        <span class="font-display font-black text-8xl" style="color:rgba(245,240,232,0.20);">02</span>
+                        <p class="font-sans text-xs uppercase tracking-widest" style="color:#F5F0E8;opacity:0.6;">
+                            PROJECT BARU</p>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink" data-i18n="work_c2_title">Project Baru #02</p>
+                        <p class="font-sans text-xs text-muted mt-0.5" data-i18n="work_c2_cat">Product Review</p>
+                    </div>
+                </div>
+
+                <!-- ── CARD 3 — Style 3 (cream, border tebal) ── -->
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden flex flex-col items-center justify-center gap-3"
+                        style="background:#F5F0E8;border:2px solid #0A0A0A;">
+                        <i class="ph ph-film-strip text-6xl text-ink" style="opacity:0.25;"></i>
+                        <p class="font-sans text-xs uppercase tracking-widest text-ink" style="opacity:0.5;">COMING SOON
+                        </p>
+                        <p class="font-display text-xl font-black text-ink">Project #03</p>
+                        <p class="font-sans text-xs text-muted">Segera Hadir</p>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink" data-i18n="work_c3_title">Project Baru #03</p>
+                        <p class="font-sans text-xs text-muted mt-0.5" data-i18n="work_c3_cat">Edukasi</p>
+                    </div>
+                </div>
+
+                <!-- ── CARD 4 — Style 4 (stripe + SOON) ── -->
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden flex flex-col items-center justify-center gap-2 stripe-bg"
+                        style="border:1px solid #0A0A0A;">
+                        <span class="absolute font-display font-black text-8xl text-ink"
+                            style="opacity:0.08;transform:rotate(-45deg);pointer-events:none;">SOON</span>
+                        <i class="ph ph-sparkle text-3xl text-ink" style="opacity:0.4;"></i>
+                        <p class="font-display font-bold text-xl text-ink">Coming Soon</p>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink" data-i18n="work_c4_title">Project Baru #04</p>
+                        <p class="font-sans text-xs text-muted mt-0.5" data-i18n="work_c4_cat">Storytelling</p>
+                    </div>
+                </div>
+
+                <!-- ── CARD 5 — Style 1 ── -->
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden flex flex-col items-center justify-center"
+                        style="background:#E5DDD0;border:1px solid #0A0A0A;">
+                        <span class="absolute top-4 left-4 font-display font-black text-7xl text-ink"
+                            style="opacity:0.12;">05</span>
+                        <p class="font-display font-black text-2xl text-ink text-center mb-2">COMING<br>SOON</p>
+                        <p class="font-sans text-xs text-muted mb-4">Video sedang diproses</p>
+                        <i class="ph ph-play-circle text-2xl text-ink" style="opacity:0.4;"></i>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink" data-i18n="work_c5_title">Project Baru #05</p>
+                        <p class="font-sans text-xs text-muted mt-0.5" data-i18n="work_c5_cat">Testimoni</p>
+                    </div>
+                </div>
+
+                <!-- ── CARD 6 — Style 2 ── -->
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden flex flex-col items-center justify-center"
+                        style="background:#0A0A0A;border:1px solid #0A0A0A;">
+                        <div class="absolute inset-4" style="border:1px solid rgba(245,240,232,0.15);"></div>
+                        <span class="font-display font-black text-8xl" style="color:rgba(245,240,232,0.20);">06</span>
+                        <p class="font-sans text-xs uppercase tracking-widest" style="color:#F5F0E8;opacity:0.6;">
+                            PROJECT BARU</p>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink" data-i18n="work_c6_title">Project Baru #06</p>
+                        <p class="font-sans text-xs text-muted mt-0.5" data-i18n="work_c6_cat">Behind The Scene</p>
+                    </div>
+                </div>
+
+                <!-- ── CARD 7 — Style 3 ── -->
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden flex flex-col items-center justify-center gap-3"
+                        style="background:#F5F0E8;border:2px solid #0A0A0A;">
+                        <i class="ph ph-film-strip text-6xl text-ink" style="opacity:0.25;"></i>
+                        <p class="font-sans text-xs uppercase tracking-widest text-ink" style="opacity:0.5;">COMING SOON
+                        </p>
+                        <p class="font-display text-xl font-black text-ink">Project #07</p>
+                        <p class="font-sans text-xs text-muted">Segera Hadir</p>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink" data-i18n="work_c7_title">Project Baru #07</p>
+                        <p class="font-sans text-xs text-muted mt-0.5" data-i18n="work_c7_cat">Product Unboxing</p>
+                    </div>
+                </div>
+
+                <!-- ── CARD 8 — Style 4 ── -->
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden flex flex-col items-center justify-center gap-2 stripe-bg"
+                        style="border:1px solid #0A0A0A;">
+                        <span class="absolute font-display font-black text-8xl text-ink"
+                            style="opacity:0.08;transform:rotate(-45deg);pointer-events:none;">SOON</span>
+                        <i class="ph ph-sparkle text-3xl text-ink" style="opacity:0.4;"></i>
+                        <p class="font-display font-bold text-xl text-ink">Coming Soon</p>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink" data-i18n="work_c8_title">Project Baru #08</p>
+                        <p class="font-sans text-xs text-muted mt-0.5" data-i18n="work_c8_cat">Mini Vlog</p>
+                    </div>
+                </div>
+
+                <!-- ── CARD 9 — Style 1 ── -->
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden flex flex-col items-center justify-center"
+                        style="background:#E5DDD0;border:1px solid #0A0A0A;">
+                        <span class="absolute top-4 left-4 font-display font-black text-7xl text-ink"
+                            style="opacity:0.12;">09</span>
+                        <p class="font-display font-black text-2xl text-ink text-center mb-2">COMING<br>SOON</p>
+                        <p class="font-sans text-xs text-muted mb-4">Video sedang diproses</p>
+                        <i class="ph ph-play-circle text-2xl text-ink" style="opacity:0.4;"></i>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink" data-i18n="work_c9_title">Project Baru #09</p>
+                        <p class="font-sans text-xs text-muted mt-0.5" data-i18n="work_c9_cat">Talking Head</p>
+                    </div>
+                </div>
+
+                <!-- ── CARD 10 — Style 2 ── -->
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden flex flex-col items-center justify-center"
+                        style="background:#0A0A0A;border:1px solid #0A0A0A;">
+                        <div class="absolute inset-4" style="border:1px solid rgba(245,240,232,0.15);"></div>
+                        <span class="font-display font-black text-8xl" style="color:rgba(245,240,232,0.20);">10</span>
+                        <p class="font-sans text-xs uppercase tracking-widest" style="color:#F5F0E8;opacity:0.6;">
+                            PROJECT BARU</p>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink" data-i18n="work_c10_title">Project Baru #10
+                        </p>
+                        <p class="font-sans text-xs text-muted mt-0.5" data-i18n="work_c10_cat">Edukasi</p>
+                    </div>
+                </div>
+
+                <!-- ── CARD 11 — Style 3 ── -->
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden flex flex-col items-center justify-center gap-3"
+                        style="background:#F5F0E8;border:2px solid #0A0A0A;">
+                        <i class="ph ph-film-strip text-6xl text-ink" style="opacity:0.25;"></i>
+                        <p class="font-sans text-xs uppercase tracking-widest text-ink" style="opacity:0.5;">COMING SOON
+                        </p>
+                        <p class="font-display text-xl font-black text-ink">Project #11</p>
+                        <p class="font-sans text-xs text-muted">Segera Hadir</p>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink" data-i18n="work_c11_title">Project Baru #11
+                        </p>
+                        <p class="font-sans text-xs text-muted mt-0.5" data-i18n="work_c11_cat">Product Review</p>
+                    </div>
+                </div>
+
+                <!-- ── CARD 12 — Style 4 ── -->
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden flex flex-col items-center justify-center gap-2 stripe-bg"
+                        style="border:1px solid #0A0A0A;">
+                        <span class="absolute font-display font-black text-8xl text-ink"
+                            style="opacity:0.08;transform:rotate(-45deg);pointer-events:none;">SOON</span>
+                        <i class="ph ph-sparkle text-3xl text-ink" style="opacity:0.4;"></i>
+                        <p class="font-display font-bold text-xl text-ink">Coming Soon</p>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink" data-i18n="work_c12_title">Project Baru #12
+                        </p>
+                        <p class="font-sans text-xs text-muted mt-0.5" data-i18n="work_c12_cat">Storytelling</p>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- Portfolio Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
-                
-                <!-- Item 1: Wije.id -->
-                <div class="portfolio-item group relative rounded-2xl overflow-hidden glass-card reveal" data-category="video">
-                    <div class="aspect-[9/16] bg-slate-800 relative overflow-hidden rounded-xl">
-                        <!-- GANTI VIDEO_ID: ganti URL di atas dengan YouTube video ID asli -->
-                        <iframe
-                            class="w-full h-full"
-                            src="https://www.youtube.com/embed/ScMzIvxBSi4"
-                            title="Wije.id — Peralatan Dapur & Rumah Tangga"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex gap-2 mb-3">
-                            <span class="text-[10px] font-bold tracking-wider uppercase text-blue-400 border border-blue-400/30 px-2 py-1 rounded-full" data-i18n="tag_promo_1">Video Promosi</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors" data-i18n="port_1_title">Wije.id — Peralatan Dapur & Rumah Tangga</h3>
-                        <p class="text-slate-400 text-sm" data-i18n="port_1_desc">Video promosi produk peralatan dapur dan rumah tangga untuk TikTok/Reels. Fokus pada hook 3 detik dan b-roll produk.</p>
-                    </div>
-                </div>
-
-                <!-- Item 2: Melaminku.id -->
-                <div class="portfolio-item group relative rounded-2xl overflow-hidden glass-card reveal" data-category="video">
-                    <div class="aspect-[9/16] bg-slate-800 relative overflow-hidden rounded-xl">
-                        <!-- GANTI VIDEO_ID: ganti URL di atas dengan YouTube video ID asli -->
-                        <iframe
-                            class="w-full h-full"
-                            src="https://www.youtube.com/embed/aqz-KE-bpKQ"
-                            title="Melaminku.id — Perlengkapan Melamin"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex gap-2 mb-3">
-                            <span class="text-[10px] font-bold tracking-wider uppercase text-blue-400 border border-blue-400/30 px-2 py-1 rounded-full" data-i18n="tag_promo_2">Video Promosi</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors" data-i18n="port_2_title">Melaminku.id — Perlengkapan Melamin</h3>
-                        <p class="text-slate-400 text-sm" data-i18n="port_2_desc">Video promosi produk rumah tangga berbahan melamin. Menonjolkan keunggulan produk: aman, awet, dan estetik.</p>
-                    </div>
-                </div>
-
-                <!-- Item 3: MyLO -->
-                <div class="portfolio-item group relative rounded-2xl overflow-hidden glass-card reveal" data-category="video">
-                    <div class="aspect-[9/16] bg-slate-800 relative overflow-hidden rounded-xl">
-                        <!-- GANTI VIDEO_ID: ganti URL di atas dengan YouTube video ID asli -->
-                        <iframe
-                            class="w-full h-full"
-                            src="https://www.youtube.com/embed/ysz5S6PUM-U"
-                            title="MyLO — Parenting & Produk Bayi"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex gap-2 mb-3">
-                            <span class="text-[10px] font-bold tracking-wider uppercase text-purple-400 border border-purple-400/30 px-2 py-1 rounded-full" data-i18n="tag_edu_3">Video Edukasi</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors" data-i18n="port_3_title">MyLO — Parenting & Produk Bayi</h3>
-                        <p class="text-slate-400 text-sm" data-i18n="port_3_desc">Video edukasi seputar kehamilan, parenting, dan produk esensial bayi. Gaya hangat dan mudah dipahami orangtua baru.</p>
-                    </div>
-                </div>
-
-            </div>
+            <p class="md:hidden text-xs text-muted mt-4 text-right font-sans" data-i18n="work_scroll_hint">scroll untuk
+                lihat semua →</p>
         </div>
     </section>
 
-    <!-- Blog Section -->
-    <section id="blog" class="py-24 px-6 relative">
+    <!-- ═══════════════════════════════════════
+     ABOUT ME
+═══════════════════════════════════════ -->
+    <section id="about" class="py-24 px-6" style="border-bottom:1px solid #0A0A0A;">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16 reveal">
-                <i class="ph ph-article text-5xl text-brand-400 mb-4 inline-block"></i>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-i18n="blog_title">Latest Articles</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto" data-i18n="blog_subtitle">Tips and insights about vertical video editing for online shops and brands.</p>
-            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- SVG Avatar -->
+                <div class="lg:col-span-5">
+                    <!-- GANTI AVATAR: ganti SVG ini dengan <img src="assets/img/profile.jpg"> ketika foto profil sudah siap -->
+                    <div class="aspect-[4/5] overflow-hidden" style="border:1px solid #0A0A0A;">
+                        <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" class="w-full h-full"
+                            preserveAspectRatio="xMidYMid meet">
+                            <!-- Background cream gelap -->
+                            <rect width="400" height="500" fill="#E5DDD0" />
 
-                <!-- Article 1 -->
-                <a href="blog/hook-3-detik.html" class="portfolio-item group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 reveal flex flex-col">
-                    <div class="aspect-[16/9] bg-gradient-to-br from-brand-500/20 to-blue-500/20 relative overflow-hidden">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <i class="ph ph-file-text text-4xl text-white/30"></i>
-                        </div>
+                            <!-- Border hitam tipis di dalam -->
+                            <rect x="16" y="16" width="368" height="468" fill="none" stroke="#0A0A0A"
+                                stroke-width="1" />
+
+                            <!-- Huruf R super besar -->
+                            <text x="200" y="320" text-anchor="middle" font-family="Unbounded, sans-serif"
+                                font-size="280" font-weight="900" fill="#0A0A0A" letter-spacing="-15">R.</text>
+
+                            <!-- Garis pemisah tipis -->
+                            <line x1="80" y1="370" x2="320" y2="370" stroke="#0A0A0A" stroke-width="0.5" />
+
+                            <!-- Teks "EDITOR VIDEO" di bawah -->
+                            <text x="200" y="400" text-anchor="middle" font-family="Space Grotesk, sans-serif"
+                                font-size="14" font-weight="500" fill="#0A0A0A" letter-spacing="4">EDITOR VIDEO</text>
+
+                            <!-- Teks "EST. 2023" di paling bawah -->
+                            <text x="200" y="430" text-anchor="middle" font-family="Space Grotesk, sans-serif"
+                                font-size="12" font-weight="400" fill="#4A4A4A" letter-spacing="3">EST. 2023</text>
+                        </svg>
                     </div>
-                    <div class="p-6 flex flex-col flex-1">
-                        <div class="mb-3">
-                            <span class="text-[10px] font-bold tracking-wider uppercase text-blue-400 border border-blue-400/30 px-2 py-1 rounded-full" data-i18n="blog_1_cat">Tips</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-brand-400 transition-colors" data-i18n="blog_1_title">5 Hook 3 Detik untuk Video Promosi Produk Online Shop</h3>
-                        <p class="text-slate-400 text-sm flex-1" data-i18n="blog_1_desc">Learn 5 proven hook formulas to boost your product video engagement on TikTok and Reels.</p>
-                        <div class="flex justify-between items-center mt-4 pt-4 border-t border-white/10">
-                            <span class="text-slate-500 text-xs" data-i18n="blog_1_date">1 Oktober 2026</span>
-                            <span class="text-brand-400 text-xs font-semibold flex items-center gap-1">
-                                <span data-i18n="blog_read_more">Read More</span> <i class="ph ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                            </span>
-                        </div>
-                    </div>
-                </a>
+                </div>
 
-                <!-- Article 2 -->
-                <a href="blog/studi-kasus-wije.html" class="portfolio-item group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 reveal flex flex-col">
-                    <div class="aspect-[16/9] bg-gradient-to-br from-blue-500/20 to-purple-500/20 relative overflow-hidden">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <i class="ph ph-file-text text-4xl text-white/30"></i>
-                        </div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-1">
-                        <div class="mb-3">
-                            <span class="text-[10px] font-bold tracking-wider uppercase text-purple-400 border border-purple-400/30 px-2 py-1 rounded-full" data-i18n="blog_2_cat">Studi Kasus</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-brand-400 transition-colors" data-i18n="blog_2_title">How Wije.id Increased Product Video Engagement with a New Editing Style</h3>
-                        <p class="text-slate-400 text-sm flex-1" data-i18n="blog_2_desc">A case study on how consistent vertical video editing helped Wije.id boost their TikTok performance.</p>
-                        <div class="flex justify-between items-center mt-4 pt-4 border-t border-white/10">
-                            <span class="text-slate-500 text-xs" data-i18n="blog_2_date">15 September 2026</span>
-                            <span class="text-brand-400 text-xs font-semibold flex items-center gap-1">
-                                <span data-i18n="blog_read_more">Read More</span> <i class="ph ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                            </span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Article 3 -->
-                <a href="blog/pentingnya-video-vertikal.html" class="portfolio-item group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 reveal flex flex-col">
-                    <div class="aspect-[16/9] bg-gradient-to-br from-purple-500/20 to-brand-500/20 relative overflow-hidden">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <i class="ph ph-file-text text-4xl text-white/30"></i>
-                        </div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-1">
-                        <div class="mb-3">
-                            <span class="text-[10px] font-bold tracking-wider uppercase text-brand-400 border border-brand-400/30 px-2 py-1 rounded-full" data-i18n="blog_3_cat">Tutorial</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-brand-400 transition-colors" data-i18n="blog_3_title">Why Vertical Video Matters for UMKM in 2026</h3>
-                        <p class="text-slate-400 text-sm flex-1" data-i18n="blog_3_desc">Understand the shift to vertical video and why every online shop needs a consistent content strategy.</p>
-                        <div class="flex justify-between items-center mt-4 pt-4 border-t border-white/10">
-                            <span class="text-slate-500 text-xs" data-i18n="blog_3_date">1 September 2026</span>
-                            <span class="text-brand-400 text-xs font-semibold flex items-center gap-1">
-                                <span data-i18n="blog_read_more">Read More</span> <i class="ph ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                            </span>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-24 px-6 relative bg-dark-900/30">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16 reveal">
-                <i class="ph ph-chat-teardrop-dots text-5xl text-brand-400 mb-4 inline-block"></i>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-i18n="testi_title">What Clients Say</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto" data-i18n="testi_subtitle">Testimonials from clients I've worked with.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-                <!-- Testimoni 1: Wije.id -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col gap-4 border border-white/5 hover:-translate-y-2 transition-transform duration-300 reveal">
-                    <i class="ph ph-quotes text-3xl text-brand-400/50"></i>
-                    <p class="text-slate-300 text-sm leading-relaxed flex-1" data-i18n="testi_1_text">
-                        "Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!"
+                <!-- Teks -->
+                <div class="lg:col-span-7">
+                    <h2 class="font-display font-black text-5xl text-ink mb-10" data-i18n="about_title">About Me</h2>
+                    <p class="text-base text-ink font-sans leading-relaxed mb-10" data-i18n="about_text">
+                        Mahasiswa Teknik Informatika yang jatuh cinta sama dunia editing video. Sejak 2023, saya bantu
+                        UMKM, toko online, dan content creator bikin video shortform yang beneran jualan — bukan cuma
+                        rapi, tapi punya hook, subtitle, dan b-roll yang bikin orang berhenti scroll.
                     </p>
-                    <!-- Rating bintang 5 -->
-                    <div class="flex gap-1 text-yellow-400 text-sm">
-                        <i class="ph ph-star-fill"></i>
-                        <i class="ph ph-star-fill"></i>
-                        <i class="ph ph-star-fill"></i>
-                        <i class="ph ph-star-fill"></i>
-                        <i class="ph ph-star-fill"></i>
+                    <a href="https://wa.me/62895413935821" target="_blank" rel="noopener noreferrer"
+                        class="text-sm font-sans font-semibold text-ink"
+                        style="border-bottom:1px solid #0A0A0A;padding-bottom:2px;" data-i18n="about_cta">
+                        Chat Saya →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+     LAYANAN
+═══════════════════════════════════════ -->
+    <section id="layanan" class="py-24 px-6" style="border-bottom:1px solid #0A0A0A;">
+        <div class="max-w-6xl mx-auto">
+
+            <div class="mb-14">
+                <h2 class="font-display font-black text-5xl text-ink mb-3" data-i18n="svc_title">Layanan</h2>
+                <p class="text-muted text-sm font-sans" data-i18n="svc_sub">Pilih paket yang paling cocok. Butuh custom?
+                    Chat WhatsApp.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3" style="border:1px solid #0A0A0A;">
+
+                <!-- Paket 1 -->
+                <div class="p-10 card-lift flex flex-col h-full"
+                    style="border-right:1px solid #0A0A0A;border-bottom:1px solid #0A0A0A;">
+                    <p class="font-sans text-xs font-semibold uppercase tracking-widest text-muted mb-6"
+                        data-i18n="svc_1_label">Paket 01</p>
+                    <h3 class="font-display font-bold text-3xl text-ink mb-4" data-i18n="svc_1_name">Short-form</h3>
+                    <p class="font-sans font-semibold text-ink text-base mb-6" data-i18n="svc_1_price">Rp150.000 / video
+                    </p>
+                    <p class="font-sans text-sm text-muted leading-relaxed mb-10 flex-1" data-i18n="svc_1_desc">1 video
+                        vertikal siap posting. Hook, subtitle, b-roll. Revisi 2x. Pengerjaan 2–3 hari.</p>
+                    <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20booking%20paket%20Short-form%20(Rp150rb)"
+                        target="_blank" rel="noopener noreferrer"
+                        class="inline-block px-6 py-3 font-sans text-sm font-semibold cta-underline mt-auto w-full text-center"
+                        style="background:#0A0A0A;color:#F5F0E8;" data-i18n="svc_btn">
+                        Booking via WhatsApp →
+                    </a>
+                </div>
+
+                <!-- Paket 2 -->
+                <div class="p-10 card-lift relative overflow-hidden flex flex-col h-full"
+                    style="border-right:1px solid #0A0A0A;border-bottom:1px solid #0A0A0A;">
+                    <span
+                        class="absolute top-0 right-0 bg-ink text-cream text-xs font-sans uppercase tracking-wider font-bold py-1 px-3"
+                        data-i18n="svc_2_badge">POPULER</span>
+                    <p class="font-sans text-xs font-semibold uppercase tracking-widest text-muted mb-6"
+                        data-i18n="svc_2_label">Paket 02</p>
+                    <h3 class="font-display font-bold text-3xl text-ink mb-4" data-i18n="svc_2_name">Bundling Growth
+                    </h3>
+                    <p class="font-sans font-semibold text-ink text-base mb-6" data-i18n="svc_2_price">Rp1.500.000 / 8
+                        video</p>
+                    <p class="font-sans text-sm text-muted leading-relaxed mb-10 flex-1" data-i18n="svc_2_desc">8 video
+                        vertikal. Revisi 3x per video. Prioritas pengerjaan + free konsultasi strategi konten.</p>
+                    <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20booking%20paket%20Bundling%20Growth%20(Rp1.5jt)"
+                        target="_blank" rel="noopener noreferrer"
+                        class="inline-block px-6 py-3 font-sans text-sm font-semibold cta-underline mt-auto w-full text-center"
+                        style="background:#0A0A0A;color:#F5F0E8;" data-i18n="svc_btn">
+                        Booking via WhatsApp →
+                    </a>
+                </div>
+
+                <!-- Paket 3 -->
+                <div class="p-10 card-lift flex flex-col h-full" style="border-bottom:1px solid #0A0A0A;">
+                    <p class="font-sans text-xs font-semibold uppercase tracking-widest text-muted mb-6"
+                        data-i18n="svc_3_label">Paket 03</p>
+                    <h3 class="font-display font-bold text-3xl text-ink mb-4" data-i18n="svc_3_name">Retainer Premium
+                    </h3>
+                    <p class="font-sans font-semibold text-ink text-base mb-6" data-i18n="svc_3_price">Rp4.000.000 /
+                        bulan</p>
+                    <p class="font-sans text-sm text-muted leading-relaxed mb-10 flex-1" data-i18n="svc_3_desc">12 video
+                        per bulan. Revisi unlimited (fair use). Prioritas super + komunikasi intensif. Free thumbnail +
+                        caption. Konsultasi strategi 1-on-1.</p>
+                    <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20booking%20paket%20Retainer%20Premium%20(Rp4jt)"
+                        target="_blank" rel="noopener noreferrer"
+                        class="inline-block px-6 py-3 font-sans text-sm font-semibold cta-underline mt-auto w-full text-center"
+                        style="background:#0A0A0A;color:#F5F0E8;" data-i18n="svc_btn">
+                        Booking via WhatsApp →
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+     REVIEW
+═══════════════════════════════════════ -->
+    <section id="review" class="py-24 px-6" style="border-bottom:1px solid #0A0A0A;">
+        <div class="max-w-6xl mx-auto">
+
+            <div class="mb-14">
+                <h2 class="font-display font-black text-5xl text-ink mb-3" data-i18n="review_title">Review</h2>
+                <p class="text-muted text-sm font-sans" data-i18n="review_sub">Kata klien yang sudah kerja sama.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3" style="border:1px solid #0A0A0A;">
+
+                <div class="p-10 card-lift flex flex-col h-full" style="border-right:1px solid #0A0A0A;">
+                    <div class="flex gap-1 mb-6 text-base text-ink tracking-widest">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
                     </div>
-                    <div class="pt-3 border-t border-white/10">
-                        <p class="text-white font-semibold text-sm" data-i18n="testi_1_name">[Klien Wije.id]</p>
-                        <p class="text-slate-500 text-xs mt-0.5" data-i18n="testi_1_role">Toko Peralatan Dapur</p>
+                    <p class="font-display italic text-xl text-ink leading-relaxed flex-1" data-i18n="rev_1_quote">
+                        "Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya
+                        naik. Recommended!"
+                    </p>
+                    <div class="flex items-center gap-4 mt-8 pt-6" style="border-top:1px solid #0A0A0A;">
+                        <div
+                            class="w-12 h-12 rounded-full flex items-center justify-center bg-ink text-cream font-display font-bold text-xl">
+                            W</div>
+                        <div>
+                            <p class="font-sans font-semibold text-sm text-ink" data-i18n="rev_1_name">Wije.id</p>
+                            <p class="font-sans text-xs text-muted mt-1" data-i18n="rev_1_role">Toko Peralatan Dapur</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Testimoni 2: Melaminku.id -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col gap-4 border border-brand-500/20 hover:-translate-y-2 transition-transform duration-300 reveal">
-                    <i class="ph ph-quotes text-3xl text-brand-400/50"></i>
-                    <p class="text-slate-300 text-sm leading-relaxed flex-1" data-i18n="testi_2_text">
+                <div class="p-10 card-lift flex flex-col h-full"
+                    style="border-right:1px solid #0A0A0A;border-top:1px solid #0A0A0A;">
+                    <div class="flex gap-1 mb-6">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                    </div>
+                    <p class="font-display italic text-xl text-ink leading-relaxed flex-1" data-i18n="rev_2_quote">
                         "Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi."
                     </p>
-                    <!-- Rating bintang 5 -->
-                    <div class="flex gap-1 text-yellow-400 text-sm">
-                        <i class="ph ph-star-fill"></i>
-                        <i class="ph ph-star-fill"></i>
-                        <i class="ph ph-star-fill"></i>
-                        <i class="ph ph-star-fill"></i>
-                        <i class="ph ph-star-fill"></i>
-                    </div>
-                    <div class="pt-3 border-t border-white/10">
-                        <p class="text-white font-semibold text-sm" data-i18n="testi_2_name">[Klien Melaminku.id]</p>
-                        <p class="text-slate-500 text-xs mt-0.5" data-i18n="testi_2_role">Perlengkapan Melamin</p>
+                    <div class="flex items-center gap-4 mt-8 pt-6" style="border-top:1px solid #0A0A0A;">
+                        <div
+                            class="w-12 h-12 rounded-full flex items-center justify-center bg-ink text-cream font-display font-bold text-xl">
+                            M</div>
+                        <div>
+                            <p class="font-sans font-semibold text-sm text-ink" data-i18n="rev_2_name">Melaminku.id</p>
+                            <p class="font-sans text-xs text-muted mt-1" data-i18n="rev_2_role">Perlengkapan Melamin</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Testimoni 3: MyLO -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col gap-4 border border-white/5 hover:-translate-y-2 transition-transform duration-300 reveal">
-                    <i class="ph ph-quotes text-3xl text-brand-400/50"></i>
-                    <p class="text-slate-300 text-sm leading-relaxed flex-1" data-i18n="testi_3_text">
+                <div class="p-10 card-lift flex flex-col h-full" style="border-top:1px solid #0A0A0A;">
+                    <div class="flex gap-1 mb-6">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                    </div>
+                    <p class="font-display italic text-xl text-ink leading-relaxed flex-1" data-i18n="rev_3_quote">
                         "Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami."
                     </p>
-                    <!-- Rating bintang 5 -->
-                    <div class="flex gap-1 text-yellow-400 text-sm">
-                        <i class="ph ph-star-fill"></i>
-                        <i class="ph ph-star-fill"></i>
-                        <i class="ph ph-star-fill"></i>
-                        <i class="ph ph-star-fill"></i>
-                        <i class="ph ph-star-fill"></i>
-                    </div>
-                    <div class="pt-3 border-t border-white/10">
-                        <p class="text-white font-semibold text-sm" data-i18n="testi_3_name">[Tim MyLO]</p>
-                        <p class="text-slate-500 text-xs mt-0.5" data-i18n="testi_3_role">Platform Parenting & Bayi</p>
+                    <div class="flex items-center gap-4 mt-8 pt-6" style="border-top:1px solid #0A0A0A;">
+                        <div
+                            class="w-12 h-12 rounded-full flex items-center justify-center bg-ink text-cream font-display font-bold text-xl">
+                            M</div>
+                        <div>
+                            <p class="font-sans font-semibold text-sm text-ink" data-i18n="rev_3_name">MyLO</p>
+                            <p class="font-sans text-xs text-muted mt-1" data-i18n="rev_3_role">Platform Parenting &
+                                Bayi</p>
+                        </div>
                     </div>
                 </div>
 
@@ -644,404 +862,342 @@
         </div>
     </section>
 
-    <!-- Achievements Section -->
-    <section id="achievements" class="py-24 px-6 relative">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16 reveal">
-                <i class="ph ph-trophy text-5xl text-brand-400 mb-4 inline-block"></i>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-i18n="achieve_title">Awards & Achievements</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto" data-i18n="achieve_subtitle">Recognition for creativity, communication, and journalistic excellence.</p>
+    <!-- ═══════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════ -->
+    <section id="contact" class="py-32 px-6" style="border-bottom:1px solid #0A0A0A;">
+        <div class="max-w-4xl mx-auto text-center">
+
+            <h2 class="font-display font-black text-5xl md:text-7xl text-ink leading-tight mb-8"
+                data-i18n="contact_title">
+                Mari bikin video kamu naik.
+            </h2>
+            <p class="text-muted text-base font-sans mb-14" data-i18n="contact_sub">
+                Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.
+            </p>
+
+            <div class="mb-6">
+                <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya."
+                    target="_blank" rel="noopener noreferrer"
+                    class="inline-block px-10 py-5 font-sans font-bold text-base tracking-wide cta-underline"
+                    style="background:#0A0A0A;color:#F5F0E8;" data-i18n="contact_cta">
+                    Chat WhatsApp — Konsultasi Gratis →
+                </a>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Award 1 -->
-                <div class="glass-card p-6 rounded-2xl border-t-2 border-t-brand-400 hover:-translate-y-2 transition-transform duration-300 reveal text-center">
-                    <h3 class="text-4xl font-black text-brand-400/20 mb-2">1st</h3>
-                    <h4 class="text-lg font-bold text-white mb-1">Teenizen Journalism</h4>
-                    <p class="text-brand-400 text-sm font-medium mb-3">2019</p>
-                    <p class="text-slate-400 text-sm" data-i18n="achieve_1_desc">First place winner demonstrating excellence in journalism, writing, and reporting skills.</p>
-                </div>
-                <!-- Award 2 -->
-                <div class="glass-card p-6 rounded-2xl border-t-2 border-t-blue-400 hover:-translate-y-2 transition-transform duration-300 reveal text-center">
-                    <h3 class="text-4xl font-black text-blue-400/20 mb-2">2nd</h3>
-                    <h4 class="text-lg font-bold text-white mb-1">Fikom Week 3.0</h4>
-                    <p class="text-blue-400 text-sm font-medium mb-3">2021</p>
-                    <p class="text-slate-400 text-sm" data-i18n="achieve_2_desc">Runner-up in a competitive communication and media faculty event.</p>
-                </div>
-                <!-- Award 3 -->
-                <div class="glass-card p-6 rounded-2xl border-t-2 border-t-purple-400 hover:-translate-y-2 transition-transform duration-300 reveal text-center">
-                    <h3 class="text-4xl font-black text-purple-400/20 mb-2">2nd</h3>
-                    <h4 class="text-lg font-bold text-white mb-1">Expo Pendidikan</h4>
-                    <p class="text-purple-400 text-sm font-medium mb-3">2019</p>
-                    <p class="text-slate-400 text-sm" data-i18n="achieve_3_desc">Recognized for outstanding presentation and creative exhibition booth management.</p>
-                </div>
+            <p class="font-sans text-sm text-muted mb-16" data-i18n="contact_response">
+                ⚡ Biasanya membalas dalam hitungan menit
+            </p>
+
+            <div class="flex items-center justify-center flex-wrap gap-6">
+                <a href="https://www.linkedin.com/in/riozz18/" target="_blank" rel="noopener noreferrer"
+                    class="nav-link font-sans text-sm text-ink flex items-center gap-1.5 hover:opacity-60 transition-opacity">
+                    <i class="ph ph-linkedin-logo text-lg"></i> LinkedIn
+                </a>
+                <span class="text-muted text-xs">·</span>
+                <a href="https://linktr.ee/riozz" target="_blank" rel="noopener noreferrer"
+                    class="nav-link font-sans text-sm text-ink flex items-center gap-1.5 hover:opacity-60 transition-opacity">
+                    <i class="ph ph-tree-structure text-lg"></i> Linktree
+                </a>
+                <span class="text-muted text-xs">·</span>
+                <a href="https://www.instagram.com/riozz18/" target="_blank" rel="noopener noreferrer"
+                    class="nav-link font-sans text-sm text-ink flex items-center gap-1.5 hover:opacity-60 transition-opacity">
+                    <i class="ph ph-instagram-logo text-lg"></i> Instagram
+                </a>
+                <span class="text-muted text-xs">·</span>
+                <a href="mailto:damariozjr@gmail.com"
+                    class="nav-link font-sans text-sm text-ink flex items-center gap-1.5 hover:opacity-60 transition-opacity">
+                    <i class="ph ph-envelope text-lg"></i> Email
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section — WhatsApp First -->
-    <section id="contact" class="py-24 px-6 relative bg-dark-900/30">
-        <div class="max-w-3xl mx-auto">
-
-            <!-- Main Card -->
-            <div class="glass-card rounded-3xl p-10 md:p-16 text-center reveal relative overflow-hidden">
-                <!-- Ambient blobs -->
-                <div class="absolute top-0 right-0 w-72 h-72 bg-green-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="absolute bottom-0 left-0 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-                <div class="relative z-10">
-                    <!-- Big WA icon -->
-                    <div class="w-20 h-20 rounded-full bg-green-500/15 flex items-center justify-center mx-auto mb-6 ring-2 ring-green-500/30">
-                        <i class="ph ph-whatsapp-logo text-5xl text-green-400"></i>
-                    </div>
-
-                    <!-- Title & description -->
-                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4" data-i18n="contact_title_wa">Butuh Editor Video?</h2>
-                    <p class="text-slate-300 text-lg mb-10 max-w-xl mx-auto leading-relaxed" data-i18n="contact_desc_wa">
-                        Langsung chat via WhatsApp — konsultasi gratis, tanpa ribet.
-                        Bahas kebutuhan konten, paket harga, dan jadwal pengerjaan.
-                    </p>
-
-                    <!-- Primary CTA button -->
-                    <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20tertarik%20jasa%20editing%20video%20vertikal.%20Boleh%20minta%20info%20paket%20dan%20harga%3F"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-green-500 hover:bg-green-400 text-white font-bold text-lg px-10 py-4 rounded-2xl transition-all hover:scale-105 shadow-lg shadow-green-500/30 mb-4">
-                        <i class="ph ph-whatsapp-logo text-2xl"></i>
-                        <span data-i18n="btn_chat_wa">Chat via WhatsApp</span>
-                    </a>
-
-                    <!-- Response time note -->
-                    <p class="text-slate-500 text-sm mb-12" data-i18n="contact_response_time">
-                        ⚡ Biasanya membalas dalam hitungan menit
-                    </p>
-
-                    <!-- Quick-action grid — 3 col desktop / 1 col mobile -->
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
-
-                        <!-- Tanya Harga -->
-                        <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20tanya%20harga%20editing%20video."
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="glass-card hover:bg-white/10 border border-white/10 rounded-2xl p-5 flex flex-col items-center gap-3 transition-all hover:-translate-y-1 group">
-                            <div class="w-11 h-11 rounded-xl bg-brand-500/15 flex items-center justify-center">
-                                <i class="ph ph-tag text-2xl text-brand-400 group-hover:scale-110 transition-transform"></i>
-                            </div>
-                            <span class="text-white font-semibold text-sm" data-i18n="quick_price">Tanya Harga</span>
-                        </a>
-
-                        <!-- Lihat Portofolio -->
-                        <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20lihat%20contoh%20portofolio%20video%20editing."
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="glass-card hover:bg-white/10 border border-white/10 rounded-2xl p-5 flex flex-col items-center gap-3 transition-all hover:-translate-y-1 group">
-                            <div class="w-11 h-11 rounded-xl bg-blue-500/15 flex items-center justify-center">
-                                <i class="ph ph-play-circle text-2xl text-blue-400 group-hover:scale-110 transition-transform"></i>
-                            </div>
-                            <span class="text-white font-semibold text-sm" data-i18n="quick_portfolio">Lihat Portofolio</span>
-                        </a>
-
-                        <!-- Konsultasi Gratis -->
-                        <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya."
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="glass-card hover:bg-white/10 border border-white/10 rounded-2xl p-5 flex flex-col items-center gap-3 transition-all hover:-translate-y-1 group">
-                            <div class="w-11 h-11 rounded-xl bg-purple-500/15 flex items-center justify-center">
-                                <i class="ph ph-chats-circle text-2xl text-purple-400 group-hover:scale-110 transition-transform"></i>
-                            </div>
-                            <span class="text-white font-semibold text-sm" data-i18n="quick_consult">Konsultasi Gratis</span>
-                        </a>
-
-                    </div>
-
-                    <!-- Secondary social links -->
-                    <div class="flex items-center justify-center gap-4 pt-8 border-t border-white/10">
-                        <a href="https://www.linkedin.com/in/riozz18/" target="_blank" rel="noopener noreferrer"
-                           class="text-slate-400 hover:text-blue-400 transition-colors p-2 bg-white/5 rounded-full hover:bg-white/10" aria-label="LinkedIn">
-                            <i class="ph ph-linkedin-logo text-2xl"></i>
-                        </a>
-                        <a href="https://linktr.ee/riozz" target="_blank" rel="noopener noreferrer"
-                           class="text-slate-400 hover:text-brand-400 transition-colors p-2 bg-white/5 rounded-full hover:bg-white/10" aria-label="Linktree">
-                            <i class="ph ph-link text-2xl"></i>
-                        </a>
-                        <a href="mailto:damariozjr@gmail.com"
-                           class="text-slate-400 hover:text-white transition-colors p-2 bg-white/5 rounded-full hover:bg-white/10" aria-label="Email">
-                            <i class="ph ph-envelope-simple text-2xl"></i>
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-10 text-center border-t border-white/10 mt-12">
-        <div class="flex items-center justify-center space-x-5 mb-4">
-            <a href="https://wa.me/62895413935821" target="_blank" rel="noopener noreferrer"
-               class="text-slate-400 hover:text-green-400 transition-colors p-2 bg-white/5 rounded-full hover:bg-white/10"
-               aria-label="WhatsApp">
-                <i class="ph ph-whatsapp-logo text-xl"></i>
-            </a>
-            <a href="https://www.instagram.com/riozz18/" target="_blank" rel="noopener noreferrer"
-               class="text-slate-400 hover:text-pink-400 transition-colors p-2 bg-white/5 rounded-full hover:bg-white/10"
-               aria-label="Instagram">
-                <i class="ph ph-instagram-logo text-xl"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/riozz18/" target="_blank" rel="noopener noreferrer"
-               class="text-slate-400 hover:text-blue-400 transition-colors p-2 bg-white/5 rounded-full hover:bg-white/10"
-               aria-label="LinkedIn">
-                <i class="ph ph-linkedin-logo text-xl"></i>
-            </a>
-            <a href="https://linktr.ee/riozz" target="_blank" rel="noopener noreferrer"
-               class="text-slate-400 hover:text-brand-400 transition-colors p-2 bg-white/5 rounded-full hover:bg-white/10"
-               aria-label="Linktree">
-                <i class="ph ph-link text-xl"></i>
+    <!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+    <footer class="py-8 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p class="font-sans text-sm text-muted">© <span id="year"></span> Rioz. — Editor Video Vertikal.</p>
+            <a href="https://drive.google.com/file/d/11WC1K-IE0FJb7NVCzSWL7n8p2ZW-LWSq/view?usp=sharing" target="_blank"
+                rel="noopener noreferrer"
+                class="nav-link font-sans text-xs text-muted hover:text-ink transition-colors">
+                Download CV →
             </a>
         </div>
-        <p class="text-slate-500 text-sm">
-            &copy; <span id="year"></span> Damarioz Indra Wibowo (Riozz) — Vertical Video Editor. <span data-i18n="footer_text">All rights reserved.</span>
-        </p>
     </footer>
 
-    <!-- =====================================================
-         WhatsApp Floating Button (NEW)
-         Fixed bottom-right, green bg, opens WA with preset message
-    ====================================================== -->
-    <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20tertarik%20jasa%20editing%20video"
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="Chat via WhatsApp"
-       class="wa-float fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-green-500 hover:bg-green-400 rounded-full shadow-lg shadow-green-500/30">
-        <i class="ph ph-whatsapp-logo text-3xl text-white"></i>
+    <!-- ═══════════════════════════════════════
+     WHATSAPP FLOAT
+═══════════════════════════════════════ -->
+    <a href="https://wa.me/62895413935821" target="_blank" rel="noopener noreferrer" class="wa-float"
+        aria-label="WhatsApp">
+        <i class="ph ph-whatsapp-logo text-2xl" style="color:#F5F0E8;"></i>
     </a>
 
-    <!-- Scripts -->
+    <!-- ═══════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════ -->
     <script>
-        // Set Current Year
+        // ── Year ─────────────────────────────────────
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Navbar Scroll Effect
+        // ── Mobile Menu ──────────────────────────────
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('menu-icon-open');
+        const iconClose = document.getElementById('menu-icon-close');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            iconOpen.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
+        });
+        mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            iconOpen.classList.remove('hidden');
+            iconClose.classList.add('hidden');
+        }));
+
+        // ── Navbar border on scroll ──────────────────
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('shadow-lg', 'bg-dark-950/90');
-                navbar.classList.remove('py-4');
-                navbar.classList.add('py-3');
-            } else {
-                navbar.classList.remove('shadow-lg', 'bg-dark-950/90');
-                navbar.classList.remove('py-3');
-                navbar.classList.add('py-4');
-            }
-        });
+            navbar.style.borderBottomColor = window.scrollY > 20 ? '#0A0A0A' : 'transparent';
+        }, { passive: true });
 
-        // Mobile Menu Toggle
-        const mobileBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        // ── GSAP Animations ──────────────────────────
+        gsap.registerPlugin(ScrollTrigger);
 
-        // Scroll Animation (Intersection Observer)
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealCallback = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
+        function splitWordsSafely(el) {
+            const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+            const textNodes = [];
+            let node;
+            while (node = walker.nextNode()) {
+                if (node.nodeValue.trim() !== '') {
+                    textNodes.push(node);
                 }
-            });
-        };
-        const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
-        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
-        revealElements.forEach(el => revealObserver.observe(el));
+            }
 
-        // Portfolio Filtering Logic
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterBtns.forEach(b => {
-                    b.classList.remove('active', 'text-white');
-                    b.classList.add('text-slate-300');
-                });
-                
-                // Add active class to clicked button
-                btn.classList.add('active', 'text-white');
-                btn.classList.remove('text-slate-300');
-
-                const filterValue = btn.getAttribute('data-filter');
-
-                portfolioItems.forEach(item => {
-                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                        item.style.display = 'block';
-                        // Tiny animation effect
-                        item.style.animation = 'none';
-                        item.offsetHeight; /* trigger reflow */
-                        item.style.animation = null; 
+            textNodes.forEach(textNode => {
+                const words = textNode.nodeValue.split(/(\s+)/);
+                const fragment = document.createDocumentFragment();
+                words.forEach(w => {
+                    if (w.trim()) {
+                        const span = document.createElement('span');
+                        span.className = 'word';
+                        span.style.display = 'inline-block';
+                        span.style.opacity = '1';
+                        span.style.transform = 'none';
+                        span.textContent = w;
+                        fragment.appendChild(span);
                     } else {
-                        item.style.display = 'none';
+                        fragment.appendChild(document.createTextNode(w));
                     }
                 });
+                textNode.parentNode.replaceChild(fragment, textNode);
+            });
+            return el.querySelectorAll('.word');
+        }
+
+        // H1 and H2 animation logic is handled in DOMContentLoaded
+
+        // B) Count-Up Stats
+        gsap.utils.toArray('.stat-num').forEach(el => {
+            const target = parseInt(el.dataset.target);
+            const suffix = el.dataset.suffix || '';
+            ScrollTrigger.create({
+                trigger: el, start: 'top 85%', once: true,
+                onEnter() {
+                    gsap.to({ val: 0 }, {
+                        val: target, duration: 1.5, ease: 'power2.out',
+                        onUpdate() { el.textContent = Math.round(this.targets()[0].val) + suffix; }
+                    });
+                }
             });
         });
 
+        // C) Fade-Up Sections
+        gsap.utils.toArray('#work, #about, #layanan, #review, #contact').forEach(section => {
+            const children = section.querySelectorAll(':scope > div > *');
+            gsap.from(children, {
+                opacity: 0, y: 40, stagger: 0.1, duration: 0.8, ease: 'power2.out',
+                scrollTrigger: { trigger: section, start: 'top 80%', once: true }
+            });
+        });
 
-        // --- Bilingual System (English / Indonesia) ---
+        // D) Hover Card Lift — GSAP on cards
+        gsap.utils.toArray('.card-lift').forEach(card => {
+            card.addEventListener('mouseenter', () =>
+                gsap.to(card, { y: -6, boxShadow: '0 10px 30px rgba(0,0,0,0.08)', duration: 0.3, ease: 'power2.out' })
+            );
+            card.addEventListener('mouseleave', () =>
+                gsap.to(card, { y: 0, boxShadow: '0 0 0 rgba(0,0,0,0)', duration: 0.3, ease: 'power2.out' })
+            );
+        });
+
+        // Stats section fade
+        gsap.from('#stats > div > div > div', {
+            opacity: 0, y: 30, stagger: 0.15, duration: 0.7, ease: 'power2.out',
+            scrollTrigger: { trigger: '#stats', start: 'top 80%', once: true }
+        });
+
+        // ── Bilingual System ─────────────────────────
         const translations = {
-            en: {
-                nav_about: "About", nav_services: "Services", nav_experience: "Experience", nav_portfolio: "Portfolio", nav_blog: "Blog", nav_testimonials: "Reviews", nav_achievements: "Awards", nav_contact: "Contact",
-                // UPDATED: badge text
-                hero_badge: "Open for Video Editing Projects",
-                hero_hi: "Hi, I'm Damarioz Indra Wibowo.",
-                // UPDATED: hero role
-                hero_role: "Vertical Video Editor & Content Creator",
-                // UPDATED: hero description
-                hero_desc: "Specializing in vertical video editing for UMKM, online shops, and brands. Fast turnaround, affordable pricing, ready to post on TikTok, Reels, and Shorts.",
-                btn_work: "View Portfolio", btn_cv: "Download CV",
-                about_title: "The Bridge Between Data and Design.",
-                about_p1: "Currently studying Informatics Engineering at Universitas Widya Kartika, I am not your typical creative. I bring an analytical, algorithm-aware mindset to every branding and content strategy I touch.",
-                about_p2: "I am currently a Part-time Content Creator at FULLSTOP Branding Agency, while also having a strong background as a Brand Consultant and Live Stream Host. From organizing community events to driving online engagement, I blend logic with imagination to create strategies that actually perform.",
-                skill_graphic: "Graphic Design", skill_video: "Video & Photo", skill_host: "Live Hosting", skill_it: "IT & Analytical",
-                svc_title: "Services & Pricing",
-                svc_subtitle: "Flexible vertical video editing packages for your needs.",
-                svc_1_title: "Single Video", svc_1_price: "Rp75,000 – Rp100,000", svc_1_desc: "1 vertical video ready to post. 2–3 revisions. 2–3 day turnaround.",
-                svc_2_title: "Starter Pack", svc_2_price: "Rp300,000", svc_2_desc: "4 vertical videos. Great value for online shops that post actively.",
-                svc_3_title: "Growth Pack", svc_3_price: "Rp600,000", svc_3_desc: "8 vertical videos. Ideal for brands that need consistent content.",
-                svc_4_title: "Add-on", svc_4_price: "From Rp15,000", svc_4_desc: "Rush, voice over, motion graphic, subtitle, thumbnail, shooting.",
-                svc_popular: "POPULAR", svc_cta: "Order via WhatsApp",
-                exp_title: "Professional Experience", exp_subtitle: "A track record of content execution, brand consultation, and leadership.",
-                badge_highlight: "HIGHLIGHT",
-                exp_0_company: "Freelance Video Editor", exp_0_role: "Vertical Video Editor",
-                exp_0_desc: "Editing vertical videos for online shops (Wije.id, Melaminku.id) and parenting platforms (MyLO). Specializing in product promos, talking head, and educational content. 75K–100K per video, 2–3 days turnaround.",
-                exp_1_role: "Part-time Content Creator", exp_1_desc: "Collaborating with the creative team to conceptualize and execute branding campaigns. Ensuring visual outputs align with both creative standards and data-driven engagement strategies.",
-                exp_2_role: "Brand Consultant & Live Host", exp_2_desc: "Promoted F&B products (Madu Quick Fresh, Star Village) effectively via TikTok Live. Analyzed target markets to achieve operational and sales targets as a brand consultant.",
-                exp_3_title: "Creative Team Leader", exp_3_desc: "Leading a creative committee. Organized events, managed publication designs, conceptualized video shoots, and structured project proposals for large community gatherings.",
-                exp_4_title: "Creative Internships", exp_4_desc: "Produced high-engagement visual assets via Adobe Photoshop. Collaborated in fast-paced studio environments to execute daily visual tasks.",
-                port_title: "Selected Works", port_subtitle: "Explore my projects across different creative disciplines.",
-                filter_all: "All Projects", filter_video: "Video Editing",
-                tag_promo_1: "Promotional Video", tag_promo_2: "Promotional Video", tag_edu_3: "Educational Video",
-                port_1_title: "Wije.id — Kitchen & Household Products", port_1_desc: "Promotional video for kitchen and household products for TikTok/Reels. Focused on a 3-second hook and product b-roll.",
-                port_2_title: "Melaminku.id — Melamine Goods", port_2_desc: "Promotional video for melamine household products. Highlighting product advantages: safe, durable, and aesthetic.",
-                port_3_title: "MyLO — Parenting & Baby Products", port_3_desc: "Educational video on pregnancy, parenting, and essential baby products. Warm, easy-to-understand style for new parents.",
-                blog_title: "Latest Articles", blog_subtitle: "Tips and insights about vertical video editing for online shops and brands.",
-                blog_1_cat: "Tips", blog_1_title: "5 Hook 3 Detik untuk Video Promosi Produk Online Shop", blog_1_desc: "Learn 5 proven hook formulas to boost your product video engagement on TikTok and Reels.", blog_1_date: "1 October 2026",
-                blog_2_cat: "Case Study", blog_2_title: "How Wije.id Increased Product Video Engagement with a New Editing Style", blog_2_desc: "A case study on how consistent vertical video editing helped Wije.id boost their TikTok performance.", blog_2_date: "15 September 2026",
-                blog_3_cat: "Tutorial", blog_3_title: "Why Vertical Video Matters for UMKM in 2026", blog_3_desc: "Understand the shift to vertical video and why every online shop needs a consistent content strategy.", blog_3_date: "1 September 2026",
-                blog_read_more: "Read More",
-                testi_title: "What Clients Say", testi_subtitle: "Testimonials from clients I've worked with.",
-                testi_1_text: "\"The promotional video produced was neat and fast. The 3-second hook boosted my TikTok engagement. Recommended!\"",
-                testi_1_name: "[Wije.id Client]", testi_1_role: "Kitchen Equipment Store",
-                testi_2_text: "\"Fast turnaround, great communication, results matched our brand identity. Will definitely order again.\"",
-                testi_2_name: "[Melaminku.id Client]", testi_2_role: "Melamine Goods Shop",
-                testi_3_text: "\"An editor who understands parenting content. The videos are warm and easy for our audience to understand.\"",
-                testi_3_name: "[MyLO Team]", testi_3_role: "Parenting & Baby Platform",
-                achieve_title: "Awards & Achievements", achieve_subtitle: "Recognition for creativity, communication, and journalistic excellence.",
-                achieve_1_desc: "First place winner demonstrating excellence in journalism, writing, and reporting skills.",
-                achieve_2_desc: "Runner-up in a competitive communication and media faculty event.",
-                achieve_3_desc: "Recognized for outstanding presentation and creative exhibition booth management.",
-                contact_title_wa: "Need a Video Editor?",
-                contact_desc_wa: "Chat directly via WhatsApp — free consultation, no hassle. Discuss your content needs, pricing packages, and project timeline.",
-                btn_chat_wa: "Chat via WhatsApp",
-                contact_response_time: "⚡ Usually replies within minutes",
-                quick_price: "Ask Pricing",
-                quick_portfolio: "View Portfolio",
-                quick_consult: "Free Consultation",
-                footer_text: "All rights reserved."
-            },
             id: {
-                nav_about: "Tentang", nav_services: "Layanan", nav_experience: "Pengalaman", nav_portfolio: "Portofolio", nav_blog: "Blog", nav_testimonials: "Ulasan", nav_achievements: "Penghargaan", nav_contact: "Kontak",
-                // UPDATED: badge text
-                hero_badge: "Tersedia untuk Proyek Editing Video",
-                hero_hi: "Hai, saya Damarioz Indra Wibowo.",
-                // UPDATED: hero role
-                hero_role: "Editor Video Vertikal & Kreator Konten",
-                // UPDATED: hero description
-                hero_desc: "Spesialis editing video vertikal untuk UMKM, toko online, dan brand. Pengerjaan cepat, harga terjangkau, siap posting di TikTok, Reels, dan Shorts.",
-                btn_work: "Lihat Portofolio", btn_cv: "Unduh CV",
-                about_title: "Jembatan Antara Data dan Desain.",
-                about_p1: "Saat ini menempuh studi Teknik Informatika di Universitas Widya Kartika, saya bukan pekerja kreatif biasa. Saya membawa pola pikir analitis dan pemahaman algoritma ke dalam setiap strategi branding dan konten.",
-                about_p2: "Saat ini bekerja sebagai Content Creator paruh waktu di FULLSTOP Branding Agency, dengan latar belakang kuat sebagai Brand Consultant dan Live Stream Host. Dari mengelola acara komunitas hingga mendorong *engagement* online, saya memadukan logika dan imajinasi untuk menciptakan strategi yang bekerja.",
-                skill_graphic: "Desain Grafis", skill_video: "Video & Foto", skill_host: "Live Hosting", skill_it: "IT & Analitis",
-                svc_title: "Layanan & Harga",
-                svc_subtitle: "Paket editing video vertikal yang fleksibel untuk kebutuhan Anda.",
-                svc_1_title: "Single Video", svc_1_price: "Rp75.000 – Rp100.000", svc_1_desc: "1 video vertikal siap posting. Revisi 2–3x. Pengerjaan 2–3 hari.",
-                svc_2_title: "Paket Starter", svc_2_price: "Rp300.000", svc_2_desc: "4 video vertikal. Hemat untuk toko online yang aktif posting.",
-                svc_3_title: "Paket Growth", svc_3_price: "Rp600.000", svc_3_desc: "8 video vertikal. Cocok untuk brand yang butuh konten rutin.",
-                svc_4_title: "Add-on", svc_4_price: "Mulai Rp15.000", svc_4_desc: "Rush, voice over, motion graphic, subtitle, thumbnail, shooting.",
-                svc_popular: "POPULER", svc_cta: "Pesan via WhatsApp",
-                exp_title: "Pengalaman Profesional", exp_subtitle: "Rekam jejak dalam eksekusi konten, konsultasi brand, dan kepemimpinan.",
-                badge_highlight: "UTAMA",
-                exp_0_company: "Freelance Video Editor", exp_0_role: "Editor Video Vertikal",
-                exp_0_desc: "Mengedit video vertikal untuk toko online (Wije.id, Melaminku.id) dan platform parenting (MyLO). Spesialis video promosi produk, talking head, dan konten edukasi. Rp75.000–100.000 per video, pengerjaan 2–3 hari.",
-                exp_1_role: "Content Creator (Paruh Waktu)", exp_1_desc: "Berkolaborasi dengan tim kreatif untuk merancang dan mengeksekusi kampanye branding. Memastikan hasil visual selaras dengan standar kreatif dan strategi interaksi berbasis data.",
-                exp_2_role: "Brand Consultant & Live Host", exp_2_desc: "Mempromosikan produk F&B (Madu Quick Fresh, Star Village) secara efektif melalui TikTok Live. Menganalisis target pasar untuk mencapai target operasional dan penjualan.",
-                exp_3_title: "Ketua Tim Kreatif", exp_3_desc: "Memimpin komite kreatif. Mengorganisir acara, mengelola desain publikasi, merancang konsep syuting video, dan menyusun proposal untuk acara komunitas skala besar.",
-                exp_4_title: "Magang Kreatif", exp_4_desc: "Memproduksi aset visual dengan engagement tinggi menggunakan Adobe Photoshop. Berkolaborasi dalam ritme studio yang cepat untuk menyelesaikan tugas desain harian.",
-                port_title: "Karya Pilihan", port_subtitle: "Jelajahi proyek saya di berbagai disiplin kreatif.",
-                filter_all: "Semua Proyek", filter_video: "Video Editing",
-                tag_promo_1: "Video Promosi", tag_promo_2: "Video Promosi", tag_edu_3: "Video Edukasi",
-                port_1_title: "Wije.id — Peralatan Dapur & Rumah Tangga", port_1_desc: "Video promosi produk peralatan dapur dan rumah tangga untuk TikTok/Reels. Fokus pada hook 3 detik dan b-roll produk.",
-                port_2_title: "Melaminku.id — Perlengkapan Melamin", port_2_desc: "Video promosi produk rumah tangga berbahan melamin. Menonjolkan keunggulan produk: aman, awet, dan estetik.",
-                port_3_title: "MyLO — Parenting & Produk Bayi", port_3_desc: "Video edukasi seputar kehamilan, parenting, dan produk esensial bayi. Gaya hangat dan mudah dipahami orangtua baru.",
-                blog_title: "Artikel Terbaru", blog_subtitle: "Tips dan wawasan seputar editing video vertikal untuk toko online dan brand.",
-                blog_1_cat: "Tips", blog_1_title: "5 Hook 3 Detik untuk Video Promosi Produk Online Shop", blog_1_desc: "Pelajari 5 formula hook terbukti untuk meningkatkan engagement video produk Anda di TikTok dan Reels.", blog_1_date: "1 Oktober 2026",
-                blog_2_cat: "Studi Kasus", blog_2_title: "Bagaimana Wije.id Meningkatkan Engagement Video Produk dengan Gaya Editing Baru", blog_2_desc: "Studi kasus bagaimana editing video vertikal yang konsisten membantu Wije.id meningkatkan performa TikTok mereka.", blog_2_date: "15 September 2026",
-                blog_3_cat: "Tutorial", blog_3_title: "Mengapa Video Vertikal Penting untuk UMKM di 2026", blog_3_desc: "Pahami pergeseran ke video vertikal dan mengapa setiap toko online butuh strategi konten yang konsisten.", blog_3_date: "1 September 2026",
-                blog_read_more: "Baca",
-                testi_title: "Apa Kata Klien", testi_subtitle: "Testimoni dari klien yang sudah bekerja sama.",
-                testi_1_text: "\"Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!\"",
-                testi_1_name: "[Klien Wije.id]", testi_1_role: "Toko Peralatan Dapur",
-                testi_2_text: "\"Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.\"",
-                testi_2_name: "[Klien Melaminku.id]", testi_2_role: "Perlengkapan Melamin",
-                testi_3_text: "\"Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.\"",
-                testi_3_name: "[Tim MyLO]", testi_3_role: "Platform Parenting & Bayi",
-                achieve_title: "Penghargaan & Prestasi", achieve_subtitle: "Pengakuan atas kreativitas, komunikasi, dan keunggulan jurnalistik.",
-                achieve_1_desc: "Juara pertama yang menunjukkan keunggulan dalam keterampilan jurnalistik, penulisan, dan pelaporan.",
-                achieve_2_desc: "Juara kedua dalam ajang kompetitif di tingkat fakultas komunikasi dan media.",
-                achieve_3_desc: "Diakui atas presentasi luar biasa dan manajemen *booth* pameran yang kreatif.",
-                contact_title_wa: "Butuh Editor Video?",
-                contact_desc_wa: "Langsung chat via WhatsApp — konsultasi gratis, tanpa ribet. Bahas kebutuhan konten, paket harga, dan jadwal pengerjaan.",
-                btn_chat_wa: "Chat via WhatsApp",
-                contact_response_time: "⚡ Biasanya membalas dalam hitungan menit",
-                quick_price: "Tanya Harga",
-                quick_portfolio: "Lihat Portofolio",
-                quick_consult: "Konsultasi Gratis",
-                footer_text: "Hak cipta dilindungi."
+                nav_work: "Work", nav_about: "About", nav_layanan: "Layanan",
+                nav_review: "Review", nav_contact: "Kontak",
+                hero_eyebrow: "Editor Video Vertikal · TikTok · Reels · Shorts",
+                marquee_text: "500+ VIDEO SELESAI · 5+ TAHUN PENGALAMAN · 5+ KLIEN AKTIF · MULAI RP150RB · BOOKING VIA WHATSAPP · RESPON CEPAT ·&nbsp;",
+                hero_line1: "Bikin video shortform kamu",
+                hero_highlight1: "naik algoritma.",
+                hero_line2: "<strong>Hook 3 detik.</strong> Subtitle. B-roll. Beres.",
+                hero_sub: "Editor video vertikal untuk UMKM, toko online, dan content creator.",
+                hero_cta_primary: "Konsultasi Gratis dulu →",
+                hero_cta_secondary: "Lihat Work ↓",
+                stat_1_label: "Tahun Pengalaman", stat_2_label: "Video Selesai", stat_3_label: "Klien Aktif",
+                work_title: "Work",
+                work_sub: "Portofolio video shortform yang sudah saya kerjakan.",
+                work_scroll_hint: "scroll untuk lihat semua →",
+                work_c1_title: "Project Baru #01", work_c1_cat: "Talking Head",
+                work_c2_title: "Project Baru #02", work_c2_cat: "Product Review",
+                work_c3_title: "Project Baru #03", work_c3_cat: "Edukasi",
+                work_c4_title: "Project Baru #04", work_c4_cat: "Storytelling",
+                work_c5_title: "Project Baru #05", work_c5_cat: "Testimoni",
+                work_c6_title: "Project Baru #06", work_c6_cat: "Behind The Scene",
+                work_c7_title: "Project Baru #07", work_c7_cat: "Product Unboxing",
+                work_c8_title: "Project Baru #08", work_c8_cat: "Mini Vlog",
+                work_c9_title: "Project Baru #09", work_c9_cat: "Talking Head",
+                work_c10_title: "Project Baru #10", work_c10_cat: "Edukasi",
+                work_c11_title: "Project Baru #11", work_c11_cat: "Product Review",
+                work_c12_title: "Project Baru #12", work_c12_cat: "Storytelling",
+                about_title: "About Me",
+                about_text: "Mahasiswa Teknik Informatika yang jatuh cinta sama dunia editing video. Sejak 2023, saya bantu UMKM, toko online, dan content creator bikin video shortform yang beneran jualan — bukan cuma rapi, tapi punya hook, subtitle, dan b-roll yang bikin orang berhenti scroll.",
+                about_cta: "Chat Saya →",
+                svc_title: "Layanan", svc_sub: "Pilih paket yang paling cocok. Butuh custom? Chat WhatsApp.",
+                svc_1_label: "Paket 01", svc_1_name: "Short-form", svc_1_price: "Rp150.000 / video",
+                svc_1_desc: "1 video vertikal siap posting. Hook, subtitle, b-roll. Revisi 2x. Pengerjaan 2–3 hari.",
+                svc_2_badge: "POPULER",
+                svc_2_label: "Paket 02", svc_2_name: "Bundling Growth", svc_2_price: "Rp1.500.000 / 8 video",
+                svc_2_desc: "8 video vertikal. Revisi 3x per video. Prioritas pengerjaan + free konsultasi strategi konten.",
+                svc_3_label: "Paket 03", svc_3_name: "Retainer Premium", svc_3_price: "Rp4.000.000 / bulan",
+                svc_3_desc: "12 video per bulan. Revisi unlimited (fair use). Prioritas super + komunikasi intensif. Free thumbnail + caption. Konsultasi strategi 1-on-1.",
+                svc_btn: "Booking via WhatsApp →",
+                review_title: "Review", review_sub: "Kata klien yang sudah kerja sama.",
+                rev_1_quote: "\"Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!\"",
+                rev_1_name: "Wije.id", rev_1_role: "Toko Peralatan Dapur",
+                rev_2_quote: "\"Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.\"",
+                rev_2_name: "Melaminku.id", rev_2_role: "Perlengkapan Melamin",
+                rev_3_quote: "\"Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.\"",
+                rev_3_name: "MyLO", rev_3_role: "Platform Parenting & Bayi",
+                contact_title: "Mari bikin video kamu naik.",
+                contact_sub: "Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.",
+                contact_cta: "Chat WhatsApp — Konsultasi Gratis →",
+                contact_response: "⚡ Biasanya membalas dalam hitungan menit",
+            },
+            en: {
+                nav_work: "Work", nav_about: "About", nav_layanan: "Services",
+                nav_review: "Reviews", nav_contact: "Contact",
+                hero_eyebrow: "Vertical Video Editor · TikTok · Reels · Shorts",
+                marquee_text: "500+ VIDEOS DELIVERED · 5+ YEARS EXPERIENCE · 5+ ACTIVE CLIENTS · FROM RP150K · BOOK VIA WHATSAPP · FAST RESPONSE ·&nbsp;",
+                hero_line1: "Make your shortform video beat",
+                hero_highlight1: "the algorithm.",
+                hero_line2: "<strong>3-second hook.</strong> Subtitles. B-roll. Done.",
+                hero_sub: "Vertical video editor for SMEs, online shops, and content creators.",
+                hero_cta_primary: "Free Consultation →",
+                hero_cta_secondary: "See Work ↓",
+                stat_1_label: "Years of Experience", stat_2_label: "Videos Delivered", stat_3_label: "Active Clients",
+                work_title: "Work",
+                work_sub: "Shortform video portfolio I've worked on.",
+                work_scroll_hint: "scroll to see all →",
+                work_c1_title: "New Project #01", work_c1_cat: "Talking Head",
+                work_c2_title: "New Project #02", work_c2_cat: "Product Review",
+                work_c3_title: "New Project #03", work_c3_cat: "Education",
+                work_c4_title: "New Project #04", work_c4_cat: "Storytelling",
+                work_c5_title: "New Project #05", work_c5_cat: "Testimonial",
+                work_c6_title: "New Project #06", work_c6_cat: "Behind The Scene",
+                work_c7_title: "New Project #07", work_c7_cat: "Product Unboxing",
+                work_c8_title: "New Project #08", work_c8_cat: "Mini Vlog",
+                work_c9_title: "New Project #09", work_c9_cat: "Talking Head",
+                work_c10_title: "New Project #10", work_c10_cat: "Education",
+                work_c11_title: "New Project #11", work_c11_cat: "Product Review",
+                work_c12_title: "New Project #12", work_c12_cat: "Storytelling",
+                about_title: "About Me",
+                about_text: "An Informatics Engineering student who fell in love with video editing. Since 2023, I've helped SMEs, online shops, and content creators make shortform videos that actually sell — not just polished, but with hooks, subtitles, and b-roll that make people stop scrolling.",
+                about_cta: "Chat Me →",
+                svc_title: "Services", svc_sub: "Pick the right package. Need custom? Chat on WhatsApp.",
+                svc_1_label: "Package 01", svc_1_name: "Short-form", svc_1_price: "Rp150,000 / video",
+                svc_1_desc: "1 vertical video ready to post. Hook, subtitle, b-roll. 2 revisions. 2–3 day turnaround.",
+                svc_2_badge: "POPULAR",
+                svc_2_label: "Package 02", svc_2_name: "Bundling Growth", svc_2_price: "Rp1,500,000 / 8 videos",
+                svc_2_desc: "8 vertical videos. 3x revisions per video. Priority processing + free content strategy consultation.",
+                svc_3_label: "Package 03", svc_3_name: "Retainer Premium", svc_3_price: "Rp4,000,000 / month",
+                svc_3_desc: "12 videos per month. Unlimited revisions (fair use). Super priority + intensive communication. Free thumbnail + caption. 1-on-1 strategy consultation.",
+                svc_btn: "Book via WhatsApp →",
+                review_title: "Reviews", review_sub: "What clients say after working together.",
+                rev_1_quote: "\"The promotional video produced was neat and fast. The 3-second hook boosted my TikTok engagement. Recommended!\"",
+                rev_1_name: "Wije.id", rev_1_role: "Kitchen Equipment Store",
+                rev_2_quote: "\"Fast turnaround, great communication, results matched our brand identity. Will definitely order again.\"",
+                rev_2_name: "Melaminku.id", rev_2_role: "Melamine Goods Shop",
+                rev_3_quote: "\"An editor who understands parenting content. The videos are warm and easy for our audience to understand.\"",
+                rev_3_name: "MyLO", rev_3_role: "Parenting & Baby Platform",
+                contact_title: "Let's make your video blow up.",
+                contact_sub: "Free consultation. Tell me about your product or brand, and I'll help with the video strategy.",
+                contact_cta: "Chat WhatsApp — Free Consultation →",
+                contact_response: "⚡ Usually replies within minutes",
             }
         };
 
+        let languageInitialized = false;
+
         function setLang(lang) {
-            const elements = document.querySelectorAll('[data-i18n]');
-            elements.forEach(el => {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    el.textContent = translations[lang][key];
+                if (translations[lang]?.[key] !== undefined) {
+                    // Using innerHTML so <strong> tags render properly!
+                    el.innerHTML = translations[lang][key];
                 }
             });
 
+            // Update active button styles
             const btnEn = document.getElementById('btn-en');
             const btnId = document.getElementById('btn-id');
-            
-            if(btnEn && btnId) {
-                if (lang === 'en') {
-                    btnEn.className = "text-xs font-bold px-3 py-1 rounded-full bg-brand-500 text-white transition-all";
-                    btnId.className = "text-xs font-bold px-3 py-1 rounded-full text-slate-400 hover:text-white transition-all";
-                } else {
-                    btnId.className = "text-xs font-bold px-3 py-1 rounded-full bg-brand-500 text-white transition-all";
-                    btnEn.className = "text-xs font-bold px-3 py-1 rounded-full text-slate-400 hover:text-white transition-all";
-                }
+            if (lang === 'en') {
+                btnEn.style.cssText = 'background:#0A0A0A;color:#F5F0E8;';
+                btnId.style.cssText = 'background:transparent;color:#0A0A0A;';
+            } else {
+                btnId.style.cssText = 'background:#0A0A0A;color:#F5F0E8;';
+                btnEn.style.cssText = 'background:transparent;color:#0A0A0A;';
             }
+            document.documentElement.lang = lang;
+
+            // Re-apply word wrapping for GSAP ONLY IF we already initialized
+            // or if we are changing language, so GSAP doesn't lose its targets.
+            // Actually, GSAP handles the initial animation, we don't need to re-animate on language change.
+            // Just make sure the HTML is clean.
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            setLang('en');
-        });
+            // 1. Set language FIRST before GSAP runs
+            setLang('id');
 
+            // 2. Wrap words for animation safely
+            const heroH1 = document.getElementById('hero-headline');
+            if (heroH1) {
+                splitWordsSafely(heroH1);
+                const words = heroH1.querySelectorAll('.word');
+                gsap.from(words, { opacity: 0, y: 30, stagger: 0.05, duration: 0.6, ease: 'power2.out', delay: 0.2 });
+            }
+
+            gsap.utils.toArray('h2[data-i18n]').forEach(h2 => {
+                splitWordsSafely(h2);
+                const words = h2.querySelectorAll('.word');
+                gsap.from(words, {
+                    opacity: 0, y: 30, stagger: 0.05, duration: 0.6, ease: 'power2.out',
+                    scrollTrigger: { trigger: h2, start: 'top 85%', once: true }
+                });
+            });
+        });
     </script>
 </body>
+
 </html>
