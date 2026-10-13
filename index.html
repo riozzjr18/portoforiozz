@@ -8,7 +8,7 @@
         content="Jasa editing video vertikal untuk UMKM, toko online, dan brand. Hook 3 detik, subtitle, b-roll. Mulai Rp75.000 per video. Cepat, terjangkau, siap posting di TikTok, Reels, dan Shorts.">
     <meta name="keywords"
         content="jasa editing video, editor video vertikal, TikTok editor, Reels editor, video promosi produk, video talking head, jasa edit video UMKM">
-    <meta property="og:title" content="Riozz â€” Jasa Editing Video Vertikal">
+    <meta property="og:title" content="Riozz &mdash; Jasa Editing Video Vertikal">
     <meta property="og:description"
         content="Editing video vertikal untuk UMKM, toko online, dan brand. Hook 3 detik, subtitle, b-roll. Mulai Rp75.000 per video.">
     <meta property="og:type" content="website">
@@ -52,7 +52,7 @@
     </script>
 
     <style>
-        /* â”€â”€ Base â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+        /* -- Base ------------------------------- */
         html {
             scroll-padding-top: 80px;
         }
@@ -63,37 +63,40 @@
             font-family: 'Space Grotesk', system-ui, sans-serif;
         }
 
-        /* â”€â”€ Navbar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+        /* -- Navbar ----------------------------- */
         #navbar {
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             background: rgba(245, 240, 232, 0.92);
         }
 
-        /* â”€â”€ Hover underline (left to right) â”€â”€â”€â”€ */
+        /* -- Hover underline (left to right) ---- */
         .nav-link {
             position: relative;
-            text-decoration: none;
+            padding-bottom: 4px;
+            line-height: 1;
+            display: inline-block;
         }
 
         .nav-link::after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 1px;
+            height: 2px;
             background: #0A0A0A;
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.3s ease;
         }
 
-        .nav-link:hover::after {
+        .nav-link:hover::after,
+        .nav-link.active::after {
             transform: scaleX(1);
         }
 
-        /* â”€â”€ Marquee â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+        /* -- Marquee --------------------------- */
         .marquee-track {
             display: flex;
             width: max-content;
@@ -114,7 +117,7 @@
             }
         }
 
-        /* â”€â”€ Work Carousel â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+        /* -- Work Carousel --------------------- */
         .carousel-track {
             display: flex;
             gap: 1.25rem;
@@ -160,14 +163,14 @@
             will-change: transform;
         }
 
-        /* â”€â”€ Stripe pattern (Style 4) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+        /* -- Stripe pattern (Style 4) ----------- */
         .stripe-bg {
             background-image: repeating-linear-gradient(-45deg,
                     transparent, transparent 8px,
                     rgba(10, 10, 10, 0.06) 8px, rgba(10, 10, 10, 0.06) 9px);
         }
 
-        /* â”€â”€ Mobile Menu â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+        /* -- Mobile Menu ----------------------- */
         #mobile-menu {
             display: none;
         }
@@ -176,7 +179,7 @@
             display: block;
         }
 
-        /* â”€â”€ WhatsApp Float â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+        /* -- WhatsApp Float -------------------- */
         .wa-float {
             position: fixed;
             bottom: 2rem;
@@ -197,7 +200,7 @@
             transform: scale(1.08);
         }
 
-        /* â”€â”€ Hover underline for CTA links â”€â”€â”€â”€ */
+        /* -- Hover underline for CTA links ---- */
         .cta-underline {
             position: relative;
         }
@@ -231,19 +234,36 @@
             line-height: inherit;
         }
 
-        /* â”€â”€ word span for text reveal â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+        /* -- word span for text reveal --------- */
         .word {
             display: inline-block;
             will-change: transform, opacity;
         }
-    </style>
+            /* Filter Buttons */
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid #0A0A0A;
+            background: transparent;
+            color: #0A0A0A;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 0;
+        }
+        .filter-btn:hover { background: #E5DDD0; }
+        .filter-btn.active { background: #0A0A0A; color: #F5F0E8; }
+</style>
 </head>
 
 <body class="antialiased overflow-x-hidden">
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    <!-- =======================================
      NAVBAR
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+======================================= -->
     <nav id="navbar" class="fixed w-full z-50 border-b border-ink/10 transition-all duration-300">
         <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
 
@@ -253,7 +273,7 @@
 
             <!-- Desktop Links -->
             <div class="hidden md:flex items-center gap-7">
-                <a href="#work" class="nav-link text-sm font-medium text-ink" data-i18n="nav_work">Work</a>
+                <a href="portfolio/index.html" class="nav-link text-sm font-medium text-ink" data-i18n="nav_work">Portoforioz</a>
                 <a href="#about" class="nav-link text-sm font-medium text-ink" data-i18n="nav_about">About</a>
                 <a href="#layanan" class="nav-link text-sm font-medium text-ink" data-i18n="nav_layanan">Layanan</a>
                 <a href="#review" class="nav-link text-sm font-medium text-ink" data-i18n="nav_review">Review</a>
@@ -278,7 +298,7 @@
         <!-- Mobile menu -->
         <div id="mobile-menu" class="md:hidden border-t border-ink" style="background-color:#F5F0E8;">
             <div class="max-w-6xl mx-auto px-6 py-5 flex flex-col gap-5">
-                <a href="#work" class="text-base font-medium text-ink" data-i18n="nav_work">Work</a>
+                <a href="portfolio/index.html" class="text-base font-medium text-ink" data-i18n="nav_work">Portoforioz</a>
                 <a href="#about" class="text-base font-medium text-ink" data-i18n="nav_about">About</a>
                 <a href="#layanan" class="text-base font-medium text-ink" data-i18n="nav_layanan">Layanan</a>
                 <a href="#review" class="text-base font-medium text-ink" data-i18n="nav_review">Review</a>
@@ -291,14 +311,14 @@
         </div>
     </nav>
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    <!-- =======================================
      HERO
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+======================================= -->
     <section id="home" class="pt-40 pb-20 px-6" style="border-bottom: 1px solid #0A0A0A;">
         <div class="max-w-6xl mx-auto">
 
             <p class="text-xs font-sans font-medium uppercase tracking-widest text-muted mb-8" data-i18n="hero_eyebrow">
-                Editor Video Vertikal Â· TikTok Â· Reels Â· Shorts
+                Editor Video Vertikal &middot; TikTok &middot; Reels &middot; Shorts
             </p>
 
             <h1 id="hero-headline"
@@ -318,39 +338,39 @@
                     target="_blank" rel="noopener noreferrer"
                     class="inline-block px-8 py-4 font-sans font-semibold text-sm tracking-wide cta-underline"
                     style="background:#0A0A0A;color:#F5F0E8;" data-i18n="hero_cta_primary">
-                    Konsultasi Gratis dulu â†’
+                    Konsultasi Gratis dulu &rarr;
                 </a>
-                <a href="#work"
+                <a href="portfolio/index.html"
                     class="inline-block px-8 py-4 font-sans font-semibold text-sm tracking-wide text-ink cta-underline cta-underline-ink"
                     style="border:1px solid #0A0A0A;" data-i18n="hero_cta_secondary">
-                    Lihat Work â†“
+                    Lihat Portofolio &darr;
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    <!-- =======================================
      MARQUEE BAR
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+======================================= -->
     <div class="overflow-hidden"
         style="background:#0A0A0A;border-top:1px solid #0A0A0A;border-bottom:1px solid #0A0A0A;padding:12px 0;">
         <div class="marquee-track">
             <span class="font-sans text-sm uppercase tracking-wider px-6" style="color:#F5F0E8;white-space:nowrap;"
                 data-i18n="marquee_text">
-                500+ VIDEO SELESAI Â· 5+ TAHUN PENGALAMAN Â· 5+ KLIEN AKTIF Â· MULAI RP150RB Â· BOOKING VIA WHATSAPP Â·
-                RESPON CEPAT Â·&nbsp;
+                500+ VIDEO SELESAI &middot; 5+ TAHUN PENGALAMAN &middot; 5+ KLIEN AKTIF &middot; MULAI RP150RB &middot; BOOKING VIA WHATSAPP &middot;
+                RESPON CEPAT &middot;&nbsp;
             </span>
             <span class="font-sans text-sm uppercase tracking-wider px-6" style="color:#F5F0E8;white-space:nowrap;"
                 aria-hidden="true" data-i18n="marquee_text">
-                500+ VIDEO SELESAI Â· 5+ TAHUN PENGALAMAN Â· 5+ KLIEN AKTIF Â· MULAI RP150RB Â· BOOKING VIA WHATSAPP Â·
-                RESPON CEPAT Â·&nbsp;
+                500+ VIDEO SELESAI &middot; 5+ TAHUN PENGALAMAN &middot; 5+ KLIEN AKTIF &middot; MULAI RP150RB &middot; BOOKING VIA WHATSAPP &middot;
+                RESPON CEPAT &middot;&nbsp;
             </span>
         </div>
     </div>
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    <!-- =======================================
      STATS
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+======================================= -->
     <section id="stats" style="border-bottom:1px solid #0A0A0A;">
         <div class="max-w-6xl mx-auto px-6 py-16">
             <div class="grid grid-cols-1 md:grid-cols-3 md:divide-x" style="border-color:#0A0A0A;">
@@ -383,143 +403,91 @@
         </div>
     </section>
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-     WORK â€” 12 CARDS
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+    <!-- =======================================
+     WORK &mdash; 12 CARDS
+======================================= -->
     <!-- GANTI CARD: ganti card "Coming Soon" dengan iframe YouTube ketika video asli sudah siap -->
     <section id="work" class="py-24 px-6" style="border-bottom:1px solid #0A0A0A;">
         <div class="max-w-6xl mx-auto">
 
             <div class="flex items-end justify-between mb-12">
                 <div>
-                    <h2 class="font-display font-black text-5xl text-ink mb-3" data-i18n="work_title">Work</h2>
+                    <h2 class="font-display font-black text-5xl text-ink mb-3" data-i18n="work_title">Portoforioz</h2>
                     <p class="text-muted text-sm font-sans" data-i18n="work_sub">Portofolio video shortform yang sudah
                         saya kerjakan.</p>
                 </div>
-                <p class="hidden md:block text-xs text-muted font-sans italic" data-i18n="work_scroll_hint">scroll untuk
-                    lihat semua â†’</p>
             </div>
 
-            <div class="carousel-track">
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/LaKAMuOq0HI" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">AI Generated Content — AI Content</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">AI Content</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/dYAoe35bcRc" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">AI Generated Content 2 — AI Content</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">AI Content</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/1oazDgxpZjY" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Educational Content 1 — Educational</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Educational</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/qlq898T6_1k" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Educational Content 2 — Educational</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Educational</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/1Ev-ZArl3eI" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Educational Content 3 — Educational</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Educational</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/_GORMH5jvro" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Educational Content 4 — Educational</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Educational</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/t_z4TG3IRy4" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Talking Head 1 — Talking Head</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/aLAjmtTa-ug" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Talking Head 2 — Talking Head</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/lexhy9yeQ5U" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Talking Head 3 — Talking Head</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/1ZHpn6AnRjQ" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Talking Head 4 — Talking Head</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/Tzj8d9rnYYg" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Talking Head 5 — Talking Head</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/pjQ0C0SZ6rU" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Talking Head 6 — Talking Head</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
-                    </div>
-                </div>
+            
 
-            </div>
+                          <div class="carousel-track">
+                  <div class="carousel-card card-lift">
+                      <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
+                          <iframe src="https://www.youtube.com/embed/LaKAMuOq0HI" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+                      </div>
+                      <div class="pt-4">
+                          <p class="font-sans font-medium text-sm text-ink">AI Generated Content 01</p>
+                          <p class="font-sans text-xs text-muted mt-0.5">AI Content</p>
+                      </div>
+                  </div>
+                  <div class="carousel-card card-lift">
+                      <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
+                          <iframe src="https://www.youtube.com/embed/dYAoe35bcRc" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+                      </div>
+                      <div class="pt-4">
+                          <p class="font-sans font-medium text-sm text-ink">AI Generated Content 02</p>
+                          <p class="font-sans text-xs text-muted mt-0.5">AI Content</p>
+                      </div>
+                  </div>
+                  <div class="carousel-card card-lift">
+                      <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
+                          <iframe src="https://www.youtube.com/embed/1oazDgxpZjY" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+                      </div>
+                      <div class="pt-4">
+                          <p class="font-sans font-medium text-sm text-ink">Educational 01</p>
+                          <p class="font-sans text-xs text-muted mt-0.5">Educational</p>
+                      </div>
+                  </div>
+                  <div class="carousel-card card-lift">
+                      <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
+                          <iframe src="https://www.youtube.com/embed/t_z4TG3IRy4" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+                      </div>
+                      <div class="pt-4">
+                          <p class="font-sans font-medium text-sm text-ink">Talking Head 01</p>
+                          <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
+                      </div>
+                  </div>
+                  <div class="carousel-card card-lift">
+                      <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
+                          <iframe src="https://www.youtube.com/embed/aLAjmtTa-ug" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+                      </div>
+                      <div class="pt-4">
+                          <p class="font-sans font-medium text-sm text-ink">Talking Head 02</p>
+                          <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
+                      </div>
+                  </div>
+                  <div class="carousel-card card-lift">
+                      <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
+                          <iframe src="https://www.youtube.com/embed/lexhy9yeQ5U" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+                      </div>
+                      <div class="pt-4">
+                          <p class="font-sans font-medium text-sm text-ink">Talking Head 03</p>
+                          <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="mt-16 text-center">
+                  <a href="portfolio/index.html" class="inline-block font-sans font-bold text-sm uppercase tracking-widest text-ink bg-transparent py-4 px-10 transition-colors hover:bg-dimcream" style="border: 1px solid #0A0A0A;" data-i18n="work_see_all">
+                      Lihat Semua Portofolio (100+) &rarr;
+                  </a>
+              </div>
+          </div>
+      </section>
 
-            <p class="md:hidden text-xs text-muted mt-4 text-right font-sans" data-i18n="work_scroll_hint">scroll untuk
-                lihat semua â†’</p>
-        </div>
-    </section>
-
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    <!-- =======================================
      ABOUT ME
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+======================================= -->
     <section id="about" class="py-24 px-6" style="border-bottom:1px solid #0A0A0A;">
         <div class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -528,7 +496,7 @@
                 <div class="lg:col-span-5">
                     <!-- FOTO PROFIL -->
                     <div class="aspect-[4/5] overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <img src="assets/img/profile.jpg" alt="Damarioz Indra Wibowo â€” Vertical Video Editor"
+                        <img src="assets/img/profile.jpg" alt="Damarioz Indra Wibowo &mdash; Vertical Video Editor"
                             class="w-full h-full object-cover" loading="lazy">
                     </div>
                 </div>
@@ -538,22 +506,22 @@
                     <h2 class="font-display font-black text-5xl text-ink mb-10" data-i18n="about_title">About Me</h2>
                     <p class="text-base text-ink font-sans leading-relaxed mb-10" data-i18n="about_text">
                         Mahasiswa Teknik Informatika yang jatuh cinta sama dunia editing video. Sejak 2020, saya bantu
-                        UMKM, toko online, dan content creator bikin video shortform yang beneran jualan â€” bukan cuma
+                        UMKM, toko online, dan content creator bikin video shortform yang beneran jualan &mdash; bukan cuma
                         rapi, tapi punya hook, subtitle, dan b-roll yang bikin orang berhenti scroll.
                     </p>
                     <a href="https://wa.me/62895413935821" target="_blank" rel="noopener noreferrer"
                         class="text-sm font-sans font-semibold text-ink"
                         style="border-bottom:1px solid #0A0A0A;padding-bottom:2px;" data-i18n="about_cta">
-                        Chat Saya â†’
+                        Chat Saya &rarr;
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    <!-- =======================================
      LAYANAN
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+======================================= -->
     <section id="layanan" class="py-24 px-6" style="border-bottom:1px solid #0A0A0A;">
         <div class="max-w-6xl mx-auto">
 
@@ -566,26 +534,24 @@
             <div class="grid grid-cols-1 md:grid-cols-3" style="border:1px solid #0A0A0A;">
 
                 <!-- Paket 1 -->
-                <div class="p-10 card-lift flex flex-col h-full"
-                    style="border-right:1px solid #0A0A0A;border-bottom:1px solid #0A0A0A;">
+                <div class="p-10 card-lift flex flex-col h-full border-b md:border-b-0 md:border-r"
+                    style="border-color:#0A0A0A;">
                     <p class="font-sans text-xs font-semibold uppercase tracking-widest text-muted mb-6"
                         data-i18n="svc_1_label">Paket 01</p>
                     <h3 class="font-display font-bold text-3xl text-ink mb-4" data-i18n="svc_1_name">Short-form</h3>
-                    <p class="font-sans font-semibold text-ink text-base mb-6" data-i18n="svc_1_price">Rp150.000 / video
-                    </p>
-                    <p class="font-sans text-sm text-muted leading-relaxed mb-10 flex-1" data-i18n="svc_1_desc">1 video
-                        vertikal siap posting. Hook, subtitle, b-roll. Revisi 2x. Pengerjaan 2â€“3 hari.</p>
-                    <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20booking%20paket%20Short-form%20(Rp150rb)"
+                    <p class="font-sans font-semibold text-ink text-base mb-6" data-i18n="svc_1_price">Rp300.000 / video</p>
+                    <p class="font-sans text-sm text-muted leading-relaxed mb-10 flex-1" data-i18n="svc_1_desc">1 video vertikal siap posting. Hook, subtitle, b-roll. Maksimal revisi 2-3x per video. Pengerjaan 2-3 hari.</p>
+                    <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20booking%20paket%20Short-form%20(Rp300rb)"
                         target="_blank" rel="noopener noreferrer"
                         class="inline-block px-6 py-3 font-sans text-sm font-semibold cta-underline mt-auto w-full text-center"
                         style="background:#0A0A0A;color:#F5F0E8;" data-i18n="svc_btn">
-                        Booking via WhatsApp â†’
+                        Booking via WhatsApp &rarr;
                     </a>
                 </div>
 
                 <!-- Paket 2 -->
-                <div class="p-10 card-lift relative overflow-hidden flex flex-col h-full"
-                    style="border-right:1px solid #0A0A0A;border-bottom:1px solid #0A0A0A;">
+                <div class="p-10 card-lift relative overflow-hidden flex flex-col h-full border-b md:border-b-0 md:border-r"
+                    style="border-color:#0A0A0A;">
                     <span
                         class="absolute top-0 right-0 bg-ink text-cream text-xs font-sans uppercase tracking-wider font-bold py-1 px-3"
                         data-i18n="svc_2_badge">POPULER</span>
@@ -593,34 +559,29 @@
                         data-i18n="svc_2_label">Paket 02</p>
                     <h3 class="font-display font-bold text-3xl text-ink mb-4" data-i18n="svc_2_name">Bundling Growth
                     </h3>
-                    <p class="font-sans font-semibold text-ink text-base mb-6" data-i18n="svc_2_price">Rp1.500.000 / 8
-                        video</p>
-                    <p class="font-sans text-sm text-muted leading-relaxed mb-10 flex-1" data-i18n="svc_2_desc">8 video
-                        vertikal. Revisi 3x per video. Prioritas pengerjaan + free konsultasi strategi konten.</p>
-                    <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20booking%20paket%20Bundling%20Growth%20(Rp1.5jt)"
+                    <p class="font-sans font-semibold text-ink text-base mb-6" data-i18n="svc_2_price">Rp2.000.000 / 8 video</p>
+                    <p class="font-sans text-sm text-muted leading-relaxed mb-10 flex-1" data-i18n="svc_2_desc">8 video vertikal. Maksimal revisi 2-3x per video. Prioritas pengerjaan + free konsultasi strategi konten.</p>
+                    <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20booking%20paket%20Bundling%20Growth%20(Rp2jt)"
                         target="_blank" rel="noopener noreferrer"
                         class="inline-block px-6 py-3 font-sans text-sm font-semibold cta-underline mt-auto w-full text-center"
                         style="background:#0A0A0A;color:#F5F0E8;" data-i18n="svc_btn">
-                        Booking via WhatsApp â†’
+                        Booking via WhatsApp &rarr;
                     </a>
                 </div>
 
                 <!-- Paket 3 -->
-                <div class="p-10 card-lift flex flex-col h-full" style="border-bottom:1px solid #0A0A0A;">
+                <div class="p-10 card-lift flex flex-col h-full">
                     <p class="font-sans text-xs font-semibold uppercase tracking-widest text-muted mb-6"
                         data-i18n="svc_3_label">Paket 03</p>
                     <h3 class="font-display font-bold text-3xl text-ink mb-4" data-i18n="svc_3_name">Retainer Premium
                     </h3>
-                    <p class="font-sans font-semibold text-ink text-base mb-6" data-i18n="svc_3_price">Rp4.000.000 /
-                        bulan</p>
-                    <p class="font-sans text-sm text-muted leading-relaxed mb-10 flex-1" data-i18n="svc_3_desc">12 video
-                        per bulan. Revisi unlimited (fair use). Prioritas super + komunikasi intensif. Free thumbnail +
-                        caption. Konsultasi strategi 1-on-1.</p>
-                    <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20booking%20paket%20Retainer%20Premium%20(Rp4jt)"
+                    <p class="font-sans font-semibold text-ink text-base mb-6" data-i18n="svc_3_price">Rp3.500.000 / bulan</p>
+                    <p class="font-sans text-sm text-muted leading-relaxed mb-10 flex-1" data-i18n="svc_3_desc">12 video per bulan. Maksimal revisi 2-3x per video. Prioritas super + komunikasi intensif. Free thumbnail + caption. Konsultasi strategi 1-on-1 bulanan.</p>
+                    <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20booking%20paket%20Retainer%20Premium%20(Rp3.5jt)"
                         target="_blank" rel="noopener noreferrer"
                         class="inline-block px-6 py-3 font-sans text-sm font-semibold cta-underline mt-auto w-full text-center"
                         style="background:#0A0A0A;color:#F5F0E8;" data-i18n="svc_btn">
-                        Booking via WhatsApp â†’
+                        Booking via WhatsApp &rarr;
                     </a>
                 </div>
 
@@ -628,9 +589,9 @@
         </div>
     </section>
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    <!-- =======================================
      REVIEW
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+======================================= -->
     <section id="review" class="py-24 px-6" style="border-bottom:1px solid #0A0A0A;">
         <div class="max-w-6xl mx-auto">
 
@@ -641,7 +602,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3" style="border:1px solid #0A0A0A;">
 
-                <div class="p-10 card-lift flex flex-col h-full" style="border-right:1px solid #0A0A0A;">
+                <div class="p-10 card-lift flex flex-col h-full border-b md:border-b-0 md:border-r" style="border-color:#0A0A0A;">
                     <div class="flex gap-1 mb-6 text-base text-ink tracking-widest">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
                             <path
@@ -665,8 +626,8 @@
                         </svg>
                     </div>
                     <p class="font-display italic text-xl text-ink leading-relaxed flex-1" data-i18n="rev_1_quote">
-                        "Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya
-                        naik. Recommended!"
+                        &ldquo;Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya
+                        naik. Recommended!&rdquo;
                     </p>
                     <div class="flex items-center gap-4 mt-8 pt-6" style="border-top:1px solid #0A0A0A;">
                         <div
@@ -679,8 +640,7 @@
                     </div>
                 </div>
 
-                <div class="p-10 card-lift flex flex-col h-full"
-                    style="border-right:1px solid #0A0A0A;border-top:1px solid #0A0A0A;">
+                <div class="p-10 card-lift flex flex-col h-full border-b md:border-b-0 md:border-r" style="border-color:#0A0A0A;">
                     <div class="flex gap-1 mb-6">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
                             <path
@@ -704,7 +664,7 @@
                         </svg>
                     </div>
                     <p class="font-display italic text-xl text-ink leading-relaxed flex-1" data-i18n="rev_2_quote">
-                        "Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi."
+                        &ldquo;Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.&rdquo;
                     </p>
                     <div class="flex items-center gap-4 mt-8 pt-6" style="border-top:1px solid #0A0A0A;">
                         <div
@@ -717,7 +677,7 @@
                     </div>
                 </div>
 
-                <div class="p-10 card-lift flex flex-col h-full" style="border-top:1px solid #0A0A0A;">
+                <div class="p-10 card-lift flex flex-col h-full">
                     <div class="flex gap-1 mb-6">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
                             <path
@@ -741,7 +701,7 @@
                         </svg>
                     </div>
                     <p class="font-display italic text-xl text-ink leading-relaxed flex-1" data-i18n="rev_3_quote">
-                        "Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami."
+                        &ldquo;Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.&rdquo;
                     </p>
                     <div class="flex items-center gap-4 mt-8 pt-6" style="border-top:1px solid #0A0A0A;">
                         <div
@@ -759,9 +719,9 @@
         </div>
     </section>
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    <!-- =======================================
      CONTACT
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+======================================= -->
     <section id="contact" class="py-32 px-6" style="border-bottom:1px solid #0A0A0A;">
         <div class="max-w-4xl mx-auto text-center">
 
@@ -778,12 +738,12 @@
                     target="_blank" rel="noopener noreferrer"
                     class="inline-block px-10 py-5 font-sans font-bold text-base tracking-wide cta-underline"
                     style="background:#0A0A0A;color:#F5F0E8;" data-i18n="contact_cta">
-                    Chat WhatsApp â€” Konsultasi Gratis â†’
+                    Chat WhatsApp &mdash; Konsultasi Gratis &rarr;
                 </a>
             </div>
 
             <p class="font-sans text-sm text-muted mb-16" data-i18n="contact_response">
-                âš¡ Biasanya membalas dalam hitungan menit
+                &bull; Biasanya membalas dalam hitungan menit
             </p>
 
             <div class="flex items-center justify-center flex-wrap gap-6">
@@ -791,17 +751,17 @@
                     class="nav-link font-sans text-sm text-ink flex items-center gap-1.5 hover:opacity-60 transition-opacity">
                     <i class="ph ph-linkedin-logo text-lg"></i> LinkedIn
                 </a>
-                <span class="text-muted text-xs">Â·</span>
+                <span class="text-muted text-xs">&middot;</span>
                 <a href="https://linktr.ee/riozz" target="_blank" rel="noopener noreferrer"
                     class="nav-link font-sans text-sm text-ink flex items-center gap-1.5 hover:opacity-60 transition-opacity">
                     <i class="ph ph-tree-structure text-lg"></i> Linktree
                 </a>
-                <span class="text-muted text-xs">Â·</span>
+                <span class="text-muted text-xs">&middot;</span>
                 <a href="https://www.instagram.com/riozz18/" target="_blank" rel="noopener noreferrer"
                     class="nav-link font-sans text-sm text-ink flex items-center gap-1.5 hover:opacity-60 transition-opacity">
                     <i class="ph ph-instagram-logo text-lg"></i> Instagram
                 </a>
-                <span class="text-muted text-xs">Â·</span>
+                <span class="text-muted text-xs">&middot;</span>
                 <a href="mailto:damariozjr@gmail.com"
                     class="nav-link font-sans text-sm text-ink flex items-center gap-1.5 hover:opacity-60 transition-opacity">
                     <i class="ph ph-envelope text-lg"></i> Email
@@ -810,36 +770,58 @@
         </div>
     </section>
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    <!-- =======================================
      FOOTER
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
-    <footer class="py-8 px-6">
-        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p class="font-sans text-sm text-muted">Â© <span id="year"></span> Rioz. â€” Editor Video Vertikal.</p>
-            <a href="https://drive.google.com/file/d/11WC1K-IE0FJb7NVCzSWL7n8p2ZW-LWSq/view?usp=sharing" target="_blank"
-                rel="noopener noreferrer"
-                class="nav-link font-sans text-xs text-muted hover:text-ink transition-colors">
-                Download CV â†’
-            </a>
+======================================= -->
+    <footer style="border-top:1px solid #0A0A0A; padding: 80px 24px 32px; background-color:#F5F0E8;">
+        <div class="max-w-6xl mx-auto">
+            
+            <!-- Tombol WA Utama -->
+            <div class="mb-16">
+                <a href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20konsultasi%20proyek%20video."
+                   target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-3 px-10 py-5 font-display font-bold text-lg md:text-xl"
+                   style="background:#0A0A0A; color:#F5F0E8;">
+                    <i class="ph ph-whatsapp-logo text-2xl"></i>
+                    Chat WhatsApp
+                    <span>&rarr;</span>
+                </a>
+                <p class="font-sans text-xs text-muted uppercase tracking-widest mt-5">
+                    Konsultasi gratis &middot; Balas dalam hitungan menit
+                </p>
+            </div>
+            
+            <!-- Bottom bar -->
+            <div class="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                 style="border-top:1px solid #0A0A0A;">
+                <p class="font-sans text-xs text-muted uppercase tracking-wider">
+                    &copy; <span id="year"></span> Rioz. &mdash; Editor Video Vertikal
+                </p>
+                <a href="https://drive.google.com/file/d/11WC1K-IE0FJb7NVCzSWL7n8p2ZW-LWSq/view?usp=sharing"
+                   target="_blank" rel="noopener noreferrer"
+                   class="font-sans text-xs text-muted uppercase tracking-wider hover:text-ink transition-colors">
+                    Download CV &rarr;
+                </a>
+            </div>
         </div>
     </footer>
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    <!-- =======================================
      WHATSAPP FLOAT
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+======================================= -->
     <a href="https://wa.me/62895413935821" target="_blank" rel="noopener noreferrer" class="wa-float"
         aria-label="WhatsApp">
         <i class="ph ph-whatsapp-logo text-2xl" style="color:#F5F0E8;"></i>
     </a>
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    <!-- =======================================
      SCRIPTS
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+======================================= -->
     <script>
-        // â”€â”€ Year â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // -- Year -------------------------------------
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // â”€â”€ Mobile Menu â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // -- Mobile Menu ------------------------------
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const iconOpen = document.getElementById('menu-icon-open');
@@ -856,13 +838,13 @@
             iconClose.classList.add('hidden');
         }));
 
-        // â”€â”€ Navbar border on scroll â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // -- Navbar border on scroll ------------------
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             navbar.style.borderBottomColor = window.scrollY > 20 ? '#0A0A0A' : 'transparent';
         }, { passive: true });
 
-        // â”€â”€ GSAP Animations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // -- GSAP Animations --------------------------
         gsap.registerPlugin(ScrollTrigger);
 
         function splitWordsSafely(el) {
@@ -922,7 +904,7 @@
             });
         });
 
-        // D) Hover Card Lift â€” GSAP on cards
+        // D) Hover Card Lift &mdash; GSAP on cards
         gsap.utils.toArray('.card-lift').forEach(card => {
             card.addEventListener('mouseenter', () =>
                 gsap.to(card, { y: -6, boxShadow: '0 10px 30px rgba(0,0,0,0.08)', duration: 0.3, ease: 'power2.out' })
@@ -938,23 +920,23 @@
             scrollTrigger: { trigger: '#stats', start: 'top 80%', once: true }
         });
 
-        // â”€â”€ Bilingual System â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // -- Bilingual System -------------------------
         const translations = {
             id: {
-                nav_work: "Work", nav_about: "About", nav_layanan: "Layanan",
+                nav_work: "Portoforioz", nav_about: "About", nav_layanan: "Layanan",
                 nav_review: "Review", nav_contact: "Kontak",
-                hero_eyebrow: "Editor Video Vertikal Â· TikTok Â· Reels Â· Shorts",
-                marquee_text: "500+ VIDEO SELESAI Â· 5+ TAHUN PENGALAMAN Â· 5+ KLIEN AKTIF Â· MULAI RP150RB Â· BOOKING VIA WHATSAPP Â· RESPON CEPAT Â·&nbsp;",
+                hero_eyebrow: "Editor Video Vertikal &middot; TikTok &middot; Reels &middot; Shorts",
+                marquee_text: "500+ VIDEO SELESAI &middot; 5+ TAHUN PENGALAMAN &middot; 5+ KLIEN AKTIF &middot; MULAI RP150RB &middot; BOOKING VIA WHATSAPP &middot; RESPON CEPAT &middot;&nbsp;",
                 hero_line1: "Bikin video shortform kamu",
                 hero_highlight1: "naik algoritma.",
                 hero_line2: "<strong>Hook 3 detik.</strong> Subtitle. B-roll. Beres.",
                 hero_sub: "Editor video vertikal untuk UMKM, toko online, dan content creator.",
-                hero_cta_primary: "Konsultasi Gratis dulu â†’",
-                hero_cta_secondary: "Lihat Work â†“",
+                hero_cta_primary: "Konsultasi Gratis dulu &rarr;",
+                hero_cta_secondary: "Lihat Portofolio &darr;",
                 stat_1_label: "Tahun Pengalaman", stat_2_label: "Video Selesai", stat_3_label: "Klien Aktif",
-                work_title: "Work",
+                work_title: "Portoforioz",
                 work_sub: "Portofolio video shortform yang sudah saya kerjakan.",
-                work_scroll_hint: "scroll untuk lihat semua â†’",
+                work_see_all: "Lihat Semua Portofolio (100+) &rarr;",
                 work_c1_title: "Project Baru #01", work_c1_cat: "Talking Head",
                 work_c2_title: "Project Baru #02", work_c2_cat: "Product Review",
                 work_c3_title: "Project Baru #03", work_c3_cat: "Edukasi",
@@ -968,44 +950,44 @@
                 work_c11_title: "Project Baru #11", work_c11_cat: "Product Review",
                 work_c12_title: "Project Baru #12", work_c12_cat: "Storytelling",
                 about_title: "About Me",
-                about_text: "Mahasiswa Teknik Informatika yang jatuh cinta sama dunia editing video. Sejak 2020, saya bantu UMKM, toko online, dan content creator bikin video shortform yang beneran jualan â€” bukan cuma rapi, tapi punya hook, subtitle, dan b-roll yang bikin orang berhenti scroll.",
-                about_cta: "Chat Saya â†’",
+                about_text: "Mahasiswa Teknik Informatika yang jatuh cinta sama dunia editing video. Sejak 2020, saya bantu UMKM, toko online, dan content creator bikin video shortform yang beneran jualan &mdash; bukan cuma rapi, tapi punya hook, subtitle, dan b-roll yang bikin orang berhenti scroll.",
+                about_cta: "Chat Saya &rarr;",
                 svc_title: "Layanan", svc_sub: "Pilih paket yang paling cocok. Butuh custom? Chat WhatsApp.",
-                svc_1_label: "Paket 01", svc_1_name: "Short-form", svc_1_price: "Rp150.000 / video",
-                svc_1_desc: "1 video vertikal siap posting. Hook, subtitle, b-roll. Revisi 2x. Pengerjaan 2â€“3 hari.",
+                svc_1_label: "Paket 01", svc_1_name: "Short-form", svc_1_price: "Rp300.000 / video",
+                svc_1_desc: "1 video vertikal siap posting. Hook, subtitle, b-roll. Maksimal revisi 2-3x per video. Pengerjaan 2-3 hari.",
                 svc_2_badge: "POPULER",
-                svc_2_label: "Paket 02", svc_2_name: "Bundling Growth", svc_2_price: "Rp1.500.000 / 8 video",
-                svc_2_desc: "8 video vertikal. Revisi 3x per video. Prioritas pengerjaan + free konsultasi strategi konten.",
-                svc_3_label: "Paket 03", svc_3_name: "Retainer Premium", svc_3_price: "Rp4.000.000 / bulan",
-                svc_3_desc: "12 video per bulan. Revisi unlimited (fair use). Prioritas super + komunikasi intensif. Free thumbnail + caption. Konsultasi strategi 1-on-1.",
-                svc_btn: "Booking via WhatsApp â†’",
+                svc_2_label: "Paket 02", svc_2_name: "Bundling Growth", svc_2_price: "Rp2.000.000 / 8 video",
+                svc_2_desc: "8 video vertikal. Maksimal revisi 2-3x per video. Prioritas pengerjaan + free konsultasi strategi konten.",
+                svc_3_label: "Paket 03", svc_3_name: "Retainer Premium", svc_3_price: "Rp3.500.000 / bulan",
+                svc_3_desc: "12 video per bulan. Maksimal revisi 2-3x per video. Prioritas super + komunikasi intensif. Free thumbnail + caption. Konsultasi strategi 1-on-1 bulanan.",
+                svc_btn: "Booking via WhatsApp &rarr;",
                 review_title: "Review", review_sub: "Kata klien yang sudah kerja sama.",
-                rev_1_quote: "\"Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!\"",
+                rev_1_quote: "&ldquo;Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!&rdquo;",
                 rev_1_name: "Wije.id", rev_1_role: "Toko Peralatan Dapur",
-                rev_2_quote: "\"Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.\"",
+                rev_2_quote: "&ldquo;Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.&rdquo;",
                 rev_2_name: "Melaminku.id", rev_2_role: "Perlengkapan Melamin",
-                rev_3_quote: "\"Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.\"",
+                rev_3_quote: "&ldquo;Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.&rdquo;",
                 rev_3_name: "MyLO", rev_3_role: "Platform Parenting & Bayi",
                 contact_title: "Mari bikin video kamu naik.",
                 contact_sub: "Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.",
-                contact_cta: "Chat WhatsApp â€” Konsultasi Gratis â†’",
-                contact_response: "âš¡ Biasanya membalas dalam hitungan menit",
+                contact_cta: "Chat WhatsApp &mdash; Konsultasi Gratis &rarr;",
+                contact_response: "&bull; Biasanya membalas dalam hitungan menit",
             },
             en: {
-                nav_work: "Work", nav_about: "About", nav_layanan: "Services",
+                nav_work: "Portoforioz", nav_about: "About", nav_layanan: "Services",
                 nav_review: "Reviews", nav_contact: "Contact",
-                hero_eyebrow: "Vertical Video Editor Â· TikTok Â· Reels Â· Shorts",
-                marquee_text: "500+ VIDEOS DELIVERED Â· 5+ YEARS EXPERIENCE Â· 5+ ACTIVE CLIENTS Â· FROM RP150K Â· BOOK VIA WHATSAPP Â· FAST RESPONSE Â·&nbsp;",
+                hero_eyebrow: "Vertical Video Editor &middot; TikTok &middot; Reels &middot; Shorts",
+                marquee_text: "500+ VIDEOS DELIVERED &middot; 5+ YEARS EXPERIENCE &middot; 5+ ACTIVE CLIENTS &middot; FROM RP150K &middot; BOOK VIA WHATSAPP &middot; FAST RESPONSE &middot;&nbsp;",
                 hero_line1: "Make your shortform video beat",
                 hero_highlight1: "the algorithm.",
                 hero_line2: "<strong>3-second hook.</strong> Subtitles. B-roll. Done.",
                 hero_sub: "Vertical video editor for SMEs, online shops, and content creators.",
-                hero_cta_primary: "Free Consultation â†’",
-                hero_cta_secondary: "See Work â†“",
+                hero_cta_primary: "Free Consultation &rarr;",
+                hero_cta_secondary: "See Portfolio &darr;",
                 stat_1_label: "Years of Experience", stat_2_label: "Videos Delivered", stat_3_label: "Active Clients",
-                work_title: "Work",
+                work_title: "Portoforioz",
                 work_sub: "Shortform video portfolio I've worked on.",
-                work_scroll_hint: "scroll to see all â†’",
+                work_see_all: "See Full Portfolio (100+) &rarr;",
                 work_c1_title: "New Project #01", work_c1_cat: "Talking Head",
                 work_c2_title: "New Project #02", work_c2_cat: "Product Review",
                 work_c3_title: "New Project #03", work_c3_cat: "Education",
@@ -1019,28 +1001,28 @@
                 work_c11_title: "New Project #11", work_c11_cat: "Product Review",
                 work_c12_title: "New Project #12", work_c12_cat: "Storytelling",
                 about_title: "About Me",
-                about_text: "An Informatics Engineering student who fell in love with video editing. Since 2020, I've helped SMEs, online shops, and content creators make shortform videos that actually sell â€” not just polished, but with hooks, subtitles, and b-roll that make people stop scrolling.",
-                about_cta: "Chat Me â†’",
+                about_text: "An Informatics Engineering student who fell in love with video editing. Since 2020, I've helped SMEs, online shops, and content creators make shortform videos that actually sell &mdash; not just polished, but with hooks, subtitles, and b-roll that make people stop scrolling.",
+                about_cta: "Chat Me &rarr;",
                 svc_title: "Services", svc_sub: "Pick the right package. Need custom? Chat on WhatsApp.",
-                svc_1_label: "Package 01", svc_1_name: "Short-form", svc_1_price: "Rp150,000 / video",
-                svc_1_desc: "1 vertical video ready to post. Hook, subtitle, b-roll. 2 revisions. 2â€“3 day turnaround.",
+                svc_1_label: "Package 01", svc_1_name: "Short-form", svc_1_price: "Rp300,000 / video",
+                svc_1_desc: "1 vertical video ready to post. Hook, subtitle, b-roll. Max 2-3x revisions per video. 2-3 day turnaround.",
                 svc_2_badge: "POPULAR",
-                svc_2_label: "Package 02", svc_2_name: "Bundling Growth", svc_2_price: "Rp1,500,000 / 8 videos",
-                svc_2_desc: "8 vertical videos. 3x revisions per video. Priority processing + free content strategy consultation.",
-                svc_3_label: "Package 03", svc_3_name: "Retainer Premium", svc_3_price: "Rp4,000,000 / month",
-                svc_3_desc: "12 videos per month. Unlimited revisions (fair use). Super priority + intensive communication. Free thumbnail + caption. 1-on-1 strategy consultation.",
-                svc_btn: "Book via WhatsApp â†’",
+                svc_2_label: "Package 02", svc_2_name: "Bundling Growth", svc_2_price: "Rp2,000,000 / 8 videos",
+                svc_2_desc: "8 vertical videos. Max 2-3x revisions per video. Priority processing + free content strategy consultation.",
+                svc_3_label: "Package 03", svc_3_name: "Retainer Premium", svc_3_price: "Rp3,500,000 / month",
+                svc_3_desc: "12 videos per month. Max 2-3x revisions per video. Super priority + intensive communication. Free thumbnail + caption. Monthly 1-on-1 strategy consultation.",
+                svc_btn: "Book via WhatsApp &rarr;",
                 review_title: "Reviews", review_sub: "What clients say after working together.",
-                rev_1_quote: "\"The promotional video produced was neat and fast. The 3-second hook boosted my TikTok engagement. Recommended!\"",
+                rev_1_quote: "&ldquo;The promotional video produced was neat and fast. The 3-second hook boosted my TikTok engagement. Recommended!&rdquo;",
                 rev_1_name: "Wije.id", rev_1_role: "Kitchen Equipment Store",
-                rev_2_quote: "\"Fast turnaround, great communication, results matched our brand identity. Will definitely order again.\"",
+                rev_2_quote: "&ldquo;Fast turnaround, great communication, results matched our brand identity. Will definitely order again.&rdquo;",
                 rev_2_name: "Melaminku.id", rev_2_role: "Melamine Goods Shop",
-                rev_3_quote: "\"An editor who understands parenting content. The videos are warm and easy for our audience to understand.\"",
+                rev_3_quote: "&ldquo;An editor who understands parenting content. The videos are warm and easy for our audience to understand.&rdquo;",
                 rev_3_name: "MyLO", rev_3_role: "Parenting & Baby Platform",
                 contact_title: "Let's make your video blow up.",
                 contact_sub: "Free consultation. Tell me about your product or brand, and I'll help with the video strategy.",
-                contact_cta: "Chat WhatsApp â€” Free Consultation â†’",
-                contact_response: "âš¡ Usually replies within minutes",
+                contact_cta: "Chat WhatsApp &mdash; Free Consultation &rarr;",
+                contact_response: "&bull; Usually replies within minutes",
             }
         };
 
@@ -1093,7 +1075,8 @@
                     scrollTrigger: { trigger: h2, start: 'top 85%', once: true }
                 });
             });
-        });
+                    
+});
     </script>
 </body>
 
