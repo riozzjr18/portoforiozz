@@ -239,7 +239,8 @@
             display: inline-block;
             will-change: transform, opacity;
         }
-            /* Filter Buttons */
+
+        /* Filter Buttons */
         .filter-btn {
             padding: 8px 16px;
             border: 1px solid #0A0A0A;
@@ -254,9 +255,16 @@
             transition: all 0.2s ease;
             border-radius: 0;
         }
-        .filter-btn:hover { background: #E5DDD0; }
-        .filter-btn.active { background: #0A0A0A; color: #F5F0E8; }
-</style>
+
+        .filter-btn:hover {
+            background: #E5DDD0;
+        }
+
+        .filter-btn.active {
+            background: #0A0A0A;
+            color: #F5F0E8;
+        }
+    </style>
 </head>
 
 <body class="antialiased overflow-x-hidden">
@@ -304,8 +312,8 @@
                 <a href="#review" class="text-base font-medium text-ink" data-i18n="nav_review">Review</a>
                 <a href="#contact" class="text-base font-medium text-ink" data-i18n="nav_contact">Kontak</a>
                 <div class="flex items-center border border-ink rounded-sm overflow-hidden w-fit">
-                    <button onclick="setLang('id')" class="text-xs font-bold px-3 py-1.5 bg-ink text-cream">ID</button>
-                    <button onclick="setLang('en')" class="text-xs font-bold px-3 py-1.5 text-ink">EN</button>
+                    <button onclick="setLang('id')" class="text-xs font-bold px-3 py-1.5 bg-ink text-cream transition-all">ID</button>
+                    <button onclick="setLang('en')" class="text-xs font-bold px-3 py-1.5 text-ink transition-all">EN</button>
                 </div>
             </div>
         </div>
@@ -404,9 +412,8 @@
     </section>
 
     <!-- =======================================
-     WORK &mdash; 12 CARDS
+     WORK — 12 CARDS
 ======================================= -->
-    <!-- GANTI CARD: ganti card "Coming Soon" dengan iframe YouTube ketika video asli sudah siap -->
     <section id="work" class="py-24 px-6" style="border-bottom:1px solid #0A0A0A;">
         <div class="max-w-6xl mx-auto">
 
@@ -418,72 +425,126 @@
                 </div>
             </div>
 
-            
+            <div class="carousel-track">
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
+                        <iframe src="https://www.youtube.com/embed/LaKAMuOq0HI" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink">AI Generated Content — AI Content</p>
+                        <p class="font-sans text-xs text-muted mt-0.5">AI Content</p>
+                    </div>
+                </div>
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
+                        <iframe src="https://www.youtube.com/embed/dYAoe35bcRc" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink">AI Generated Content 2 — AI Content</p>
+                        <p class="font-sans text-xs text-muted mt-0.5">AI Content</p>
+                    </div>
+                </div>
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
+                        <iframe src="https://www.youtube.com/embed/1oazDgxpZjY" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink">Educational Content 1 — Educational</p>
+                        <p class="font-sans text-xs text-muted mt-0.5">Educational</p>
+                    </div>
+                </div>
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
+                        <iframe src="https://www.youtube.com/embed/qlq898T6_1k" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink">Educational Content 2 — Educational</p>
+                        <p class="font-sans text-xs text-muted mt-0.5">Educational</p>
+                    </div>
+                </div>
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
+                        <iframe src="https://www.youtube.com/embed/1Ev-ZArl3eI" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink">Educational Content 3 — Educational</p>
+                        <p class="font-sans text-xs text-muted mt-0.5">Educational</p>
+                    </div>
+                </div>
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
+                        <iframe src="https://www.youtube.com/embed/_GORMH5jvro" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink">Educational Content 4 — Educational</p>
+                        <p class="font-sans text-xs text-muted mt-0.5">Educational</p>
+                    </div>
+                </div>
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
+                        <iframe src="https://www.youtube.com/embed/t_z4TG3IRy4" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink">Talking Head 1 — Talking Head</p>
+                        <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
+                    </div>
+                </div>
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
+                        <iframe src="https://www.youtube.com/embed/aLAjmtTa-ug" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink">Talking Head 2 — Talking Head</p>
+                        <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
+                    </div>
+                </div>
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
+                        <iframe src="https://www.youtube.com/embed/lexhy9yeQ5U" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink">Talking Head 3 — Talking Head</p>
+                        <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
+                    </div>
+                </div>
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
+                        <iframe src="https://www.youtube.com/embed/1ZHpn6AnRjQ" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink">Talking Head 4 — Talking Head</p>
+                        <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
+                    </div>
+                </div>
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
+                        <iframe src="https://www.youtube.com/embed/Tzj8d9rnYYg" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink">Talking Head 5 — Talking Head</p>
+                        <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
+                    </div>
+                </div>
+                <div class="carousel-card card-lift">
+                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
+                        <iframe src="https://www.youtube.com/embed/pjQ0C0SZ6rU" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+                    </div>
+                    <div class="pt-4">
+                        <p class="font-sans font-medium text-sm text-ink">Talking Head 6 — Talking Head</p>
+                        <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
+                    </div>
+                </div>
+            </div>
 
-                          <div class="carousel-track">
-                  <div class="carousel-card card-lift">
-                      <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                          <iframe src="https://www.youtube.com/embed/LaKAMuOq0HI" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                      </div>
-                      <div class="pt-4">
-                          <p class="font-sans font-medium text-sm text-ink">AI Generated Content 01</p>
-                          <p class="font-sans text-xs text-muted mt-0.5">AI Content</p>
-                      </div>
-                  </div>
-                  <div class="carousel-card card-lift">
-                      <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                          <iframe src="https://www.youtube.com/embed/dYAoe35bcRc" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                      </div>
-                      <div class="pt-4">
-                          <p class="font-sans font-medium text-sm text-ink">AI Generated Content 02</p>
-                          <p class="font-sans text-xs text-muted mt-0.5">AI Content</p>
-                      </div>
-                  </div>
-                  <div class="carousel-card card-lift">
-                      <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                          <iframe src="https://www.youtube.com/embed/1oazDgxpZjY" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                      </div>
-                      <div class="pt-4">
-                          <p class="font-sans font-medium text-sm text-ink">Educational 01</p>
-                          <p class="font-sans text-xs text-muted mt-0.5">Educational</p>
-                      </div>
-                  </div>
-                  <div class="carousel-card card-lift">
-                      <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                          <iframe src="https://www.youtube.com/embed/t_z4TG3IRy4" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                      </div>
-                      <div class="pt-4">
-                          <p class="font-sans font-medium text-sm text-ink">Talking Head 01</p>
-                          <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
-                      </div>
-                  </div>
-                  <div class="carousel-card card-lift">
-                      <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                          <iframe src="https://www.youtube.com/embed/aLAjmtTa-ug" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                      </div>
-                      <div class="pt-4">
-                          <p class="font-sans font-medium text-sm text-ink">Talking Head 02</p>
-                          <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
-                      </div>
-                  </div>
-                  <div class="carousel-card card-lift">
-                      <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                          <iframe src="https://www.youtube.com/embed/lexhy9yeQ5U" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                      </div>
-                      <div class="pt-4">
-                          <p class="font-sans font-medium text-sm text-ink">Talking Head 03</p>
-                          <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
-                      </div>
-                  </div>
-              </div>
-              
-              <div class="mt-16 text-center">
-                  <a href="portfolio/index.html" class="inline-block font-sans font-bold text-sm uppercase tracking-widest text-ink bg-transparent py-4 px-10 transition-colors hover:bg-dimcream" style="border: 1px solid #0A0A0A;" data-i18n="work_see_all">
-                      Lihat Semua Portofolio (100+) &rarr;
-                  </a>
-              </div>
-          </div>
-      </section>
+            <div class="mt-16 text-center">
+                <a href="portfolio/index.html"
+                    class="inline-block font-sans font-bold text-sm uppercase tracking-widest text-ink bg-transparent py-4 px-10 transition-colors hover:bg-dimcream"
+                    style="border: 1px solid #0A0A0A;" data-i18n="work_see_all">
+                    Lihat Semua Portofolio (100+) &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- =======================================
      ABOUT ME
@@ -492,9 +553,8 @@
         <div class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
-                <!-- SVG Avatar -->
+                <!-- FOTO PROFIL -->
                 <div class="lg:col-span-5">
-                    <!-- FOTO PROFIL -->
                     <div class="aspect-[4/5] overflow-hidden" style="border:1px solid #0A0A0A;">
                         <img src="assets/img/profile.jpg" alt="Damarioz Indra Wibowo &mdash; Vertical Video Editor"
                             class="w-full h-full object-cover" loading="lazy">
@@ -604,35 +664,18 @@
 
                 <div class="p-10 card-lift flex flex-col h-full border-b md:border-b-0 md:border-r" style="border-color:#0A0A0A;">
                     <div class="flex gap-1 mb-6 text-base text-ink tracking-widest">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
                     </div>
                     <p class="font-display italic text-xl text-ink leading-relaxed flex-1" data-i18n="rev_1_quote">
                         &ldquo;Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya
                         naik. Recommended!&rdquo;
                     </p>
                     <div class="flex items-center gap-4 mt-8 pt-6" style="border-top:1px solid #0A0A0A;">
-                        <div
-                            class="w-12 h-12 rounded-full flex items-center justify-center bg-ink text-cream font-display font-bold text-xl">
-                            W</div>
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-ink text-cream font-display font-bold text-xl">W</div>
                         <div>
                             <p class="font-sans font-semibold text-sm text-ink" data-i18n="rev_1_name">Wije.id</p>
                             <p class="font-sans text-xs text-muted mt-1" data-i18n="rev_1_role">Toko Peralatan Dapur</p>
@@ -642,34 +685,17 @@
 
                 <div class="p-10 card-lift flex flex-col h-full border-b md:border-b-0 md:border-r" style="border-color:#0A0A0A;">
                     <div class="flex gap-1 mb-6">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
                     </div>
                     <p class="font-display italic text-xl text-ink leading-relaxed flex-1" data-i18n="rev_2_quote">
                         &ldquo;Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.&rdquo;
                     </p>
                     <div class="flex items-center gap-4 mt-8 pt-6" style="border-top:1px solid #0A0A0A;">
-                        <div
-                            class="w-12 h-12 rounded-full flex items-center justify-center bg-ink text-cream font-display font-bold text-xl">
-                            M</div>
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-ink text-cream font-display font-bold text-xl">M</div>
                         <div>
                             <p class="font-sans font-semibold text-sm text-ink" data-i18n="rev_2_name">Melaminku.id</p>
                             <p class="font-sans text-xs text-muted mt-1" data-i18n="rev_2_role">Perlengkapan Melamin</p>
@@ -679,38 +705,20 @@
 
                 <div class="p-10 card-lift flex flex-col h-full">
                     <div class="flex gap-1 mb-6">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
                     </div>
                     <p class="font-display italic text-xl text-ink leading-relaxed flex-1" data-i18n="rev_3_quote">
                         &ldquo;Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.&rdquo;
                     </p>
                     <div class="flex items-center gap-4 mt-8 pt-6" style="border-top:1px solid #0A0A0A;">
-                        <div
-                            class="w-12 h-12 rounded-full flex items-center justify-center bg-ink text-cream font-display font-bold text-xl">
-                            M</div>
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-ink text-cream font-display font-bold text-xl">M</div>
                         <div>
                             <p class="font-sans font-semibold text-sm text-ink" data-i18n="rev_3_name">MyLO</p>
-                            <p class="font-sans text-xs text-muted mt-1" data-i18n="rev_3_role">Platform Parenting &
-                                Bayi</p>
+                            <p class="font-sans text-xs text-muted mt-1" data-i18n="rev_3_role">Platform Parenting &amp; Bayi</p>
                         </div>
                     </div>
                 </div>
@@ -775,31 +783,31 @@
 ======================================= -->
     <footer style="border-top:1px solid #0A0A0A; padding: 80px 24px 32px; background-color:#F5F0E8;">
         <div class="max-w-6xl mx-auto">
-            
+
             <!-- Tombol WA Utama -->
             <div class="mb-16">
                 <a href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20konsultasi%20proyek%20video."
-                   target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center gap-3 px-10 py-5 font-display font-bold text-lg md:text-xl"
-                   style="background:#0A0A0A; color:#F5F0E8;">
+                    target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center gap-3 px-10 py-5 font-display font-bold text-lg md:text-xl"
+                    style="background:#0A0A0A; color:#F5F0E8;">
                     <i class="ph ph-whatsapp-logo text-2xl"></i>
                     Chat WhatsApp
                     <span>&rarr;</span>
                 </a>
-                <p class="font-sans text-xs text-muted uppercase tracking-widest mt-5">
+                <p class="font-sans text-xs text-muted uppercase tracking-widest mt-5" data-i18n="footer_sub">
                     Konsultasi gratis &middot; Balas dalam hitungan menit
                 </p>
             </div>
-            
+
             <!-- Bottom bar -->
             <div class="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-                 style="border-top:1px solid #0A0A0A;">
+                style="border-top:1px solid #0A0A0A;">
                 <p class="font-sans text-xs text-muted uppercase tracking-wider">
-                    &copy; <span id="year"></span> Rioz. &mdash; Editor Video Vertikal
+                    &copy; <span id="year"></span> Rioz. &mdash; <span data-i18n="footer_role">Editor Video Vertikal</span>
                 </p>
                 <a href="https://drive.google.com/file/d/11WC1K-IE0FJb7NVCzSWL7n8p2ZW-LWSq/view?usp=sharing"
-                   target="_blank" rel="noopener noreferrer"
-                   class="font-sans text-xs text-muted uppercase tracking-wider hover:text-ink transition-colors">
+                    target="_blank" rel="noopener noreferrer"
+                    class="font-sans text-xs text-muted uppercase tracking-wider hover:text-ink transition-colors">
                     Download CV &rarr;
                 </a>
             </div>
@@ -878,8 +886,6 @@
             return el.querySelectorAll('.word');
         }
 
-        // H1 and H2 animation logic is handled in DOMContentLoaded
-
         // B) Count-Up Stats
         gsap.utils.toArray('.stat-num').forEach(el => {
             const target = parseInt(el.dataset.target);
@@ -904,7 +910,7 @@
             });
         });
 
-        // D) Hover Card Lift &mdash; GSAP on cards
+        // D) Hover Card Lift — GSAP on cards
         gsap.utils.toArray('.card-lift').forEach(card => {
             card.addEventListener('mouseenter', () =>
                 gsap.to(card, { y: -6, boxShadow: '0 10px 30px rgba(0,0,0,0.08)', duration: 0.3, ease: 'power2.out' })
@@ -937,18 +943,6 @@
                 work_title: "Portoforioz",
                 work_sub: "Portofolio video shortform yang sudah saya kerjakan.",
                 work_see_all: "Lihat Semua Portofolio (100+) &rarr;",
-                work_c1_title: "Project Baru #01", work_c1_cat: "Talking Head",
-                work_c2_title: "Project Baru #02", work_c2_cat: "Product Review",
-                work_c3_title: "Project Baru #03", work_c3_cat: "Edukasi",
-                work_c4_title: "Project Baru #04", work_c4_cat: "Storytelling",
-                work_c5_title: "Project Baru #05", work_c5_cat: "Testimoni",
-                work_c6_title: "Project Baru #06", work_c6_cat: "Behind The Scene",
-                work_c7_title: "Project Baru #07", work_c7_cat: "Product Unboxing",
-                work_c8_title: "Project Baru #08", work_c8_cat: "Mini Vlog",
-                work_c9_title: "Project Baru #09", work_c9_cat: "Talking Head",
-                work_c10_title: "Project Baru #10", work_c10_cat: "Edukasi",
-                work_c11_title: "Project Baru #11", work_c11_cat: "Product Review",
-                work_c12_title: "Project Baru #12", work_c12_cat: "Storytelling",
                 about_title: "About Me",
                 about_text: "Mahasiswa Teknik Informatika yang jatuh cinta sama dunia editing video. Sejak 2020, saya bantu UMKM, toko online, dan content creator bikin video shortform yang beneran jualan &mdash; bukan cuma rapi, tapi punya hook, subtitle, dan b-roll yang bikin orang berhenti scroll.",
                 about_cta: "Chat Saya &rarr;",
@@ -967,11 +961,13 @@
                 rev_2_quote: "&ldquo;Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.&rdquo;",
                 rev_2_name: "Melaminku.id", rev_2_role: "Perlengkapan Melamin",
                 rev_3_quote: "&ldquo;Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.&rdquo;",
-                rev_3_name: "MyLO", rev_3_role: "Platform Parenting & Bayi",
+                rev_3_name: "MyLO", rev_3_role: "Platform Parenting &amp; Bayi",
                 contact_title: "Mari bikin video kamu naik.",
                 contact_sub: "Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.",
                 contact_cta: "Chat WhatsApp &mdash; Konsultasi Gratis &rarr;",
                 contact_response: "&bull; Biasanya membalas dalam hitungan menit",
+                footer_sub: "Konsultasi gratis &middot; Balas dalam hitungan menit",
+                footer_role: "Editor Video Vertikal"
             },
             en: {
                 nav_work: "Portoforioz", nav_about: "About", nav_layanan: "Services",
@@ -988,18 +984,6 @@
                 work_title: "Portoforioz",
                 work_sub: "Shortform video portfolio I've worked on.",
                 work_see_all: "See Full Portfolio (100+) &rarr;",
-                work_c1_title: "New Project #01", work_c1_cat: "Talking Head",
-                work_c2_title: "New Project #02", work_c2_cat: "Product Review",
-                work_c3_title: "New Project #03", work_c3_cat: "Education",
-                work_c4_title: "New Project #04", work_c4_cat: "Storytelling",
-                work_c5_title: "New Project #05", work_c5_cat: "Testimonial",
-                work_c6_title: "New Project #06", work_c6_cat: "Behind The Scene",
-                work_c7_title: "New Project #07", work_c7_cat: "Product Unboxing",
-                work_c8_title: "New Project #08", work_c8_cat: "Mini Vlog",
-                work_c9_title: "New Project #09", work_c9_cat: "Talking Head",
-                work_c10_title: "New Project #10", work_c10_cat: "Education",
-                work_c11_title: "New Project #11", work_c11_cat: "Product Review",
-                work_c12_title: "New Project #12", work_c12_cat: "Storytelling",
                 about_title: "About Me",
                 about_text: "An Informatics Engineering student who fell in love with video editing. Since 2020, I've helped SMEs, online shops, and content creators make shortform videos that actually sell &mdash; not just polished, but with hooks, subtitles, and b-roll that make people stop scrolling.",
                 about_cta: "Chat Me &rarr;",
@@ -1018,46 +1002,47 @@
                 rev_2_quote: "&ldquo;Fast turnaround, great communication, results matched our brand identity. Will definitely order again.&rdquo;",
                 rev_2_name: "Melaminku.id", rev_2_role: "Melamine Goods Shop",
                 rev_3_quote: "&ldquo;An editor who understands parenting content. The videos are warm and easy for our audience to understand.&rdquo;",
-                rev_3_name: "MyLO", rev_3_role: "Parenting & Baby Platform",
+                rev_3_name: "MyLO", rev_3_role: "Parenting &amp; Baby Platform",
                 contact_title: "Let's make your video blow up.",
                 contact_sub: "Free consultation. Tell me about your product or brand, and I'll help with the video strategy.",
                 contact_cta: "Chat WhatsApp &mdash; Free Consultation &rarr;",
                 contact_response: "&bull; Usually replies within minutes",
+                footer_sub: "Free consultation &middot; Replies within minutes",
+                footer_role: "Vertical Video Editor"
             }
         };
 
-        let languageInitialized = false;
+        let currentLang = localStorage.getItem('rioz_lang') || 'id';
 
         function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('rioz_lang', lang);
+
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang]?.[key] !== undefined) {
-                    // Using innerHTML so <strong> tags render properly!
                     el.innerHTML = translations[lang][key];
                 }
             });
 
-            // Update active button styles
-            const btnEn = document.getElementById('btn-en');
-            const btnId = document.getElementById('btn-id');
-            if (lang === 'en') {
-                btnEn.style.cssText = 'background:#0A0A0A;color:#F5F0E8;';
-                btnId.style.cssText = 'background:transparent;color:#0A0A0A;';
-            } else {
-                btnId.style.cssText = 'background:#0A0A0A;color:#F5F0E8;';
-                btnEn.style.cssText = 'background:transparent;color:#0A0A0A;';
-            }
-            document.documentElement.lang = lang;
+            // Update active button styles on both Desktop & Mobile
+            document.querySelectorAll('button[onclick="setLang(\'id\')"]').forEach(btn => {
+                btn.style.cssText = lang === 'id'
+                    ? 'background:#0A0A0A;color:#F5F0E8;'
+                    : 'background:transparent;color:#0A0A0A;';
+            });
+            document.querySelectorAll('button[onclick="setLang(\'en\')"]').forEach(btn => {
+                btn.style.cssText = lang === 'en'
+                    ? 'background:#0A0A0A;color:#F5F0E8;'
+                    : 'background:transparent;color:#0A0A0A;';
+            });
 
-            // Re-apply word wrapping for GSAP ONLY IF we already initialized
-            // or if we are changing language, so GSAP doesn't lose its targets.
-            // Actually, GSAP handles the initial animation, we don't need to re-animate on language change.
-            // Just make sure the HTML is clean.
+            document.documentElement.lang = lang;
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Set language FIRST before GSAP runs
-            setLang('id');
+            // 1. Set saved language FIRST before GSAP runs
+            setLang(currentLang);
 
             // 2. Wrap words for animation safely
             const heroH1 = document.getElementById('hero-headline');
@@ -1075,10 +1060,8 @@
                     scrollTrigger: { trigger: h2, start: 'top 85%', once: true }
                 });
             });
-                    
-});
+        });
     </script>
 </body>
 
 </html>
-
