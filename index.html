@@ -13,583 +13,516 @@
 <link rel="canonical" href="https://riozzjr18.github.io/portoforiozz/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;900&family=Instrument+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* Layout idea: the page is a video editor. A red playhead (scroll progress) runs the whole page; hero shows one video as a timeline. */
+/* Dark led. Ground ink, text bone, one REC red. Signature: a pixel editor carrying a vertical phone walks the hairline under the hero.
+   Rhythm: dark hero, dark work, surface statement, bone services panel, dark steps, dark clients, dark about, red panel, dark footer. */
 :root{
-  --bg:#F2F3EF;
-  --surface:#FFFFFF;
-  --ink:#15171C;
-  --muted:#5B6068;
-  --line:#D9DBD3;
-  --accent:#FF3D1F;
-  --on-accent:#FFFFFF;
-  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --ink:#121315;
+  --surface:#1B1D20;
+  --bone:#EDE9E1;
+  --muted:#8E9198;
+  --line:rgba(237,233,225,.14);
+  --accent:#FF4A2B;
+  --on-accent:#121315;
+  --radius:8px;
+  --panel-radius:24px;
+  --display:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;
   --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
-  --mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
-  --gutter:20px;
-  --max:1180px;
-  color-scheme:light;
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#0E1013;--surface:#171A1F;--ink:#F2F3EF;--muted:#A0A5AD;--line:#2A2E35;--accent:#FF5636;--on-accent:#0E1013;
-    color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#0E1013;--surface:#171A1F;--ink:#F2F3EF;--muted:#A0A5AD;--line:#2A2E35;--accent:#FF5636;--on-accent:#0E1013;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gut:40px;
+  --max:1280px;
+  --ease:cubic-bezier(.22,1,.36,1);
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:110px}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--ink);color:var(--bone);font:400 16px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
-a{color:inherit}
-h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-0.02em;line-height:1.02;margin:0;text-wrap:balance}
 p{margin:0}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
-.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{margin:0;font-family:var(--display);font-weight:900;text-transform:uppercase;letter-spacing:-0.04em;line-height:.9;text-wrap:balance}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+.meta{font:400 11px/1.5 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.label{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.label b{color:var(--accent);font-weight:500}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+section{padding:120px 0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* Header with scroll playhead */
-.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.top-row{display:flex;align-items:center;gap:20px;height:64px}
-.logo{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:-0.03em;text-decoration:none}
-.logo i{color:var(--accent);font-style:normal}
-.nav{display:flex;gap:6px;margin-left:auto;align-items:center}
-.nav a.l{font-size:15px;font-weight:500;text-decoration:none;padding:8px 12px;border-radius:999px;color:var(--muted)}
-.nav a.l:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 7%,transparent)}
-.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;margin-left:8px}
-.lang button{font:600 12px var(--mono);border:0;background:transparent;color:var(--muted);padding:6px 11px;border-radius:999px;cursor:pointer}
-.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
-.btn{display:inline-flex;align-items:center;gap:10px;font:600 16px var(--body);text-decoration:none;border-radius:999px;padding:14px 24px;border:1.5px solid var(--ink);transition:transform .18s ease,background .18s ease,color .18s ease}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
-.btn.primary:hover{transform:translateY(-2px)}
-.btn.ghost:hover{background:var(--ink);color:var(--bg)}
-.btn.sm{padding:9px 18px;font-size:14px}
-.prog{position:absolute;left:0;bottom:-1px;height:3px;width:100%;pointer-events:none}
-.prog b{position:absolute;left:0;top:0;height:3px;width:var(--p,0%);background:var(--accent)}
-.prog span{position:absolute;top:3px;left:var(--p,0%);transform:translateX(-50%);font:500 10px var(--mono);background:var(--accent);color:var(--on-accent);padding:1px 6px;border-radius:0 0 6px 6px}
-.nav-sub{display:none}
+/* Nav */
+.nav{position:fixed;inset:0 0 auto;height:70px;z-index:50;transition:background .3s var(--ease),border-color .3s var(--ease);border-bottom:1px solid transparent}
+.nav.solid{background:var(--ink);border-bottom-color:var(--line)}
+.nav .wrap{height:100%;display:flex;align-items:center;gap:28px}
+.wm{font:900 22px var(--display);letter-spacing:-0.04em;text-transform:uppercase}
+.wm i{font-style:normal;color:var(--accent)}
+.links{display:flex;gap:26px;margin-left:auto;align-items:center}
+.links a.l{font:400 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);transition:color .2s}
+.links a.l:hover{color:var(--bone)}
+.lang{display:flex;gap:2px}
+.lang button{font:500 11px var(--mono);border:0;background:none;color:var(--muted);padding:4px 6px;cursor:pointer;letter-spacing:.06em}
+.lang button[aria-pressed="true"]{color:var(--bone);box-shadow:inset 0 -1px 0 var(--accent)}
+.pill{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:var(--on-accent);font:500 14px var(--body);padding:6px 6px 6px 18px;border-radius:999px;transition:transform .25s var(--ease)}
+.pill:hover{transform:translateY(-2px)}
+.pill span.c{width:30px;height:30px;border-radius:50%;background:var(--on-accent);color:var(--accent);display:grid;place-items:center}
+.pill.dark{background:var(--ink);color:var(--bone)}
+.pill.dark span.c{background:var(--bone);color:var(--ink)}
+.pill.line{background:transparent;color:var(--on-accent);box-shadow:inset 0 0 0 1.5px var(--on-accent)}
+.pill.line span.c{background:transparent;color:var(--on-accent);box-shadow:inset 0 0 0 1.5px var(--on-accent)}
 
 /* Hero */
-.hero{padding:56px 0 24px}
-.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center}
-.eyebrow{font:500 13px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;margin-bottom:22px}
-.eyebrow::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--accent);animation:rec 1.4s steps(2,jump-none) infinite}
-@keyframes rec{50%{opacity:.15}}
-h1{font-size:clamp(44px,7.2vw,98px);font-weight:800;letter-spacing:-0.035em}
-h1 mark{background:none;color:var(--accent)}
-.lede{font-size:clamp(18px,2vw,22px);margin-top:26px;max-width:34em;color:var(--muted)}
-.lede b{color:var(--ink);font-weight:600}
-.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
-.proof{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:38px;padding-top:22px;border-top:1px solid var(--line)}
-.proof div{display:flex;align-items:baseline;gap:10px}
-.proof strong{font:500 30px var(--display);letter-spacing:-0.03em}
-.proof span{font-size:13px;color:var(--muted);max-width:11ch;line-height:1.25}
+.hero{position:relative;min-height:clamp(560px,80vh,860px);display:flex;flex-direction:column;justify-content:space-between;padding:110px 0 0;overflow:hidden}
+.art{position:absolute;inset:0;display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding:0 6px;z-index:0;animation:settle 1.3s var(--ease) both}
+.art div{position:relative;overflow:hidden;background:var(--surface)}
+.art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15) brightness(.6)}
+.art div:nth-child(3) img{filter:none;opacity:.85}
+.art div:nth-child(3)::after{content:"REC";position:absolute;top:84px;left:14px;font:500 11px var(--mono);letter-spacing:.06em;color:var(--bone);padding-left:14px;background:radial-gradient(circle at 4px 50%,var(--accent) 4px,transparent 5px)}
+.art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,19,21,.55) 0%,rgba(18,19,21,.25) 40%,rgba(18,19,21,.92) 82%,var(--ink) 100%)}
+@keyframes settle{from{transform:scale(1.04)}to{transform:scale(1)}}
+.hero .wrap{width:100%}
+.hero-top{position:relative;z-index:1;display:flex;justify-content:space-between;gap:24px;align-items:start}
+.hero-top p.line{font:500 clamp(20px,2.2vw,28px)/1.2 var(--display);max-width:16em;letter-spacing:-0.01em}
+.hero-top .meta{text-align:right;max-width:22em}
+.hero-bot{position:relative;z-index:1}
+.hero-bot .row{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:14px;flex-wrap:wrap}
+.big{font:900 clamp(96px,36.5vw,560px)/.78 var(--display);letter-spacing:-0.065em;text-transform:uppercase;margin:0 -0.04em;white-space:nowrap;animation:rise 1s var(--ease) both}
+.big i{font-style:normal;color:var(--accent)}
+@keyframes rise{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
 
-.stage{position:relative;justify-self:center;width:min(100%,330px)}
-.phone{position:relative;aspect-ratio:9/16;border-radius:34px;background:#0B0C0F;color:#fff;overflow:hidden;border:6px solid #0B0C0F;outline:1.5px solid var(--line);box-shadow:0 30px 60px -28px color-mix(in srgb,var(--ink) 55%,transparent)}
-.phone::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 30% 15%,#3a2f2c 0%,#15171c 55%,#0B0C0F 100%)}
-.phone-top{position:absolute;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;font:500 12px var(--mono);z-index:2}
-.phone-top .recd{display:flex;gap:7px;align-items:center}
-.phone-top .recd::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
-.cap{position:absolute;left:16px;right:16px;top:50%;transform:translateY(-50%);text-align:center;font-family:var(--display);font-weight:800;font-size:clamp(34px,4.2vw,46px);line-height:1;letter-spacing:-0.02em;text-transform:uppercase;z-index:2}
-.cap em{font-style:normal;background:var(--accent);color:var(--on-accent);padding:0 8px;border-radius:6px;display:inline-block;transform:rotate(-2deg)}
-.hookbar{position:absolute;left:18px;right:18px;bottom:22px;z-index:2}
-.hookbar div{height:6px;border-radius:6px;background:rgba(255,255,255,.18);overflow:hidden}
-.hookbar b{display:block;height:100%;width:var(--hb,33%);background:var(--accent);transition:width .35s ease}
-.hookbar p{display:flex;justify-content:space-between;font:500 11px var(--mono);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
-.chip{position:absolute;z-index:3;background:var(--surface);color:var(--ink);border:1.5px solid var(--ink);border-radius:999px;padding:6px 13px;font:500 12px var(--mono);white-space:nowrap}
-.chip.a{top:14%;left:-26px;transform:rotate(-5deg)}
-.chip.b{top:44%;right:-22px;transform:rotate(4deg)}
-.chip.c{bottom:20%;left:-18px;transform:rotate(-3deg)}
+/* Pixel line */
+.pxline{position:relative;height:56px;border-bottom:1px solid var(--line);overflow:hidden}
+.walker{position:absolute;bottom:0;left:0;width:48px;height:48px;animation:travel 40s steps(200) infinite}
+.walker .f{position:absolute;left:0;top:0;width:3px;height:3px}
+.walker .f2{visibility:hidden}
+.walker .f1{animation:fa .5s steps(1) infinite}
+.walker .f2{animation:fb .5s steps(1) infinite}
+@keyframes fa{0%{visibility:visible}50%{visibility:hidden}}
+@keyframes fb{0%{visibility:hidden}50%{visibility:visible}}
+@keyframes travel{from{transform:translateX(-60px)}to{transform:translateX(calc(100vw + 10px))}}
+.pxline .meta{position:absolute;right:var(--gut);bottom:14px}
 
-/* Timeline */
-.tl-sec{padding:28px 0 8px}
-.tl-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:12px;flex-wrap:wrap}
-.tl-head span{font:500 13px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-.tl{border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:16px 18px 18px;overflow:hidden}
-.tl-body{display:grid;grid-template-columns:84px 1fr;gap:0 14px}
-.tl-labels,.tl-tracks{display:grid;grid-template-rows:22px repeat(4,34px);gap:8px}
-.tl-labels span{font:500 11px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center}
-.tl-tracks{position:relative}
-.ruler{position:relative;border-bottom:1px solid var(--line);font:500 11px var(--mono);color:var(--muted)}
-.ruler span{position:absolute;top:0;transform:translateX(-50%)}
-.ruler span:first-child{transform:none}
-.ruler span:last-child{transform:translateX(-100%)}
-.row{position:relative;border-radius:8px;background:color-mix(in srgb,var(--ink) 4%,transparent)}
-.clip{position:absolute;top:0;bottom:0;border-radius:7px;display:flex;align-items:center;padding:0 10px;font:500 11px var(--mono);white-space:nowrap;overflow:hidden;background:color-mix(in srgb,var(--ink) 14%,var(--surface));border:1px solid color-mix(in srgb,var(--ink) 25%,transparent)}
-.clip.hot{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
-.wave{position:absolute;inset:6px 0;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 5px);-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent),repeating-linear-gradient(90deg,#000 0 2px,transparent 2px 5px);opacity:.45;border-radius:4px}
-.wave{-webkit-mask-composite:source-in;mask-composite:intersect}
-.playhead{position:absolute;top:0;bottom:0;left:10%;width:2px;background:var(--accent);animation:play 9s linear infinite;z-index:4}
-.playhead::before{content:"";position:absolute;top:-2px;left:-6px;width:14px;height:14px;background:var(--accent);clip-path:polygon(0 0,100% 0,50% 100%)}
-@keyframes play{from{left:0}to{left:100%}}
+/* Work index swap */
+.head{display:grid;grid-template-columns:1fr 2fr;gap:40px;margin-bottom:56px;align-items:end}
+.head h2{font-size:clamp(52px,8vw,132px)}
+.idx{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:start}
+.idx ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.idx li{border-bottom:1px solid var(--line)}
+.idx a.it{display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:center;padding:22px 0;transition:color .2s}
+.idx .n{font:400 11px var(--mono);color:var(--muted)}
+.idx .t{font:900 clamp(32px,4.4vw,64px)/.95 var(--display);text-transform:uppercase;letter-spacing:-0.04em;color:color-mix(in srgb,var(--bone) 38%,transparent);transition:color .2s var(--ease)}
+.idx li.on .t,.idx a.it:hover .t,.idx a.it:focus-visible .t{color:var(--bone)}
+.idx li.on .n{color:var(--accent)}
+.idx .c{font:400 11px var(--mono);color:var(--muted)}
+.idx .thumb{display:none}
+.viewer{position:sticky;top:100px}
+.frame{position:relative;aspect-ratio:9/16;max-height:72vh;margin-left:auto;border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .2s linear}
+.frame img.on{opacity:1}
+.frame .play{position:absolute;left:16px;bottom:16px;z-index:2}
+.vmeta{display:flex;justify-content:space-between;gap:12px;margin-top:14px}
+.vmeta p.d{font-size:15px;color:var(--bone);max-width:24em}
+.more{margin-top:48px}
 
-/* Sections */
-section{padding:96px 0}
-.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
-.sec-head h2{font-size:clamp(36px,5vw,64px)}
-.sec-head p{color:var(--muted);max-width:30em}
+/* Statement */
+.surface{background:var(--surface)}
+.state{display:grid;grid-template-columns:1fr 2fr;gap:40px}
+.state p.big2{font:400 clamp(20px,2vw,24px)/1.45 var(--body);color:var(--bone);max-width:34em}
+.state p.big2 em{font-style:normal;color:var(--accent)}
+.state .meta{margin-top:28px}
 
-/* Work */
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
-.filters button{font:500 13px var(--mono);text-transform:uppercase;letter-spacing:.05em;border:1.5px solid var(--line);background:transparent;color:var(--ink);padding:9px 16px;border-radius:999px;cursor:pointer}
-.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.card{position:relative;display:block;aspect-ratio:9/16;border-radius:20px;overflow:hidden;text-decoration:none;color:#fff;background:#14161b;isolation:isolate;border:1px solid var(--line);transition:transform .25s ease}
-.card:hover{transform:translateY(-6px)}
-.card[hidden]{display:none}
-.card::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(110% 70% at 20% 0%,color-mix(in srgb,var(--accent) 38%,#14161b) 0%,#14161b 62%)}
-.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
-.card::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,transparent 30%,transparent 55%,rgba(0,0,0,.78) 100%)}
-.card>*{position:relative;z-index:1}
-.card .n{position:absolute;top:14px;left:16px;font:500 12px var(--mono);letter-spacing:.06em}
-.card .tag{position:absolute;top:12px;right:12px;font:500 11px var(--mono);text-transform:uppercase;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.3);padding:3px 9px;border-radius:999px;backdrop-filter:blur(6px)}
-.card .play{position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:var(--accent);display:grid;place-items:center;transition:transform .2s ease}
-.card:hover .play{transform:scale(1.12)}
-.card .play::after{content:"";border-left:16px solid var(--on-accent);border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
-.card .ttl{position:absolute;left:16px;right:16px;bottom:14px;font:600 15px var(--body);display:flex;justify-content:space-between;gap:8px}
-.card .ttl span{font:500 12px var(--mono);opacity:.8;white-space:nowrap}
-.more{margin-top:36px;display:flex;justify-content:center}
+/* Services bone panel */
+.panel{margin:16px;border-radius:var(--panel-radius);background:var(--bone);color:var(--ink);padding:120px 0}
+.panel .label{color:#5E6067}
+.panel .head h2{color:var(--ink)}
+.panel .head p{color:#45474D;max-width:32em}
+.svc{border-top:1px solid rgba(18,19,21,.18)}
+.svc .r{position:relative;display:grid;grid-template-columns:44px 1.1fr 1.4fr auto;gap:24px;align-items:baseline;padding:28px 0;border-bottom:1px solid rgba(18,19,21,.18);cursor:default}
+.svc .n{font:400 11px var(--mono);color:#5E6067}
+.svc h3{font-size:clamp(28px,3.4vw,46px);letter-spacing:-0.035em}
+.svc h3 small{display:block;font:500 11px var(--mono);letter-spacing:.06em;color:var(--accent);margin-top:10px;text-transform:uppercase}
+.svc ul{list-style:none;margin:0;padding:0;font-size:15px;color:#3B3D42;display:grid;gap:4px}
+.svc .p{font:500 13px var(--mono);text-align:right;white-space:nowrap}
+.svc .p span{display:block;color:#5E6067;font-size:11px;margin-top:4px}
+.svc .r:hover h3{color:var(--accent)}
+.svc .go{display:inline-block;margin-top:12px;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid currentColor;padding-bottom:2px}
+.svc .go:hover{color:var(--accent)}
+.tip{position:fixed;left:0;top:0;z-index:70;pointer-events:none;background:var(--ink);color:var(--bone);font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:8px 12px;border-radius:999px;opacity:0;transition:opacity .2s}
+.tip.on{opacity:1}
 
 /* Steps */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:2px solid var(--ink)}
-.step{padding:22px 22px 8px 0;position:relative}
-.step::before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;background:var(--accent);clip-path:polygon(0 0,100% 0,50% 100%)}
-.step .t{font:500 12px var(--mono);color:var(--muted);margin-top:8px}
-.step h3{font-size:24px;margin:6px 0 8px;letter-spacing:-0.02em}
-.step p{color:var(--muted);font-size:15.5px}
+.rows{border-top:1px solid var(--line)}
+.rows .r{display:grid;grid-template-columns:44px 1.2fr 1fr;gap:24px;padding:30px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.rows .n{font:400 11px var(--mono);color:var(--accent)}
+.rows h3{font:700 clamp(22px,2.4vw,32px)/1.1 var(--display);text-transform:none;letter-spacing:-0.02em}
+.rows p{color:var(--muted);font-size:16px}
 
-/* About */
-.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
-.photo{aspect-ratio:4/5;border-radius:24px;overflow:hidden;background:color-mix(in srgb,var(--ink) 8%,var(--surface));border:1px solid var(--line);position:relative;display:grid;place-items:center;font:800 120px var(--display);color:var(--accent)}
-.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.about h2{font-size:clamp(36px,5vw,64px);margin-bottom:22px}
-.about p{font-size:19px;max-width:32em}
-.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
-.facts span{font:500 13px var(--mono);border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:var(--surface)}
+/* Clients ruled list */
+.ruled{border-top:1px solid var(--line)}
+.ruled .r{display:grid;grid-template-columns:1fr 2fr auto;gap:24px;padding:26px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.ruled b{font:700 18px var(--display);letter-spacing:-0.01em}
+.ruled q{quotes:none;font-size:18px;color:var(--bone)}
+.ruled .meta{text-align:right}
 
-/* Pricing */
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
-.plan{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:30px 28px;position:relative}
-.plan.pop{border:2px solid var(--ink);box-shadow:8px 8px 0 var(--accent)}
-.plan .badge{position:absolute;top:-13px;right:22px;background:var(--accent);color:var(--on-accent);font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:4px 12px;border-radius:999px}
-.plan h3{font-size:30px}
-.price{font:700 40px var(--display);letter-spacing:-0.03em;margin:18px 0 2px}
-.price small{font:500 14px var(--mono);color:var(--muted);letter-spacing:0}
-.per{font:500 13px var(--mono);color:var(--muted);min-height:1.4em}
-.plan ul{list-style:none;margin:22px 0 28px;padding:0;display:grid;gap:11px;flex:1}
-.plan li{display:flex;gap:10px;font-size:16px}
-.plan li::before{content:"";flex:none;width:7px;height:7px;margin-top:9px;background:var(--accent);border-radius:2px}
-.plan .btn{justify-content:center}
-.note{margin-top:20px;color:var(--muted);font-size:15px}
+/* About quote */
+.about{display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center;max-width:980px;margin:0 auto}
+.ph{width:200px;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;background:var(--surface);position:relative;display:grid;place-items:center;font:900 64px var(--display);color:var(--accent)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05)}
+.about blockquote{margin:0;font:500 clamp(22px,2.4vw,28px)/1.35 var(--display);letter-spacing:-0.01em}
+.about .meta{margin-top:20px}
 
-/* Reviews */
-.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.q{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:24px}
-.q blockquote{margin:0;font:500 22px/1.3 var(--display);letter-spacing:-0.015em;flex:1}
-.q footer{display:flex;gap:12px;align-items:center;border-top:1px solid var(--line);padding-top:18px}
-.av{width:42px;height:42px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font:700 18px var(--display)}
-.q footer b{display:block;font-size:16px}
-.q footer span{font-size:14px;color:var(--muted)}
+/* Accent panel */
+.ap{margin:16px;border-radius:var(--panel-radius);background:var(--accent);color:var(--on-accent);padding:96px 0}
+.ap .label{color:rgba(18,19,21,.65)}
+.ap h2{font-size:clamp(44px,6.4vw,104px);margin:24px 0 40px;max-width:11em}
+.ap .acts{display:flex;gap:12px;flex-wrap:wrap}
+.ap .meta{color:rgba(18,19,21,.7);margin-top:40px}
 
-/* Contact */
-.contact{background:var(--ink);color:var(--bg);border-radius:32px;padding:64px 40px;text-align:center;margin:0 var(--gutter)}
-.contact h2{font-size:clamp(40px,6.4vw,86px);max-width:12em;margin:0 auto 20px}
-.contact h2 mark{background:none;color:var(--accent)}
-.contact p.s{max-width:34em;margin:0 auto 32px;opacity:.75;font-size:19px}
-.contact .btn.primary{font-size:18px;padding:18px 34px}
-.reply{font:500 13px var(--mono);opacity:.7;margin-top:18px}
-.socials{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:44px}
-.socials a{font:500 14px var(--mono);text-decoration:none;border:1px solid color-mix(in srgb,var(--bg) 30%,transparent);padding:9px 16px;border-radius:999px}
-.socials a:hover{background:var(--bg);color:var(--ink)}
-.mail{font:500 14px var(--mono);margin-top:18px;opacity:.75}
-footer.site{padding:32px 0 48px}
-footer.site .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:500 13px var(--mono);color:var(--muted)}
-.wa{position:fixed;right:18px;bottom:18px;z-index:60;width:56px;height:56px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;text-decoration:none;font:700 13px var(--mono);box-shadow:0 10px 24px -8px rgba(0,0,0,.5);transition:transform .2s ease}
-.wa:hover{transform:scale(1.08)}
+/* Footer */
+footer{position:relative;padding:80px 0 0;overflow:hidden}
+.ft{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:56px}
+.ft p{color:var(--muted)}
+.ft p.e{color:var(--bone);font-size:18px}
+.ft nav{display:flex;flex-direction:column;gap:8px}
+.ft nav a{font:400 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.ft nav a:hover{color:var(--bone)}
+.rest{position:relative;height:56px;border-bottom:1px solid var(--line)}
+.rest .walker{animation:none;left:auto;right:var(--gut);transform:scaleX(-1)}
+.rest .walker .f1,.rest .walker .f2{animation:none}
+.giant{font:900 clamp(120px,38vw,600px)/.74 var(--display);letter-spacing:-0.07em;text-transform:uppercase;color:var(--surface);margin:0 -0.04em -0.12em;white-space:nowrap;user-select:none}
+.giant i{font-style:normal;color:color-mix(in srgb,var(--accent) 40%,var(--surface))}
+.copy{display:flex;justify-content:space-between;padding:20px 0 28px}
 
-@media (max-width:980px){
-  .hero-grid{grid-template-columns:1fr}
-  .stage{width:min(76%,300px);margin-top:20px}
-  .grid4{grid-template-columns:repeat(3,1fr)}
-  .steps{grid-template-columns:repeat(2,1fr);row-gap:20px}
-  .about{grid-template-columns:1fr;gap:32px}
-  .photo{max-width:380px}
-  .plans,.quotes{grid-template-columns:1fr}
-  .plan.pop{box-shadow:6px 6px 0 var(--accent)}
+@media (max-width:1024px){
+  .idx{grid-template-columns:1fr .7fr;gap:32px}
+  .svc .r{grid-template-columns:36px 1fr auto}
+  .svc ul{grid-column:2/4}
 }
-@media (max-width:720px){
-  body{font-size:16px}
-  .top-row{height:58px;gap:10px}
-  .nav a.l{display:none}
-  .nav{margin-left:auto}
-  .nav-sub{display:flex;gap:4px;overflow-x:auto;padding:0 var(--gutter) 10px;scrollbar-width:none}
-  .nav-sub a{flex:none;font-size:14px;font-weight:500;text-decoration:none;color:var(--muted);padding:6px 12px;border-radius:999px;border:1px solid var(--line)}
-  html{scroll-padding-top:120px}
-  .hero{padding-top:36px}
-  .grid4{grid-template-columns:repeat(2,1fr);gap:12px}
-  section{padding:64px 0}
-  .tl-body{grid-template-columns:62px 1fr;gap:0 10px}
-  .tl-labels span{font-size:10px}
-  .steps{grid-template-columns:1fr}
-  .contact{padding:48px 22px;border-radius:24px}
-  .chip.a{left:-6px}.chip.b{right:-4px}.chip.c{left:-4px}
-  .proof strong{font-size:26px}
+@media (max-width:767px){
+  :root{--gut:20px}
+  section{padding:80px 0}
+  .links a.l{display:none}
+  .pill{font-size:13px;padding:5px 5px 5px 14px}
+  .pill span.c{width:26px;height:26px}
+  .art{grid-template-columns:repeat(3,1fr)}
+  .art div:nth-child(n+4){display:none}
+  .hero-top{flex-direction:column}
+  .hero-top .meta{text-align:left}
+  .big{font-size:36vw}
+  .walker{animation-duration:80s}
+  .head,.state,.about{grid-template-columns:1fr;gap:20px}
+  .idx{grid-template-columns:1fr}
+  .viewer{display:none}
+  .idx a.it{grid-template-columns:54px 1fr;gap:14px}
+  .idx .c{grid-column:2}
+  .idx .thumb{display:block;width:54px;aspect-ratio:9/16;border-radius:6px;overflow:hidden;background:var(--surface);grid-row:span 2}
+  .idx .thumb img{width:100%;height:100%;object-fit:cover}
+  .idx .n{display:none}
+  .idx .t{color:var(--bone)}
+  .panel{margin:8px;padding:80px 0}
+  .svc .r{grid-template-columns:1fr auto;gap:10px 16px}
+  .svc .n{display:none}
+  .svc ul{grid-column:1/3}
+  .tip{display:none}
+  .rows .r{grid-template-columns:32px 1fr;gap:6px 14px}
+  .rows .r p{grid-column:2}
+  .ruled .r{grid-template-columns:1fr;gap:6px}
+  .ruled .meta{text-align:left}
+  .ph{width:140px}
+  .ap{margin:8px;padding:64px 0}
+  .ft{grid-template-columns:1fr 1fr}
+  .ft>div:first-child{grid-column:1/3}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
-  .playhead{left:10%}
+  .walker{transform:translateX(var(--gut))}
 }
 </style>
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap top-row">
-    <a class="logo" href="#home" aria-label="Rioz, beranda">Rioz<i>.</i></a>
-    <nav class="nav" aria-label="Utama">
-      <a class="l" href="#work" data-i="nav_work">Portofolio</a>
-      <a class="l" href="#layanan" data-i="nav_svc">Layanan</a>
-      <a class="l" href="#about" data-i="nav_about">Tentang</a>
-      <a class="l" href="#review" data-i="nav_rev">Review</a>
-      <div class="lang" role="group" aria-label="Bahasa">
-        <button type="button" data-lang="id" aria-pressed="true">ID</button>
-        <button type="button" data-lang="en" aria-pressed="false">EN</button>
-      </div>
-      <a class="btn primary sm" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya." target="_blank" rel="noopener noreferrer" data-i="nav_cta">Konsultasi gratis</a>
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="wm" href="#top" aria-label="Rioz, beranda">Rioz<i>.</i></a>
+    <nav class="links" aria-label="Utama">
+      <a class="l" href="#work" data-i="n1">Portofolio</a>
+      <a class="l" href="#layanan" data-i="n2">Layanan</a>
+      <a class="l" href="#klien" data-i="n3">Klien</a>
+      <a class="l" href="#kontak" data-i="n4">Kontak</a>
+      <div class="lang" role="group" aria-label="Bahasa"><button type="button" data-lang="id" aria-pressed="true">ID</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
+      <a class="pill" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya." target="_blank" rel="noopener noreferrer"><span data-i="cta">Konsultasi gratis</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </nav>
   </div>
-  <div class="nav-sub" aria-label="Pintasan">
-    <a href="#work" data-i="nav_work">Portofolio</a>
-    <a href="#layanan" data-i="nav_svc">Layanan</a>
-    <a href="#about" data-i="nav_about">Tentang</a>
-    <a href="#review" data-i="nav_rev">Review</a>
-  </div>
-  <div class="prog" id="prog" aria-hidden="true"><b></b><span id="progT">0%</span></div>
 </header>
 
-<main id="home">
-
-<!-- HERO -->
+<main id="top">
 <div class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <p class="eyebrow" data-i="hero_eyebrow">Editor video vertikal / TikTok / Reels / Shorts</p>
-      <h1 data-i="hero_h1">Bikin video shortform kamu <mark>naik algoritma.</mark></h1>
-      <p class="lede" data-i="hero_lede"><b>Hook 3 detik.</b> Subtitle. B-roll. Beres. Untuk UMKM, toko online, dan content creator.</p>
-      <div class="cta-row">
-        <a class="btn primary" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya." target="_blank" rel="noopener noreferrer" data-i="hero_cta1">Konsultasi gratis</a>
-        <a class="btn ghost" href="#work" data-i="hero_cta2">Lihat portofolio</a>
-      </div>
-      <div class="proof">
-        <div><strong>5+</strong><span data-i="st1">tahun mengedit</span></div>
-        <div><strong>500+</strong><span data-i="st2">video selesai</span></div>
-        <div><strong>5+</strong><span data-i="st3">klien aktif</span></div>
-      </div>
+  <div class="art" aria-hidden="true">
+    <div><img src="https://i.ytimg.com/vi/t_z4TG3IRy4/hq720.jpg" alt="" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/t_z4TG3IRy4/hqdefault.jpg'"></div>
+    <div><img src="https://i.ytimg.com/vi/b0jUrrcQlas/hq720.jpg" alt="" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/b0jUrrcQlas/hqdefault.jpg'"></div>
+    <div><img src="https://i.ytimg.com/vi/1oazDgxpZjY/hq720.jpg" alt="" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/1oazDgxpZjY/hqdefault.jpg'"></div>
+    <div><img src="https://i.ytimg.com/vi/sOpKPZbFKCA/hq720.jpg" alt="" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/sOpKPZbFKCA/hqdefault.jpg'"></div>
+    <div><img src="https://i.ytimg.com/vi/LaKAMuOq0HI/hq720.jpg" alt="" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/LaKAMuOq0HI/hqdefault.jpg'"></div>
+    <div><img src="https://i.ytimg.com/vi/Ev0mClauYLg/hq720.jpg" alt="" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/Ev0mClauYLg/hqdefault.jpg'"></div>
+  </div>
+  <div class="wrap hero-top">
+    <p class="line" data-i="h_line">Saya bikin video pendek yang bikin orang berhenti scroll.</p>
+    <p class="meta" data-i="h_meta">Editor video vertikal. Sejak 2020. TikTok, Reels, Shorts.</p>
+  </div>
+  <div class="hero-bot">
+    <div class="wrap row">
+      <p class="meta" data-i="h_meta2">Hook 3 detik. Subtitle. B-roll. Mulai Rp300.000.</p>
+      <p class="meta">104 video / 10 <span data-i="kat">kategori</span></p>
     </div>
-
-    <div class="stage" aria-hidden="true">
-      <div class="phone">
-        <div class="phone-top"><span class="recd">REC</span><span id="tc">0:00</span></div>
-        <div class="cap" id="cap"><em>3 detik</em> pertama</div>
-        <div class="hookbar"><p><span>Hook</span><span>3.0s</span></p><div><b id="hb"></b></div></div>
-      </div>
-      <span class="chip a">Hook 3 detik</span>
-      <span class="chip b">Subtitle</span>
-      <span class="chip c">B-roll</span>
-    </div>
+    <h1 class="big"><span class="sr" data-i="h1">Rioz, editor video vertikal</span><span aria-hidden="true">Rioz<i>.</i></span></h1>
   </div>
 </div>
 
-<!-- TIMELINE -->
-<div class="tl-sec">
-  <div class="wrap">
-    <div class="tl-head">
-      <h2 class="sr" data-i="tl_title">Anatomi satu video</h2>
-      <span data-i="tl_cap">Anatomi satu video 30 detik</span>
-      <span>00:00 &rarr; 00:30</span>
-    </div>
-    <div class="tl" aria-hidden="true">
-      <div class="tl-body">
-        <div class="tl-labels"><span></span><span>Video</span><span>Subtitle</span><span>B-roll</span><span>Audio</span></div>
-        <div class="tl-tracks">
-          <div class="ruler"><span style="left:0">0s</span><span style="left:10%">3s</span><span style="left:33.3%">10s</span><span style="left:66.6%">20s</span><span style="left:100%">30s</span></div>
-          <div class="row"><div class="clip hot" style="left:0;width:10%">HOOK</div><div class="clip" style="left:10.6%;width:68%" data-i="tl_isi">Isi: produk, edukasi, atau cerita</div><div class="clip" style="left:79.5%;width:20.5%">CTA</div></div>
-          <div class="row"><div class="clip hot" style="left:0;width:10%"></div><div class="clip" style="left:10.6%;width:22%"></div><div class="clip" style="left:33.9%;width:22%"></div><div class="clip" style="left:57.2%;width:22%"></div><div class="clip" style="left:80.5%;width:19.5%"></div></div>
-          <div class="row"><div class="clip" style="left:14%;width:14%">b-roll</div><div class="clip" style="left:40%;width:17%">b-roll</div><div class="clip" style="left:64%;width:12%">b-roll</div></div>
-          <div class="row"><div class="wave"></div></div>
-          <div class="playhead"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="pxline" aria-hidden="true">
+  <div class="walker"><span class="f f1"></span><span class="f f2"></span></div>
 </div>
 
-<!-- WORK -->
 <section id="work">
   <div class="wrap">
-    <div class="sec-head">
-      <h2 data-i="work_title">Portofolio</h2>
-      <p data-i="work_sub">Video shortform yang sudah saya kerjakan. Klik untuk menonton di YouTube.</p>
+    <div class="head">
+      <p class="label"><b>000/</b> <span data-i="w_l">Portofolio</span></p>
+      <h2 data-i="w_h">Apa yang saya edit</h2>
     </div>
-    <div class="filters" role="group" aria-label="Filter">
-      <button type="button" data-f="all" aria-pressed="true" data-i="f_all">Semua</button>
-      <button type="button" data-f="ai" aria-pressed="false">AI Content</button>
-      <button type="button" data-f="edu" aria-pressed="false">Educational</button>
-      <button type="button" data-f="talk" aria-pressed="false">Talking Head</button>
+    <div class="idx">
+      <ul id="idx"></ul>
+      <div class="viewer" aria-hidden="true">
+        <div class="frame" id="frame"></div>
+        <div class="vmeta"><p class="d" id="vd"></p><p class="meta" id="vm"></p></div>
+      </div>
     </div>
-    <div class="grid4" id="grid"></div>
-    <div class="more">
-      <a class="btn ghost" href="portfolio/index.html" data-i="work_all">Lihat semua portofolio (100+)</a>
-    </div>
+    <div class="more"><a class="pill dark" href="portfolio/index.html" style="box-shadow:inset 0 0 0 1px var(--line)"><span data-i="w_all">Lihat semua 104 video</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
   </div>
 </section>
 
-<!-- STEPS -->
-<section id="cara" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head"><h2 data-i="how_title">Cara kerja</h2></div>
-    <div class="steps">
-      <div class="step"><p class="t">01</p><h3 data-i="s1h">Booking</h3><p data-i="s1p">Chat WhatsApp, ceritakan produk atau brand kamu.</p></div>
-      <div class="step"><p class="t">02</p><h3 data-i="s2h">Edit</h3><p data-i="s2p">Pengerjaan 2-3 hari untuk satu video.</p></div>
-      <div class="step"><p class="t">03</p><h3 data-i="s3h">Revisi</h3><p data-i="s3p">Maksimal 2-3x revisi per video.</p></div>
-      <div class="step"><p class="t">04</p><h3 data-i="s4h">Siap posting</h3><p data-i="s4p">Video vertikal dengan hook, subtitle, dan b-roll.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" style="padding-top:0">
-  <div class="wrap about">
-    <div class="photo" aria-hidden="false">R<img src="assets/img/profile.jpg" alt="Damario Indra Wibowo, editor video vertikal" loading="lazy" onerror="this.remove()"></div>
+<section class="surface">
+  <div class="wrap state">
+    <p class="label"><b>001/</b> <span data-i="s_l">Pendekatan</span></p>
     <div>
-      <h2 data-i="about_title">Editor yang paham jualan.</h2>
-      <p data-i="about_p">Mahasiswa Teknik Informatika yang jatuh cinta sama dunia editing video. Sejak 2020, saya bantu UMKM, toko online, dan content creator bikin video shortform yang beneran jualan, bukan cuma rapi, tapi punya hook, subtitle, dan b-roll yang bikin orang berhenti scroll.</p>
-      <div class="facts"><span data-i="fa1">Sejak 2020</span><span data-i="fa2">UMKM dan toko online</span><span data-i="fa3">TikTok, Reels, Shorts</span></div>
-      <div class="cta-row"><a class="btn ghost" href="https://wa.me/62895413935821" target="_blank" rel="noopener noreferrer" data-i="about_cta">Chat saya</a></div>
+      <p class="big2" data-i="s_p">Orang memutuskan lanjut nonton atau scroll dalam <em>tiga detik pertama</em>. Jadi saya mulai dari situ: hook dulu, baru isi. Subtitle supaya video tetap jalan tanpa suara, b-roll supaya mata tidak bosan, dan potongan yang cukup cepat untuk ritme TikTok tanpa bikin pusing. Rapi itu standar. Yang saya kejar adalah video yang dipakai buat jualan.</p>
+      <p class="meta" data-i="s_m">Hook 3 detik. Subtitle. B-roll. CTA.</p>
     </div>
   </div>
 </section>
 
-<!-- PLANS -->
-<section id="layanan" style="padding-top:0">
+<div class="panel" id="layanan">
   <div class="wrap">
-    <div class="sec-head">
-      <h2 data-i="svc_title">Layanan</h2>
-      <p data-i="svc_sub">Pilih paket yang paling cocok. Butuh custom? Chat WhatsApp.</p>
+    <div class="head">
+      <p class="label"><b>002/</b> <span data-i="p_l">Layanan</span></p>
+      <div>
+        <h2 data-i="p_h">Tiga paket</h2>
+        <p style="margin-top:20px" data-i="p_s">Revisi maksimal 2-3x per video di semua paket. Butuh custom? Chat WhatsApp.</p>
+      </div>
     </div>
-    <div class="plans">
-      <article class="plan">
-        <h3>Short-form</h3>
-        <p class="price">Rp300.000 <small data-i="p_unit1">/ video</small></p>
-        <p class="per" data-i="p1_per">1 video</p>
-        <ul>
-          <li data-i="p1a">1 video vertikal siap posting</li>
-          <li data-i="p1b">Hook, subtitle, b-roll</li>
-          <li data-i="p1c">Revisi maksimal 2-3x</li>
-          <li data-i="p1d">Pengerjaan 2-3 hari</li>
-        </ul>
-        <a class="btn ghost" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Short-form%20(Rp300rb)" target="_blank" rel="noopener noreferrer" data-i="book">Booking via WhatsApp</a>
-      </article>
-      <article class="plan pop">
-        <span class="badge" data-i="pop">Populer</span>
-        <h3>Bundling Growth</h3>
-        <p class="price">Rp2.000.000 <small data-i="p_unit2">/ 8 video</small></p>
-        <p class="per" data-i="p2_per">Setara Rp250.000 per video</p>
-        <ul>
-          <li data-i="p2a">8 video vertikal</li>
-          <li data-i="p2b">Revisi maksimal 2-3x per video</li>
-          <li data-i="p2c">Prioritas pengerjaan</li>
-          <li data-i="p2d">Gratis konsultasi strategi konten</li>
-        </ul>
-        <a class="btn primary" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Bundling%20Growth%20(Rp2jt)" target="_blank" rel="noopener noreferrer" data-i="book">Booking via WhatsApp</a>
-      </article>
-      <article class="plan">
-        <h3>Retainer Premium</h3>
-        <p class="price">Rp3.500.000 <small data-i="p_unit3">/ bulan</small></p>
-        <p class="per" data-i="p3_per">12 video, sekitar Rp292.000 per video</p>
-        <ul>
-          <li data-i="p3a">12 video per bulan</li>
-          <li data-i="p3b">Revisi maksimal 2-3x per video</li>
-          <li data-i="p3c">Prioritas super dan komunikasi intensif</li>
-          <li data-i="p3d">Gratis thumbnail dan caption</li>
-          <li data-i="p3e">Konsultasi strategi 1-on-1 bulanan</li>
-        </ul>
-        <a class="btn ghost" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Retainer%20Premium%20(Rp3.5jt)" target="_blank" rel="noopener noreferrer" data-i="book">Booking via WhatsApp</a>
-      </article>
+    <div class="svc">
+      <div class="r" data-tip="p1_t">
+        <span class="n">01</span>
+        <h3>Short-form<small data-i="p1_s">Untuk coba dulu</small></h3>
+        <ul><li data-i="p1a">1 video vertikal siap posting</li><li data-i="p1b">Hook, subtitle, b-roll</li><li data-i="p1c">Pengerjaan 2-3 hari</li></ul>
+        <p class="p">Rp300.000<span data-i="p1_u">/ video</span><a class="go" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Short-form%20(Rp300rb)" target="_blank" rel="noopener noreferrer" data-i="book">Booking</a></p>
+      </div>
+      <div class="r" data-tip="p2_t">
+        <span class="n">02</span>
+        <h3>Bundling Growth<small data-i="p2_s">Paling populer</small></h3>
+        <ul><li data-i="p2a">8 video vertikal</li><li data-i="p2b">Prioritas pengerjaan</li><li data-i="p2c">Gratis konsultasi strategi konten</li></ul>
+        <p class="p">Rp2.000.000<span data-i="p2_u">/ 8 video, Rp250rb per video</span><a class="go" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Bundling%20Growth%20(Rp2jt)" target="_blank" rel="noopener noreferrer" data-i="book">Booking</a></p>
+      </div>
+      <div class="r" data-tip="p3_t">
+        <span class="n">03</span>
+        <h3>Retainer Premium<small data-i="p3_s">Untuk brand yang posting rutin</small></h3>
+        <ul><li data-i="p3a">12 video per bulan</li><li data-i="p3b">Prioritas super dan komunikasi intensif</li><li data-i="p3c">Gratis thumbnail dan caption</li><li data-i="p3d">Konsultasi strategi 1-on-1 bulanan</li></ul>
+        <p class="p">Rp3.500.000<span data-i="p3_u">/ bulan</span><a class="go" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Retainer%20Premium%20(Rp3.5jt)" target="_blank" rel="noopener noreferrer" data-i="book">Booking</a></p>
+      </div>
     </div>
   </div>
-</section>
+</div>
+<div class="tip" id="tip" aria-hidden="true"></div>
 
-<!-- REVIEWS -->
-<section id="review" style="padding-top:0">
+<section>
   <div class="wrap">
-    <div class="sec-head">
-      <h2 data-i="rev_title">Kata klien</h2>
-      <p data-i="rev_sub">Dari brand yang sudah kerja sama.</p>
+    <div class="head">
+      <p class="label"><b>003/</b> <span data-i="c_l">Cara kerja</span></p>
+      <h2 data-i="c_h">Empat langkah</h2>
     </div>
-    <div class="quotes">
-      <figure class="q" style="margin:0">
-        <blockquote data-i="q1">&ldquo;Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!&rdquo;</blockquote>
-        <footer><div class="av">W</div><div><b>Wije.id</b><span data-i="q1r">Toko peralatan dapur</span></div></footer>
-      </figure>
-      <figure class="q" style="margin:0">
-        <blockquote data-i="q2">&ldquo;Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.&rdquo;</blockquote>
-        <footer><div class="av">M</div><div><b>Melaminku.id</b><span data-i="q2r">Perlengkapan melamin</span></div></footer>
-      </figure>
-      <figure class="q" style="margin:0">
-        <blockquote data-i="q3">&ldquo;Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.&rdquo;</blockquote>
-        <footer><div class="av">M</div><div><b>MyLO</b><span data-i="q3r">Platform parenting dan bayi</span></div></footer>
-      </figure>
+    <div class="rows">
+      <div class="r"><span class="n">01</span><h3 data-i="c1h">Chat dulu, gratis.</h3><p data-i="c1p">Ceritakan produk, target penonton, dan platformnya lewat WhatsApp.</p></div>
+      <div class="r"><span class="n">02</span><h3 data-i="c2h">Kirim footage mentah.</h3><p data-i="c2p">Rekaman HP sudah cukup. Saya yang rapikan, potong, dan susun hook-nya.</p></div>
+      <div class="r"><span class="n">03</span><h3 data-i="c3h">Draft dalam 2-3 hari.</h3><p data-i="c3p">Revisi maksimal 2-3x per video sampai pas.</p></div>
+      <div class="r"><span class="n">04</span><h3 data-i="c4h">Siap posting.</h3><p data-i="c4p">File 9:16 untuk TikTok, Reels, dan Shorts.</p></div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" style="padding-top:0">
-  <div class="contact">
-    <h2 data-i="c_title">Mari bikin video kamu <mark>naik.</mark></h2>
-    <p class="s" data-i="c_sub">Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.</p>
-    <a class="btn primary" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya." target="_blank" rel="noopener noreferrer" data-i="c_cta">Chat WhatsApp</a>
-    <p class="reply" data-i="c_reply">Biasanya membalas dalam hitungan menit</p>
-    <div class="socials">
-      <a href="https://www.linkedin.com/in/riozz18/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="https://www.instagram.com/riozz18/" target="_blank" rel="noopener noreferrer">Instagram</a>
-      <a href="https://linktr.ee/riozz" target="_blank" rel="noopener noreferrer">Linktree</a>
-      <a href="https://drive.google.com/file/d/11WC1K-IE0FJb7NVCzSWL7n8p2ZW-LWSq/view?usp=sharing" target="_blank" rel="noopener noreferrer" data-i="cv">Download CV</a>
+<section id="klien" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <p class="label"><b>004/</b> <span data-i="k_l">Klien</span></p>
+      <h2 data-i="k_h">Kata mereka</h2>
     </div>
-    <p class="mail">damariozjr@gmail.com</p>
+    <div class="ruled">
+      <div class="r"><b>Wije.id</b><q data-i="q1">Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!</q><p class="meta" data-i="q1r">Peralatan dapur</p></div>
+      <div class="r"><b>Melaminku.id</b><q data-i="q2">Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.</q><p class="meta" data-i="q2r">Perlengkapan melamin</p></div>
+      <div class="r"><b>MyLO</b><q data-i="q3">Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.</q><p class="meta" data-i="q3r">Platform parenting</p></div>
+    </div>
   </div>
 </section>
+
+<section style="padding-top:0">
+  <div class="wrap about">
+    <div class="ph">R<img src="assets/img/profile.jpg" alt="Damario Indra Wibowo" loading="lazy" onerror="this.remove()"></div>
+    <div>
+      <blockquote data-i="a_q">Mahasiswa Teknik Informatika yang jatuh cinta sama editing video. Sejak 2020 saya bantu UMKM, toko online, dan content creator bikin video yang beneran jualan.</blockquote>
+      <p class="meta">Damario Indra Wibowo / Rioz</p>
+    </div>
+  </div>
+</section>
+
+<div class="ap" id="kontak">
+  <div class="wrap">
+    <p class="label"><b style="color:var(--on-accent)">005/</b> <span data-i="x_l">Kerja bareng</span></p>
+    <h2 data-i="x_h">Ceritakan produkmu, saya susun videonya.</h2>
+    <div class="acts">
+      <a class="pill dark" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya." target="_blank" rel="noopener noreferrer"><span data-i="x_a">Chat WhatsApp</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="pill line" href="#layanan"><span data-i="x_b">Lihat paket</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+    <p class="meta" data-i="x_m">Konsultasi gratis. Biasanya membalas dalam hitungan menit.</p>
+  </div>
+</div>
 </main>
 
-<footer class="site">
-  <div class="wrap"><span>&copy; <span id="yr">2026</span> Rioz.</span><span data-i="foot">Editor Video Vertikal</span></div>
+<footer>
+  <div class="wrap ft">
+    <div><p class="e">damariozjr@gmail.com</p><p style="margin-top:6px">WhatsApp +62 895 4139 35821</p></div>
+    <nav aria-label="Tautan"><a href="portfolio/index.html" data-i="n1">Portofolio</a><a href="#layanan" data-i="n2">Layanan</a><a href="https://drive.google.com/file/d/11WC1K-IE0FJb7NVCzSWL7n8p2ZW-LWSq/view?usp=sharing" target="_blank" rel="noopener noreferrer">Download CV</a></nav>
+    <nav aria-label="Sosial"><a href="https://www.instagram.com/riozz18/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.linkedin.com/in/riozz18/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://linktr.ee/riozz" target="_blank" rel="noopener noreferrer">Linktree</a></nav>
+  </div>
+  <div class="rest" aria-hidden="true"><div class="walker"><span class="f f1"></span></div></div>
+  <div class="giant" aria-hidden="true">Rioz<i>.</i></div>
+  <div class="wrap copy"><p class="meta">&copy; <span id="yr">2026</span> Rioz.</p><p class="meta" data-i="foot">Editor video vertikal</p></div>
 </footer>
-
-<a class="wa" href="https://wa.me/62895413935821" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WA</a>
 
 <script>
 (function(){
-  var VIDS=[
-    ["LaKAMuOq0HI","ai"],["dYAoe35bcRc","ai"],
-    ["1oazDgxpZjY","edu"],["qlq898T6_1k","edu"],["1Ev-ZArl3eI","edu"],["_GORMH5jvro","edu"],
-    ["t_z4TG3IRy4","talk"],["aLAjmtTa-ug","talk"],["lexhy9yeQ5U","talk"],["1ZHpn6AnRjQ","talk"],["Tzj8d9rnYYg","talk"],["pjQ0C0SZ6rU","talk"]
+  /* Pixel sprite: 16x16, one span per frame, painted with box-shadow. a = REC red, b = bone, p = phone screen */
+  var A=[
+"................",
+".....aaaa.......",
+"....aaaaaa......",
+".....bbbb.......",
+".....b.bb.......",
+".....bbbb.......",
+"......bb....bb..",
+"....bbbbbbbbpb..",
+"...bbbbbb...pb..",
+"...b.bbbb...bb..",
+"...b.bbbb.......",
+".....bbbb.......",
+".....b..b.......",
+"....bb...b......",
+"....b....bb.....",
+"...bb..........."];
+  var B=A.slice(0,12).concat([
+".....b..b.......",
+".....b..b.......",
+".....bb.bb......",
+"................"]);
+  var C={a:"#FF4A2B",b:"#EDE9E1",p:"#FF4A2B"};
+  function paint(m){var s=[];m.forEach(function(r,y){for(var x=0;x<16;x++){var c=C[r[x]];if(c)s.push((x*3)+"px "+(y*3)+"px 0 "+c)}});return s.join(",")}
+  var fa=paint(A),fb=paint(B);
+  document.querySelectorAll(".walker .f1").forEach(function(e){e.style.boxShadow=fa});
+  document.querySelectorAll(".walker .f2").forEach(function(e){e.style.boxShadow=fb});
+
+  var CATS=[
+    {k:"talking",id:"t_z4TG3IRy4",n:17},
+    {k:"edu",id:"1oazDgxpZjY",n:11},
+    {k:"comedy",id:"b0jUrrcQlas",n:18},
+    {k:"recap",id:"sOpKPZbFKCA",n:14},
+    {k:"testimonial",id:"Ev0mClauYLg",n:8},
+    {k:"ai",id:"LaKAMuOq0HI",n:4}
   ];
-  var CAT={ai:"AI Content",edu:"Educational",talk:"Talking Head"};
-  var count={ai:0,edu:0,talk:0};
-  var grid=document.getElementById("grid");
-  var html="";
-  VIDS.forEach(function(v,i){
-    count[v[1]]++;
-    var n=("0"+(i+1)).slice(-2);
-    html+='<a class="card" data-cat="'+v[1]+'" href="https://www.youtube.com/watch?v='+v[0]+'" target="_blank" rel="noopener noreferrer" aria-label="'+CAT[v[1]]+' '+count[v[1]]+'">'
-      +'<img src="https://img.youtube.com/vi/'+v[0]+'/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">'
-      +'<span class="n">'+n+'</span><span class="tag">'+CAT[v[1]]+'</span><span class="play"></span>'
-      +'<span class="ttl">'+CAT[v[1]]+' '+count[v[1]]+'<span>9:16</span></span></a>';
-  });
-  grid.innerHTML=html;
-
-  var chips=document.querySelectorAll(".filters button");
-  chips.forEach(function(b){b.addEventListener("click",function(){
-    chips.forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});
-    var f=b.getAttribute("data-f");
-    grid.querySelectorAll(".card").forEach(function(c){c.hidden=(f!=="all"&&c.getAttribute("data-cat")!==f)});
-  })});
-
+  var NAME={talking:"Talking Head",edu:"Educational",comedy:"Comedy Skit",recap:"Recap Event",testimonial:"Testimonial",ai:"AI Content"};
   var T={
-    id:{nav_work:"Portofolio",nav_svc:"Layanan",nav_about:"Tentang",nav_rev:"Review",nav_cta:"Konsultasi gratis",
-      hero_eyebrow:"Editor video vertikal / TikTok / Reels / Shorts",
-      hero_h1:"Bikin video shortform kamu <mark>naik algoritma.</mark>",
-      hero_lede:"<b>Hook 3 detik.</b> Subtitle. B-roll. Beres. Untuk UMKM, toko online, dan content creator.",
-      hero_cta1:"Konsultasi gratis",hero_cta2:"Lihat portofolio",st1:"tahun mengedit",st2:"video selesai",st3:"klien aktif",
-      tl_title:"Anatomi satu video",tl_cap:"Anatomi satu video 30 detik",tl_isi:"Isi: produk, edukasi, atau cerita",
-      work_title:"Portofolio",work_sub:"Video shortform yang sudah saya kerjakan. Klik untuk menonton di YouTube.",f_all:"Semua",work_all:"Lihat semua portofolio (100+)",
-      how_title:"Cara kerja",s1h:"Booking",s1p:"Chat WhatsApp, ceritakan produk atau brand kamu.",s2h:"Edit",s2p:"Pengerjaan 2-3 hari untuk satu video.",s3h:"Revisi",s3p:"Maksimal 2-3x revisi per video.",s4h:"Siap posting",s4p:"Video vertikal dengan hook, subtitle, dan b-roll.",
-      about_title:"Editor yang paham jualan.",
-      about_p:"Mahasiswa Teknik Informatika yang jatuh cinta sama dunia editing video. Sejak 2020, saya bantu UMKM, toko online, dan content creator bikin video shortform yang beneran jualan, bukan cuma rapi, tapi punya hook, subtitle, dan b-roll yang bikin orang berhenti scroll.",
-      fa1:"Sejak 2020",fa2:"UMKM dan toko online",fa3:"TikTok, Reels, Shorts",about_cta:"Chat saya",
-      svc_title:"Layanan",svc_sub:"Pilih paket yang paling cocok. Butuh custom? Chat WhatsApp.",
-      p_unit1:"/ video",p_unit2:"/ 8 video",p_unit3:"/ bulan",p1_per:"1 video",p2_per:"Setara Rp250.000 per video",p3_per:"12 video, sekitar Rp292.000 per video",
-      p1a:"1 video vertikal siap posting",p1b:"Hook, subtitle, b-roll",p1c:"Revisi maksimal 2-3x",p1d:"Pengerjaan 2-3 hari",
-      p2a:"8 video vertikal",p2b:"Revisi maksimal 2-3x per video",p2c:"Prioritas pengerjaan",p2d:"Gratis konsultasi strategi konten",
-      p3a:"12 video per bulan",p3b:"Revisi maksimal 2-3x per video",p3c:"Prioritas super dan komunikasi intensif",p3d:"Gratis thumbnail dan caption",p3e:"Konsultasi strategi 1-on-1 bulanan",
-      book:"Booking via WhatsApp",pop:"Populer",
-      rev_title:"Kata klien",rev_sub:"Dari brand yang sudah kerja sama.",
-      q1:"&ldquo;Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!&rdquo;",q1r:"Toko peralatan dapur",
-      q2:"&ldquo;Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.&rdquo;",q2r:"Perlengkapan melamin",
-      q3:"&ldquo;Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.&rdquo;",q3r:"Platform parenting dan bayi",
-      c_title:"Mari bikin video kamu <mark>naik.</mark>",c_sub:"Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.",c_cta:"Chat WhatsApp",c_reply:"Biasanya membalas dalam hitungan menit",cv:"Download CV",foot:"Editor Video Vertikal",
-      caps:[["3 detik"," pertama"],["3 detik pertama",""],["menentukan",""],["segalanya.",""]]},
-    en:{nav_work:"Work",nav_svc:"Services",nav_about:"About",nav_rev:"Reviews",nav_cta:"Free consultation",
-      hero_eyebrow:"Vertical video editor / TikTok / Reels / Shorts",
-      hero_h1:"Make your shortform video <mark>beat the algorithm.</mark>",
-      hero_lede:"<b>3-second hook.</b> Subtitles. B-roll. Done. For SMEs, online shops, and content creators.",
-      hero_cta1:"Free consultation",hero_cta2:"See portfolio",st1:"years editing",st2:"videos delivered",st3:"active clients",
-      tl_title:"Anatomy of one video",tl_cap:"Anatomy of a 30-second video",tl_isi:"Body: product, education, or story",
-      work_title:"Work",work_sub:"Shortform videos I have worked on. Click to watch on YouTube.",f_all:"All",work_all:"See full portfolio (100+)",
-      how_title:"How it works",s1h:"Booking",s1p:"Chat on WhatsApp and tell me about your product or brand.",s2h:"Edit",s2p:"2-3 day turnaround for one video.",s3h:"Revisions",s3p:"Up to 2-3 revisions per video.",s4h:"Ready to post",s4p:"Vertical video with hook, subtitles, and b-roll.",
-      about_title:"An editor who understands selling.",
-      about_p:"An Informatics Engineering student who fell in love with video editing. Since 2020, I have helped SMEs, online shops, and content creators make shortform videos that actually sell, not just polished, but with hooks, subtitles, and b-roll that make people stop scrolling.",
-      fa1:"Since 2020",fa2:"SMEs and online shops",fa3:"TikTok, Reels, Shorts",about_cta:"Chat with me",
-      svc_title:"Services",svc_sub:"Pick the right package. Need custom? Chat on WhatsApp.",
-      p_unit1:"/ video",p_unit2:"/ 8 videos",p_unit3:"/ month",p1_per:"1 video",p2_per:"Works out to Rp250,000 per video",p3_per:"12 videos, about Rp292,000 per video",
-      p1a:"1 vertical video ready to post",p1b:"Hook, subtitles, b-roll",p1c:"Up to 2-3 revisions",p1d:"2-3 day turnaround",
-      p2a:"8 vertical videos",p2b:"Up to 2-3 revisions per video",p2c:"Priority processing",p2d:"Free content strategy consultation",
-      p3a:"12 videos per month",p3b:"Up to 2-3 revisions per video",p3c:"Super priority and close communication",p3d:"Free thumbnails and captions",p3e:"Monthly 1-on-1 strategy session",
-      book:"Book via WhatsApp",pop:"Popular",
-      rev_title:"Client reviews",rev_sub:"From brands I have worked with.",
-      q1:"&ldquo;The promo video was neat and fast. The 3-second hook boosted my TikTok engagement. Recommended!&rdquo;",q1r:"Kitchenware store",
-      q2:"&ldquo;Fast turnaround, great communication, results matched our brand identity. Will definitely order again.&rdquo;",q2r:"Melamine goods",
-      q3:"&ldquo;An editor who understands parenting content. The videos are warm and easy for our audience to follow.&rdquo;",q3r:"Parenting and baby platform",
-      c_title:"Let's make your video <mark>blow up.</mark>",c_sub:"Free consultation. Tell me about your product or brand and I will help with the video strategy.",c_cta:"Chat on WhatsApp",c_reply:"Usually replies within minutes",cv:"Download CV",foot:"Vertical Video Editor",
-      caps:[["3 seconds"," first"],["first 3 seconds",""],["decide",""],["everything.",""]]}
+    id:{n1:"Portofolio",n2:"Layanan",n3:"Klien",n4:"Kontak",cta:"Konsultasi gratis",
+      h_line:"Saya bikin video pendek yang bikin orang berhenti scroll.",h_meta:"Editor video vertikal. Sejak 2020. TikTok, Reels, Shorts.",h_meta2:"Hook 3 detik. Subtitle. B-roll. Mulai Rp300.000.",kat:"kategori",h1:"Rioz, editor video vertikal",
+      w_l:"Portofolio",w_h:"Apa yang saya edit",w_all:"Lihat semua 104 video",vid:"video",
+      d:{talking:"Jump cut, subtitle, dan b-roll untuk edukasi, review, dan personal branding.",edu:"Materi padat dibuka dengan hook kuat, ditutup dengan poin yang gampang diingat.",comedy:"Timing punchline, jump cut, dan sound effect yang pas.",recap:"Highlight acara dengan potongan cepat dan musik yang energik.",testimonial:"Testimoni klien dengan caption, nama, dan visual bersih.",ai:"Video AI dengan pacing, color grading, dan sound design yang natural."},
+      s_l:"Pendekatan",s_p:"Orang memutuskan lanjut nonton atau scroll dalam <em>tiga detik pertama</em>. Jadi saya mulai dari situ: hook dulu, baru isi. Subtitle supaya video tetap jalan tanpa suara, b-roll supaya mata tidak bosan, dan potongan yang cukup cepat untuk ritme TikTok tanpa bikin pusing. Rapi itu standar. Yang saya kejar adalah video yang dipakai buat jualan.",s_m:"Hook 3 detik. Subtitle. B-roll. CTA.",
+      p_l:"Layanan",p_h:"Tiga paket",p_s:"Revisi maksimal 2-3x per video di semua paket. Butuh custom? Chat WhatsApp.",
+      p1_s:"Untuk coba dulu",p1a:"1 video vertikal siap posting",p1b:"Hook, subtitle, b-roll",p1c:"Pengerjaan 2-3 hari",p1_u:"/ video",
+      p2_s:"Paling populer",p2a:"8 video vertikal",p2b:"Prioritas pengerjaan",p2c:"Gratis konsultasi strategi konten",p2_u:"/ 8 video, Rp250rb per video",
+      p3_s:"Untuk brand yang posting rutin",p3a:"12 video per bulan",p3b:"Prioritas super dan komunikasi intensif",p3c:"Gratis thumbnail dan caption",p3d:"Konsultasi strategi 1-on-1 bulanan",p3_u:"/ bulan",
+      book:"Booking",p1_t:"1 video, 2-3 hari",p2_t:"Hemat Rp400rb dari harga satuan",p3_t:"12 video tiap bulan",
+      c_l:"Cara kerja",c_h:"Empat langkah",c1h:"Chat dulu, gratis.",c1p:"Ceritakan produk, target penonton, dan platformnya lewat WhatsApp.",c2h:"Kirim footage mentah.",c2p:"Rekaman HP sudah cukup. Saya yang rapikan, potong, dan susun hook-nya.",c3h:"Draft dalam 2-3 hari.",c3p:"Revisi maksimal 2-3x per video sampai pas.",c4h:"Siap posting.",c4p:"File 9:16 untuk TikTok, Reels, dan Shorts.",
+      k_l:"Klien",k_h:"Kata mereka",q1:"Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!",q1r:"Peralatan dapur",q2:"Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.",q2r:"Perlengkapan melamin",q3:"Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.",q3r:"Platform parenting",
+      a_q:"Mahasiswa Teknik Informatika yang jatuh cinta sama editing video. Sejak 2020 saya bantu UMKM, toko online, dan content creator bikin video yang beneran jualan.",
+      x_l:"Kerja bareng",x_h:"Ceritakan produkmu, saya susun videonya.",x_a:"Chat WhatsApp",x_b:"Lihat paket",x_m:"Konsultasi gratis. Biasanya membalas dalam hitungan menit.",foot:"Editor video vertikal"},
+    en:{n1:"Work",n2:"Services",n3:"Clients",n4:"Contact",cta:"Free consultation",
+      h_line:"I edit short videos that make people stop scrolling.",h_meta:"Vertical video editor. Since 2020. TikTok, Reels, Shorts.",h_meta2:"3-second hook. Subtitles. B-roll. From Rp300,000.",kat:"categories",h1:"Rioz, vertical video editor",
+      w_l:"Work",w_h:"What I edit",w_all:"See all 104 videos",vid:"videos",
+      d:{talking:"Jump cuts, subtitles, and b-roll for education, reviews, and personal branding.",edu:"Dense material opened with a strong hook and closed with a point that sticks.",comedy:"Punchline timing, jump cuts, and the right sound effects.",recap:"Event highlights with fast cuts and energetic music.",testimonial:"Client testimonials with captions, names, and clean visuals.",ai:"AI video with natural pacing, color grading, and sound design."},
+      s_l:"Approach",s_p:"People decide to keep watching or scroll in the <em>first three seconds</em>. So I start there: hook first, then the body. Subtitles so the video works on mute, b-roll so the eye stays busy, and cuts fast enough for TikTok without making anyone dizzy. Polished is the baseline. What I aim for is a video that sells.",s_m:"3-second hook. Subtitles. B-roll. CTA.",
+      p_l:"Services",p_h:"Three packages",p_s:"Up to 2-3 revisions per video on every package. Need custom? Chat on WhatsApp.",
+      p1_s:"To try it out",p1a:"1 vertical video ready to post",p1b:"Hook, subtitles, b-roll",p1c:"2-3 day turnaround",p1_u:"/ video",
+      p2_s:"Most popular",p2a:"8 vertical videos",p2b:"Priority processing",p2c:"Free content strategy consultation",p2_u:"/ 8 videos, Rp250k per video",
+      p3_s:"For brands that post often",p3a:"12 videos per month",p3b:"Super priority and close communication",p3c:"Free thumbnails and captions",p3d:"Monthly 1-on-1 strategy session",p3_u:"/ month",
+      book:"Book",p1_t:"1 video, 2-3 days",p2_t:"Save Rp400k vs single price",p3_t:"12 videos every month",
+      c_l:"Process",c_h:"Four steps",c1h:"Chat first, for free.",c1p:"Tell me the product, the audience, and the platform on WhatsApp.",c2h:"Send raw footage.",c2p:"Phone footage is fine. I clean it, cut it, and build the hook.",c3h:"Draft in 2-3 days.",c3p:"Up to 2-3 revisions per video until it fits.",c4h:"Ready to post.",c4p:"9:16 files for TikTok, Reels, and Shorts.",
+      k_l:"Clients",k_h:"What they say",q1:"The promo video was neat and fast. The 3-second hook boosted my TikTok engagement. Recommended!",q1r:"Kitchenware",q2:"Fast turnaround, great communication, results matched our brand identity. Will definitely order again.",q2r:"Melamine goods",q3:"An editor who understands parenting content. The videos are warm and easy for our audience to follow.",q3r:"Parenting platform",
+      a_q:"An Informatics Engineering student who fell in love with video editing. Since 2020 I have helped SMEs, online shops, and content creators make videos that actually sell.",
+      x_l:"Work together",x_h:"Tell me your product, I will build the video.",x_a:"Chat on WhatsApp",x_b:"See packages",x_m:"Free consultation. Usually replies within minutes.",foot:"Vertical video editor"}
   };
-  var lang="id";
-  try{lang=localStorage.getItem("rioz_lang")||"id"}catch(e){}
-  if(!T[lang])lang="id";
-  function setLang(l){
-    lang=l;
-    try{localStorage.setItem("rioz_lang",l)}catch(e){}
-    document.documentElement.lang=l;
-    document.querySelectorAll("[data-i]").forEach(function(el){
-      var k=el.getAttribute("data-i");
-      if(T[l][k]!==undefined)el.innerHTML=T[l][k];
+
+  var idx=document.getElementById("idx"),frame=document.getElementById("frame"),vd=document.getElementById("vd"),vm=document.getElementById("vm");
+  var lang="id";try{lang=localStorage.getItem("rioz_lang")||"id"}catch(e){}if(!T[lang])lang="id";
+  var cur=0;
+  function th(id,big){return "https://i.ytimg.com/vi/"+id+"/"+(big?"hq720":"hqdefault")+".jpg"}
+  function thFb(id){return "this.onerror=null;this.src='"+th(id,false)+"'"}
+  frame.innerHTML=CATS.map(function(c,i){return '<img src="'+th(c.id,true)+'" alt="" loading="'+(i?"lazy":"eager")+'" onerror="'+thFb(c.id)+'">'}).join("");
+  function drawIdx(){
+    idx.innerHTML=CATS.map(function(c,i){
+      return '<li data-k="'+i+'"><a class="it" href="portfolio/index.html"><span class="thumb"><img src="'+th(c.id,false)+'" alt="" loading="lazy"></span><span class="n">'+("0"+(i+1)).slice(-2)+'</span><span class="t">'+NAME[c.k]+'</span><span class="c">'+c.n+' '+T[lang].vid+'</span></a></li>';
+    }).join("");
+    pick(cur);
+  }
+  function pick(i){
+    cur=i;
+    idx.querySelectorAll("li").forEach(function(l,j){l.classList.toggle("on",j===i)});
+    frame.querySelectorAll("img").forEach(function(m,j){m.classList.toggle("on",j===i)});
+    vd.textContent=T[lang].d[CATS[i].k];
+    vm.textContent=CATS[i].n+" "+T[lang].vid+" / 9:16";
+  }
+  idx.addEventListener("mouseover",function(e){var l=e.target.closest("li");if(l)pick(+l.getAttribute("data-k"))});
+  idx.addEventListener("focusin",function(e){var l=e.target.closest("li");if(l)pick(+l.getAttribute("data-k"))});
+
+  /* Cursor tip on service rows, soft follow */
+  var tip=document.getElementById("tip"),tx=0,ty=0,cx=0,cy=0,raf=0;
+  var fine=window.matchMedia("(hover:hover) and (pointer:fine)").matches;
+  var still=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function loop(){cx+=(tx-cx)*(still?1:.18);cy+=(ty-cy)*(still?1:.18);tip.style.transform="translate("+(cx+18)+"px,"+(cy+18)+"px)";raf=(Math.abs(tx-cx)+Math.abs(ty-cy)>.5)?requestAnimationFrame(loop):0}
+  if(fine){
+    document.querySelectorAll(".svc .r").forEach(function(r){
+      r.addEventListener("mouseenter",function(e){tip.textContent=T[lang][r.getAttribute("data-tip")];cx=tx=e.clientX;cy=ty=e.clientY;tip.classList.add("on");loop()});
+      r.addEventListener("mousemove",function(e){tx=e.clientX;ty=e.clientY;if(!raf)raf=requestAnimationFrame(loop)});
+      r.addEventListener("mouseleave",function(){tip.classList.remove("on")});
     });
+  }
+
+  var nav=document.getElementById("nav");
+  function sc(){nav.classList.toggle("solid",window.scrollY>80)}
+  window.addEventListener("scroll",sc,{passive:true});sc();
+
+  function setLang(l){
+    lang=l;try{localStorage.setItem("rioz_lang",l)}catch(e){}
+    document.documentElement.lang=l;
+    document.querySelectorAll("[data-i]").forEach(function(el){var v=T[l][el.getAttribute("data-i")];if(typeof v==="string")el.innerHTML=v});
     document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-lang")===l?"true":"false")});
-    cap(0);
+    drawIdx();
   }
   document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-lang"))})});
-
-  var capEl=document.getElementById("cap"),tc=document.getElementById("tc"),hb=document.getElementById("hb");
-  var step=0;
-  function cap(i){
-    step=i;
-    var c=T[lang].caps;
-    var w=["<em>"+c[0][0]+"</em>"+c[0][1],c[1][0],c[2][0],"<em>"+c[3][0]+"</em>"];
-    capEl.innerHTML=w[i];
-    tc.textContent="0:0"+i;
-    hb.style.setProperty("--hb",(i===0?10:(i/3*100))+"%");
-    hb.style.width=(i===0?10:(i/3*100))+"%";
-  }
-  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if(!reduce){setInterval(function(){cap((step+1)%4)},1300)}
-
-  var prog=document.getElementById("prog"),pt=document.getElementById("progT");
-  function onScroll(){
-    var h=document.documentElement.scrollHeight-window.innerHeight;
-    var p=h>0?Math.min(100,Math.max(0,window.scrollY/h*100)):0;
-    prog.style.setProperty("--p",p+"%");
-    pt.textContent=Math.round(p)+"%";
-  }
-  window.addEventListener("scroll",onScroll,{passive:true});onScroll();
-
   document.getElementById("yr").textContent=new Date().getFullYear();
   setLang(lang);
 })();

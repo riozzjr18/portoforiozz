@@ -12,31 +12,29 @@
 <link rel="canonical" href="https://riozzjr18.github.io/portoforiozz/portfolio/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* Same system as the homepage: editor UI, red playhead accent. This page is the media bin. */
+/* Same system as the homepage: dark ground, bone text, REC red. This page is the media bin. */
 :root{
-  --bg:#F2F3EF;--surface:#FFFFFF;--ink:#15171C;--muted:#5B6068;--line:#D9DBD3;--accent:#FF3D1F;--on-accent:#FFFFFF;
-  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --bg:#121315;--surface:#1B1D20;--ink:#EDE9E1;--muted:#8E9198;--line:rgba(237,233,225,.14);--accent:#FF4A2B;--on-accent:#121315;
+  --display:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;
   --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
-  --mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
-  --gutter:20px;--max:1180px;color-scheme:light;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gutter:20px;--max:1280px;color-scheme:dark;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1013;--surface:#171A1F;--ink:#F2F3EF;--muted:#A0A5AD;--line:#2A2E35;--accent:#FF5636;--on-accent:#0E1013;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0E1013;--surface:#171A1F;--ink:#F2F3EF;--muted:#A0A5AD;--line:#2A2E35;--accent:#FF5636;--on-accent:#0E1013;color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
 body.lock{overflow:hidden}
 a{color:inherit}
-h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-0.02em;line-height:1.02;margin:0;text-wrap:balance}
+h1,h2,h3{font-family:var(--display);font-weight:900;text-transform:uppercase;letter-spacing:-0.04em;line-height:.92;margin:0;text-wrap:balance}
 p{margin:0}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
 
 .top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .top-row{display:flex;align-items:center;gap:16px;height:64px}
-.logo{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:-0.03em;text-decoration:none}
+.logo{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:24px;letter-spacing:-0.03em;text-decoration:none}
 .logo i{color:var(--accent);font-style:normal}
 .nav{display:flex;gap:6px;margin-left:auto;align-items:center}
 .nav a.l{font-size:15px;font-weight:500;text-decoration:none;padding:8px 12px;border-radius:999px;color:var(--muted)}
@@ -55,7 +53,7 @@ p{margin:0}
 .crumb a{text-decoration:none}
 .crumb a:hover{color:var(--ink)}
 .head-grid{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
-h1{font-size:clamp(52px,9vw,128px);font-weight:800;letter-spacing:-0.04em}
+h1{font-size:clamp(52px,9vw,132px);letter-spacing:-0.05em}
 h1 sup{font:500 clamp(14px,1.6vw,20px) var(--mono);color:var(--accent);vertical-align:top;margin-left:6px;letter-spacing:0}
 .head p.sub{color:var(--muted);max-width:28em;font-size:19px}
 .meter{display:flex;height:10px;border-radius:999px;overflow:hidden;margin-top:30px;gap:2px}
@@ -94,12 +92,12 @@ h1 sup{font:500 clamp(14px,1.6vw,20px) var(--mono);color:var(--accent);vertical-
 .card .ttl{left:16px;right:16px;bottom:14px;font:600 15px var(--body);display:flex;justify-content:space-between;gap:8px}
 .card .ttl span{font:500 12px var(--mono);opacity:.8;white-space:nowrap}
 .empty{text-align:center;padding:80px 0;color:var(--muted)}
-.empty h3{color:var(--ink);font-size:28px;margin-bottom:8px}
+.empty h3{color:var(--ink);font-size:28px;text-transform:none;margin-bottom:8px}
 .more{display:flex;justify-content:center;margin:40px 0 0}
 
-.cta{background:var(--ink);color:var(--bg);border-radius:32px;padding:56px 36px;text-align:center;margin:96px var(--gutter) 0}
+.cta{background:var(--accent);color:var(--on-accent);border-radius:32px;padding:56px 36px;text-align:center;margin:96px var(--gutter) 0}
 .cta h2{font-size:clamp(36px,5.6vw,72px);max-width:12em;margin:0 auto 18px}
-.cta h2 mark{background:none;color:var(--accent)}
+.cta h2 mark{background:none;color:var(--on-accent);text-decoration:underline;text-decoration-thickness:.08em;text-underline-offset:.12em}
 .cta p{opacity:.75;max-width:32em;margin:0 auto 28px;font-size:18px}
 footer.site{padding:32px 0 48px}
 footer.site .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:500 13px var(--mono);color:var(--muted)}
@@ -114,7 +112,7 @@ footer.site a:hover{color:var(--ink)}
 .player iframe{width:100%;height:100%;border:0;display:block}
 .info{padding:30px 28px;display:flex;flex-direction:column;gap:16px;overflow:auto}
 .info .cat{font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
-.info h2{font-size:30px}
+.info h2{font-size:28px;text-transform:none;letter-spacing:-0.02em}
 .info p{color:var(--muted);font-size:16px}
 .info .meta{font:500 13px var(--mono);color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:auto}
 .nav2{display:flex;gap:8px}
@@ -203,7 +201,7 @@ footer.site a:hover{color:var(--ink)}
   <section class="cta">
     <h2 data-i="c_h">Suka gayanya? Video kamu <mark>berikutnya.</mark></h2>
     <p data-i="c_p">Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.</p>
-    <a class="btn primary" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20lihat%20portofolio%20kamu%20dan%20mau%20konsultasi%20gratis." target="_blank" rel="noopener noreferrer" data-i="c_b">Chat WhatsApp</a>
+    <a class="btn primary" style="background:var(--on-accent);border-color:var(--on-accent);color:var(--ink)" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20lihat%20portofolio%20kamu%20dan%20mau%20konsultasi%20gratis." target="_blank" rel="noopener noreferrer" data-i="c_b">Chat WhatsApp</a>
   </section>
 </main>
 
