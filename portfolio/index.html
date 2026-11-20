@@ -20,7 +20,7 @@
   --display:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;
   --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
-  --gutter:20px;--max:1280px;color-scheme:dark;
+  --gutter:40px;--max:1280px;--sp:clamp(80px,9vw,128px);--radius:8px;--panel-radius:24px;--ease:cubic-bezier(.22,1,.36,1);color-scheme:dark;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -32,86 +32,102 @@ p{margin:0}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
 
-.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.top-row{display:flex;align-items:center;gap:16px;height:64px}
-.logo{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:24px;letter-spacing:-0.03em;text-decoration:none}
+.top{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+.top-row{display:flex;align-items:center;gap:28px;height:70px}
+.logo{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:22px;letter-spacing:-0.03em;text-decoration:none}
 .logo i{color:var(--accent);font-style:normal}
-.nav{display:flex;gap:6px;margin-left:auto;align-items:center}
-.nav a.l{font-size:15px;font-weight:500;text-decoration:none;padding:8px 12px;border-radius:999px;color:var(--muted)}
-.nav a.l:hover,.nav a.l[aria-current]{color:var(--ink);background:color-mix(in srgb,var(--ink) 7%,transparent)}
-.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px}
-.lang button{font:600 12px var(--mono);border:0;background:transparent;color:var(--muted);padding:6px 11px;border-radius:999px;cursor:pointer}
-.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:600 16px var(--body);text-decoration:none;border-radius:999px;padding:14px 24px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:transform .18s ease,background .18s ease,color .18s ease}
+.nav{display:flex;gap:26px;margin-left:auto;align-items:center}
+.nav a.l{font:400 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;text-decoration:none;color:var(--muted)}
+.nav a.l:hover,.nav a.l[aria-current]{color:var(--ink)}
+.nav a.l[aria-current]{box-shadow:inset 0 -1px 0 var(--accent);padding-bottom:3px}
+.lang{display:flex;gap:2px}
+.lang button{font:500 11px var(--mono);border:0;background:none;color:var(--muted);padding:4px 6px;cursor:pointer;letter-spacing:.06em}
+.lang button[aria-pressed="true"]{color:var(--ink);box-shadow:inset 0 -1px 0 var(--accent)}
+.pill{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:var(--on-accent);font:500 14px var(--body);padding:6px 6px 6px 18px;border-radius:999px;text-decoration:none;transition:transform .25s var(--ease)}
+.pill:hover{transform:translateY(-2px)}
+.pill span.c{width:30px;height:30px;border-radius:50%;background:var(--on-accent);color:var(--accent);display:grid;place-items:center}
+.pill.dark{background:var(--ink);color:var(--bg)}
+.pill.dark span.c{background:var(--bg);color:var(--ink)}
+.label{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.label b{color:var(--accent);font-weight:500}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:500 15px var(--body);text-decoration:none;border-radius:999px;padding:14px 24px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:transform .18s ease,background .18s ease,color .18s ease}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .btn.primary:hover{transform:translateY(-2px)}
 .btn.ghost:hover{background:var(--ink);color:var(--bg)}
 .btn.sm{padding:9px 18px;font-size:14px}
 
-.head{padding:48px 0 28px}
-.crumb{font:500 13px var(--mono);color:var(--muted);margin-bottom:20px}
+.head{padding:72px 0 40px}
+.crumb{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:24px}
 .crumb a{text-decoration:none}
 .crumb a:hover{color:var(--ink)}
-.head-grid{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
-h1{font-size:clamp(52px,9vw,132px);letter-spacing:-0.05em}
+.head-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:end}
+.head-grid h1{grid-column:1/13}
+.head-grid .sub{grid-column:9/13;margin-top:24px}
+h1{font-size:clamp(52px,10vw,150px);letter-spacing:-0.055em;line-height:.85}
 h1 sup{font:500 clamp(14px,1.6vw,20px) var(--mono);color:var(--accent);vertical-align:top;margin-left:6px;letter-spacing:0}
-.head p.sub{color:var(--muted);max-width:28em;font-size:19px}
-.meter{display:flex;height:10px;border-radius:999px;overflow:hidden;margin-top:30px;gap:2px}
+.head p.sub{color:var(--muted);font-size:16px;line-height:1.55}
+.meter{display:flex;height:6px;overflow:hidden;margin-top:40px;gap:2px}
 .meter span{display:block;height:100%;background:color-mix(in srgb,var(--ink) 18%,var(--bg))}
 .meter span.on{background:var(--accent)}
-.meter-cap{display:flex;justify-content:space-between;gap:12px;font:500 12px var(--mono);color:var(--muted);margin-top:8px;flex-wrap:wrap}
+.meter-cap{display:flex;justify-content:space-between;gap:12px;font:400 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:8px;flex-wrap:wrap}
 
-.bar{position:sticky;top:64px;z-index:40;background:var(--bg);border-bottom:1px solid var(--line);padding:14px 0}
-.bar-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.search{position:relative;flex:1 1 260px}
-.search input{width:100%;font:500 16px var(--body);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:999px;padding:12px 18px 12px 44px}
+.bar{position:sticky;top:70px;z-index:40;background:var(--bg);border-bottom:1px solid var(--line);padding:16px 0 0}
+.bar-row{display:flex;gap:20px;align-items:center}
+.bar-row>label:last-child{flex:none}
+.search{position:relative;flex:1 1 auto;min-width:0}
+.search input{width:100%;font:400 15px var(--body);color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:10px 12px 10px 30px}
 .search input:focus{border-color:var(--ink);outline:none}
-.search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted)}
-.sort{font:500 14px var(--mono);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:999px;padding:12px 16px;cursor:pointer}
-.chips{display:flex;gap:8px;overflow-x:auto;padding:12px 0 2px;scrollbar-width:none}
+.search svg{position:absolute;left:2px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.sort{font:400 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--ink);background:var(--bg);border:0;border-bottom:1px solid var(--line);padding:11px 4px;cursor:pointer}
+.chips{display:flex;gap:26px;overflow-x:auto;padding:18px 0 0;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
-.chips button{flex:none;font:500 13px var(--mono);border:1.5px solid var(--line);background:transparent;color:var(--ink);padding:8px 14px;border-radius:999px;cursor:pointer;display:flex;gap:8px;align-items:center}
-.chips button b{font-weight:500;color:var(--muted)}
-.chips button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chips button{flex:none;font:400 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;border:0;background:transparent;color:var(--muted);padding:0 0 14px;cursor:pointer;display:flex;gap:6px;align-items:baseline;box-shadow:inset 0 -2px 0 transparent}
+.chips button b{font-weight:400;font-size:10px;color:var(--muted)}
+.chips button:hover{color:var(--ink)}
+.chips button[aria-pressed="true"]{color:var(--ink);box-shadow:inset 0 -2px 0 var(--accent)}
 .chips button[aria-pressed="true"] b{color:var(--accent)}
-.count{font:500 13px var(--mono);color:var(--muted);margin-top:10px}
+.count{font:400 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:24px 0 0}
 .count strong{color:var(--ink);font-weight:500}
 
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:28px 0 0}
-.card{position:relative;aspect-ratio:9/16;border-radius:20px;overflow:hidden;color:#fff;background:#14161b;isolation:isolate;border:1px solid var(--line);cursor:pointer;padding:0;font:inherit;text-align:left;transition:transform .25s ease}
-.card:hover{transform:translateY(-6px)}
-.card::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(110% 70% at 20% 0%,color-mix(in srgb,var(--accent) 38%,#14161b) 0%,#14161b 62%)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:16px 0 0}
+.card{position:relative;aspect-ratio:9/16;border-radius:var(--radius);overflow:hidden;color:#fff;background:#14161b;isolation:isolate;border:1px solid var(--line);cursor:pointer;padding:0;font:inherit;text-align:left;transition:transform .25s ease}
+.card:hover{transform:translateY(-4px)}
+.card::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--surface)}
 .card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
 .card::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,transparent 30%,transparent 55%,rgba(0,0,0,.8) 100%)}
 .card>*{position:absolute;z-index:1}
-.card .n{top:14px;left:16px;font:500 12px var(--mono);letter-spacing:.06em}
-.card .tag{top:12px;right:12px;font:500 11px var(--mono);text-transform:uppercase;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.3);padding:3px 9px;border-radius:999px;backdrop-filter:blur(6px)}
-.card .play{left:50%;top:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:var(--accent);display:grid;place-items:center;transition:transform .2s ease}
-.card:hover .play{transform:scale(1.12)}
+.card .n{top:14px;left:14px;font:400 10px var(--mono);letter-spacing:.06em;color:var(--accent)}
+.card .tag{top:14px;right:14px;font:400 10px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.85)}
+.card .play{left:50%;top:50%;width:48px;height:48px;margin:-24px 0 0 -24px;opacity:0;border-radius:50%;background:var(--accent);display:grid;place-items:center;transition:transform .2s ease}
+.card:hover .play,.card:focus-visible .play{opacity:1;transform:scale(1.06)}
 .card .play::after{content:"";border-left:16px solid var(--on-accent);border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
-.card .ttl{left:16px;right:16px;bottom:14px;font:600 15px var(--body);display:flex;justify-content:space-between;gap:8px}
-.card .ttl span{font:500 12px var(--mono);opacity:.8;white-space:nowrap}
+.card .ttl{left:14px;right:14px;bottom:14px;font:700 15px var(--display);text-transform:uppercase;letter-spacing:-0.01em;display:flex;justify-content:space-between;gap:8px}
+.card .ttl span{font:400 10px var(--mono);letter-spacing:.06em;opacity:.8;white-space:nowrap}
 .empty{text-align:center;padding:80px 0;color:var(--muted)}
 .empty h3{color:var(--ink);font-size:28px;text-transform:none;margin-bottom:8px}
-.more{display:flex;justify-content:center;margin:40px 0 0}
+.more{display:flex;justify-content:center;margin:56px 0 0}
 
-.cta{background:var(--accent);color:var(--on-accent);border-radius:32px;padding:56px 36px;text-align:center;margin:96px var(--gutter) 0}
-.cta h2{font-size:clamp(36px,5.6vw,72px);max-width:12em;margin:0 auto 18px}
+.cta{background:var(--accent);color:var(--on-accent);border-radius:var(--panel-radius);padding:var(--sp) 0;margin:var(--sp) 16px 0}
+.cta .g{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
+.cta .label{grid-column:1/5;color:rgba(18,19,21,.65);padding-top:.6em}
+.cta .label b{color:var(--on-accent)}
+.cta .apc{grid-column:5/13}
+.cta h2{font-size:clamp(40px,5.4vw,84px);max-width:12em;margin:0 0 20px}
 .cta h2 mark{background:none;color:var(--on-accent);text-decoration:underline;text-decoration-thickness:.08em;text-underline-offset:.12em}
-.cta p{opacity:.75;max-width:32em;margin:0 auto 28px;font-size:18px}
-footer.site{padding:32px 0 48px}
-footer.site .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:500 13px var(--mono);color:var(--muted)}
+.cta p{opacity:.8;max-width:32em;margin:0 0 32px;font-size:17px}
+footer.site{padding:40px 0 48px}
+footer.site .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:400 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
 footer.site a{text-decoration:none}
 footer.site a:hover{color:var(--ink)}
 
 .modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
 .modal.open{display:flex}
 .modal .bd{position:absolute;inset:0;background:rgba(8,9,11,.82);backdrop-filter:blur(6px)}
-.box{position:relative;display:grid;grid-template-columns:auto 340px;gap:0;background:var(--surface);border-radius:28px;overflow:hidden;max-height:calc(100vh - 40px);border:1px solid var(--line)}
+.box{position:relative;display:grid;grid-template-columns:auto 340px;gap:0;background:var(--surface);border-radius:var(--panel-radius);overflow:hidden;max-height:calc(100vh - 40px);border:1px solid var(--line)}
 .player{background:#000;height:min(78vh,720px);aspect-ratio:9/16}
 .player iframe{width:100%;height:100%;border:0;display:block}
 .info{padding:30px 28px;display:flex;flex-direction:column;gap:16px;overflow:auto}
-.info .cat{font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+.info .cat{font:400 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
 .info h2{font-size:28px;text-transform:none;letter-spacing:-0.02em}
 .info p{color:var(--muted);font-size:16px}
 .info .meta{font:500 13px var(--mono);color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:auto}
@@ -122,12 +138,23 @@ footer.site a:hover{color:var(--ink)}
 .wa:hover{transform:scale(1.08)}
 
 @media (max-width:980px){
+  :root{--gutter:32px}
+  .head-grid h1{grid-column:1/13}.head-grid .sub{grid-column:1/13;margin-top:20px;max-width:34em}
+  .cta .label,.cta .apc{grid-column:1/13}.cta .label{margin-bottom:16px;padding-top:0}
   .grid{grid-template-columns:repeat(3,1fr)}
   .box{grid-template-columns:1fr;width:min(100%,420px);overflow:auto}
   .player{height:auto;width:100%;max-height:62vh}
   .info{padding:22px}
 }
 @media (max-width:720px){
+  :root{--gutter:20px}
+  .nav{gap:14px}
+  .pill{font-size:13px;padding:5px 5px 5px 14px}
+  .pill span.c{width:26px;height:26px}
+  .meter-cap{flex-direction:column;gap:4px}
+  .chips{gap:20px}
+  .cta{margin:var(--sp) 8px 0}
+  .card .play{opacity:1}
   body{font-size:16px}
   .nav a.l{display:none}
   .grid{grid-template-columns:repeat(2,1fr);gap:12px}
@@ -152,7 +179,7 @@ footer.site a:hover{color:var(--ink)}
         <button type="button" data-lang="id" aria-pressed="true">ID</button>
         <button type="button" data-lang="en" aria-pressed="false">EN</button>
       </div>
-      <a class="btn primary sm" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20lihat%20portofolio%20kamu%20dan%20mau%20konsultasi%20gratis." target="_blank" rel="noopener noreferrer" data-i="nav_cta">Konsultasi gratis</a>
+      <a class="pill" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20lihat%20portofolio%20kamu%20dan%20mau%20konsultasi%20gratis." target="_blank" rel="noopener noreferrer"><span data-i="nav_cta">Konsultasi gratis</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </nav>
   </div>
 </header>
@@ -160,7 +187,7 @@ footer.site a:hover{color:var(--ink)}
 <main>
   <div class="head">
     <div class="wrap">
-      <p class="crumb"><a href="../index.html" data-i="nav_home">Beranda</a> / <span data-i="nav_work">Portofolio</span></p>
+      <p class="crumb"><span style="color:var(--accent)">000/</span> <a href="../index.html" data-i="nav_home">Beranda</a> / <span data-i="nav_work">Portofolio</span></p>
       <div class="head-grid">
         <h1 data-i="h1">Portofolio<sup>104</sup></h1>
         <p class="sub" data-i="sub">Semua video shortform yang sudah saya kerjakan. Klik kartu untuk menonton.</p>
@@ -199,9 +226,14 @@ footer.site a:hover{color:var(--ink)}
   </div>
 
   <section class="cta">
-    <h2 data-i="c_h">Suka gayanya? Video kamu <mark>berikutnya.</mark></h2>
-    <p data-i="c_p">Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.</p>
-    <a class="btn primary" style="background:var(--on-accent);border-color:var(--on-accent);color:var(--ink)" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20lihat%20portofolio%20kamu%20dan%20mau%20konsultasi%20gratis." target="_blank" rel="noopener noreferrer" data-i="c_b">Chat WhatsApp</a>
+    <div class="wrap g">
+      <p class="label"><b>001/</b> <span data-i="c_l">Kerja bareng</span></p>
+      <div class="apc">
+        <h2 data-i="c_h">Suka gayanya? Video kamu berikutnya.</h2>
+        <p data-i="c_p">Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.</p>
+        <a class="pill dark" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20lihat%20portofolio%20kamu%20dan%20mau%20konsultasi%20gratis." target="_blank" rel="noopener noreferrer"><span data-i="c_b">Chat WhatsApp</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </div>
+    </div>
   </section>
 </main>
 
@@ -259,8 +291,8 @@ footer.site a:hover{color:var(--ink)}
         };
   var ORDER=["regular","comedy","talking","recap","edu","testimonial","ai","motion","interview","product"];
   var T={
-    id:{nav_home:"Beranda",nav_work:"Portofolio",nav_svc:"Layanan",nav_cta:"Konsultasi gratis",h1:"Portofolio<sup>104</sup>",sub:"Semua video shortform yang sudah saya kerjakan. Klik kartu untuk menonton.",meter:"Komposisi 104 video per kategori",cats:"kategori",yrs:"tahun",search_l:"Cari video",sort_l:"Urutkan",s_new:"Terbaru",s_old:"Terlama",all:"Semua",e_h:"Tidak ada video yang cocok",e_p:"Coba kata lain atau pilih kategori Semua.",more:"Muat lebih banyak",c_h:"Suka gayanya? Video kamu <mark>berikutnya.</mark>",c_p:"Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.",c_b:"Chat WhatsApp",back:"Kembali ke beranda",m_cta:"Mau video seperti ini",prev:"Sebelumnya",next:"Berikutnya",ph:"Cari judul atau kategori",shown:function(a,b){return "Menampilkan <strong>"+a+"</strong> dari <strong>"+b+"</strong> video"},close:"Tutup"},
-    en:{nav_home:"Home",nav_work:"Work",nav_svc:"Services",nav_cta:"Free consultation",h1:"Work<sup>104</sup>",sub:"Every shortform video I have edited. Click a card to watch.",meter:"104 videos by category",cats:"categories",yrs:"years",search_l:"Search videos",sort_l:"Sort",s_new:"Newest",s_old:"Oldest",all:"All",e_h:"No matching videos",e_p:"Try another word or pick All.",more:"Load more",c_h:"Like the style? Your video is <mark>next.</mark>",c_p:"Free consultation. Tell me about your product or brand and I will help with the video strategy.",c_b:"Chat on WhatsApp",back:"Back to home",m_cta:"I want a video like this",prev:"Previous",next:"Next",ph:"Search title or category",shown:function(a,b){return "Showing <strong>"+a+"</strong> of <strong>"+b+"</strong> videos"},close:"Close"}
+    id:{nav_home:"Beranda",nav_work:"Portofolio",nav_svc:"Layanan",nav_cta:"Konsultasi gratis",h1:"Portofolio<sup>104</sup>",sub:"Semua video shortform yang sudah saya kerjakan. Klik kartu untuk menonton.",meter:"Komposisi 104 video per kategori",cats:"kategori",yrs:"tahun",search_l:"Cari video",sort_l:"Urutkan",s_new:"Terbaru",s_old:"Terlama",all:"Semua",e_h:"Tidak ada video yang cocok",e_p:"Coba kata lain atau pilih kategori Semua.",more:"Muat lebih banyak",c_h:"Suka gayanya? Video kamu berikutnya.",c_l:"Kerja bareng",c_p:"Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.",c_b:"Chat WhatsApp",back:"Kembali ke beranda",m_cta:"Mau video seperti ini",prev:"Sebelumnya",next:"Berikutnya",ph:"Cari judul atau kategori",shown:function(a,b){return "Menampilkan <strong>"+a+"</strong> dari <strong>"+b+"</strong> video"},close:"Tutup"},
+    en:{nav_home:"Home",nav_work:"Work",nav_svc:"Services",nav_cta:"Free consultation",h1:"Work<sup>104</sup>",sub:"Every shortform video I have edited. Click a card to watch.",meter:"104 videos by category",cats:"categories",yrs:"years",search_l:"Search videos",sort_l:"Sort",s_new:"Newest",s_old:"Oldest",all:"All",e_h:"No matching videos",e_p:"Try another word or pick All.",more:"Load more",c_h:"Like the style? Your video is next.",c_l:"Work together",c_p:"Free consultation. Tell me about your product or brand and I will help with the video strategy.",c_b:"Chat on WhatsApp",back:"Back to home",m_cta:"I want a video like this",prev:"Previous",next:"Next",ph:"Search title or category",shown:function(a,b){return "Showing <strong>"+a+"</strong> of <strong>"+b+"</strong> videos"},close:"Close"}
   };
   var lang="id";try{lang=localStorage.getItem("rioz_lang")||"id"}catch(e){}if(!T[lang])lang="id";
   var PAGE=24,limit=PAGE,cat="all",list=[],cur=-1;

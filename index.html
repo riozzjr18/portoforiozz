@@ -31,6 +31,8 @@
   --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
   --gut:40px;
+  --sp:clamp(80px,9vw,128px);
+  --col:24px;
   --max:1280px;
   --ease:cubic-bezier(.22,1,.36,1);
   color-scheme:dark;
@@ -47,7 +49,8 @@ h1,h2,h3{margin:0;font-family:var(--display);font-weight:900;text-transform:uppe
 .label{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
 .label b{color:var(--accent);font-weight:500}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-section{padding:120px 0}
+section{padding:var(--sp) 0}
+.g{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* Nav */
@@ -102,46 +105,51 @@ section{padding:120px 0}
 .pxline .meta{position:absolute;right:var(--gut);bottom:14px}
 
 /* Work index swap */
-.head{display:grid;grid-template-columns:1fr 2fr;gap:40px;margin-bottom:56px;align-items:end}
-.head h2{font-size:clamp(52px,8vw,132px)}
-.idx{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:start}
-.idx ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.head{margin-bottom:56px;align-items:start}
+.head .label{grid-column:1/5;padding-top:.6em}
+.head>div,.head>h2{grid-column:5/13}
+.head h2{font-size:clamp(44px,6.2vw,96px)}
+.head .sub{margin-top:18px;max-width:34em;color:var(--muted)}
+.idx{align-items:start}
+.idx ul{grid-column:1/9;list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
 .idx li{border-bottom:1px solid var(--line)}
-.idx a.it{display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:center;padding:22px 0;transition:color .2s}
+.idx a.it{display:grid;grid-template-columns:48px 1fr auto;gap:16px;align-items:center;padding:20px 0;transition:color .2s}
 .idx .n{font:400 11px var(--mono);color:var(--muted)}
-.idx .t{font:900 clamp(32px,4.4vw,64px)/.95 var(--display);text-transform:uppercase;letter-spacing:-0.04em;color:color-mix(in srgb,var(--bone) 38%,transparent);transition:color .2s var(--ease)}
+.idx .t{font:900 clamp(30px,3.9vw,56px)/1 var(--display);text-transform:uppercase;letter-spacing:-0.04em;color:color-mix(in srgb,var(--bone) 38%,transparent);transition:color .2s var(--ease)}
 .idx li.on .t,.idx a.it:hover .t,.idx a.it:focus-visible .t{color:var(--bone)}
 .idx li.on .n{color:var(--accent)}
 .idx .c{font:400 11px var(--mono);color:var(--muted)}
 .idx .thumb{display:none}
-.viewer{position:sticky;top:100px}
-.frame{position:relative;aspect-ratio:9/16;max-height:72vh;margin-left:auto;border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+.viewer{grid-column:10/13;position:sticky;top:100px}
+.frame{position:relative;aspect-ratio:9/16;width:100%;max-width:300px;margin-left:auto;border-radius:var(--radius);overflow:hidden;background:var(--surface)}
 .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .2s linear}
 .frame img.on{opacity:1}
 .frame .play{position:absolute;left:16px;bottom:16px;z-index:2}
-.vmeta{display:flex;justify-content:space-between;gap:12px;margin-top:14px}
-.vmeta p.d{font-size:15px;color:var(--bone);max-width:24em}
-.more{margin-top:48px}
+.vmeta{display:flex;flex-direction:column;gap:8px;margin:16px 0 0 auto;max-width:300px}
+.vmeta p.d{font-size:15px;line-height:1.5;color:var(--bone)}
+.more{margin-top:40px}
 
 /* Statement */
 .surface{background:var(--surface)}
-.state{display:grid;grid-template-columns:1fr 2fr;gap:40px}
+.state .label{grid-column:1/5;padding-top:.5em}
+.state>div{grid-column:5/12}
 .state p.big2{font:400 clamp(20px,2vw,24px)/1.45 var(--body);color:var(--bone);max-width:34em}
 .state p.big2 em{font-style:normal;color:var(--accent)}
-.state .meta{margin-top:28px}
+.state .meta{margin-top:24px}
 
 /* Services bone panel */
-.panel{margin:16px;border-radius:var(--panel-radius);background:var(--bone);color:var(--ink);padding:120px 0}
+.panel{margin:16px;border-radius:var(--panel-radius);background:var(--bone);color:var(--ink);padding:var(--sp) 0}
 .panel .label{color:#5E6067}
 .panel .head h2{color:var(--ink)}
-.panel .head p{color:#45474D;max-width:32em}
+.panel .head .sub{color:#45474D}
 .svc{border-top:1px solid rgba(18,19,21,.18)}
-.svc .r{position:relative;display:grid;grid-template-columns:44px 1.1fr 1.4fr auto;gap:24px;align-items:baseline;padding:28px 0;border-bottom:1px solid rgba(18,19,21,.18);cursor:default}
-.svc .n{font:400 11px var(--mono);color:#5E6067}
-.svc h3{font-size:clamp(28px,3.4vw,46px);letter-spacing:-0.035em}
+.svc .r{position:relative;align-items:start;padding:32px 0;border-bottom:1px solid rgba(18,19,21,.18);cursor:default}
+.svc .nm{grid-column:1/5;display:flex;gap:16px}
+.svc .n{font:400 11px var(--mono);color:#5E6067;width:32px;flex:none;padding-top:.7em}
+.svc h3{font-size:clamp(26px,2.6vw,38px);letter-spacing:-0.035em;line-height:.95}
 .svc h3 small{display:block;font:500 11px var(--mono);letter-spacing:.06em;color:var(--accent);margin-top:10px;text-transform:uppercase}
-.svc ul{list-style:none;margin:0;padding:0;font-size:15px;color:#3B3D42;display:grid;gap:4px}
-.svc .p{font:500 13px var(--mono);text-align:right;white-space:nowrap}
+.svc ul{grid-column:5/10;list-style:none;margin:0;padding:4px 0 0;font-size:15px;color:#3B3D42;display:grid;gap:6px}
+.svc .p{grid-column:10/13;font:500 15px var(--mono);text-align:right;padding-top:4px}
 .svc .p span{display:block;color:#5E6067;font-size:11px;margin-top:4px}
 .svc .r:hover h3{color:var(--accent)}
 .svc .go{display:inline-block;margin-top:12px;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid currentColor;padding-bottom:2px}
@@ -151,35 +159,47 @@ section{padding:120px 0}
 
 /* Steps */
 .rows{border-top:1px solid var(--line)}
-.rows .r{display:grid;grid-template-columns:44px 1.2fr 1fr;gap:24px;padding:30px 0;border-bottom:1px solid var(--line);align-items:baseline}
-.rows .n{font:400 11px var(--mono);color:var(--accent)}
-.rows h3{font:700 clamp(22px,2.4vw,32px)/1.1 var(--display);text-transform:none;letter-spacing:-0.02em}
+.rows .r{padding:28px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.rows .nm{grid-column:1/5;display:flex;gap:16px;align-items:baseline}
+.rows .n{font:400 11px var(--mono);color:var(--accent);width:32px;flex:none}
+.rows .r>p{grid-column:5/11}
+.rows h3{font:700 clamp(20px,1.9vw,26px)/1.15 var(--display);text-transform:none;letter-spacing:-0.02em}
 .rows p{color:var(--muted);font-size:16px}
 
 /* Clients ruled list */
 .ruled{border-top:1px solid var(--line)}
-.ruled .r{display:grid;grid-template-columns:1fr 2fr auto;gap:24px;padding:26px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.ruled .r{padding:28px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.ruled .r>b{grid-column:1/5;padding-left:48px}
+.ruled .r>q{grid-column:5/11}
+.ruled .r>.meta{grid-column:11/13}
 .ruled b{font:700 18px var(--display);letter-spacing:-0.01em}
-.ruled q{quotes:none;font-size:18px;color:var(--bone)}
+.ruled q{quotes:none;font-size:18px;line-height:1.5;color:var(--bone)}
 .ruled .meta{text-align:right}
 
 /* About quote */
-.about{display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center;max-width:980px;margin:0 auto}
-.ph{width:200px;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;background:var(--surface);position:relative;display:grid;place-items:center;font:900 64px var(--display);color:var(--accent)}
+.about{align-items:center}
+.about .ph{grid-column:2/5;justify-self:end}
+.about>div:last-child{grid-column:5/12}
+.ph{width:220px;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;background:var(--surface);position:relative;display:grid;place-items:center;font:900 64px var(--display);color:var(--accent)}
 .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05)}
 .about blockquote{margin:0;font:500 clamp(22px,2.4vw,28px)/1.35 var(--display);letter-spacing:-0.01em}
 .about .meta{margin-top:20px}
 
 /* Accent panel */
-.ap{margin:16px;border-radius:var(--panel-radius);background:var(--accent);color:var(--on-accent);padding:96px 0}
+.ap{margin:16px;border-radius:var(--panel-radius);background:var(--accent);color:var(--on-accent);padding:var(--sp) 0}
 .ap .label{color:rgba(18,19,21,.65)}
-.ap h2{font-size:clamp(44px,6.4vw,104px);margin:24px 0 40px;max-width:11em}
+.ap .label{grid-column:1/5;padding-top:.6em}
+.ap .apc{grid-column:5/13}
+.ap h2{font-size:clamp(40px,5.4vw,84px);margin:0 0 36px;max-width:12em}
 .ap .acts{display:flex;gap:12px;flex-wrap:wrap}
-.ap .meta{color:rgba(18,19,21,.7);margin-top:40px}
+.ap .meta{color:rgba(18,19,21,.7);margin-top:32px}
 
 /* Footer */
 footer{position:relative;padding:80px 0 0;overflow:hidden}
-.ft{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:56px}
+.ft{padding-bottom:56px;row-gap:32px}
+.ft>div{grid-column:1/5}
+.ft>nav:nth-of-type(1){grid-column:5/8}
+.ft>nav:nth-of-type(2){grid-column:8/11}
 .ft p{color:var(--muted)}
 .ft p.e{color:var(--bone);font-size:18px}
 .ft nav{display:flex;flex-direction:column;gap:8px}
@@ -190,47 +210,55 @@ footer{position:relative;padding:80px 0 0;overflow:hidden}
 .rest .walker .f1,.rest .walker .f2{animation:none}
 .giant{font:900 clamp(120px,38vw,600px)/.74 var(--display);letter-spacing:-0.07em;text-transform:uppercase;color:var(--surface);margin:0 -0.04em -0.12em;white-space:nowrap;user-select:none}
 .giant i{font-style:normal;color:color-mix(in srgb,var(--accent) 40%,var(--surface))}
-.copy{display:flex;justify-content:space-between;padding:20px 0 28px}
+.copy{display:flex;justify-content:space-between;gap:16px;padding-top:20px;padding-bottom:28px}
 
 @media (max-width:1024px){
-  .idx{grid-template-columns:1fr .7fr;gap:32px}
-  .svc .r{grid-template-columns:36px 1fr auto}
-  .svc ul{grid-column:2/4}
+  :root{--gut:32px;--col:20px}
+  .idx ul{grid-column:1/9}.viewer{grid-column:9/13}
+  .svc .nm{grid-column:1/7}.svc .p{grid-column:7/13}.svc ul{grid-column:1/13;padding-left:48px;margin-top:16px}
+  .ruled .r>q{grid-column:5/13}.ruled .r>.meta{grid-column:5/13;margin-top:8px}
 }
 @media (max-width:767px){
-  :root{--gut:20px}
-  section{padding:80px 0}
+  :root{--gut:20px;--col:12px}
   .links a.l{display:none}
   .pill{font-size:13px;padding:5px 5px 5px 14px}
   .pill span.c{width:26px;height:26px}
   .art{grid-template-columns:repeat(3,1fr)}
   .art div:nth-child(n+4){display:none}
-  .hero-top{flex-direction:column}
+  .hero-top{flex-direction:column;gap:14px}
   .hero-top .meta{text-align:left}
   .big{font-size:36vw}
   .walker{animation-duration:80s}
-  .head,.state,.about{grid-template-columns:1fr;gap:20px}
-  .idx{grid-template-columns:1fr}
+  .g>*{grid-column:1/-1!important}
+  .head{margin-bottom:36px;row-gap:12px}
+  .head .label{padding-top:0}
+  .state{row-gap:16px}
   .viewer{display:none}
-  .idx a.it{grid-template-columns:54px 1fr;gap:14px}
+  .idx a.it{grid-template-columns:54px 1fr;gap:4px 14px;padding:16px 0}
   .idx .c{grid-column:2}
   .idx .thumb{display:block;width:54px;aspect-ratio:9/16;border-radius:6px;overflow:hidden;background:var(--surface);grid-row:span 2}
   .idx .thumb img{width:100%;height:100%;object-fit:cover}
   .idx .n{display:none}
-  .idx .t{color:var(--bone)}
-  .panel{margin:8px;padding:80px 0}
-  .svc .r{grid-template-columns:1fr auto;gap:10px 16px}
+  .idx .t{color:var(--bone);font-size:28px}
+  .panel{margin:8px}
+  .svc .r{padding:24px 0;row-gap:14px}
   .svc .n{display:none}
-  .svc ul{grid-column:1/3}
+  .svc ul{padding-left:0;margin-top:0}
+  .svc .p{text-align:left;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+  .svc .p span{display:inline;margin:0}
+  .svc .go{margin:0 0 0 auto}
   .tip{display:none}
-  .rows .r{grid-template-columns:32px 1fr;gap:6px 14px}
-  .rows .r p{grid-column:2}
-  .ruled .r{grid-template-columns:1fr;gap:6px}
+  .rows .r{row-gap:8px;padding:22px 0}
+  .rows .r>p{padding-left:48px}
+  .ruled .r{row-gap:8px;padding:22px 0}
+  .ruled .r>b{padding-left:0}
   .ruled .meta{text-align:left}
-  .ph{width:140px}
-  .ap{margin:8px;padding:64px 0}
-  .ft{grid-template-columns:1fr 1fr}
-  .ft>div:first-child{grid-column:1/3}
+  .about{row-gap:24px}
+  .about .ph{justify-self:start;width:140px}
+  .ap{margin:8px}
+  .ap .label{padding-top:0;margin-bottom:16px}
+  .ft>nav:nth-of-type(1){grid-column:1/7!important}
+  .ft>nav:nth-of-type(2){grid-column:7/13!important}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -284,11 +312,11 @@ footer{position:relative;padding:80px 0 0;overflow:hidden}
 
 <section id="work">
   <div class="wrap">
-    <div class="head">
+    <div class="head g">
       <p class="label"><b>000/</b> <span data-i="w_l">Portofolio</span></p>
       <h2 data-i="w_h">Apa yang saya edit</h2>
     </div>
-    <div class="idx">
+    <div class="idx g">
       <ul id="idx"></ul>
       <div class="viewer" aria-hidden="true">
         <div class="frame" id="frame"></div>
@@ -300,7 +328,7 @@ footer{position:relative;padding:80px 0 0;overflow:hidden}
 </section>
 
 <section class="surface">
-  <div class="wrap state">
+  <div class="wrap state g">
     <p class="label"><b>001/</b> <span data-i="s_l">Pendekatan</span></p>
     <div>
       <p class="big2" data-i="s_p">Orang memutuskan lanjut nonton atau scroll dalam <em>tiga detik pertama</em>. Jadi saya mulai dari situ: hook dulu, baru isi. Subtitle supaya video tetap jalan tanpa suara, b-roll supaya mata tidak bosan, dan potongan yang cukup cepat untuk ritme TikTok tanpa bikin pusing. Rapi itu standar. Yang saya kejar adalah video yang dipakai buat jualan.</p>
@@ -311,29 +339,26 @@ footer{position:relative;padding:80px 0 0;overflow:hidden}
 
 <div class="panel" id="layanan">
   <div class="wrap">
-    <div class="head">
+    <div class="head g">
       <p class="label"><b>002/</b> <span data-i="p_l">Layanan</span></p>
       <div>
         <h2 data-i="p_h">Tiga paket</h2>
-        <p style="margin-top:20px" data-i="p_s">Revisi maksimal 2-3x per video di semua paket. Butuh custom? Chat WhatsApp.</p>
+        <p class="sub" data-i="p_s">Revisi maksimal 2-3x per video di semua paket. Butuh custom? Chat WhatsApp.</p>
       </div>
     </div>
     <div class="svc">
-      <div class="r" data-tip="p1_t">
-        <span class="n">01</span>
-        <h3>Short-form<small data-i="p1_s">Untuk coba dulu</small></h3>
+      <div class="r g" data-tip="p1_t">
+        <div class="nm"><span class="n">01</span><h3>Short-form<small data-i="p1_s">Untuk coba dulu</small></h3></div>
         <ul><li data-i="p1a">1 video vertikal siap posting</li><li data-i="p1b">Hook, subtitle, b-roll</li><li data-i="p1c">Pengerjaan 2-3 hari</li></ul>
         <p class="p">Rp300.000<span data-i="p1_u">/ video</span><a class="go" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Short-form%20(Rp300rb)" target="_blank" rel="noopener noreferrer" data-i="book">Booking</a></p>
       </div>
-      <div class="r" data-tip="p2_t">
-        <span class="n">02</span>
-        <h3>Bundling Growth<small data-i="p2_s">Paling populer</small></h3>
+      <div class="r g" data-tip="p2_t">
+        <div class="nm"><span class="n">02</span><h3>Bundling Growth<small data-i="p2_s">Paling populer</small></h3></div>
         <ul><li data-i="p2a">8 video vertikal</li><li data-i="p2b">Prioritas pengerjaan</li><li data-i="p2c">Gratis konsultasi strategi konten</li></ul>
         <p class="p">Rp2.000.000<span data-i="p2_u">/ 8 video, Rp250rb per video</span><a class="go" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Bundling%20Growth%20(Rp2jt)" target="_blank" rel="noopener noreferrer" data-i="book">Booking</a></p>
       </div>
-      <div class="r" data-tip="p3_t">
-        <span class="n">03</span>
-        <h3>Retainer Premium<small data-i="p3_s">Untuk brand yang posting rutin</small></h3>
+      <div class="r g" data-tip="p3_t">
+        <div class="nm"><span class="n">03</span><h3>Retainer Premium<small data-i="p3_s">Untuk brand yang posting rutin</small></h3></div>
         <ul><li data-i="p3a">12 video per bulan</li><li data-i="p3b">Prioritas super dan komunikasi intensif</li><li data-i="p3c">Gratis thumbnail dan caption</li><li data-i="p3d">Konsultasi strategi 1-on-1 bulanan</li></ul>
         <p class="p">Rp3.500.000<span data-i="p3_u">/ bulan</span><a class="go" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Retainer%20Premium%20(Rp3.5jt)" target="_blank" rel="noopener noreferrer" data-i="book">Booking</a></p>
       </div>
@@ -344,35 +369,35 @@ footer{position:relative;padding:80px 0 0;overflow:hidden}
 
 <section>
   <div class="wrap">
-    <div class="head">
+    <div class="head g">
       <p class="label"><b>003/</b> <span data-i="c_l">Cara kerja</span></p>
       <h2 data-i="c_h">Empat langkah</h2>
     </div>
     <div class="rows">
-      <div class="r"><span class="n">01</span><h3 data-i="c1h">Chat dulu, gratis.</h3><p data-i="c1p">Ceritakan produk, target penonton, dan platformnya lewat WhatsApp.</p></div>
-      <div class="r"><span class="n">02</span><h3 data-i="c2h">Kirim footage mentah.</h3><p data-i="c2p">Rekaman HP sudah cukup. Saya yang rapikan, potong, dan susun hook-nya.</p></div>
-      <div class="r"><span class="n">03</span><h3 data-i="c3h">Draft dalam 2-3 hari.</h3><p data-i="c3p">Revisi maksimal 2-3x per video sampai pas.</p></div>
-      <div class="r"><span class="n">04</span><h3 data-i="c4h">Siap posting.</h3><p data-i="c4p">File 9:16 untuk TikTok, Reels, dan Shorts.</p></div>
+      <div class="r g"><div class="nm"><span class="n">01</span><h3 data-i="c1h">Chat dulu, gratis.</h3></div><p data-i="c1p">Ceritakan produk, target penonton, dan platformnya lewat WhatsApp.</p></div>
+      <div class="r g"><div class="nm"><span class="n">02</span><h3 data-i="c2h">Kirim footage mentah.</h3></div><p data-i="c2p">Rekaman HP sudah cukup. Saya yang rapikan, potong, dan susun hook-nya.</p></div>
+      <div class="r g"><div class="nm"><span class="n">03</span><h3 data-i="c3h">Draft dalam 2-3 hari.</h3></div><p data-i="c3p">Revisi maksimal 2-3x per video sampai pas.</p></div>
+      <div class="r g"><div class="nm"><span class="n">04</span><h3 data-i="c4h">Siap posting.</h3></div><p data-i="c4p">File 9:16 untuk TikTok, Reels, dan Shorts.</p></div>
     </div>
   </div>
 </section>
 
 <section id="klien" style="padding-top:0">
   <div class="wrap">
-    <div class="head">
+    <div class="head g">
       <p class="label"><b>004/</b> <span data-i="k_l">Klien</span></p>
       <h2 data-i="k_h">Kata mereka</h2>
     </div>
     <div class="ruled">
-      <div class="r"><b>Wije.id</b><q data-i="q1">Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!</q><p class="meta" data-i="q1r">Peralatan dapur</p></div>
-      <div class="r"><b>Melaminku.id</b><q data-i="q2">Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.</q><p class="meta" data-i="q2r">Perlengkapan melamin</p></div>
-      <div class="r"><b>MyLO</b><q data-i="q3">Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.</q><p class="meta" data-i="q3r">Platform parenting</p></div>
+      <div class="r g"><b>Wije.id</b><q data-i="q1">Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!</q><p class="meta" data-i="q1r">Peralatan dapur</p></div>
+      <div class="r g"><b>Melaminku.id</b><q data-i="q2">Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.</q><p class="meta" data-i="q2r">Perlengkapan melamin</p></div>
+      <div class="r g"><b>MyLO</b><q data-i="q3">Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.</q><p class="meta" data-i="q3r">Platform parenting</p></div>
     </div>
   </div>
 </section>
 
 <section style="padding-top:0">
-  <div class="wrap about">
+  <div class="wrap about g">
     <div class="ph">R<img src="assets/img/profile.jpg" alt="Damario Indra Wibowo" loading="lazy" onerror="this.remove()"></div>
     <div>
       <blockquote data-i="a_q">Mahasiswa Teknik Informatika yang jatuh cinta sama editing video. Sejak 2020 saya bantu UMKM, toko online, dan content creator bikin video yang beneran jualan.</blockquote>
@@ -383,19 +408,19 @@ footer{position:relative;padding:80px 0 0;overflow:hidden}
 
 <div class="ap" id="kontak">
   <div class="wrap">
-    <p class="label"><b style="color:var(--on-accent)">005/</b> <span data-i="x_l">Kerja bareng</span></p>
-    <h2 data-i="x_h">Ceritakan produkmu, saya susun videonya.</h2>
+    <div class="g"><p class="label"><b style="color:var(--on-accent)">005/</b> <span data-i="x_l">Kerja bareng</span></p>
+    <div class="apc"><h2 data-i="x_h">Ceritakan produkmu, saya susun videonya.</h2>
     <div class="acts">
       <a class="pill dark" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya." target="_blank" rel="noopener noreferrer"><span data-i="x_a">Chat WhatsApp</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       <a class="pill line" href="#layanan"><span data-i="x_b">Lihat paket</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </div>
-    <p class="meta" data-i="x_m">Konsultasi gratis. Biasanya membalas dalam hitungan menit.</p>
+    <p class="meta" data-i="x_m">Konsultasi gratis. Biasanya membalas dalam hitungan menit.</p></div></div>
   </div>
 </div>
 </main>
 
 <footer>
-  <div class="wrap ft">
+  <div class="wrap ft g">
     <div><p class="e">damariozjr@gmail.com</p><p style="margin-top:6px">WhatsApp +62 895 4139 35821</p></div>
     <nav aria-label="Tautan"><a href="portfolio/index.html" data-i="n1">Portofolio</a><a href="#layanan" data-i="n2">Layanan</a><a href="https://drive.google.com/file/d/11WC1K-IE0FJb7NVCzSWL7n8p2ZW-LWSq/view?usp=sharing" target="_blank" rel="noopener noreferrer">Download CV</a></nav>
     <nav aria-label="Sosial"><a href="https://www.instagram.com/riozz18/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.linkedin.com/in/riozz18/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://linktr.ee/riozz" target="_blank" rel="noopener noreferrer">Linktree</a></nav>
