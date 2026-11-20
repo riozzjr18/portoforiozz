@@ -1,1067 +1,598 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
-
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Jasa editing video vertikal untuk UMKM, toko online, dan brand. Hook 3 detik, subtitle, b-roll. Mulai Rp75.000 per video. Cepat, terjangkau, siap posting di TikTok, Reels, dan Shorts.">
-    <meta name="keywords"
-        content="jasa editing video, editor video vertikal, TikTok editor, Reels editor, video promosi produk, video talking head, jasa edit video UMKM">
-    <meta property="og:title" content="Riozz &mdash; Jasa Editing Video Vertikal">
-    <meta property="og:description"
-        content="Editing video vertikal untuk UMKM, toko online, dan brand. Hook 3 detik, subtitle, b-roll. Mulai Rp75.000 per video.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://riozzjr18.github.io/portoforiozz/">
-    <title>Riozz</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rioz | Jasa Editing Video Vertikal untuk UMKM dan Brand</title>
+<meta name="description" content="Editor video vertikal untuk UMKM, toko online, dan brand. Hook 3 detik, subtitle, b-roll. Mulai Rp300.000 per video.">
+<meta name="keywords" content="jasa editing video, editor video vertikal, TikTok editor, Reels editor, video promosi produk, video talking head, jasa edit video UMKM">
+<meta property="og:title" content="Rioz | Jasa Editing Video Vertikal">
+<meta property="og:description" content="Editing video vertikal untuk UMKM, toko online, dan brand. Hook 3 detik, subtitle, b-roll. Mulai Rp300.000 per video.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://riozzjr18.github.io/portoforiozz/">
+<link rel="canonical" href="https://riozzjr18.github.io/portoforiozz/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: the page is a video editor. A red playhead (scroll progress) runs the whole page; hero shows one video as a timeline. */
+:root{
+  --bg:#F2F3EF;
+  --surface:#FFFFFF;
+  --ink:#15171C;
+  --muted:#5B6068;
+  --line:#D9DBD3;
+  --accent:#FF3D1F;
+  --on-accent:#FFFFFF;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gutter:20px;
+  --max:1180px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1013;--surface:#171A1F;--ink:#F2F3EF;--muted:#A0A5AD;--line:#2A2E35;--accent:#FF5636;--on-accent:#0E1013;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1013;--surface:#171A1F;--ink:#F2F3EF;--muted:#A0A5AD;--line:#2A2E35;--accent:#FF5636;--on-accent:#0E1013;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:110px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-0.02em;line-height:1.02;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+/* Header with scroll playhead */
+.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top-row{display:flex;align-items:center;gap:20px;height:64px}
+.logo{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:-0.03em;text-decoration:none}
+.logo i{color:var(--accent);font-style:normal}
+.nav{display:flex;gap:6px;margin-left:auto;align-items:center}
+.nav a.l{font-size:15px;font-weight:500;text-decoration:none;padding:8px 12px;border-radius:999px;color:var(--muted)}
+.nav a.l:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 7%,transparent)}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;margin-left:8px}
+.lang button{font:600 12px var(--mono);border:0;background:transparent;color:var(--muted);padding:6px 11px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.btn{display:inline-flex;align-items:center;gap:10px;font:600 16px var(--body);text-decoration:none;border-radius:999px;padding:14px 24px;border:1.5px solid var(--ink);transition:transform .18s ease,background .18s ease,color .18s ease}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.primary:hover{transform:translateY(-2px)}
+.btn.ghost:hover{background:var(--ink);color:var(--bg)}
+.btn.sm{padding:9px 18px;font-size:14px}
+.prog{position:absolute;left:0;bottom:-1px;height:3px;width:100%;pointer-events:none}
+.prog b{position:absolute;left:0;top:0;height:3px;width:var(--p,0%);background:var(--accent)}
+.prog span{position:absolute;top:3px;left:var(--p,0%);transform:translateX(-50%);font:500 10px var(--mono);background:var(--accent);color:var(--on-accent);padding:1px 6px;border-radius:0 0 6px 6px}
+.nav-sub{display:none}
 
-    <!-- Google Fonts: Unbounded + Space Grotesk -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Space+Grotesk:wght@400;500;700&display=swap"
-        rel="stylesheet">
+/* Hero */
+.hero{padding:56px 0 24px}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center}
+.eyebrow{font:500 13px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.eyebrow::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--accent);animation:rec 1.4s steps(2,jump-none) infinite}
+@keyframes rec{50%{opacity:.15}}
+h1{font-size:clamp(44px,7.2vw,98px);font-weight:800;letter-spacing:-0.035em}
+h1 mark{background:none;color:var(--accent)}
+.lede{font-size:clamp(18px,2vw,22px);margin-top:26px;max-width:34em;color:var(--muted)}
+.lede b{color:var(--ink);font-weight:600}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.proof{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:38px;padding-top:22px;border-top:1px solid var(--line)}
+.proof div{display:flex;align-items:baseline;gap:10px}
+.proof strong{font:500 30px var(--display);letter-spacing:-0.03em}
+.proof span{font-size:13px;color:var(--muted);max-width:11ch;line-height:1.25}
 
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+.stage{position:relative;justify-self:center;width:min(100%,330px)}
+.phone{position:relative;aspect-ratio:9/16;border-radius:34px;background:#0B0C0F;color:#fff;overflow:hidden;border:6px solid #0B0C0F;outline:1.5px solid var(--line);box-shadow:0 30px 60px -28px color-mix(in srgb,var(--ink) 55%,transparent)}
+.phone::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 30% 15%,#3a2f2c 0%,#15171c 55%,#0B0C0F 100%)}
+.phone-top{position:absolute;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;font:500 12px var(--mono);z-index:2}
+.phone-top .recd{display:flex;gap:7px;align-items:center}
+.phone-top .recd::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.cap{position:absolute;left:16px;right:16px;top:50%;transform:translateY(-50%);text-align:center;font-family:var(--display);font-weight:800;font-size:clamp(34px,4.2vw,46px);line-height:1;letter-spacing:-0.02em;text-transform:uppercase;z-index:2}
+.cap em{font-style:normal;background:var(--accent);color:var(--on-accent);padding:0 8px;border-radius:6px;display:inline-block;transform:rotate(-2deg)}
+.hookbar{position:absolute;left:18px;right:18px;bottom:22px;z-index:2}
+.hookbar div{height:6px;border-radius:6px;background:rgba(255,255,255,.18);overflow:hidden}
+.hookbar b{display:block;height:100%;width:var(--hb,33%);background:var(--accent);transition:width .35s ease}
+.hookbar p{display:flex;justify-content:space-between;font:500 11px var(--mono);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
+.chip{position:absolute;z-index:3;background:var(--surface);color:var(--ink);border:1.5px solid var(--ink);border-radius:999px;padding:6px 13px;font:500 12px var(--mono);white-space:nowrap}
+.chip.a{top:14%;left:-26px;transform:rotate(-5deg)}
+.chip.b{top:44%;right:-22px;transform:rotate(4deg)}
+.chip.c{bottom:20%;left:-18px;transform:rotate(-3deg)}
 
-    <!-- GSAP + ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+/* Timeline */
+.tl-sec{padding:28px 0 8px}
+.tl-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:12px;flex-wrap:wrap}
+.tl-head span{font:500 13px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.tl{border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:16px 18px 18px;overflow:hidden}
+.tl-body{display:grid;grid-template-columns:84px 1fr;gap:0 14px}
+.tl-labels,.tl-tracks{display:grid;grid-template-rows:22px repeat(4,34px);gap:8px}
+.tl-labels span{font:500 11px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center}
+.tl-tracks{position:relative}
+.ruler{position:relative;border-bottom:1px solid var(--line);font:500 11px var(--mono);color:var(--muted)}
+.ruler span{position:absolute;top:0;transform:translateX(-50%)}
+.ruler span:first-child{transform:none}
+.ruler span:last-child{transform:translateX(-100%)}
+.row{position:relative;border-radius:8px;background:color-mix(in srgb,var(--ink) 4%,transparent)}
+.clip{position:absolute;top:0;bottom:0;border-radius:7px;display:flex;align-items:center;padding:0 10px;font:500 11px var(--mono);white-space:nowrap;overflow:hidden;background:color-mix(in srgb,var(--ink) 14%,var(--surface));border:1px solid color-mix(in srgb,var(--ink) 25%,transparent)}
+.clip.hot{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.wave{position:absolute;inset:6px 0;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 5px);-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent),repeating-linear-gradient(90deg,#000 0 2px,transparent 2px 5px);opacity:.45;border-radius:4px}
+.wave{-webkit-mask-composite:source-in;mask-composite:intersect}
+.playhead{position:absolute;top:0;bottom:0;left:10%;width:2px;background:var(--accent);animation:play 9s linear infinite;z-index:4}
+.playhead::before{content:"";position:absolute;top:-2px;left:-6px;width:14px;height:14px;background:var(--accent);clip-path:polygon(0 0,100% 0,50% 100%)}
+@keyframes play{from{left:0}to{left:100%}}
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
-                        display: ['"Unbounded"', 'sans-serif'],
-                    },
-                    colors: {
-                        cream: '#F5F0E8',
-                        ink: '#0A0A0A',
-                        muted: '#4A4A4A',
-                        dimcream: '#E5DDD0',
-                    }
-                }
-            }
-        }
-    </script>
+/* Sections */
+section{padding:96px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.sec-head h2{font-size:clamp(36px,5vw,64px)}
+.sec-head p{color:var(--muted);max-width:30em}
 
-    <style>
-        /* -- Base ------------------------------- */
-        html {
-            scroll-padding-top: 80px;
-        }
+/* Work */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.filters button{font:500 13px var(--mono);text-transform:uppercase;letter-spacing:.05em;border:1.5px solid var(--line);background:transparent;color:var(--ink);padding:9px 16px;border-radius:999px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{position:relative;display:block;aspect-ratio:9/16;border-radius:20px;overflow:hidden;text-decoration:none;color:#fff;background:#14161b;isolation:isolate;border:1px solid var(--line);transition:transform .25s ease}
+.card:hover{transform:translateY(-6px)}
+.card[hidden]{display:none}
+.card::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(110% 70% at 20% 0%,color-mix(in srgb,var(--accent) 38%,#14161b) 0%,#14161b 62%)}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
+.card::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,transparent 30%,transparent 55%,rgba(0,0,0,.78) 100%)}
+.card>*{position:relative;z-index:1}
+.card .n{position:absolute;top:14px;left:16px;font:500 12px var(--mono);letter-spacing:.06em}
+.card .tag{position:absolute;top:12px;right:12px;font:500 11px var(--mono);text-transform:uppercase;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.3);padding:3px 9px;border-radius:999px;backdrop-filter:blur(6px)}
+.card .play{position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:var(--accent);display:grid;place-items:center;transition:transform .2s ease}
+.card:hover .play{transform:scale(1.12)}
+.card .play::after{content:"";border-left:16px solid var(--on-accent);border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
+.card .ttl{position:absolute;left:16px;right:16px;bottom:14px;font:600 15px var(--body);display:flex;justify-content:space-between;gap:8px}
+.card .ttl span{font:500 12px var(--mono);opacity:.8;white-space:nowrap}
+.more{margin-top:36px;display:flex;justify-content:center}
 
-        body {
-            background-color: #F5F0E8;
-            color: #0A0A0A;
-            font-family: 'Space Grotesk', system-ui, sans-serif;
-        }
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:2px solid var(--ink)}
+.step{padding:22px 22px 8px 0;position:relative}
+.step::before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;background:var(--accent);clip-path:polygon(0 0,100% 0,50% 100%)}
+.step .t{font:500 12px var(--mono);color:var(--muted);margin-top:8px}
+.step h3{font-size:24px;margin:6px 0 8px;letter-spacing:-0.02em}
+.step p{color:var(--muted);font-size:15.5px}
 
-        /* -- Navbar ----------------------------- */
-        #navbar {
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            background: rgba(245, 240, 232, 0.92);
-        }
+/* About */
+.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
+.photo{aspect-ratio:4/5;border-radius:24px;overflow:hidden;background:color-mix(in srgb,var(--ink) 8%,var(--surface));border:1px solid var(--line);position:relative;display:grid;place-items:center;font:800 120px var(--display);color:var(--accent)}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.about h2{font-size:clamp(36px,5vw,64px);margin-bottom:22px}
+.about p{font-size:19px;max-width:32em}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.facts span{font:500 13px var(--mono);border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:var(--surface)}
 
-        /* -- Hover underline (left to right) ---- */
-        .nav-link {
-            position: relative;
-            padding-bottom: 4px;
-            line-height: 1;
-            display: inline-block;
-        }
+/* Pricing */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
+.plan{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:30px 28px;position:relative}
+.plan.pop{border:2px solid var(--ink);box-shadow:8px 8px 0 var(--accent)}
+.plan .badge{position:absolute;top:-13px;right:22px;background:var(--accent);color:var(--on-accent);font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:4px 12px;border-radius:999px}
+.plan h3{font-size:30px}
+.price{font:700 40px var(--display);letter-spacing:-0.03em;margin:18px 0 2px}
+.price small{font:500 14px var(--mono);color:var(--muted);letter-spacing:0}
+.per{font:500 13px var(--mono);color:var(--muted);min-height:1.4em}
+.plan ul{list-style:none;margin:22px 0 28px;padding:0;display:grid;gap:11px;flex:1}
+.plan li{display:flex;gap:10px;font-size:16px}
+.plan li::before{content:"";flex:none;width:7px;height:7px;margin-top:9px;background:var(--accent);border-radius:2px}
+.plan .btn{justify-content:center}
+.note{margin-top:20px;color:var(--muted);font-size:15px}
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: #0A0A0A;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
+/* Reviews */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:24px}
+.q blockquote{margin:0;font:500 22px/1.3 var(--display);letter-spacing:-0.015em;flex:1}
+.q footer{display:flex;gap:12px;align-items:center;border-top:1px solid var(--line);padding-top:18px}
+.av{width:42px;height:42px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font:700 18px var(--display)}
+.q footer b{display:block;font-size:16px}
+.q footer span{font-size:14px;color:var(--muted)}
 
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            transform: scaleX(1);
-        }
+/* Contact */
+.contact{background:var(--ink);color:var(--bg);border-radius:32px;padding:64px 40px;text-align:center;margin:0 var(--gutter)}
+.contact h2{font-size:clamp(40px,6.4vw,86px);max-width:12em;margin:0 auto 20px}
+.contact h2 mark{background:none;color:var(--accent)}
+.contact p.s{max-width:34em;margin:0 auto 32px;opacity:.75;font-size:19px}
+.contact .btn.primary{font-size:18px;padding:18px 34px}
+.reply{font:500 13px var(--mono);opacity:.7;margin-top:18px}
+.socials{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:44px}
+.socials a{font:500 14px var(--mono);text-decoration:none;border:1px solid color-mix(in srgb,var(--bg) 30%,transparent);padding:9px 16px;border-radius:999px}
+.socials a:hover{background:var(--bg);color:var(--ink)}
+.mail{font:500 14px var(--mono);margin-top:18px;opacity:.75}
+footer.site{padding:32px 0 48px}
+footer.site .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:500 13px var(--mono);color:var(--muted)}
+.wa{position:fixed;right:18px;bottom:18px;z-index:60;width:56px;height:56px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;text-decoration:none;font:700 13px var(--mono);box-shadow:0 10px 24px -8px rgba(0,0,0,.5);transition:transform .2s ease}
+.wa:hover{transform:scale(1.08)}
 
-        /* -- Marquee --------------------------- */
-        .marquee-track {
-            display: flex;
-            width: max-content;
-            animation: marquee 30s linear infinite;
-        }
-
-        .marquee-track:hover {
-            animation-play-state: paused;
-        }
-
-        @keyframes marquee {
-            from {
-                transform: translateX(0);
-            }
-
-            to {
-                transform: translateX(-50%);
-            }
-        }
-
-        /* -- Work Carousel --------------------- */
-        .carousel-track {
-            display: flex;
-            gap: 1.25rem;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 12px;
-        }
-
-        .carousel-track::-webkit-scrollbar {
-            height: 3px;
-        }
-
-        .carousel-track::-webkit-scrollbar-track {
-            background: #F5F0E8;
-        }
-
-        .carousel-track::-webkit-scrollbar-thumb {
-            background: #0A0A0A;
-        }
-
-        .carousel-card {
-            flex: 0 0 280px;
-            scroll-snap-align: start;
-            will-change: transform;
-        }
-
-        @media (min-width: 768px) {
-            .carousel-card {
-                flex: 0 0 320px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .carousel-card {
-                flex: 0 0 360px;
-            }
-        }
-
-        /* Card hover lift (CSS fallback, GSAP handles on JS) */
-        .card-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            will-change: transform;
-        }
-
-        /* -- Stripe pattern (Style 4) ----------- */
-        .stripe-bg {
-            background-image: repeating-linear-gradient(-45deg,
-                    transparent, transparent 8px,
-                    rgba(10, 10, 10, 0.06) 8px, rgba(10, 10, 10, 0.06) 9px);
-        }
-
-        /* -- Mobile Menu ----------------------- */
-        #mobile-menu {
-            display: none;
-        }
-
-        #mobile-menu.open {
-            display: block;
-        }
-
-        /* -- WhatsApp Float -------------------- */
-        .wa-float {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 999;
-            width: 3.5rem;
-            height: 3.5rem;
-            background: #0A0A0A;
-            border-radius: 9999px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s;
-            will-change: transform;
-        }
-
-        .wa-float:hover {
-            transform: scale(1.08);
-        }
-
-        /* -- Hover underline for CTA links ---- */
-        .cta-underline {
-            position: relative;
-        }
-
-        .cta-underline::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #F5F0E8;
-            transition: width 0.3s ease;
-        }
-
-        .cta-underline:hover::after {
-            width: 100%;
-        }
-
-        .cta-underline-ink::after {
-            background: #0A0A0A;
-        }
-
-        /* Highlight Box (per-line wrapping) */
-        .highlight-box {
-            background-color: #E5DDD0;
-            padding: 0 8px;
-            display: inline;
-            box-decoration-break: clone;
-            -webkit-box-decoration-break: clone;
-            line-height: inherit;
-        }
-
-        /* -- word span for text reveal --------- */
-        .word {
-            display: inline-block;
-            will-change: transform, opacity;
-        }
-
-        /* Filter Buttons */
-        .filter-btn {
-            padding: 8px 16px;
-            border: 1px solid #0A0A0A;
-            background: transparent;
-            color: #0A0A0A;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 12px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border-radius: 0;
-        }
-
-        .filter-btn:hover {
-            background: #E5DDD0;
-        }
-
-        .filter-btn.active {
-            background: #0A0A0A;
-            color: #F5F0E8;
-        }
-    </style>
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr}
+  .stage{width:min(76%,300px);margin-top:20px}
+  .grid4{grid-template-columns:repeat(3,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr);row-gap:20px}
+  .about{grid-template-columns:1fr;gap:32px}
+  .photo{max-width:380px}
+  .plans,.quotes{grid-template-columns:1fr}
+  .plan.pop{box-shadow:6px 6px 0 var(--accent)}
+}
+@media (max-width:720px){
+  body{font-size:16px}
+  .top-row{height:58px;gap:10px}
+  .nav a.l{display:none}
+  .nav{margin-left:auto}
+  .nav-sub{display:flex;gap:4px;overflow-x:auto;padding:0 var(--gutter) 10px;scrollbar-width:none}
+  .nav-sub a{flex:none;font-size:14px;font-weight:500;text-decoration:none;color:var(--muted);padding:6px 12px;border-radius:999px;border:1px solid var(--line)}
+  html{scroll-padding-top:120px}
+  .hero{padding-top:36px}
+  .grid4{grid-template-columns:repeat(2,1fr);gap:12px}
+  section{padding:64px 0}
+  .tl-body{grid-template-columns:62px 1fr;gap:0 10px}
+  .tl-labels span{font-size:10px}
+  .steps{grid-template-columns:1fr}
+  .contact{padding:48px 22px;border-radius:24px}
+  .chip.a{left:-6px}.chip.b{right:-4px}.chip.c{left:-4px}
+  .proof strong{font-size:26px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .playhead{left:10%}
+}
+</style>
 </head>
+<body>
 
-<body class="antialiased overflow-x-hidden">
-
-    <!-- =======================================
-     NAVBAR
-======================================= -->
-    <nav id="navbar" class="fixed w-full z-50 border-b border-ink/10 transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-
-            <!-- Logo -->
-            <a href="#" class="font-display font-black text-xl text-ink tracking-tight">Rioz<span
-                    class="text-ink">.</span></a>
-
-            <!-- Desktop Links -->
-            <div class="hidden md:flex items-center gap-7">
-                <a href="portfolio/index.html" class="nav-link text-sm font-medium text-ink" data-i18n="nav_work">Portoforioz</a>
-                <a href="#about" class="nav-link text-sm font-medium text-ink" data-i18n="nav_about">About</a>
-                <a href="#layanan" class="nav-link text-sm font-medium text-ink" data-i18n="nav_layanan">Layanan</a>
-                <a href="#review" class="nav-link text-sm font-medium text-ink" data-i18n="nav_review">Review</a>
-                <a href="#contact" class="nav-link text-sm font-medium text-ink" data-i18n="nav_contact">Kontak</a>
-
-                <!-- Lang toggle -->
-                <div class="flex items-center border border-ink rounded-sm overflow-hidden">
-                    <button onclick="setLang('id')" id="btn-id"
-                        class="text-xs font-bold px-3 py-1.5 bg-ink text-cream transition-all">ID</button>
-                    <button onclick="setLang('en')" id="btn-en"
-                        class="text-xs font-bold px-3 py-1.5 text-ink transition-all">EN</button>
-                </div>
-            </div>
-
-            <!-- Mobile hamburger -->
-            <button id="mobile-menu-btn" class="md:hidden text-2xl text-ink" aria-label="Toggle menu">
-                <i class="ph ph-list" id="menu-icon-open"></i>
-                <i class="ph ph-x hidden" id="menu-icon-close"></i>
-            </button>
-        </div>
-
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="md:hidden border-t border-ink" style="background-color:#F5F0E8;">
-            <div class="max-w-6xl mx-auto px-6 py-5 flex flex-col gap-5">
-                <a href="portfolio/index.html" class="text-base font-medium text-ink" data-i18n="nav_work">Portoforioz</a>
-                <a href="#about" class="text-base font-medium text-ink" data-i18n="nav_about">About</a>
-                <a href="#layanan" class="text-base font-medium text-ink" data-i18n="nav_layanan">Layanan</a>
-                <a href="#review" class="text-base font-medium text-ink" data-i18n="nav_review">Review</a>
-                <a href="#contact" class="text-base font-medium text-ink" data-i18n="nav_contact">Kontak</a>
-                <div class="flex items-center border border-ink rounded-sm overflow-hidden w-fit">
-                    <button onclick="setLang('id')" class="text-xs font-bold px-3 py-1.5 bg-ink text-cream transition-all">ID</button>
-                    <button onclick="setLang('en')" class="text-xs font-bold px-3 py-1.5 text-ink transition-all">EN</button>
-                </div>
-            </div>
-        </div>
+<header class="top">
+  <div class="wrap top-row">
+    <a class="logo" href="#home" aria-label="Rioz, beranda">Rioz<i>.</i></a>
+    <nav class="nav" aria-label="Utama">
+      <a class="l" href="#work" data-i="nav_work">Portofolio</a>
+      <a class="l" href="#layanan" data-i="nav_svc">Layanan</a>
+      <a class="l" href="#about" data-i="nav_about">Tentang</a>
+      <a class="l" href="#review" data-i="nav_rev">Review</a>
+      <div class="lang" role="group" aria-label="Bahasa">
+        <button type="button" data-lang="id" aria-pressed="true">ID</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="btn primary sm" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya." target="_blank" rel="noopener noreferrer" data-i="nav_cta">Konsultasi gratis</a>
     </nav>
+  </div>
+  <div class="nav-sub" aria-label="Pintasan">
+    <a href="#work" data-i="nav_work">Portofolio</a>
+    <a href="#layanan" data-i="nav_svc">Layanan</a>
+    <a href="#about" data-i="nav_about">Tentang</a>
+    <a href="#review" data-i="nav_rev">Review</a>
+  </div>
+  <div class="prog" id="prog" aria-hidden="true"><b></b><span id="progT">0%</span></div>
+</header>
 
-    <!-- =======================================
-     HERO
-======================================= -->
-    <section id="home" class="pt-40 pb-20 px-6" style="border-bottom: 1px solid #0A0A0A;">
-        <div class="max-w-6xl mx-auto">
+<main id="home">
 
-            <p class="text-xs font-sans font-medium uppercase tracking-widest text-muted mb-8" data-i18n="hero_eyebrow">
-                Editor Video Vertikal &middot; TikTok &middot; Reels &middot; Shorts
-            </p>
-
-            <h1 id="hero-headline"
-                class="font-display font-black text-5xl md:text-7xl lg:text-8xl text-ink leading-none mb-10"
-                style="max-width: 18ch;">
-                <span data-i18n="hero_line1">Bikin video shortform kamu</span> <span data-i18n="hero_highlight1"
-                    class="highlight-box">naik algoritma.</span><br>
-                <span data-i18n="hero_line2"><strong>Hook 3 detik.</strong> Subtitle. B-roll. Beres.</span>
-            </h1>
-
-            <p class="text-base text-muted mb-12" style="max-width:42ch;" data-i18n="hero_sub">
-                Editor video vertikal untuk UMKM, toko online, dan content creator.
-            </p>
-
-            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya."
-                    target="_blank" rel="noopener noreferrer"
-                    class="inline-block px-8 py-4 font-sans font-semibold text-sm tracking-wide cta-underline"
-                    style="background:#0A0A0A;color:#F5F0E8;" data-i18n="hero_cta_primary">
-                    Konsultasi Gratis dulu &rarr;
-                </a>
-                <a href="portfolio/index.html"
-                    class="inline-block px-8 py-4 font-sans font-semibold text-sm tracking-wide text-ink cta-underline cta-underline-ink"
-                    style="border:1px solid #0A0A0A;" data-i18n="hero_cta_secondary">
-                    Lihat Portofolio &darr;
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- =======================================
-     MARQUEE BAR
-======================================= -->
-    <div class="overflow-hidden"
-        style="background:#0A0A0A;border-top:1px solid #0A0A0A;border-bottom:1px solid #0A0A0A;padding:12px 0;">
-        <div class="marquee-track">
-            <span class="font-sans text-sm uppercase tracking-wider px-6" style="color:#F5F0E8;white-space:nowrap;"
-                data-i18n="marquee_text">
-                500+ VIDEO SELESAI &middot; 5+ TAHUN PENGALAMAN &middot; 5+ KLIEN AKTIF &middot; MULAI RP150RB &middot; BOOKING VIA WHATSAPP &middot;
-                RESPON CEPAT &middot;&nbsp;
-            </span>
-            <span class="font-sans text-sm uppercase tracking-wider px-6" style="color:#F5F0E8;white-space:nowrap;"
-                aria-hidden="true" data-i18n="marquee_text">
-                500+ VIDEO SELESAI &middot; 5+ TAHUN PENGALAMAN &middot; 5+ KLIEN AKTIF &middot; MULAI RP150RB &middot; BOOKING VIA WHATSAPP &middot;
-                RESPON CEPAT &middot;&nbsp;
-            </span>
-        </div>
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow" data-i="hero_eyebrow">Editor video vertikal / TikTok / Reels / Shorts</p>
+      <h1 data-i="hero_h1">Bikin video shortform kamu <mark>naik algoritma.</mark></h1>
+      <p class="lede" data-i="hero_lede"><b>Hook 3 detik.</b> Subtitle. B-roll. Beres. Untuk UMKM, toko online, dan content creator.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya." target="_blank" rel="noopener noreferrer" data-i="hero_cta1">Konsultasi gratis</a>
+        <a class="btn ghost" href="#work" data-i="hero_cta2">Lihat portofolio</a>
+      </div>
+      <div class="proof">
+        <div><strong>5+</strong><span data-i="st1">tahun mengedit</span></div>
+        <div><strong>500+</strong><span data-i="st2">video selesai</span></div>
+        <div><strong>5+</strong><span data-i="st3">klien aktif</span></div>
+      </div>
     </div>
 
-    <!-- =======================================
-     STATS
-======================================= -->
-    <section id="stats" style="border-bottom:1px solid #0A0A0A;">
-        <div class="max-w-6xl mx-auto px-6 py-16">
-            <div class="grid grid-cols-1 md:grid-cols-3 md:divide-x" style="border-color:#0A0A0A;">
+    <div class="stage" aria-hidden="true">
+      <div class="phone">
+        <div class="phone-top"><span class="recd">REC</span><span id="tc">0:00</span></div>
+        <div class="cap" id="cap"><em>3 detik</em> pertama</div>
+        <div class="hookbar"><p><span>Hook</span><span>3.0s</span></p><div><b id="hb"></b></div></div>
+      </div>
+      <span class="chip a">Hook 3 detik</span>
+      <span class="chip b">Subtitle</span>
+      <span class="chip c">B-roll</span>
+    </div>
+  </div>
+</div>
 
-                <div class="py-10 md:py-0 md:pr-12">
-                    <p class="font-display font-black text-6xl text-ink mb-2">
-                        <span class="stat-num" data-target="5" data-suffix="+">0+</span>
-                    </p>
-                    <p class="text-xs font-sans font-semibold uppercase tracking-widest text-muted"
-                        data-i18n="stat_1_label">Tahun Pengalaman</p>
-                </div>
-
-                <div class="py-10 md:py-0 md:px-12 border-t md:border-t-0" style="border-color:#0A0A0A;">
-                    <p class="font-display font-black text-6xl text-ink mb-2">
-                        <span class="stat-num" data-target="500" data-suffix="+">0+</span>
-                    </p>
-                    <p class="text-xs font-sans font-semibold uppercase tracking-widest text-muted"
-                        data-i18n="stat_2_label">Video Selesai</p>
-                </div>
-
-                <div class="py-10 md:py-0 md:pl-12 border-t md:border-t-0" style="border-color:#0A0A0A;">
-                    <p class="font-display font-black text-6xl text-ink mb-2">
-                        <span class="stat-num" data-target="5" data-suffix="+">0+</span>
-                    </p>
-                    <p class="text-xs font-sans font-semibold uppercase tracking-widest text-muted"
-                        data-i18n="stat_3_label">Klien Aktif</p>
-                </div>
-
-            </div>
+<!-- TIMELINE -->
+<div class="tl-sec">
+  <div class="wrap">
+    <div class="tl-head">
+      <h2 class="sr" data-i="tl_title">Anatomi satu video</h2>
+      <span data-i="tl_cap">Anatomi satu video 30 detik</span>
+      <span>00:00 &rarr; 00:30</span>
+    </div>
+    <div class="tl" aria-hidden="true">
+      <div class="tl-body">
+        <div class="tl-labels"><span></span><span>Video</span><span>Subtitle</span><span>B-roll</span><span>Audio</span></div>
+        <div class="tl-tracks">
+          <div class="ruler"><span style="left:0">0s</span><span style="left:10%">3s</span><span style="left:33.3%">10s</span><span style="left:66.6%">20s</span><span style="left:100%">30s</span></div>
+          <div class="row"><div class="clip hot" style="left:0;width:10%">HOOK</div><div class="clip" style="left:10.6%;width:68%" data-i="tl_isi">Isi: produk, edukasi, atau cerita</div><div class="clip" style="left:79.5%;width:20.5%">CTA</div></div>
+          <div class="row"><div class="clip hot" style="left:0;width:10%"></div><div class="clip" style="left:10.6%;width:22%"></div><div class="clip" style="left:33.9%;width:22%"></div><div class="clip" style="left:57.2%;width:22%"></div><div class="clip" style="left:80.5%;width:19.5%"></div></div>
+          <div class="row"><div class="clip" style="left:14%;width:14%">b-roll</div><div class="clip" style="left:40%;width:17%">b-roll</div><div class="clip" style="left:64%;width:12%">b-roll</div></div>
+          <div class="row"><div class="wave"></div></div>
+          <div class="playhead"></div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <!-- =======================================
-     WORK — 12 CARDS
-======================================= -->
-    <section id="work" class="py-24 px-6" style="border-bottom:1px solid #0A0A0A;">
-        <div class="max-w-6xl mx-auto">
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 data-i="work_title">Portofolio</h2>
+      <p data-i="work_sub">Video shortform yang sudah saya kerjakan. Klik untuk menonton di YouTube.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filter">
+      <button type="button" data-f="all" aria-pressed="true" data-i="f_all">Semua</button>
+      <button type="button" data-f="ai" aria-pressed="false">AI Content</button>
+      <button type="button" data-f="edu" aria-pressed="false">Educational</button>
+      <button type="button" data-f="talk" aria-pressed="false">Talking Head</button>
+    </div>
+    <div class="grid4" id="grid"></div>
+    <div class="more">
+      <a class="btn ghost" href="portfolio/index.html" data-i="work_all">Lihat semua portofolio (100+)</a>
+    </div>
+  </div>
+</section>
 
-            <div class="flex items-end justify-between mb-12">
-                <div>
-                    <h2 class="font-display font-black text-5xl text-ink mb-3" data-i18n="work_title">Portoforioz</h2>
-                    <p class="text-muted text-sm font-sans" data-i18n="work_sub">Portofolio video shortform yang sudah
-                        saya kerjakan.</p>
-                </div>
-            </div>
+<!-- STEPS -->
+<section id="cara" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><h2 data-i="how_title">Cara kerja</h2></div>
+    <div class="steps">
+      <div class="step"><p class="t">01</p><h3 data-i="s1h">Booking</h3><p data-i="s1p">Chat WhatsApp, ceritakan produk atau brand kamu.</p></div>
+      <div class="step"><p class="t">02</p><h3 data-i="s2h">Edit</h3><p data-i="s2p">Pengerjaan 2-3 hari untuk satu video.</p></div>
+      <div class="step"><p class="t">03</p><h3 data-i="s3h">Revisi</h3><p data-i="s3p">Maksimal 2-3x revisi per video.</p></div>
+      <div class="step"><p class="t">04</p><h3 data-i="s4h">Siap posting</h3><p data-i="s4p">Video vertikal dengan hook, subtitle, dan b-roll.</p></div>
+    </div>
+  </div>
+</section>
 
-            <div class="carousel-track">
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/LaKAMuOq0HI" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">AI Generated Content — AI Content</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">AI Content</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/dYAoe35bcRc" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">AI Generated Content 2 — AI Content</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">AI Content</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/1oazDgxpZjY" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Educational Content 1 — Educational</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Educational</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/qlq898T6_1k" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Educational Content 2 — Educational</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Educational</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/1Ev-ZArl3eI" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Educational Content 3 — Educational</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Educational</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/_GORMH5jvro" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Educational Content 4 — Educational</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Educational</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/t_z4TG3IRy4" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Talking Head 1 — Talking Head</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/aLAjmtTa-ug" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Talking Head 2 — Talking Head</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/lexhy9yeQ5U" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Talking Head 3 — Talking Head</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/1ZHpn6AnRjQ" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Talking Head 4 — Talking Head</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/Tzj8d9rnYYg" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Talking Head 5 — Talking Head</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
-                    </div>
-                </div>
-                <div class="carousel-card card-lift">
-                    <div class="aspect-[9/16] relative overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <iframe src="https://www.youtube.com/embed/pjQ0C0SZ6rU" class="w-full h-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-sans font-medium text-sm text-ink">Talking Head 6 — Talking Head</p>
-                        <p class="font-sans text-xs text-muted mt-0.5">Talking Head</p>
-                    </div>
-                </div>
-            </div>
+<!-- ABOUT -->
+<section id="about" style="padding-top:0">
+  <div class="wrap about">
+    <div class="photo" aria-hidden="false">R<img src="assets/img/profile.jpg" alt="Damario Indra Wibowo, editor video vertikal" loading="lazy" onerror="this.remove()"></div>
+    <div>
+      <h2 data-i="about_title">Editor yang paham jualan.</h2>
+      <p data-i="about_p">Mahasiswa Teknik Informatika yang jatuh cinta sama dunia editing video. Sejak 2020, saya bantu UMKM, toko online, dan content creator bikin video shortform yang beneran jualan, bukan cuma rapi, tapi punya hook, subtitle, dan b-roll yang bikin orang berhenti scroll.</p>
+      <div class="facts"><span data-i="fa1">Sejak 2020</span><span data-i="fa2">UMKM dan toko online</span><span data-i="fa3">TikTok, Reels, Shorts</span></div>
+      <div class="cta-row"><a class="btn ghost" href="https://wa.me/62895413935821" target="_blank" rel="noopener noreferrer" data-i="about_cta">Chat saya</a></div>
+    </div>
+  </div>
+</section>
 
-            <div class="mt-16 text-center">
-                <a href="portfolio/index.html"
-                    class="inline-block font-sans font-bold text-sm uppercase tracking-widest text-ink bg-transparent py-4 px-10 transition-colors hover:bg-dimcream"
-                    style="border: 1px solid #0A0A0A;" data-i18n="work_see_all">
-                    Lihat Semua Portofolio (100+) &rarr;
-                </a>
-            </div>
-        </div>
-    </section>
+<!-- PLANS -->
+<section id="layanan" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 data-i="svc_title">Layanan</h2>
+      <p data-i="svc_sub">Pilih paket yang paling cocok. Butuh custom? Chat WhatsApp.</p>
+    </div>
+    <div class="plans">
+      <article class="plan">
+        <h3>Short-form</h3>
+        <p class="price">Rp300.000 <small data-i="p_unit1">/ video</small></p>
+        <p class="per" data-i="p1_per">1 video</p>
+        <ul>
+          <li data-i="p1a">1 video vertikal siap posting</li>
+          <li data-i="p1b">Hook, subtitle, b-roll</li>
+          <li data-i="p1c">Revisi maksimal 2-3x</li>
+          <li data-i="p1d">Pengerjaan 2-3 hari</li>
+        </ul>
+        <a class="btn ghost" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Short-form%20(Rp300rb)" target="_blank" rel="noopener noreferrer" data-i="book">Booking via WhatsApp</a>
+      </article>
+      <article class="plan pop">
+        <span class="badge" data-i="pop">Populer</span>
+        <h3>Bundling Growth</h3>
+        <p class="price">Rp2.000.000 <small data-i="p_unit2">/ 8 video</small></p>
+        <p class="per" data-i="p2_per">Setara Rp250.000 per video</p>
+        <ul>
+          <li data-i="p2a">8 video vertikal</li>
+          <li data-i="p2b">Revisi maksimal 2-3x per video</li>
+          <li data-i="p2c">Prioritas pengerjaan</li>
+          <li data-i="p2d">Gratis konsultasi strategi konten</li>
+        </ul>
+        <a class="btn primary" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Bundling%20Growth%20(Rp2jt)" target="_blank" rel="noopener noreferrer" data-i="book">Booking via WhatsApp</a>
+      </article>
+      <article class="plan">
+        <h3>Retainer Premium</h3>
+        <p class="price">Rp3.500.000 <small data-i="p_unit3">/ bulan</small></p>
+        <p class="per" data-i="p3_per">12 video, sekitar Rp292.000 per video</p>
+        <ul>
+          <li data-i="p3a">12 video per bulan</li>
+          <li data-i="p3b">Revisi maksimal 2-3x per video</li>
+          <li data-i="p3c">Prioritas super dan komunikasi intensif</li>
+          <li data-i="p3d">Gratis thumbnail dan caption</li>
+          <li data-i="p3e">Konsultasi strategi 1-on-1 bulanan</li>
+        </ul>
+        <a class="btn ghost" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Retainer%20Premium%20(Rp3.5jt)" target="_blank" rel="noopener noreferrer" data-i="book">Booking via WhatsApp</a>
+      </article>
+    </div>
+  </div>
+</section>
 
-    <!-- =======================================
-     ABOUT ME
-======================================= -->
-    <section id="about" class="py-24 px-6" style="border-bottom:1px solid #0A0A0A;">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+<!-- REVIEWS -->
+<section id="review" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 data-i="rev_title">Kata klien</h2>
+      <p data-i="rev_sub">Dari brand yang sudah kerja sama.</p>
+    </div>
+    <div class="quotes">
+      <figure class="q" style="margin:0">
+        <blockquote data-i="q1">&ldquo;Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!&rdquo;</blockquote>
+        <footer><div class="av">W</div><div><b>Wije.id</b><span data-i="q1r">Toko peralatan dapur</span></div></footer>
+      </figure>
+      <figure class="q" style="margin:0">
+        <blockquote data-i="q2">&ldquo;Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.&rdquo;</blockquote>
+        <footer><div class="av">M</div><div><b>Melaminku.id</b><span data-i="q2r">Perlengkapan melamin</span></div></footer>
+      </figure>
+      <figure class="q" style="margin:0">
+        <blockquote data-i="q3">&ldquo;Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.&rdquo;</blockquote>
+        <footer><div class="av">M</div><div><b>MyLO</b><span data-i="q3r">Platform parenting dan bayi</span></div></footer>
+      </figure>
+    </div>
+  </div>
+</section>
 
-                <!-- FOTO PROFIL -->
-                <div class="lg:col-span-5">
-                    <div class="aspect-[4/5] overflow-hidden" style="border:1px solid #0A0A0A;">
-                        <img src="assets/img/profile.jpg" alt="Damarioz Indra Wibowo &mdash; Vertical Video Editor"
-                            class="w-full h-full object-cover" loading="lazy">
-                    </div>
-                </div>
+<!-- CONTACT -->
+<section id="contact" style="padding-top:0">
+  <div class="contact">
+    <h2 data-i="c_title">Mari bikin video kamu <mark>naik.</mark></h2>
+    <p class="s" data-i="c_sub">Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.</p>
+    <a class="btn primary" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya." target="_blank" rel="noopener noreferrer" data-i="c_cta">Chat WhatsApp</a>
+    <p class="reply" data-i="c_reply">Biasanya membalas dalam hitungan menit</p>
+    <div class="socials">
+      <a href="https://www.linkedin.com/in/riozz18/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://www.instagram.com/riozz18/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://linktr.ee/riozz" target="_blank" rel="noopener noreferrer">Linktree</a>
+      <a href="https://drive.google.com/file/d/11WC1K-IE0FJb7NVCzSWL7n8p2ZW-LWSq/view?usp=sharing" target="_blank" rel="noopener noreferrer" data-i="cv">Download CV</a>
+    </div>
+    <p class="mail">damariozjr@gmail.com</p>
+  </div>
+</section>
+</main>
 
-                <!-- Teks -->
-                <div class="lg:col-span-7">
-                    <h2 class="font-display font-black text-5xl text-ink mb-10" data-i18n="about_title">About Me</h2>
-                    <p class="text-base text-ink font-sans leading-relaxed mb-10" data-i18n="about_text">
-                        Mahasiswa Teknik Informatika yang jatuh cinta sama dunia editing video. Sejak 2020, saya bantu
-                        UMKM, toko online, dan content creator bikin video shortform yang beneran jualan &mdash; bukan cuma
-                        rapi, tapi punya hook, subtitle, dan b-roll yang bikin orang berhenti scroll.
-                    </p>
-                    <a href="https://wa.me/62895413935821" target="_blank" rel="noopener noreferrer"
-                        class="text-sm font-sans font-semibold text-ink"
-                        style="border-bottom:1px solid #0A0A0A;padding-bottom:2px;" data-i18n="about_cta">
-                        Chat Saya &rarr;
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+<footer class="site">
+  <div class="wrap"><span>&copy; <span id="yr">2026</span> Rioz.</span><span data-i="foot">Editor Video Vertikal</span></div>
+</footer>
 
-    <!-- =======================================
-     LAYANAN
-======================================= -->
-    <section id="layanan" class="py-24 px-6" style="border-bottom:1px solid #0A0A0A;">
-        <div class="max-w-6xl mx-auto">
+<a class="wa" href="https://wa.me/62895413935821" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WA</a>
 
-            <div class="mb-14">
-                <h2 class="font-display font-black text-5xl text-ink mb-3" data-i18n="svc_title">Layanan</h2>
-                <p class="text-muted text-sm font-sans" data-i18n="svc_sub">Pilih paket yang paling cocok. Butuh custom?
-                    Chat WhatsApp.</p>
-            </div>
+<script>
+(function(){
+  var VIDS=[
+    ["LaKAMuOq0HI","ai"],["dYAoe35bcRc","ai"],
+    ["1oazDgxpZjY","edu"],["qlq898T6_1k","edu"],["1Ev-ZArl3eI","edu"],["_GORMH5jvro","edu"],
+    ["t_z4TG3IRy4","talk"],["aLAjmtTa-ug","talk"],["lexhy9yeQ5U","talk"],["1ZHpn6AnRjQ","talk"],["Tzj8d9rnYYg","talk"],["pjQ0C0SZ6rU","talk"]
+  ];
+  var CAT={ai:"AI Content",edu:"Educational",talk:"Talking Head"};
+  var count={ai:0,edu:0,talk:0};
+  var grid=document.getElementById("grid");
+  var html="";
+  VIDS.forEach(function(v,i){
+    count[v[1]]++;
+    var n=("0"+(i+1)).slice(-2);
+    html+='<a class="card" data-cat="'+v[1]+'" href="https://www.youtube.com/watch?v='+v[0]+'" target="_blank" rel="noopener noreferrer" aria-label="'+CAT[v[1]]+' '+count[v[1]]+'">'
+      +'<img src="https://img.youtube.com/vi/'+v[0]+'/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">'
+      +'<span class="n">'+n+'</span><span class="tag">'+CAT[v[1]]+'</span><span class="play"></span>'
+      +'<span class="ttl">'+CAT[v[1]]+' '+count[v[1]]+'<span>9:16</span></span></a>';
+  });
+  grid.innerHTML=html;
 
-            <div class="grid grid-cols-1 md:grid-cols-3" style="border:1px solid #0A0A0A;">
+  var chips=document.querySelectorAll(".filters button");
+  chips.forEach(function(b){b.addEventListener("click",function(){
+    chips.forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});
+    var f=b.getAttribute("data-f");
+    grid.querySelectorAll(".card").forEach(function(c){c.hidden=(f!=="all"&&c.getAttribute("data-cat")!==f)});
+  })});
 
-                <!-- Paket 1 -->
-                <div class="p-10 card-lift flex flex-col h-full border-b md:border-b-0 md:border-r"
-                    style="border-color:#0A0A0A;">
-                    <p class="font-sans text-xs font-semibold uppercase tracking-widest text-muted mb-6"
-                        data-i18n="svc_1_label">Paket 01</p>
-                    <h3 class="font-display font-bold text-3xl text-ink mb-4" data-i18n="svc_1_name">Short-form</h3>
-                    <p class="font-sans font-semibold text-ink text-base mb-6" data-i18n="svc_1_price">Rp300.000 / video</p>
-                    <p class="font-sans text-sm text-muted leading-relaxed mb-10 flex-1" data-i18n="svc_1_desc">1 video vertikal siap posting. Hook, subtitle, b-roll. Maksimal revisi 2-3x per video. Pengerjaan 2-3 hari.</p>
-                    <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20booking%20paket%20Short-form%20(Rp300rb)"
-                        target="_blank" rel="noopener noreferrer"
-                        class="inline-block px-6 py-3 font-sans text-sm font-semibold cta-underline mt-auto w-full text-center"
-                        style="background:#0A0A0A;color:#F5F0E8;" data-i18n="svc_btn">
-                        Booking via WhatsApp &rarr;
-                    </a>
-                </div>
+  var T={
+    id:{nav_work:"Portofolio",nav_svc:"Layanan",nav_about:"Tentang",nav_rev:"Review",nav_cta:"Konsultasi gratis",
+      hero_eyebrow:"Editor video vertikal / TikTok / Reels / Shorts",
+      hero_h1:"Bikin video shortform kamu <mark>naik algoritma.</mark>",
+      hero_lede:"<b>Hook 3 detik.</b> Subtitle. B-roll. Beres. Untuk UMKM, toko online, dan content creator.",
+      hero_cta1:"Konsultasi gratis",hero_cta2:"Lihat portofolio",st1:"tahun mengedit",st2:"video selesai",st3:"klien aktif",
+      tl_title:"Anatomi satu video",tl_cap:"Anatomi satu video 30 detik",tl_isi:"Isi: produk, edukasi, atau cerita",
+      work_title:"Portofolio",work_sub:"Video shortform yang sudah saya kerjakan. Klik untuk menonton di YouTube.",f_all:"Semua",work_all:"Lihat semua portofolio (100+)",
+      how_title:"Cara kerja",s1h:"Booking",s1p:"Chat WhatsApp, ceritakan produk atau brand kamu.",s2h:"Edit",s2p:"Pengerjaan 2-3 hari untuk satu video.",s3h:"Revisi",s3p:"Maksimal 2-3x revisi per video.",s4h:"Siap posting",s4p:"Video vertikal dengan hook, subtitle, dan b-roll.",
+      about_title:"Editor yang paham jualan.",
+      about_p:"Mahasiswa Teknik Informatika yang jatuh cinta sama dunia editing video. Sejak 2020, saya bantu UMKM, toko online, dan content creator bikin video shortform yang beneran jualan, bukan cuma rapi, tapi punya hook, subtitle, dan b-roll yang bikin orang berhenti scroll.",
+      fa1:"Sejak 2020",fa2:"UMKM dan toko online",fa3:"TikTok, Reels, Shorts",about_cta:"Chat saya",
+      svc_title:"Layanan",svc_sub:"Pilih paket yang paling cocok. Butuh custom? Chat WhatsApp.",
+      p_unit1:"/ video",p_unit2:"/ 8 video",p_unit3:"/ bulan",p1_per:"1 video",p2_per:"Setara Rp250.000 per video",p3_per:"12 video, sekitar Rp292.000 per video",
+      p1a:"1 video vertikal siap posting",p1b:"Hook, subtitle, b-roll",p1c:"Revisi maksimal 2-3x",p1d:"Pengerjaan 2-3 hari",
+      p2a:"8 video vertikal",p2b:"Revisi maksimal 2-3x per video",p2c:"Prioritas pengerjaan",p2d:"Gratis konsultasi strategi konten",
+      p3a:"12 video per bulan",p3b:"Revisi maksimal 2-3x per video",p3c:"Prioritas super dan komunikasi intensif",p3d:"Gratis thumbnail dan caption",p3e:"Konsultasi strategi 1-on-1 bulanan",
+      book:"Booking via WhatsApp",pop:"Populer",
+      rev_title:"Kata klien",rev_sub:"Dari brand yang sudah kerja sama.",
+      q1:"&ldquo;Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!&rdquo;",q1r:"Toko peralatan dapur",
+      q2:"&ldquo;Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.&rdquo;",q2r:"Perlengkapan melamin",
+      q3:"&ldquo;Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.&rdquo;",q3r:"Platform parenting dan bayi",
+      c_title:"Mari bikin video kamu <mark>naik.</mark>",c_sub:"Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.",c_cta:"Chat WhatsApp",c_reply:"Biasanya membalas dalam hitungan menit",cv:"Download CV",foot:"Editor Video Vertikal",
+      caps:[["3 detik"," pertama"],["3 detik pertama",""],["menentukan",""],["segalanya.",""]]},
+    en:{nav_work:"Work",nav_svc:"Services",nav_about:"About",nav_rev:"Reviews",nav_cta:"Free consultation",
+      hero_eyebrow:"Vertical video editor / TikTok / Reels / Shorts",
+      hero_h1:"Make your shortform video <mark>beat the algorithm.</mark>",
+      hero_lede:"<b>3-second hook.</b> Subtitles. B-roll. Done. For SMEs, online shops, and content creators.",
+      hero_cta1:"Free consultation",hero_cta2:"See portfolio",st1:"years editing",st2:"videos delivered",st3:"active clients",
+      tl_title:"Anatomy of one video",tl_cap:"Anatomy of a 30-second video",tl_isi:"Body: product, education, or story",
+      work_title:"Work",work_sub:"Shortform videos I have worked on. Click to watch on YouTube.",f_all:"All",work_all:"See full portfolio (100+)",
+      how_title:"How it works",s1h:"Booking",s1p:"Chat on WhatsApp and tell me about your product or brand.",s2h:"Edit",s2p:"2-3 day turnaround for one video.",s3h:"Revisions",s3p:"Up to 2-3 revisions per video.",s4h:"Ready to post",s4p:"Vertical video with hook, subtitles, and b-roll.",
+      about_title:"An editor who understands selling.",
+      about_p:"An Informatics Engineering student who fell in love with video editing. Since 2020, I have helped SMEs, online shops, and content creators make shortform videos that actually sell, not just polished, but with hooks, subtitles, and b-roll that make people stop scrolling.",
+      fa1:"Since 2020",fa2:"SMEs and online shops",fa3:"TikTok, Reels, Shorts",about_cta:"Chat with me",
+      svc_title:"Services",svc_sub:"Pick the right package. Need custom? Chat on WhatsApp.",
+      p_unit1:"/ video",p_unit2:"/ 8 videos",p_unit3:"/ month",p1_per:"1 video",p2_per:"Works out to Rp250,000 per video",p3_per:"12 videos, about Rp292,000 per video",
+      p1a:"1 vertical video ready to post",p1b:"Hook, subtitles, b-roll",p1c:"Up to 2-3 revisions",p1d:"2-3 day turnaround",
+      p2a:"8 vertical videos",p2b:"Up to 2-3 revisions per video",p2c:"Priority processing",p2d:"Free content strategy consultation",
+      p3a:"12 videos per month",p3b:"Up to 2-3 revisions per video",p3c:"Super priority and close communication",p3d:"Free thumbnails and captions",p3e:"Monthly 1-on-1 strategy session",
+      book:"Book via WhatsApp",pop:"Popular",
+      rev_title:"Client reviews",rev_sub:"From brands I have worked with.",
+      q1:"&ldquo;The promo video was neat and fast. The 3-second hook boosted my TikTok engagement. Recommended!&rdquo;",q1r:"Kitchenware store",
+      q2:"&ldquo;Fast turnaround, great communication, results matched our brand identity. Will definitely order again.&rdquo;",q2r:"Melamine goods",
+      q3:"&ldquo;An editor who understands parenting content. The videos are warm and easy for our audience to follow.&rdquo;",q3r:"Parenting and baby platform",
+      c_title:"Let's make your video <mark>blow up.</mark>",c_sub:"Free consultation. Tell me about your product or brand and I will help with the video strategy.",c_cta:"Chat on WhatsApp",c_reply:"Usually replies within minutes",cv:"Download CV",foot:"Vertical Video Editor",
+      caps:[["3 seconds"," first"],["first 3 seconds",""],["decide",""],["everything.",""]]}
+  };
+  var lang="id";
+  try{lang=localStorage.getItem("rioz_lang")||"id"}catch(e){}
+  if(!T[lang])lang="id";
+  function setLang(l){
+    lang=l;
+    try{localStorage.setItem("rioz_lang",l)}catch(e){}
+    document.documentElement.lang=l;
+    document.querySelectorAll("[data-i]").forEach(function(el){
+      var k=el.getAttribute("data-i");
+      if(T[l][k]!==undefined)el.innerHTML=T[l][k];
+    });
+    document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-lang")===l?"true":"false")});
+    cap(0);
+  }
+  document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-lang"))})});
 
-                <!-- Paket 2 -->
-                <div class="p-10 card-lift relative overflow-hidden flex flex-col h-full border-b md:border-b-0 md:border-r"
-                    style="border-color:#0A0A0A;">
-                    <span
-                        class="absolute top-0 right-0 bg-ink text-cream text-xs font-sans uppercase tracking-wider font-bold py-1 px-3"
-                        data-i18n="svc_2_badge">POPULER</span>
-                    <p class="font-sans text-xs font-semibold uppercase tracking-widest text-muted mb-6"
-                        data-i18n="svc_2_label">Paket 02</p>
-                    <h3 class="font-display font-bold text-3xl text-ink mb-4" data-i18n="svc_2_name">Bundling Growth
-                    </h3>
-                    <p class="font-sans font-semibold text-ink text-base mb-6" data-i18n="svc_2_price">Rp2.000.000 / 8 video</p>
-                    <p class="font-sans text-sm text-muted leading-relaxed mb-10 flex-1" data-i18n="svc_2_desc">8 video vertikal. Maksimal revisi 2-3x per video. Prioritas pengerjaan + free konsultasi strategi konten.</p>
-                    <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20booking%20paket%20Bundling%20Growth%20(Rp2jt)"
-                        target="_blank" rel="noopener noreferrer"
-                        class="inline-block px-6 py-3 font-sans text-sm font-semibold cta-underline mt-auto w-full text-center"
-                        style="background:#0A0A0A;color:#F5F0E8;" data-i18n="svc_btn">
-                        Booking via WhatsApp &rarr;
-                    </a>
-                </div>
+  var capEl=document.getElementById("cap"),tc=document.getElementById("tc"),hb=document.getElementById("hb");
+  var step=0;
+  function cap(i){
+    step=i;
+    var c=T[lang].caps;
+    var w=["<em>"+c[0][0]+"</em>"+c[0][1],c[1][0],c[2][0],"<em>"+c[3][0]+"</em>"];
+    capEl.innerHTML=w[i];
+    tc.textContent="0:0"+i;
+    hb.style.setProperty("--hb",(i===0?10:(i/3*100))+"%");
+    hb.style.width=(i===0?10:(i/3*100))+"%";
+  }
+  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(!reduce){setInterval(function(){cap((step+1)%4)},1300)}
 
-                <!-- Paket 3 -->
-                <div class="p-10 card-lift flex flex-col h-full">
-                    <p class="font-sans text-xs font-semibold uppercase tracking-widest text-muted mb-6"
-                        data-i18n="svc_3_label">Paket 03</p>
-                    <h3 class="font-display font-bold text-3xl text-ink mb-4" data-i18n="svc_3_name">Retainer Premium
-                    </h3>
-                    <p class="font-sans font-semibold text-ink text-base mb-6" data-i18n="svc_3_price">Rp3.500.000 / bulan</p>
-                    <p class="font-sans text-sm text-muted leading-relaxed mb-10 flex-1" data-i18n="svc_3_desc">12 video per bulan. Maksimal revisi 2-3x per video. Prioritas super + komunikasi intensif. Free thumbnail + caption. Konsultasi strategi 1-on-1 bulanan.</p>
-                    <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20booking%20paket%20Retainer%20Premium%20(Rp3.5jt)"
-                        target="_blank" rel="noopener noreferrer"
-                        class="inline-block px-6 py-3 font-sans text-sm font-semibold cta-underline mt-auto w-full text-center"
-                        style="background:#0A0A0A;color:#F5F0E8;" data-i18n="svc_btn">
-                        Booking via WhatsApp &rarr;
-                    </a>
-                </div>
+  var prog=document.getElementById("prog"),pt=document.getElementById("progT");
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(100,Math.max(0,window.scrollY/h*100)):0;
+    prog.style.setProperty("--p",p+"%");
+    pt.textContent=Math.round(p)+"%";
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});onScroll();
 
-            </div>
-        </div>
-    </section>
-
-    <!-- =======================================
-     REVIEW
-======================================= -->
-    <section id="review" class="py-24 px-6" style="border-bottom:1px solid #0A0A0A;">
-        <div class="max-w-6xl mx-auto">
-
-            <div class="mb-14">
-                <h2 class="font-display font-black text-5xl text-ink mb-3" data-i18n="review_title">Review</h2>
-                <p class="text-muted text-sm font-sans" data-i18n="review_sub">Kata klien yang sudah kerja sama.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3" style="border:1px solid #0A0A0A;">
-
-                <div class="p-10 card-lift flex flex-col h-full border-b md:border-b-0 md:border-r" style="border-color:#0A0A0A;">
-                    <div class="flex gap-1 mb-6 text-base text-ink tracking-widest">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                    </div>
-                    <p class="font-display italic text-xl text-ink leading-relaxed flex-1" data-i18n="rev_1_quote">
-                        &ldquo;Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya
-                        naik. Recommended!&rdquo;
-                    </p>
-                    <div class="flex items-center gap-4 mt-8 pt-6" style="border-top:1px solid #0A0A0A;">
-                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-ink text-cream font-display font-bold text-xl">W</div>
-                        <div>
-                            <p class="font-sans font-semibold text-sm text-ink" data-i18n="rev_1_name">Wije.id</p>
-                            <p class="font-sans text-xs text-muted mt-1" data-i18n="rev_1_role">Toko Peralatan Dapur</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-10 card-lift flex flex-col h-full border-b md:border-b-0 md:border-r" style="border-color:#0A0A0A;">
-                    <div class="flex gap-1 mb-6">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                    </div>
-                    <p class="font-display italic text-xl text-ink leading-relaxed flex-1" data-i18n="rev_2_quote">
-                        &ldquo;Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.&rdquo;
-                    </p>
-                    <div class="flex items-center gap-4 mt-8 pt-6" style="border-top:1px solid #0A0A0A;">
-                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-ink text-cream font-display font-bold text-xl">M</div>
-                        <div>
-                            <p class="font-sans font-semibold text-sm text-ink" data-i18n="rev_2_name">Melaminku.id</p>
-                            <p class="font-sans text-xs text-muted mt-1" data-i18n="rev_2_role">Perlengkapan Melamin</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-10 card-lift flex flex-col h-full">
-                    <div class="flex gap-1 mb-6">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                    </div>
-                    <p class="font-display italic text-xl text-ink leading-relaxed flex-1" data-i18n="rev_3_quote">
-                        &ldquo;Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.&rdquo;
-                    </p>
-                    <div class="flex items-center gap-4 mt-8 pt-6" style="border-top:1px solid #0A0A0A;">
-                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-ink text-cream font-display font-bold text-xl">M</div>
-                        <div>
-                            <p class="font-sans font-semibold text-sm text-ink" data-i18n="rev_3_name">MyLO</p>
-                            <p class="font-sans text-xs text-muted mt-1" data-i18n="rev_3_role">Platform Parenting &amp; Bayi</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- =======================================
-     CONTACT
-======================================= -->
-    <section id="contact" class="py-32 px-6" style="border-bottom:1px solid #0A0A0A;">
-        <div class="max-w-4xl mx-auto text-center">
-
-            <h2 class="font-display font-black text-5xl md:text-7xl text-ink leading-tight mb-8"
-                data-i18n="contact_title">
-                Mari bikin video kamu naik.
-            </h2>
-            <p class="text-muted text-base font-sans mb-14" data-i18n="contact_sub">
-                Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.
-            </p>
-
-            <div class="mb-6">
-                <a href="https://wa.me/62895413935821?text=Halo%20Riozz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya."
-                    target="_blank" rel="noopener noreferrer"
-                    class="inline-block px-10 py-5 font-sans font-bold text-base tracking-wide cta-underline"
-                    style="background:#0A0A0A;color:#F5F0E8;" data-i18n="contact_cta">
-                    Chat WhatsApp &mdash; Konsultasi Gratis &rarr;
-                </a>
-            </div>
-
-            <p class="font-sans text-sm text-muted mb-16" data-i18n="contact_response">
-                &bull; Biasanya membalas dalam hitungan menit
-            </p>
-
-            <div class="flex items-center justify-center flex-wrap gap-6">
-                <a href="https://www.linkedin.com/in/riozz18/" target="_blank" rel="noopener noreferrer"
-                    class="nav-link font-sans text-sm text-ink flex items-center gap-1.5 hover:opacity-60 transition-opacity">
-                    <i class="ph ph-linkedin-logo text-lg"></i> LinkedIn
-                </a>
-                <span class="text-muted text-xs">&middot;</span>
-                <a href="https://linktr.ee/riozz" target="_blank" rel="noopener noreferrer"
-                    class="nav-link font-sans text-sm text-ink flex items-center gap-1.5 hover:opacity-60 transition-opacity">
-                    <i class="ph ph-tree-structure text-lg"></i> Linktree
-                </a>
-                <span class="text-muted text-xs">&middot;</span>
-                <a href="https://www.instagram.com/riozz18/" target="_blank" rel="noopener noreferrer"
-                    class="nav-link font-sans text-sm text-ink flex items-center gap-1.5 hover:opacity-60 transition-opacity">
-                    <i class="ph ph-instagram-logo text-lg"></i> Instagram
-                </a>
-                <span class="text-muted text-xs">&middot;</span>
-                <a href="mailto:damariozjr@gmail.com"
-                    class="nav-link font-sans text-sm text-ink flex items-center gap-1.5 hover:opacity-60 transition-opacity">
-                    <i class="ph ph-envelope text-lg"></i> Email
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- =======================================
-     FOOTER
-======================================= -->
-    <footer style="border-top:1px solid #0A0A0A; padding: 80px 24px 32px; background-color:#F5F0E8;">
-        <div class="max-w-6xl mx-auto">
-
-            <!-- Tombol WA Utama -->
-            <div class="mb-16">
-                <a href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20konsultasi%20proyek%20video."
-                    target="_blank" rel="noopener noreferrer"
-                    class="inline-flex items-center gap-3 px-10 py-5 font-display font-bold text-lg md:text-xl"
-                    style="background:#0A0A0A; color:#F5F0E8;">
-                    <i class="ph ph-whatsapp-logo text-2xl"></i>
-                    Chat WhatsApp
-                    <span>&rarr;</span>
-                </a>
-                <p class="font-sans text-xs text-muted uppercase tracking-widest mt-5" data-i18n="footer_sub">
-                    Konsultasi gratis &middot; Balas dalam hitungan menit
-                </p>
-            </div>
-
-            <!-- Bottom bar -->
-            <div class="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-                style="border-top:1px solid #0A0A0A;">
-                <p class="font-sans text-xs text-muted uppercase tracking-wider">
-                    &copy; <span id="year"></span> Rioz. &mdash; <span data-i18n="footer_role">Editor Video Vertikal</span>
-                </p>
-                <a href="https://drive.google.com/file/d/11WC1K-IE0FJb7NVCzSWL7n8p2ZW-LWSq/view?usp=sharing"
-                    target="_blank" rel="noopener noreferrer"
-                    class="font-sans text-xs text-muted uppercase tracking-wider hover:text-ink transition-colors">
-                    Download CV &rarr;
-                </a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- =======================================
-     WHATSAPP FLOAT
-======================================= -->
-    <a href="https://wa.me/62895413935821" target="_blank" rel="noopener noreferrer" class="wa-float"
-        aria-label="WhatsApp">
-        <i class="ph ph-whatsapp-logo text-2xl" style="color:#F5F0E8;"></i>
-    </a>
-
-    <!-- =======================================
-     SCRIPTS
-======================================= -->
-    <script>
-        // -- Year -------------------------------------
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // -- Mobile Menu ------------------------------
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const iconOpen = document.getElementById('menu-icon-open');
-        const iconClose = document.getElementById('menu-icon-close');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('open');
-            iconOpen.classList.toggle('hidden');
-            iconClose.classList.toggle('hidden');
-        });
-        mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
-            iconOpen.classList.remove('hidden');
-            iconClose.classList.add('hidden');
-        }));
-
-        // -- Navbar border on scroll ------------------
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.style.borderBottomColor = window.scrollY > 20 ? '#0A0A0A' : 'transparent';
-        }, { passive: true });
-
-        // -- GSAP Animations --------------------------
-        gsap.registerPlugin(ScrollTrigger);
-
-        function splitWordsSafely(el) {
-            const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
-            const textNodes = [];
-            let node;
-            while (node = walker.nextNode()) {
-                if (node.nodeValue.trim() !== '') {
-                    textNodes.push(node);
-                }
-            }
-
-            textNodes.forEach(textNode => {
-                const words = textNode.nodeValue.split(/(\s+)/);
-                const fragment = document.createDocumentFragment();
-                words.forEach(w => {
-                    if (w.trim()) {
-                        const span = document.createElement('span');
-                        span.className = 'word';
-                        span.style.display = 'inline-block';
-                        span.style.opacity = '1';
-                        span.style.transform = 'none';
-                        span.textContent = w;
-                        fragment.appendChild(span);
-                    } else {
-                        fragment.appendChild(document.createTextNode(w));
-                    }
-                });
-                textNode.parentNode.replaceChild(fragment, textNode);
-            });
-            return el.querySelectorAll('.word');
-        }
-
-        // B) Count-Up Stats
-        gsap.utils.toArray('.stat-num').forEach(el => {
-            const target = parseInt(el.dataset.target);
-            const suffix = el.dataset.suffix || '';
-            ScrollTrigger.create({
-                trigger: el, start: 'top 85%', once: true,
-                onEnter() {
-                    gsap.to({ val: 0 }, {
-                        val: target, duration: 1.5, ease: 'power2.out',
-                        onUpdate() { el.textContent = Math.round(this.targets()[0].val) + suffix; }
-                    });
-                }
-            });
-        });
-
-        // C) Fade-Up Sections
-        gsap.utils.toArray('#work, #about, #layanan, #review, #contact').forEach(section => {
-            const children = section.querySelectorAll(':scope > div > *');
-            gsap.from(children, {
-                opacity: 0, y: 40, stagger: 0.1, duration: 0.8, ease: 'power2.out',
-                scrollTrigger: { trigger: section, start: 'top 80%', once: true }
-            });
-        });
-
-        // D) Hover Card Lift — GSAP on cards
-        gsap.utils.toArray('.card-lift').forEach(card => {
-            card.addEventListener('mouseenter', () =>
-                gsap.to(card, { y: -6, boxShadow: '0 10px 30px rgba(0,0,0,0.08)', duration: 0.3, ease: 'power2.out' })
-            );
-            card.addEventListener('mouseleave', () =>
-                gsap.to(card, { y: 0, boxShadow: '0 0 0 rgba(0,0,0,0)', duration: 0.3, ease: 'power2.out' })
-            );
-        });
-
-        // Stats section fade
-        gsap.from('#stats > div > div > div', {
-            opacity: 0, y: 30, stagger: 0.15, duration: 0.7, ease: 'power2.out',
-            scrollTrigger: { trigger: '#stats', start: 'top 80%', once: true }
-        });
-
-        // -- Bilingual System -------------------------
-        const translations = {
-            id: {
-                nav_work: "Portoforioz", nav_about: "About", nav_layanan: "Layanan",
-                nav_review: "Review", nav_contact: "Kontak",
-                hero_eyebrow: "Editor Video Vertikal &middot; TikTok &middot; Reels &middot; Shorts",
-                marquee_text: "500+ VIDEO SELESAI &middot; 5+ TAHUN PENGALAMAN &middot; 5+ KLIEN AKTIF &middot; MULAI RP150RB &middot; BOOKING VIA WHATSAPP &middot; RESPON CEPAT &middot;&nbsp;",
-                hero_line1: "Bikin video shortform kamu",
-                hero_highlight1: "naik algoritma.",
-                hero_line2: "<strong>Hook 3 detik.</strong> Subtitle. B-roll. Beres.",
-                hero_sub: "Editor video vertikal untuk UMKM, toko online, dan content creator.",
-                hero_cta_primary: "Konsultasi Gratis dulu &rarr;",
-                hero_cta_secondary: "Lihat Portofolio &darr;",
-                stat_1_label: "Tahun Pengalaman", stat_2_label: "Video Selesai", stat_3_label: "Klien Aktif",
-                work_title: "Portoforioz",
-                work_sub: "Portofolio video shortform yang sudah saya kerjakan.",
-                work_see_all: "Lihat Semua Portofolio (100+) &rarr;",
-                about_title: "About Me",
-                about_text: "Mahasiswa Teknik Informatika yang jatuh cinta sama dunia editing video. Sejak 2020, saya bantu UMKM, toko online, dan content creator bikin video shortform yang beneran jualan &mdash; bukan cuma rapi, tapi punya hook, subtitle, dan b-roll yang bikin orang berhenti scroll.",
-                about_cta: "Chat Saya &rarr;",
-                svc_title: "Layanan", svc_sub: "Pilih paket yang paling cocok. Butuh custom? Chat WhatsApp.",
-                svc_1_label: "Paket 01", svc_1_name: "Short-form", svc_1_price: "Rp300.000 / video",
-                svc_1_desc: "1 video vertikal siap posting. Hook, subtitle, b-roll. Maksimal revisi 2-3x per video. Pengerjaan 2-3 hari.",
-                svc_2_badge: "POPULER",
-                svc_2_label: "Paket 02", svc_2_name: "Bundling Growth", svc_2_price: "Rp2.000.000 / 8 video",
-                svc_2_desc: "8 video vertikal. Maksimal revisi 2-3x per video. Prioritas pengerjaan + free konsultasi strategi konten.",
-                svc_3_label: "Paket 03", svc_3_name: "Retainer Premium", svc_3_price: "Rp3.500.000 / bulan",
-                svc_3_desc: "12 video per bulan. Maksimal revisi 2-3x per video. Prioritas super + komunikasi intensif. Free thumbnail + caption. Konsultasi strategi 1-on-1 bulanan.",
-                svc_btn: "Booking via WhatsApp &rarr;",
-                review_title: "Review", review_sub: "Kata klien yang sudah kerja sama.",
-                rev_1_quote: "&ldquo;Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!&rdquo;",
-                rev_1_name: "Wije.id", rev_1_role: "Toko Peralatan Dapur",
-                rev_2_quote: "&ldquo;Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.&rdquo;",
-                rev_2_name: "Melaminku.id", rev_2_role: "Perlengkapan Melamin",
-                rev_3_quote: "&ldquo;Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.&rdquo;",
-                rev_3_name: "MyLO", rev_3_role: "Platform Parenting &amp; Bayi",
-                contact_title: "Mari bikin video kamu naik.",
-                contact_sub: "Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.",
-                contact_cta: "Chat WhatsApp &mdash; Konsultasi Gratis &rarr;",
-                contact_response: "&bull; Biasanya membalas dalam hitungan menit",
-                footer_sub: "Konsultasi gratis &middot; Balas dalam hitungan menit",
-                footer_role: "Editor Video Vertikal"
-            },
-            en: {
-                nav_work: "Portoforioz", nav_about: "About", nav_layanan: "Services",
-                nav_review: "Reviews", nav_contact: "Contact",
-                hero_eyebrow: "Vertical Video Editor &middot; TikTok &middot; Reels &middot; Shorts",
-                marquee_text: "500+ VIDEOS DELIVERED &middot; 5+ YEARS EXPERIENCE &middot; 5+ ACTIVE CLIENTS &middot; FROM RP150K &middot; BOOK VIA WHATSAPP &middot; FAST RESPONSE &middot;&nbsp;",
-                hero_line1: "Make your shortform video beat",
-                hero_highlight1: "the algorithm.",
-                hero_line2: "<strong>3-second hook.</strong> Subtitles. B-roll. Done.",
-                hero_sub: "Vertical video editor for SMEs, online shops, and content creators.",
-                hero_cta_primary: "Free Consultation &rarr;",
-                hero_cta_secondary: "See Portfolio &darr;",
-                stat_1_label: "Years of Experience", stat_2_label: "Videos Delivered", stat_3_label: "Active Clients",
-                work_title: "Portoforioz",
-                work_sub: "Shortform video portfolio I've worked on.",
-                work_see_all: "See Full Portfolio (100+) &rarr;",
-                about_title: "About Me",
-                about_text: "An Informatics Engineering student who fell in love with video editing. Since 2020, I've helped SMEs, online shops, and content creators make shortform videos that actually sell &mdash; not just polished, but with hooks, subtitles, and b-roll that make people stop scrolling.",
-                about_cta: "Chat Me &rarr;",
-                svc_title: "Services", svc_sub: "Pick the right package. Need custom? Chat on WhatsApp.",
-                svc_1_label: "Package 01", svc_1_name: "Short-form", svc_1_price: "Rp300,000 / video",
-                svc_1_desc: "1 vertical video ready to post. Hook, subtitle, b-roll. Max 2-3x revisions per video. 2-3 day turnaround.",
-                svc_2_badge: "POPULAR",
-                svc_2_label: "Package 02", svc_2_name: "Bundling Growth", svc_2_price: "Rp2,000,000 / 8 videos",
-                svc_2_desc: "8 vertical videos. Max 2-3x revisions per video. Priority processing + free content strategy consultation.",
-                svc_3_label: "Package 03", svc_3_name: "Retainer Premium", svc_3_price: "Rp3,500,000 / month",
-                svc_3_desc: "12 videos per month. Max 2-3x revisions per video. Super priority + intensive communication. Free thumbnail + caption. Monthly 1-on-1 strategy consultation.",
-                svc_btn: "Book via WhatsApp &rarr;",
-                review_title: "Reviews", review_sub: "What clients say after working together.",
-                rev_1_quote: "&ldquo;The promotional video produced was neat and fast. The 3-second hook boosted my TikTok engagement. Recommended!&rdquo;",
-                rev_1_name: "Wije.id", rev_1_role: "Kitchen Equipment Store",
-                rev_2_quote: "&ldquo;Fast turnaround, great communication, results matched our brand identity. Will definitely order again.&rdquo;",
-                rev_2_name: "Melaminku.id", rev_2_role: "Melamine Goods Shop",
-                rev_3_quote: "&ldquo;An editor who understands parenting content. The videos are warm and easy for our audience to understand.&rdquo;",
-                rev_3_name: "MyLO", rev_3_role: "Parenting &amp; Baby Platform",
-                contact_title: "Let's make your video blow up.",
-                contact_sub: "Free consultation. Tell me about your product or brand, and I'll help with the video strategy.",
-                contact_cta: "Chat WhatsApp &mdash; Free Consultation &rarr;",
-                contact_response: "&bull; Usually replies within minutes",
-                footer_sub: "Free consultation &middot; Replies within minutes",
-                footer_role: "Vertical Video Editor"
-            }
-        };
-
-        let currentLang = localStorage.getItem('rioz_lang') || 'id';
-
-        function setLang(lang) {
-            currentLang = lang;
-            localStorage.setItem('rioz_lang', lang);
-
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang]?.[key] !== undefined) {
-                    el.innerHTML = translations[lang][key];
-                }
-            });
-
-            // Update active button styles on both Desktop & Mobile
-            document.querySelectorAll('button[onclick="setLang(\'id\')"]').forEach(btn => {
-                btn.style.cssText = lang === 'id'
-                    ? 'background:#0A0A0A;color:#F5F0E8;'
-                    : 'background:transparent;color:#0A0A0A;';
-            });
-            document.querySelectorAll('button[onclick="setLang(\'en\')"]').forEach(btn => {
-                btn.style.cssText = lang === 'en'
-                    ? 'background:#0A0A0A;color:#F5F0E8;'
-                    : 'background:transparent;color:#0A0A0A;';
-            });
-
-            document.documentElement.lang = lang;
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Set saved language FIRST before GSAP runs
-            setLang(currentLang);
-
-            // 2. Wrap words for animation safely
-            const heroH1 = document.getElementById('hero-headline');
-            if (heroH1) {
-                splitWordsSafely(heroH1);
-                const words = heroH1.querySelectorAll('.word');
-                gsap.from(words, { opacity: 0, y: 30, stagger: 0.05, duration: 0.6, ease: 'power2.out', delay: 0.2 });
-            }
-
-            gsap.utils.toArray('h2[data-i18n]').forEach(h2 => {
-                splitWordsSafely(h2);
-                const words = h2.querySelectorAll('.word');
-                gsap.from(words, {
-                    opacity: 0, y: 30, stagger: 0.05, duration: 0.6, ease: 'power2.out',
-                    scrollTrigger: { trigger: h2, start: 'top 85%', once: true }
-                });
-            });
-        });
-    </script>
+  document.getElementById("yr").textContent=new Date().getFullYear();
+  setLang(lang);
+})();
+</script>
 </body>
-
 </html>
