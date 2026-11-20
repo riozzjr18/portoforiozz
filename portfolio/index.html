@@ -1,589 +1,239 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Rioz.</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portofolio Rioz | 104 Video Shortform</title>
+<meta name="description" content="104 video vertikal hasil editing Rioz: talking head, edukasi, comedy skit, recap event, testimoni, dan product showcase.">
+<meta property="og:title" content="Portofolio Rioz | 104 Video Shortform">
+<meta property="og:description" content="104 video vertikal hasil editing Rioz untuk UMKM, toko online, dan brand.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://riozzjr18.github.io/portoforiozz/portfolio/">
+<link rel="canonical" href="https://riozzjr18.github.io/portoforiozz/portfolio/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Same system as the homepage: editor UI, red playhead accent. This page is the media bin. */
+:root{
+  --bg:#F2F3EF;--surface:#FFFFFF;--ink:#15171C;--muted:#5B6068;--line:#D9DBD3;--accent:#FF3D1F;--on-accent:#FFFFFF;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gutter:20px;--max:1180px;color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1013;--surface:#171A1F;--ink:#F2F3EF;--muted:#A0A5AD;--line:#2A2E35;--accent:#FF5636;--on-accent:#0E1013;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1013;--surface:#171A1F;--ink:#F2F3EF;--muted:#A0A5AD;--line:#2A2E35;--accent:#FF5636;--on-accent:#0E1013;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body.lock{overflow:hidden}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-0.02em;line-height:1.02;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        cream: '#F5F0E8',
-                        ink: '#0A0A0A',
-                        muted: '#4A4A4A',
-                        dimcream: '#E5DDD0'
-                    },
-                    fontFamily: {
-                        display: ['Unbounded', 'sans-serif'],
-                        sans: ['Space Grotesk', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top-row{display:flex;align-items:center;gap:16px;height:64px}
+.logo{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:-0.03em;text-decoration:none}
+.logo i{color:var(--accent);font-style:normal}
+.nav{display:flex;gap:6px;margin-left:auto;align-items:center}
+.nav a.l{font-size:15px;font-weight:500;text-decoration:none;padding:8px 12px;border-radius:999px;color:var(--muted)}
+.nav a.l:hover,.nav a.l[aria-current]{color:var(--ink);background:color-mix(in srgb,var(--ink) 7%,transparent)}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{font:600 12px var(--mono);border:0;background:transparent;color:var(--muted);padding:6px 11px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:600 16px var(--body);text-decoration:none;border-radius:999px;padding:14px 24px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:transform .18s ease,background .18s ease,color .18s ease}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.primary:hover{transform:translateY(-2px)}
+.btn.ghost:hover{background:var(--ink);color:var(--bg)}
+.btn.sm{padding:9px 18px;font-size:14px}
 
-    <style>
-        body { background-color: #F5F0E8; color: #0A0A0A; }
-        
-        .cta-underline { position: relative; }
-        .cta-underline::after {
-            content: ''; position: absolute; bottom: -2px; left: 0;
-            width: 0; height: 1px; background: #0A0A0A; transition: width 0.3s ease;
-        }
-        .cta-underline:hover::after { width: 100%; }
+.head{padding:48px 0 28px}
+.crumb{font:500 13px var(--mono);color:var(--muted);margin-bottom:20px}
+.crumb a{text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+.head-grid{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+h1{font-size:clamp(52px,9vw,128px);font-weight:800;letter-spacing:-0.04em}
+h1 sup{font:500 clamp(14px,1.6vw,20px) var(--mono);color:var(--accent);vertical-align:top;margin-left:6px;letter-spacing:0}
+.head p.sub{color:var(--muted);max-width:28em;font-size:19px}
+.meter{display:flex;height:10px;border-radius:999px;overflow:hidden;margin-top:30px;gap:2px}
+.meter span{display:block;height:100%;background:color-mix(in srgb,var(--ink) 18%,var(--bg))}
+.meter span.on{background:var(--accent)}
+.meter-cap{display:flex;justify-content:space-between;gap:12px;font:500 12px var(--mono);color:var(--muted);margin-top:8px;flex-wrap:wrap}
 
-        .nav-link {
-            position: relative;
-            padding-bottom: 4px;
-            line-height: 1;
-            display: inline-block;
-        }
+.bar{position:sticky;top:64px;z-index:40;background:var(--bg);border-bottom:1px solid var(--line);padding:14px 0}
+.bar-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.search{position:relative;flex:1 1 260px}
+.search input{width:100%;font:500 16px var(--body);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:999px;padding:12px 18px 12px 44px}
+.search input:focus{border-color:var(--ink);outline:none}
+.search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.sort{font:500 14px var(--mono);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:999px;padding:12px 16px;cursor:pointer}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:12px 0 2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips button{flex:none;font:500 13px var(--mono);border:1.5px solid var(--line);background:transparent;color:var(--ink);padding:8px 14px;border-radius:999px;cursor:pointer;display:flex;gap:8px;align-items:center}
+.chips button b{font-weight:500;color:var(--muted)}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chips button[aria-pressed="true"] b{color:var(--accent)}
+.count{font:500 13px var(--mono);color:var(--muted);margin-top:10px}
+.count strong{color:var(--ink);font-weight:500}
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: #0A0A0A;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:28px 0 0}
+.card{position:relative;aspect-ratio:9/16;border-radius:20px;overflow:hidden;color:#fff;background:#14161b;isolation:isolate;border:1px solid var(--line);cursor:pointer;padding:0;font:inherit;text-align:left;transition:transform .25s ease}
+.card:hover{transform:translateY(-6px)}
+.card::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(110% 70% at 20% 0%,color-mix(in srgb,var(--accent) 38%,#14161b) 0%,#14161b 62%)}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
+.card::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,transparent 30%,transparent 55%,rgba(0,0,0,.8) 100%)}
+.card>*{position:absolute;z-index:1}
+.card .n{top:14px;left:16px;font:500 12px var(--mono);letter-spacing:.06em}
+.card .tag{top:12px;right:12px;font:500 11px var(--mono);text-transform:uppercase;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.3);padding:3px 9px;border-radius:999px;backdrop-filter:blur(6px)}
+.card .play{left:50%;top:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:var(--accent);display:grid;place-items:center;transition:transform .2s ease}
+.card:hover .play{transform:scale(1.12)}
+.card .play::after{content:"";border-left:16px solid var(--on-accent);border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
+.card .ttl{left:16px;right:16px;bottom:14px;font:600 15px var(--body);display:flex;justify-content:space-between;gap:8px}
+.card .ttl span{font:500 12px var(--mono);opacity:.8;white-space:nowrap}
+.empty{text-align:center;padding:80px 0;color:var(--muted)}
+.empty h3{color:var(--ink);font-size:28px;margin-bottom:8px}
+.more{display:flex;justify-content:center;margin:40px 0 0}
 
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            transform: scaleX(1);
-        }
+.cta{background:var(--ink);color:var(--bg);border-radius:32px;padding:56px 36px;text-align:center;margin:96px var(--gutter) 0}
+.cta h2{font-size:clamp(36px,5.6vw,72px);max-width:12em;margin:0 auto 18px}
+.cta h2 mark{background:none;color:var(--accent)}
+.cta p{opacity:.75;max-width:32em;margin:0 auto 28px;font-size:18px}
+footer.site{padding:32px 0 48px}
+footer.site .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:500 13px var(--mono);color:var(--muted)}
+footer.site a{text-decoration:none}
+footer.site a:hover{color:var(--ink)}
 
-        .filter-btn {
-            padding: 8px 16px;
-            border: 1px solid #0A0A0A;
-            background: transparent;
-            color: #0A0A0A;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 12px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border-radius: 0;
-        }
-        .filter-btn:hover { background: #E5DDD0; }
-        .filter-btn.active { background: #0A0A0A; color: #F5F0E8; }
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal .bd{position:absolute;inset:0;background:rgba(8,9,11,.82);backdrop-filter:blur(6px)}
+.box{position:relative;display:grid;grid-template-columns:auto 340px;gap:0;background:var(--surface);border-radius:28px;overflow:hidden;max-height:calc(100vh - 40px);border:1px solid var(--line)}
+.player{background:#000;height:min(78vh,720px);aspect-ratio:9/16}
+.player iframe{width:100%;height:100%;border:0;display:block}
+.info{padding:30px 28px;display:flex;flex-direction:column;gap:16px;overflow:auto}
+.info .cat{font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+.info h2{font-size:30px}
+.info p{color:var(--muted);font-size:16px}
+.info .meta{font:500 13px var(--mono);color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:auto}
+.nav2{display:flex;gap:8px}
+.nav2 .btn{flex:1}
+.x{position:absolute;top:12px;right:12px;z-index:3;width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:500 20px var(--mono);cursor:pointer;display:grid;place-items:center}
+.wa{position:fixed;right:18px;bottom:18px;z-index:60;width:56px;height:56px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;text-decoration:none;font:700 13px var(--mono);box-shadow:0 10px 24px -8px rgba(0,0,0,.5);transition:transform .2s ease}
+.wa:hover{transform:scale(1.08)}
 
-        .portfolio-card { transition: transform 0.3s ease; }
-        .portfolio-card:hover { transform: translateY(-4px); }
-
-        .toolbar { 
-            position: sticky; 
-            top: 60px; 
-            background: #F5F0E8; 
-            border-bottom: 1px solid #0A0A0A;
-            padding: 16px 0;
-            z-index: 40;
-        }
-
-        #mobile-menu { display: none; }
-        #mobile-menu.open { display: block; }
-
-        /* Modal Lightbox */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-        }
-
-        .modal-overlay.open {
-            display: flex;
-        }
-
-        .modal-backdrop {
-            position: absolute;
-            inset: 0;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-        }
-
-        .modal-container {
-            position: relative;
-            background: #F5F0E8;
-            border: 1px solid #0A0A0A;
-            max-width: 900px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            z-index: 1;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            z-index: 2;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #F5F0E8;
-            border: 1px solid #0A0A0A;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .modal-close:hover { background: #E5DDD0; }
-
-        .modal-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0;
-        }
-
-        @media (min-width: 768px) {
-            .modal-content {
-                grid-template-columns: 320px 1fr;
-            }
-        }
-
-        .modal-video {
-            padding: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #modal-player {
-            width: 100%;
-            max-width: 280px;
-        }
-
-        #modal-player iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        .modal-info {
-            padding: 32px 32px 32px 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        @media (max-width: 767px) {
-            .modal-info { padding: 0 24px 32px; }
-        }
-
-        .modal-cat {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: #4A4A4A;
-            margin-bottom: 12px;
-        }
-
-        .modal-title {
-            font-family: 'Unbounded', sans-serif;
-            font-weight: 900;
-            font-size: 28px;
-            line-height: 1.1;
-            color: #0A0A0A;
-            margin-bottom: 16px;
-        }
-
-        .modal-desc {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 14px;
-            line-height: 1.7;
-            color: #4A4A4A;
-            margin-bottom: 32px;
-        }
-
-        .modal-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 24px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 14px;
-            background: #0A0A0A;
-            color: #F5F0E8;
-            text-decoration: none;
-            width: fit-content;
-            transition: opacity 0.2s;
-        }
-        .modal-cta:hover { opacity: 0.85; }
-
-        body.modal-open {
-            overflow: hidden;
-        }
-    </style>
+@media (max-width:980px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .box{grid-template-columns:1fr;width:min(100%,420px);overflow:auto}
+  .player{height:auto;width:100%;max-height:62vh}
+  .info{padding:22px}
+}
+@media (max-width:720px){
+  body{font-size:16px}
+  .nav a.l{display:none}
+  .grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .card .play{width:46px;height:46px;margin:-23px 0 0 -23px}
+  .card .ttl{font-size:13px}
+  .cta{padding:44px 22px;border-radius:24px}
+  .modal{padding:10px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
 </head>
-<body class="antialiased overflow-x-hidden">
+<body>
 
-    <!-- NAVBAR -->
-    <nav id="navbar" class="fixed w-full z-50 border-b border-ink/10 transition-all duration-300 bg-cream">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-            <a href="../index.html" class="font-display font-black text-xl text-ink tracking-tight">Rioz<span class="text-ink">.</span></a>
-            <div class="hidden md:flex items-center gap-8">
-                <a href="index.html" class="text-sm font-sans font-bold text-ink" style="border-bottom:2px solid #0A0A0A;padding-bottom:4px;" data-i18n="nav_work">Portoforioz</a>
-                <a href="../index.html#about" class="text-sm font-sans font-medium text-ink cta-underline" data-i18n="nav_about">About</a>
-                <a href="../index.html#layanan" class="text-sm font-sans font-medium text-ink cta-underline" data-i18n="nav_layanan">Layanan</a>
-                <a href="../index.html#review" class="text-sm font-sans font-medium text-ink cta-underline" data-i18n="nav_review">Review</a>
-                <a href="../index.html#contact" class="text-sm font-sans font-medium text-ink cta-underline" data-i18n="nav_contact">Kontak</a>
-            </div>
-            <div class="hidden md:flex items-center gap-4">
-                <div class="flex items-center border border-ink rounded-sm overflow-hidden">
-                    <button id="lang-id" onclick="setLang('id')"
-                        class="text-xs font-bold px-3 py-1.5 bg-ink text-cream transition-all">ID</button>
-                    <button id="lang-en" onclick="setLang('en')"
-                        class="text-xs font-bold px-3 py-1.5 text-ink transition-all">EN</button>
-                </div>
-            </div>
-            <button id="mobile-menu-btn" class="md:hidden text-2xl text-ink" aria-label="Toggle menu">
-                <i class="ph ph-list" id="icon-open"></i>
-                <i class="ph ph-x hidden" id="icon-close"></i>
-            </button>
-        </div>
-        <div id="mobile-menu" class="md:hidden bg-cream border-t border-ink/10 px-6 py-4">
-            <div class="flex flex-col gap-4">
-                <a href="index.html" class="font-sans font-bold text-ink w-fit" style="border-bottom:2px solid #0A0A0A;padding-bottom:4px;" data-i18n="nav_work">Portoforioz</a>
-                <a href="../index.html#about" class="font-sans font-medium text-ink" data-i18n="nav_about">About</a>
-                <a href="../index.html#layanan" class="font-sans font-medium text-ink" data-i18n="nav_layanan">Layanan</a>
-                <a href="../index.html#review" class="font-sans font-medium text-ink" data-i18n="nav_review">Review</a>
-                <a href="../index.html#contact" class="font-sans font-medium text-ink" data-i18n="nav_contact">Kontak</a>
-                <div class="flex items-center border border-ink rounded-sm overflow-hidden w-fit mt-2">
-                    <button onclick="setLang('id')" class="text-xs font-bold px-3 py-1.5 bg-ink text-cream transition-all">ID</button>
-                    <button onclick="setLang('en')" class="text-xs font-bold px-3 py-1.5 text-ink transition-all">EN</button>
-                </div>
-            </div>
-        </div>
+<header class="top">
+  <div class="wrap top-row">
+    <a class="logo" href="../index.html" aria-label="Rioz, beranda">Rioz<i>.</i></a>
+    <nav class="nav" aria-label="Utama">
+      <a class="l" href="../index.html" data-i="nav_home">Beranda</a>
+      <a class="l" href="#" aria-current="page" data-i="nav_work">Portofolio</a>
+      <a class="l" href="../index.html#layanan" data-i="nav_svc">Layanan</a>
+      <div class="lang" role="group" aria-label="Bahasa">
+        <button type="button" data-lang="id" aria-pressed="true">ID</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="btn primary sm" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20lihat%20portofolio%20kamu%20dan%20mau%20konsultasi%20gratis." target="_blank" rel="noopener noreferrer" data-i="nav_cta">Konsultasi gratis</a>
     </nav>
+  </div>
+</header>
 
-    <div class="pt-32 pb-10 px-6 max-w-6xl mx-auto">
-        <p class="text-xs font-sans uppercase tracking-wider text-muted mb-4">
-            <a href="../index.html" class="hover:text-ink transition-colors">Home</a>
-            <span class="mx-2">/</span>
-            <span class="text-ink font-semibold">Portoforioz</span>
-        </p>
-        <h1 class="font-display font-black text-6xl md:text-8xl text-ink mb-4" data-i18n="portfolio_title">Portfolio</h1>
-        <p class="text-muted text-lg font-sans max-w-xl mb-6" data-i18n="portfolio_sub">Semua video shortform yang sudah saya kerjakan.</p>
-        <p class="font-sans text-xs text-muted uppercase tracking-widest" style="letter-spacing:0.2em;">
-            104 VIDEOS &middot; 10 CATEGORIES &middot; 5+ YEARS
-        </p>
+<main>
+  <div class="head">
+    <div class="wrap">
+      <p class="crumb"><a href="../index.html" data-i="nav_home">Beranda</a> / <span data-i="nav_work">Portofolio</span></p>
+      <div class="head-grid">
+        <h1 data-i="h1">Portofolio<sup>104</sup></h1>
+        <p class="sub" data-i="sub">Semua video shortform yang sudah saya kerjakan. Klik kartu untuk menonton.</p>
+      </div>
+      <div class="meter" id="meter" aria-hidden="true"></div>
+      <div class="meter-cap"><span data-i="meter">Komposisi 104 video per kategori</span><span>10 <span data-i="cats">kategori</span> / 5+ <span data-i="yrs">tahun</span></span></div>
     </div>
+  </div>
 
-    <!-- TOOLBAR -->
-    <div class="toolbar" style="position:sticky;top:72px;z-index:40;background:#F5F0E8;border-bottom:1px solid #0A0A0A;padding:16px 0;">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 items-center">
-                
-                <!-- SEARCH | 6 kolom desktop -->
-                <div class="md:col-span-6">
-                    <div class="relative">
-                        <i class="ph ph-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-muted text-lg"></i>
-                        <input 
-                            type="text" 
-                            id="search-input"
-                            placeholder="Cari video, client, atau kategori..."
-                            class="w-full pl-11 pr-4 py-3 font-sans text-sm text-ink"
-                            style="background:#F5F0E8;border:1px solid #0A0A0A;">
-                    </div>
-                </div>
-                
-                <!-- DROPDOWN KATEGORI | 3 kolom desktop -->
-                <div class="md:col-span-3">
-                    <div class="relative">
-                        <select 
-                            id="category-filter"
-                            class="w-full py-3 px-4 font-sans text-sm text-ink appearance-none cursor-pointer"
-                            style="background:#F5F0E8;border:1px solid #0A0A0A;">
-                            <option value="all" data-i18n="cat_all">Semua Kategori</option>
-                            <option value="ai">AI Content</option>
-                            <option value="edu">Educational</option>
-                            <option value="regular">Regular</option>
-                            <option value="recap">Recap Event</option>
-                            <option value="comedy">Comedy Skit</option>
-                            <option value="motion">Motion</option>
-                            <option value="interview">Interview</option>
-                            <option value="testimonial">Testimonial</option>
-                            <option value="product">Product Showcase</option>
-                            <option value="talking">Talking Head</option>
-                        </select>
-                        <i class="ph ph-caret-down absolute right-4 top-1/2 -translate-y-1/2 text-ink pointer-events-none"></i>
-                    </div>
-                </div>
-                
-                <!-- DROPDOWN SORT | 3 kolom desktop -->
-                <div class="md:col-span-3">
-                    <div class="relative">
-                        <select 
-                            id="sort-filter"
-                            class="w-full py-3 px-4 font-sans text-sm text-ink appearance-none cursor-pointer"
-                            style="background:#F5F0E8;border:1px solid #0A0A0A;">
-                            <option value="newest" data-i18n="sort_newest">Terbaru</option>
-                            <option value="oldest" data-i18n="sort_oldest">Terlama</option>
-                            <option value="az">A-Z</option>
-                        </select>
-                        <i class="ph ph-caret-down absolute right-4 top-1/2 -translate-y-1/2 text-ink pointer-events-none"></i>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="mt-4">
-                <p id="portfolio-counter" class="text-xs font-sans text-muted uppercase tracking-wider">Menampilkan <strong>12</strong> dari <strong>104</strong> video</p>
-            </div>
-        </div>
+  <div class="bar">
+    <div class="wrap">
+      <div class="bar-row">
+        <label class="search">
+          <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)" data-i="search_l">Cari video</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="q" type="search" autocomplete="off" placeholder="Cari judul atau kategori">
+        </label>
+        <label style="position:relative">
+          <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)" data-i="sort_l">Urutkan</span>
+          <select id="sort" class="sort">
+            <option value="newest" data-i="s_new">Terbaru</option>
+            <option value="oldest" data-i="s_old">Terlama</option>
+            <option value="az">A-Z</option>
+          </select>
+        </label>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Kategori"></div>
+      <p class="count" id="count" aria-live="polite"></p>
     </div>
+  </div>
 
-    <!-- GRID -->
-    <section class="py-12">
-        <div class="max-w-6xl mx-auto px-6">
-            <div id="portfolio-grid" class="portfolio-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
-                <!-- 104 Cards rendered dynamically via JS below -->
-            </div>
-            
-            <!-- Empty State -->
-            <div id="empty-state" class="hidden text-center py-24">
-                <i class="ph ph-magnifying-glass text-5xl text-muted mb-4 block"></i>
-                <p class="font-display font-bold text-2xl text-ink mb-2" data-i18n="empty_title">
-                    Tidak ada video yang cocok
-                </p>
-                <p class="font-sans text-sm text-muted mb-8" data-i18n="empty_sub">
-                    Coba kata kunci lain atau reset filter.
-                </p>
-                <button id="reset-filters-btn"
-                        class="font-sans text-sm font-semibold uppercase tracking-wider px-6 py-3 hover:bg-dimcream transition-colors"
-                        style="border:1px solid #0A0A0A;background:transparent;"
-                        data-i18n="empty_reset">
-                    Reset Filter
-                </button>
-            </div>
+  <div class="wrap">
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty" hidden><h3 data-i="e_h">Tidak ada video yang cocok</h3><p data-i="e_p">Coba kata lain atau pilih kategori Semua.</p></div>
+    <div class="more"><button type="button" class="btn ghost" id="more" data-i="more">Muat lebih banyak</button></div>
+  </div>
 
-            <div class="mt-16 text-center">
-                <button id="load-more-btn" class="font-sans font-bold text-sm uppercase tracking-widest text-ink bg-transparent py-4 px-10 transition-colors hover:bg-dimcream" style="border: 1px solid #0A0A0A;" data-i18n="portfolio_load_more">
-                    Load More &darr;
-                </button>
-            </div>
-        </div>
-    </section>
+  <section class="cta">
+    <h2 data-i="c_h">Suka gayanya? Video kamu <mark>berikutnya.</mark></h2>
+    <p data-i="c_p">Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.</p>
+    <a class="btn primary" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20lihat%20portofolio%20kamu%20dan%20mau%20konsultasi%20gratis." target="_blank" rel="noopener noreferrer" data-i="c_b">Chat WhatsApp</a>
+  </section>
+</main>
 
-    <!-- FOOTER -->
-    <footer style="border-top:1px solid #0A0A0A; padding: 80px 24px 32px; background-color:#F5F0E8;">
-        <div class="max-w-6xl mx-auto">
-            
-            <!-- Tombol WA Utama -->
-            <div class="mb-16">
-                <a href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20konsultasi%20proyek%20video."
-                   target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center gap-3 px-10 py-5 font-display font-bold text-lg md:text-xl"
-                   style="background:#0A0A0A; color:#F5F0E8;">
-                    <i class="ph ph-whatsapp-logo text-2xl"></i>
-                    Chat WhatsApp
-                    <span>&rarr;</span>
-                </a>
-                <p class="font-sans text-xs text-muted uppercase tracking-widest mt-5" data-i18n="footer_sub">
-                    Konsultasi gratis &middot; Balas dalam hitungan menit
-                </p>
-            </div>
-            
-            <!-- Bottom bar -->
-            <div class="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-                 style="border-top:1px solid #0A0A0A;">
-                <p class="font-sans text-xs text-muted uppercase tracking-wider">
-                    &copy; <span id="year"></span> Rioz. &middot; <span data-i18n="footer_rights">Editor Video Vertikal</span>
-                </p>
-                <a href="https://drive.google.com/file/d/11WC1K-IE0FJb7NVCzSWL7n8p2ZW-LWSq/view?usp=sharing"
-                   target="_blank" rel="noopener noreferrer"
-                   class="font-sans text-xs text-muted uppercase tracking-wider hover:text-ink transition-colors">
-                    Download CV &rarr;
-                </a>
-            </div>
-        </div>
-    </footer>
+<footer class="site">
+  <div class="wrap"><span>&copy; <span id="yr">2026</span> Rioz.</span><a href="../index.html" data-i="back">Kembali ke beranda</a></div>
+</footer>
 
-    <!-- MODAL LIGHTBOX -->
-    <div id="video-modal" class="modal-overlay" aria-hidden="true">
-        <div class="modal-backdrop" onclick="closeModal()"></div>
-        <div class="modal-container">
-            
-            <!-- Close button -->
-            <button class="modal-close" onclick="closeModal()" aria-label="Close">
-                <i class="ph ph-x text-2xl"></i>
-            </button>
-            
-            <!-- Layout 2 kolom: Video | Info -->
-            <div class="modal-content">
-                
-                <!-- KIRI: Video Player -->
-                <div class="modal-video">
-                    <div id="modal-player" class="aspect-[9/16] overflow-hidden"
-                         style="background:#0A0A0A;"></div>
-                </div>
-                
-                <!-- KANAN: Info -->
-                <div class="modal-info">
-                    <p id="modal-category" class="modal-cat"></p>
-                    <h2 id="modal-title" class="modal-title"></h2>
-                    <p id="modal-desc" class="modal-desc"></p>
-                    <a id="modal-cta" href="#" target="_blank" rel="noopener noreferrer" class="modal-cta">
-                        <i class="ph ph-whatsapp-logo text-xl"></i>
-                        Chat WhatsApp
-                        <span>&rarr;</span>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
+<a class="wa" href="https://wa.me/62895413935821" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WA</a>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="bd" data-close></div>
+  <div class="box" role="dialog" aria-modal="true" aria-labelledby="mt">
+    <button type="button" class="x" data-close aria-label="Tutup">&times;</button>
+    <div class="player" id="player"></div>
+    <div class="info">
+      <p class="cat" id="mc"></p>
+      <h2 id="mt"></h2>
+      <p id="md"></p>
+      <a class="btn primary" id="mw" href="#" target="_blank" rel="noopener noreferrer" data-i="m_cta">Mau video seperti ini</a>
+      <div class="nav2"><button type="button" class="btn ghost sm" id="prev" data-i="prev">Sebelumnya</button><button type="button" class="btn ghost sm" id="next" data-i="next">Berikutnya</button></div>
+      <p class="meta" id="mm"></p>
     </div>
+  </div>
+</div>
 
-    <!-- LOGIC -->
-    <script>
-        // ── 1. Daftar Lengkap 104 Video Portfolio ──
-        const portfolioVideos = [
-            // AI Content (4)
-            { cat: 'ai', id: 'LaKAMuOq0HI', title: 'AI Generated Content 01', date: '2024-06-01' },
-            { cat: 'ai', id: 'dYAoe35bcRc', title: 'AI Generated Content 02', date: '2024-05-31' },
-            { cat: 'ai', id: 'g3hjxWPCGX0', title: 'AI Generated Content 03', date: '2024-05-30' },
-            { cat: 'ai', id: 'ewriqNLjOtA', title: 'AI Generated Content 04', date: '2024-05-29' },
-            // Educational (11)
-            { cat: 'edu', id: '1oazDgxpZjY', title: 'Educational 01', date: '2024-05-28' },
-            { cat: 'edu', id: 'qlq898T6_1k', title: 'Educational 02', date: '2024-05-27' },
-            { cat: 'edu', id: '1Ev-ZArl3eI', title: 'Educational 03', date: '2024-05-26' },
-            { cat: 'edu', id: '_GORMH5jvro', title: 'Educational 04', date: '2024-05-25' },
-            { cat: 'edu', id: 'OawdhCP6Bao', title: 'Educational 05', date: '2024-05-24' },
-            { cat: 'edu', id: 'wZW9_Z1ReJU', title: 'Educational 06', date: '2024-05-23' },
-            { cat: 'edu', id: 'mRmq7-tN-VA', title: 'Educational 07', date: '2024-05-22' },
-            { cat: 'edu', id: 'KR2TbC3Phjk', title: 'Educational 08', date: '2024-05-21' },
-            { cat: 'edu', id: '5fL5JIz5kj4', title: 'Educational 09', date: '2024-05-20' },
-            { cat: 'edu', id: 'gBQH60sAx4Y', title: 'Educational 10', date: '2024-05-19' },
-            { cat: 'edu', id: 'rH82JFAOB_U', title: 'Educational 11', date: '2024-05-18' },
-            // Talking Head (17)
-            { cat: 'talking', id: 't_z4TG3IRy4', title: 'Talking Head 01', date: '2024-05-17' },
-            { cat: 'talking', id: 'aLAjmtTa-ug', title: 'Talking Head 02', date: '2024-05-16' },
-            { cat: 'talking', id: 'lexhy9yeQ5U', title: 'Talking Head 03', date: '2024-05-15' },
-            { cat: 'talking', id: '1ZHpn6AnRjQ', title: 'Talking Head 04', date: '2024-05-14' },
-            { cat: 'talking', id: 'Tzj8d9rnYYg', title: 'Talking Head 05', date: '2024-05-13' },
-            { cat: 'talking', id: 'pjQ0C0SZ6rU', title: 'Talking Head 06', date: '2024-05-12' },
-            { cat: 'talking', id: 'cLrJubzwplI', title: 'Talking Head 07', date: '2024-05-11' },
-            { cat: 'talking', id: 'RHfaChBBDPE', title: 'Talking Head 08', date: '2024-05-10' },
-            { cat: 'talking', id: 'daOjyEgoAPs', title: 'Talking Head 09', date: '2024-05-09' },
-            { cat: 'talking', id: 'nSV-vEDVYbM', title: 'Talking Head 10', date: '2024-05-08' },
-            { cat: 'talking', id: 'eDoOvPNqh4w', title: 'Talking Head 11', date: '2024-05-07' },
-            { cat: 'talking', id: 'ii2z0p6VtG8', title: 'Talking Head 12', date: '2024-05-06' },
-            { cat: 'talking', id: '6x5_QZcw3zg', title: 'Talking Head 13', date: '2024-05-05' },
-            { cat: 'talking', id: '5_Fo-B3eC3E', title: 'Talking Head 14', date: '2024-05-04' },
-            { cat: 'talking', id: 'LhBjT7M3Tuw', title: 'Talking Head 15', date: '2024-05-03' },
-            { cat: 'talking', id: '17gg5cS9omc', title: 'Talking Head 16', date: '2024-05-02' },
-            { cat: 'talking', id: 'fQXr-vwYDNA', title: 'Talking Head 17', date: '2024-05-01' },
-            // Regular (22)
-            { cat: 'regular', id: 'QWQQ58m-Wyk', title: 'Regular 01', date: '2024-04-30' },
-            { cat: 'regular', id: 'xjjbIIOFWKo', title: 'Regular 02', date: '2024-04-29' },
-            { cat: 'regular', id: 'h6C_cErDAOA', title: 'Regular 03', date: '2024-04-28' },
-            { cat: 'regular', id: 'TnPwOMfe_lY', title: 'Regular 04', date: '2024-04-27' },
-            { cat: 'regular', id: 'Pk9X2juMQjg', title: 'Regular 05', date: '2024-04-26' },
-            { cat: 'regular', id: 'hyTLMPHcN7E', title: 'Regular 06', date: '2024-04-25' },
-            { cat: 'regular', id: 'g1T-cZ3tOLo', title: 'Regular 07', date: '2024-04-24' },
-            { cat: 'regular', id: 'wNB9uBnXjr0', title: 'Regular 08', date: '2024-04-23' },
-            { cat: 'regular', id: 'oYT4AcKvcCk', title: 'Regular 09', date: '2024-04-22' },
-            { cat: 'regular', id: 'j8ohlMBWNtc', title: 'Regular 10', date: '2024-04-21' },
-            { cat: 'regular', id: '9ltmSy2irBw', title: 'Regular 11', date: '2024-04-20' },
-            { cat: 'regular', id: '6Ecub5UvLY8', title: 'Regular 12', date: '2024-04-19' },
-            { cat: 'regular', id: '_mkuyEdE0rU', title: 'Regular 13', date: '2024-04-18' },
-            { cat: 'regular', id: 'nMCxenB1ZKM', title: 'Regular 14', date: '2024-04-17' },
-            { cat: 'regular', id: 'gYFf-kxIVfI', title: 'Regular 15', date: '2024-04-16' },
-            { cat: 'regular', id: 'dayGJjbcn1U', title: 'Regular 16', date: '2024-04-15' },
-            { cat: 'regular', id: 'ESy-UfNNyZ4', title: 'Regular 17', date: '2024-04-14' },
-            { cat: 'regular', id: 'iq6QKb4IvDU', title: 'Regular 18', date: '2024-04-13' },
-            { cat: 'regular', id: 'LllSvCbLo3k', title: 'Regular 19', date: '2024-04-12' },
-            { cat: 'regular', id: 'RstKlyV7VHY', title: 'Regular 20', date: '2024-04-11' },
-            { cat: 'regular', id: 'kgy1uBu_gUg', title: 'Regular 21', date: '2024-04-10' },
-            { cat: 'regular', id: 'ffIzVHljfKs', title: 'Regular 22', date: '2024-04-09' },
-            // Recap Event (14)
-            { cat: 'recap', id: 'sOpKPZbFKCA', title: 'Recap Event 01', date: '2024-04-08' },
-            { cat: 'recap', id: 'bpIEQIiw6RY', title: 'Recap Event 02', date: '2024-04-07' },
-            { cat: 'recap', id: 'yR3ooStvFZ8', title: 'Recap Event 03', date: '2024-04-06' },
-            { cat: 'recap', id: 'wPdBrEC8TZ8', title: 'Recap Event 04', date: '2024-04-05' },
-            { cat: 'recap', id: 'YI2NC_93wzM', title: 'Recap Event 05', date: '2024-04-04' },
-            { cat: 'recap', id: '67SwI6tSpLk', title: 'Recap Event 06', date: '2024-04-03' },
-            { cat: 'recap', id: 'NYdcFBf8DD0', title: 'Recap Event 07', date: '2024-04-02' },
-            { cat: 'recap', id: 'dahQNsboV8k', title: 'Recap Event 08', date: '2024-04-01' },
-            { cat: 'recap', id: 'bCXGFOKjStk', title: 'Recap Event 09', date: '2024-03-31' },
-            { cat: 'recap', id: '8s2VPIlA2c0', title: 'Recap Event 10', date: '2024-03-30' },
-            { cat: 'recap', id: 'df5ZQ4yriU0', title: 'Recap Event 11', date: '2024-03-29' },
-            { cat: 'recap', id: 'ZxIPJ3c4ivU', title: 'Recap Event 12', date: '2024-03-28' },
-            { cat: 'recap', id: 'Pk9X2juMQjg', title: 'Recap Event 13', date: '2024-03-27' },
-            { cat: 'recap', id: 'dayGJjbcn1U', title: 'Recap Event 14', date: '2024-03-26' },
-            // Comedy Skit (18)
-            { cat: 'comedy', id: 'b0jUrrcQlas', title: 'Comedy Skit 01', date: '2024-03-25' },
-            { cat: 'comedy', id: '37gKFkgzLM0', title: 'Comedy Skit 02', date: '2024-03-24' },
-            { cat: 'comedy', id: 'vVZ3VDWsNXc', title: 'Comedy Skit 03', date: '2024-03-23' },
-            { cat: 'comedy', id: 'W-_uDSpDN38', title: 'Comedy Skit 04', date: '2024-03-22' },
-            { cat: 'comedy', id: 'TLhvKwvTlHQ', title: 'Comedy Skit 05', date: '2024-03-21' },
-            { cat: 'comedy', id: 'R66yKmu-m6I', title: 'Comedy Skit 06', date: '2024-03-20' },
-            { cat: 'comedy', id: 'qHjkq_5sQaQ', title: 'Comedy Skit 07', date: '2024-03-19' },
-            { cat: 'comedy', id: '8gq53NfCfHI', title: 'Comedy Skit 08', date: '2024-03-18' },
-            { cat: 'comedy', id: 'Fmz3tHZmviI', title: 'Comedy Skit 09', date: '2024-03-17' },
-            { cat: 'comedy', id: 'CW9oCnJ66ts', title: 'Comedy Skit 10', date: '2024-03-16' },
-            { cat: 'comedy', id: '1euVr5By5w4', title: 'Comedy Skit 11', date: '2024-03-15' },
-            { cat: 'comedy', id: 'bKi97B_l-is', title: 'Comedy Skit 12', date: '2024-03-14' },
-            { cat: 'comedy', id: '-KzUo7ZLifY', title: 'Comedy Skit 13', date: '2024-03-13' },
-            { cat: 'comedy', id: 'I_eZvFQeXMY', title: 'Comedy Skit 14', date: '2024-03-12' },
-            { cat: 'comedy', id: 'jT23-ohMkYc', title: 'Comedy Skit 15', date: '2024-03-11' },
-            { cat: 'comedy', id: 'RohrrbN82xw', title: 'Comedy Skit 16', date: '2024-03-10' },
-            { cat: 'comedy', id: 'xM4q9q9mO54', title: 'Comedy Skit 17', date: '2024-03-09' },
-            { cat: 'comedy', id: 'gjbYcEJo2TM', title: 'Comedy Skit 18', date: '2024-03-08' },
-            // Motion (4)
-            { cat: 'motion', id: 'gG73Po3sQHw', title: 'Motion Graphics 01', date: '2024-03-07' },
-            { cat: 'motion', id: '5kOv_hdRciQ', title: 'Motion Graphics 02', date: '2024-03-06' },
-            { cat: 'motion', id: 'QPeBgBbDu2g', title: 'Motion Graphics 03', date: '2024-03-05' },
-            { cat: 'motion', id: '5fL5JIz5kj4', title: 'Motion Graphics 04', date: '2024-03-04' },
-            // Interview (4)
-            { cat: 'interview', id: 'TJDEc6XyIbo', title: 'Interview 01', date: '2024-03-03' },
-            { cat: 'interview', id: 'TUnVMRmr4SM', title: 'Interview 02', date: '2024-03-02' },
-            { cat: 'interview', id: '3eaddi5pIVc', title: 'Interview 03', date: '2024-03-01' },
-            { cat: 'interview', id: 'lMppxIMExbQ', title: 'Interview 04', date: '2024-02-29' },
-            // Testimonial (8)
-            { cat: 'testimonial', id: 'Ev0mClauYLg', title: 'Testimonial 01', date: '2024-02-28' },
-            { cat: 'testimonial', id: 'Tv4UQ2XhEPA', title: 'Testimonial 02', date: '2024-02-27' },
-            { cat: 'testimonial', id: 'Alzbc5Hxcjg', title: 'Testimonial 03', date: '2024-02-26' },
-            { cat: 'testimonial', id: 'QMT3uGmYtH0', title: 'Testimonial 04', date: '2024-02-25' },
-            { cat: 'testimonial', id: '0ot3w0suosM', title: 'Testimonial 05', date: '2024-02-24' },
-            { cat: 'testimonial', id: '59ftRbeOt1c', title: 'Testimonial 06', date: '2024-02-23' },
-            { cat: 'testimonial', id: '4UgMLTEYlaY', title: 'Testimonial 07', date: '2024-02-22' },
-            { cat: 'testimonial', id: 'LDcWh-bgMKw', title: 'Testimonial 08', date: '2024-02-21' },
-            // Product Showcase (2)
-            { cat: 'product', id: '_W3PeEMlYVQ', title: 'Product Showcase 01', date: '2024-02-20' },
-            { cat: 'product', id: 'hAjTjWVPdtw', title: 'Product Showcase 02', date: '2024-02-19' }
-        ];
-
-        const categoryLabels = {
-            ai: 'AI Content', edu: 'Educational', regular: 'Regular',
-            recap: 'Recap Event', comedy: 'Comedy Skit', motion: 'Motion',
-            interview: 'Interview', testimonial: 'Testimonial',
-            product: 'Product Showcase', talking: 'Talking Head'
-        };
-
-        const categoryDescriptions = {
+<script>
+(function(){
+  var V=[["ai", "LaKAMuOq0HI", "AI Generated Content 01", "2024-06-01"], ["ai", "dYAoe35bcRc", "AI Generated Content 02", "2024-05-31"], ["ai", "g3hjxWPCGX0", "AI Generated Content 03", "2024-05-30"], ["ai", "ewriqNLjOtA", "AI Generated Content 04", "2024-05-29"], ["edu", "1oazDgxpZjY", "Educational 01", "2024-05-28"], ["edu", "qlq898T6_1k", "Educational 02", "2024-05-27"], ["edu", "1Ev-ZArl3eI", "Educational 03", "2024-05-26"], ["edu", "_GORMH5jvro", "Educational 04", "2024-05-25"], ["edu", "OawdhCP6Bao", "Educational 05", "2024-05-24"], ["edu", "wZW9_Z1ReJU", "Educational 06", "2024-05-23"], ["edu", "mRmq7-tN-VA", "Educational 07", "2024-05-22"], ["edu", "KR2TbC3Phjk", "Educational 08", "2024-05-21"], ["edu", "5fL5JIz5kj4", "Educational 09", "2024-05-20"], ["edu", "gBQH60sAx4Y", "Educational 10", "2024-05-19"], ["edu", "rH82JFAOB_U", "Educational 11", "2024-05-18"], ["talking", "t_z4TG3IRy4", "Talking Head 01", "2024-05-17"], ["talking", "aLAjmtTa-ug", "Talking Head 02", "2024-05-16"], ["talking", "lexhy9yeQ5U", "Talking Head 03", "2024-05-15"], ["talking", "1ZHpn6AnRjQ", "Talking Head 04", "2024-05-14"], ["talking", "Tzj8d9rnYYg", "Talking Head 05", "2024-05-13"], ["talking", "pjQ0C0SZ6rU", "Talking Head 06", "2024-05-12"], ["talking", "cLrJubzwplI", "Talking Head 07", "2024-05-11"], ["talking", "RHfaChBBDPE", "Talking Head 08", "2024-05-10"], ["talking", "daOjyEgoAPs", "Talking Head 09", "2024-05-09"], ["talking", "nSV-vEDVYbM", "Talking Head 10", "2024-05-08"], ["talking", "eDoOvPNqh4w", "Talking Head 11", "2024-05-07"], ["talking", "ii2z0p6VtG8", "Talking Head 12", "2024-05-06"], ["talking", "6x5_QZcw3zg", "Talking Head 13", "2024-05-05"], ["talking", "5_Fo-B3eC3E", "Talking Head 14", "2024-05-04"], ["talking", "LhBjT7M3Tuw", "Talking Head 15", "2024-05-03"], ["talking", "17gg5cS9omc", "Talking Head 16", "2024-05-02"], ["talking", "fQXr-vwYDNA", "Talking Head 17", "2024-05-01"], ["regular", "QWQQ58m-Wyk", "Regular 01", "2024-04-30"], ["regular", "xjjbIIOFWKo", "Regular 02", "2024-04-29"], ["regular", "h6C_cErDAOA", "Regular 03", "2024-04-28"], ["regular", "TnPwOMfe_lY", "Regular 04", "2024-04-27"], ["regular", "Pk9X2juMQjg", "Regular 05", "2024-04-26"], ["regular", "hyTLMPHcN7E", "Regular 06", "2024-04-25"], ["regular", "g1T-cZ3tOLo", "Regular 07", "2024-04-24"], ["regular", "wNB9uBnXjr0", "Regular 08", "2024-04-23"], ["regular", "oYT4AcKvcCk", "Regular 09", "2024-04-22"], ["regular", "j8ohlMBWNtc", "Regular 10", "2024-04-21"], ["regular", "9ltmSy2irBw", "Regular 11", "2024-04-20"], ["regular", "6Ecub5UvLY8", "Regular 12", "2024-04-19"], ["regular", "_mkuyEdE0rU", "Regular 13", "2024-04-18"], ["regular", "nMCxenB1ZKM", "Regular 14", "2024-04-17"], ["regular", "gYFf-kxIVfI", "Regular 15", "2024-04-16"], ["regular", "dayGJjbcn1U", "Regular 16", "2024-04-15"], ["regular", "ESy-UfNNyZ4", "Regular 17", "2024-04-14"], ["regular", "iq6QKb4IvDU", "Regular 18", "2024-04-13"], ["regular", "LllSvCbLo3k", "Regular 19", "2024-04-12"], ["regular", "RstKlyV7VHY", "Regular 20", "2024-04-11"], ["regular", "kgy1uBu_gUg", "Regular 21", "2024-04-10"], ["regular", "ffIzVHljfKs", "Regular 22", "2024-04-09"], ["recap", "sOpKPZbFKCA", "Recap Event 01", "2024-04-08"], ["recap", "bpIEQIiw6RY", "Recap Event 02", "2024-04-07"], ["recap", "yR3ooStvFZ8", "Recap Event 03", "2024-04-06"], ["recap", "wPdBrEC8TZ8", "Recap Event 04", "2024-04-05"], ["recap", "YI2NC_93wzM", "Recap Event 05", "2024-04-04"], ["recap", "67SwI6tSpLk", "Recap Event 06", "2024-04-03"], ["recap", "NYdcFBf8DD0", "Recap Event 07", "2024-04-02"], ["recap", "dahQNsboV8k", "Recap Event 08", "2024-04-01"], ["recap", "bCXGFOKjStk", "Recap Event 09", "2024-03-31"], ["recap", "8s2VPIlA2c0", "Recap Event 10", "2024-03-30"], ["recap", "df5ZQ4yriU0", "Recap Event 11", "2024-03-29"], ["recap", "ZxIPJ3c4ivU", "Recap Event 12", "2024-03-28"], ["recap", "Pk9X2juMQjg", "Recap Event 13", "2024-03-27"], ["recap", "dayGJjbcn1U", "Recap Event 14", "2024-03-26"], ["comedy", "b0jUrrcQlas", "Comedy Skit 01", "2024-03-25"], ["comedy", "37gKFkgzLM0", "Comedy Skit 02", "2024-03-24"], ["comedy", "vVZ3VDWsNXc", "Comedy Skit 03", "2024-03-23"], ["comedy", "W-_uDSpDN38", "Comedy Skit 04", "2024-03-22"], ["comedy", "TLhvKwvTlHQ", "Comedy Skit 05", "2024-03-21"], ["comedy", "R66yKmu-m6I", "Comedy Skit 06", "2024-03-20"], ["comedy", "qHjkq_5sQaQ", "Comedy Skit 07", "2024-03-19"], ["comedy", "8gq53NfCfHI", "Comedy Skit 08", "2024-03-18"], ["comedy", "Fmz3tHZmviI", "Comedy Skit 09", "2024-03-17"], ["comedy", "CW9oCnJ66ts", "Comedy Skit 10", "2024-03-16"], ["comedy", "1euVr5By5w4", "Comedy Skit 11", "2024-03-15"], ["comedy", "bKi97B_l-is", "Comedy Skit 12", "2024-03-14"], ["comedy", "-KzUo7ZLifY", "Comedy Skit 13", "2024-03-13"], ["comedy", "I_eZvFQeXMY", "Comedy Skit 14", "2024-03-12"], ["comedy", "jT23-ohMkYc", "Comedy Skit 15", "2024-03-11"], ["comedy", "RohrrbN82xw", "Comedy Skit 16", "2024-03-10"], ["comedy", "xM4q9q9mO54", "Comedy Skit 17", "2024-03-09"], ["comedy", "gjbYcEJo2TM", "Comedy Skit 18", "2024-03-08"], ["motion", "gG73Po3sQHw", "Motion Graphics 01", "2024-03-07"], ["motion", "5kOv_hdRciQ", "Motion Graphics 02", "2024-03-06"], ["motion", "QPeBgBbDu2g", "Motion Graphics 03", "2024-03-05"], ["motion", "5fL5JIz5kj4", "Motion Graphics 04", "2024-03-04"], ["interview", "TJDEc6XyIbo", "Interview 01", "2024-03-03"], ["interview", "TUnVMRmr4SM", "Interview 02", "2024-03-02"], ["interview", "3eaddi5pIVc", "Interview 03", "2024-03-01"], ["interview", "lMppxIMExbQ", "Interview 04", "2024-02-29"], ["testimonial", "Ev0mClauYLg", "Testimonial 01", "2024-02-28"], ["testimonial", "Tv4UQ2XhEPA", "Testimonial 02", "2024-02-27"], ["testimonial", "Alzbc5Hxcjg", "Testimonial 03", "2024-02-26"], ["testimonial", "QMT3uGmYtH0", "Testimonial 04", "2024-02-25"], ["testimonial", "0ot3w0suosM", "Testimonial 05", "2024-02-24"], ["testimonial", "59ftRbeOt1c", "Testimonial 06", "2024-02-23"], ["testimonial", "4UgMLTEYlaY", "Testimonial 07", "2024-02-22"], ["testimonial", "LDcWh-bgMKw", "Testimonial 08", "2024-02-21"], ["product", "_W3PeEMlYVQ", "Product Showcase 01", "2024-02-20"], ["product", "hAjTjWVPdtw", "Product Showcase 02", "2024-02-19"]];
+  var LBL={ai:"AI Content",edu:"Educational",regular:"Regular",recap:"Recap Event",comedy:"Comedy Skit",motion:"Motion",interview:"Interview",testimonial:"Testimonial",product:"Product Showcase",talking:"Talking Head"};
+  var DESC={
             id: {
                 ai: 'Editing video AI-generated dengan gaya cinematic. Fokus pada pacing, color grading, dan sound design untuk hasil natural.',
                 edu: 'Video edukasi singkat dengan pendekatan visual engaging. Hook kuat di 3 detik pertama, subtitle jelas, b-roll pendukung.',
@@ -609,270 +259,112 @@
                 talking: 'Talking head video with dynamic subtitles, jump cuts, and supporting b-roll for education, reviews, and personal branding.'
             }
         };
+  var ORDER=["regular","comedy","talking","recap","edu","testimonial","ai","motion","interview","product"];
+  var T={
+    id:{nav_home:"Beranda",nav_work:"Portofolio",nav_svc:"Layanan",nav_cta:"Konsultasi gratis",h1:"Portofolio<sup>104</sup>",sub:"Semua video shortform yang sudah saya kerjakan. Klik kartu untuk menonton.",meter:"Komposisi 104 video per kategori",cats:"kategori",yrs:"tahun",search_l:"Cari video",sort_l:"Urutkan",s_new:"Terbaru",s_old:"Terlama",all:"Semua",e_h:"Tidak ada video yang cocok",e_p:"Coba kata lain atau pilih kategori Semua.",more:"Muat lebih banyak",c_h:"Suka gayanya? Video kamu <mark>berikutnya.</mark>",c_p:"Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.",c_b:"Chat WhatsApp",back:"Kembali ke beranda",m_cta:"Mau video seperti ini",prev:"Sebelumnya",next:"Berikutnya",ph:"Cari judul atau kategori",shown:function(a,b){return "Menampilkan <strong>"+a+"</strong> dari <strong>"+b+"</strong> video"},close:"Tutup"},
+    en:{nav_home:"Home",nav_work:"Work",nav_svc:"Services",nav_cta:"Free consultation",h1:"Work<sup>104</sup>",sub:"Every shortform video I have edited. Click a card to watch.",meter:"104 videos by category",cats:"categories",yrs:"years",search_l:"Search videos",sort_l:"Sort",s_new:"Newest",s_old:"Oldest",all:"All",e_h:"No matching videos",e_p:"Try another word or pick All.",more:"Load more",c_h:"Like the style? Your video is <mark>next.</mark>",c_p:"Free consultation. Tell me about your product or brand and I will help with the video strategy.",c_b:"Chat on WhatsApp",back:"Back to home",m_cta:"I want a video like this",prev:"Previous",next:"Next",ph:"Search title or category",shown:function(a,b){return "Showing <strong>"+a+"</strong> of <strong>"+b+"</strong> videos"},close:"Close"}
+  };
+  var lang="id";try{lang=localStorage.getItem("rioz_lang")||"id"}catch(e){}if(!T[lang])lang="id";
+  var PAGE=24,limit=PAGE,cat="all",list=[],cur=-1;
+  var counts={};V.forEach(function(v){counts[v[0]]=(counts[v[0]]||0)+1});
+  V.forEach(function(v,i){v.push(i)});
 
-        const translations = {
-            id: {
-                nav_work: "Portoforioz", nav_about: "About", nav_layanan: "Layanan", nav_review: "Review", nav_contact: "Kontak",
-                portfolio_title: "Portfolio",
-                portfolio_sub: "Semua video shortform yang sudah saya kerjakan.",
-                portfolio_search_placeholder: "Cari video, client, atau kategori...",
-                cat_all: "Semua Kategori",
-                sort_newest: "Terbaru",
-                sort_oldest: "Terlama",
-                empty_title: "Tidak ada video yang cocok",
-                empty_sub: "Coba kata kunci lain atau reset filter.",
-                empty_reset: "Reset Filter",
-                portfolio_load_more: "Load More &darr;",
-                footer_sub: "Konsultasi gratis &middot; Balas dalam hitungan menit",
-                footer_rights: "Editor Video Vertikal"
-            },
-            en: {
-                nav_work: "Portoforioz", nav_about: "About", nav_layanan: "Services", nav_review: "Reviews", nav_contact: "Contact",
-                portfolio_title: "Portfolio",
-                portfolio_sub: "All shortform videos I have worked on.",
-                portfolio_search_placeholder: "Search videos, clients, or categories...",
-                cat_all: "All Categories",
-                sort_newest: "Newest",
-                sort_oldest: "Oldest",
-                empty_title: "No matching videos found",
-                empty_sub: "Try another keyword or reset the filters.",
-                empty_reset: "Reset Filters",
-                portfolio_load_more: "Load More &darr;",
-                footer_sub: "Free consultation &middot; Replies within minutes",
-                footer_rights: "Vertical Video Editor"
-            }
-        };
+  var grid=document.getElementById("grid"),q=document.getElementById("q"),sort=document.getElementById("sort"),
+      chips=document.getElementById("chips"),countEl=document.getElementById("count"),more=document.getElementById("more"),
+      empty=document.getElementById("empty"),meter=document.getElementById("meter");
 
-        let currentLang = localStorage.getItem('rioz_lang') || 'id';
-        const grid = document.getElementById('portfolio-grid');
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 
-        // ── 2. Render 104 Kartu ke dalam Grid ──
-        function renderInitialCards() {
-            if (!grid) return;
-            const fragment = document.createDocumentFragment();
-            portfolioVideos.forEach(item => {
-                const article = document.createElement('article');
-                article.className = 'portfolio-card';
-                article.dataset.category = item.cat;
-                article.dataset.videoId = item.id;
-                article.dataset.title = item.title;
-                article.dataset.date = item.date;
+  function drawChips(){
+    var h='<button type="button" data-c="all" aria-pressed="'+(cat==="all")+'">'+T[lang].all+' <b>'+V.length+'</b></button>';
+    ORDER.forEach(function(c){h+='<button type="button" data-c="'+c+'" aria-pressed="'+(cat===c)+'">'+LBL[c]+' <b>'+counts[c]+'</b></button>'});
+    chips.innerHTML=h;
+    var m="";ORDER.forEach(function(c){m+='<span class="'+(cat===c?"on":"")+'" style="flex:'+counts[c]+'" title="'+LBL[c]+' '+counts[c]+'"></span>'});
+    meter.innerHTML=m;
+  }
+  chips.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;cat=b.getAttribute("data-c");limit=PAGE;drawChips();render()});
 
-                const catLabel = categoryLabels[item.cat] || item.cat;
-                article.innerHTML = `
-                    <div class="block group cursor-pointer">
-                        <div class="aspect-[9/16] overflow-hidden relative" style="border:1px solid #0A0A0A; background:#E5DDD0;">
-                            <img 
-                                src="https://img.youtube.com/vi/${item.id}/maxresdefault.jpg"
-                                alt="${item.title}"
-                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                loading="lazy"
-                                onerror="this.src='https://img.youtube.com/vi/${item.id}/hqdefault.jpg'">
-                            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                <div class="w-16 h-16 rounded-full flex items-center justify-center" style="background:rgba(10,10,10,0.7);">
-                                    <i class="ph ph-play text-3xl" style="color:#F5F0E8;"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pt-4">
-                            <h3 class="font-sans font-medium text-sm text-ink group-hover:underline">${item.title}</h3>
-                            <p class="font-sans text-xs text-muted mt-1 uppercase tracking-wider">${catLabel}</p>
-                        </div>
-                    </div>
-                `;
-                fragment.appendChild(article);
-            });
-            grid.appendChild(fragment);
-        }
+  function filtered(){
+    var s=q.value.trim().toLowerCase();
+    var r=V.filter(function(v){
+      if(cat!=="all"&&v[0]!==cat)return false;
+      if(!s)return true;
+      return (v[2]+" "+LBL[v[0]]).toLowerCase().indexOf(s)>-1;
+    });
+    var o=sort.value;
+    r.sort(function(a,b){
+      if(o==="az")return a[2].localeCompare(b[2],undefined,{numeric:true});
+      if(o==="oldest")return a[3]<b[3]?-1:a[3]>b[3]?1:b[4]-a[4];
+      return a[3]>b[3]?-1:a[3]<b[3]?1:a[4]-b[4];
+    });
+    return r;
+  }
 
-        renderInitialCards();
+  function render(){
+    list=filtered();
+    var show=list.slice(0,limit),h="";
+    show.forEach(function(v,i){
+      h+='<button type="button" class="card" data-k="'+i+'" aria-label="'+esc(v[2])+', '+LBL[v[0]]+'">'
+        +'<img src="https://i.ytimg.com/vi/'+v[1]+'/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">'
+        +'<span class="n">'+("00"+(v[4]+1)).slice(-3)+'</span><span class="tag">'+LBL[v[0]]+'</span><span class="play"></span>'
+        +'<span class="ttl">'+esc(v[2])+'<span>9:16</span></span></button>';
+    });
+    grid.innerHTML=h;
+    empty.hidden=list.length>0;
+    more.parentNode.hidden=list.length<=limit;
+    countEl.innerHTML=T[lang].shown(show.length,list.length);
+  }
+  grid.addEventListener("click",function(e){var c=e.target.closest(".card");if(c)open(+c.getAttribute("data-k"))});
+  more.addEventListener("click",function(){limit+=PAGE;render()});
+  var tm;q.addEventListener("input",function(){clearTimeout(tm);tm=setTimeout(function(){limit=PAGE;render()},150)});
+  sort.addEventListener("change",function(){limit=PAGE;render()});
 
-        const searchInput = document.getElementById('search-input');
-        const categoryFilter = document.getElementById('category-filter');
-        const sortFilter = document.getElementById('sort-filter');
-        const allCards = Array.from(document.querySelectorAll('.portfolio-card'));
-        let visibleCount = 12;
+  var modal=document.getElementById("modal"),player=document.getElementById("player"),last=null;
+  function open(k){
+    if(k<0||k>=list.length)return;
+    cur=k;var v=list[k];
+    if(!modal.classList.contains("open"))last=document.activeElement;
+    player.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+v[1]+'?autoplay=1&rel=0&playsinline=1" title="'+esc(v[2])+'" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    document.getElementById("mc").textContent=LBL[v[0]];
+    document.getElementById("mt").textContent=v[2];
+    document.getElementById("md").textContent=(DESC[lang]||DESC.id)[v[0]]||"";
+    document.getElementById("mm").textContent=(k+1)+" / "+list.length;
+    document.getElementById("mw").href="https://wa.me/62895413935821?text="+encodeURIComponent("Halo Rioz, saya mau video seperti \""+v[2]+"\" ("+LBL[v[0]]+") di portofolio kamu.");
+    document.getElementById("prev").disabled=k===0;
+    document.getElementById("next").disabled=k===list.length-1;
+    modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.classList.add("lock");
+    modal.querySelector(".x").focus();
+  }
+  function close(){
+    modal.classList.remove("open");modal.setAttribute("aria-hidden","true");player.innerHTML="";document.body.classList.remove("lock");
+    if(last)last.focus();
+  }
+  modal.addEventListener("click",function(e){if(e.target.hasAttribute("data-close"))close()});
+  document.getElementById("prev").addEventListener("click",function(){open(cur-1)});
+  document.getElementById("next").addEventListener("click",function(){
+    if(cur+1>=limit&&cur+1<list.length){limit+=PAGE;render()}
+    open(cur+1);
+  });
+  document.addEventListener("keydown",function(e){
+    if(!modal.classList.contains("open"))return;
+    if(e.key==="Escape")close();
+    if(e.key==="ArrowLeft")open(cur-1);
+    if(e.key==="ArrowRight")document.getElementById("next").click();
+  });
 
-        // ── 3. Filter, Search, & Sort Logic ──
-        function applyFilters() {
-            const query = (searchInput?.value || '').toLowerCase().trim();
-            const category = categoryFilter?.value || 'all';
-            const sort = sortFilter?.value || 'newest';
-            
-            const filtered = allCards.filter(card => {
-                const title = (card.dataset.title || '').toLowerCase();
-                const cat = card.dataset.category || '';
-                const catName = (categoryLabels[cat] || '').toLowerCase();
-                const matchQuery = !query || title.includes(query) || catName.includes(query);
-                const matchCat = category === 'all' || cat === category;
-                return matchQuery && matchCat;
-            });
-            
-            if (sort === 'az') {
-                filtered.sort((a, b) => (a.dataset.title || '').localeCompare(b.dataset.title || ''));
-            } else if (sort === 'oldest') {
-                filtered.sort((a, b) => (a.dataset.date || '').localeCompare(b.dataset.date || ''));
-            } else {
-                filtered.sort((a, b) => (b.dataset.date || '').localeCompare(a.dataset.date || ''));
-            }
-            
-            allCards.forEach(c => c.style.display = 'none');
-            filtered.forEach((c, i) => {
-                if (grid) grid.appendChild(c);
-                if (i < visibleCount) c.style.display = '';
-            });
-            
-            // Update counter sesuai bahasa aktif
-            const counter = document.getElementById('portfolio-counter');
-            if (counter) {
-                const shown = Math.min(visibleCount, filtered.length);
-                const total = filtered.length;
-                counter.innerHTML = currentLang === 'en'
-                    ? `Showing <strong>${shown}</strong> of <strong>${total}</strong> videos`
-                    : `Menampilkan <strong>${shown}</strong> dari <strong>${total}</strong> video`;
-            }
-            
-            const emptyState = document.getElementById('empty-state');
-            if (emptyState) {
-                emptyState.style.display = filtered.length === 0 ? 'block' : 'none';
-            }
-            
-            const loadMoreBtn = document.getElementById('load-more-btn');
-            if (loadMoreBtn) {
-                loadMoreBtn.style.display = visibleCount >= filtered.length ? 'none' : '';
-            }
-        }
-
-        // ── 4. Sistem Bahasa (ID / EN) ──
-        function setLang(lang) {
-            currentLang = lang;
-            localStorage.setItem('rioz_lang', lang);
-            document.documentElement.lang = lang;
-            
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) {
-                    el.innerHTML = translations[lang][key];
-                }
-            });
-
-            if (searchInput && translations[lang]?.portfolio_search_placeholder) {
-                searchInput.placeholder = translations[lang].portfolio_search_placeholder;
-            }
-            
-            // Update tombol bahasa di Desktop & Mobile
-            document.querySelectorAll('button[onclick="setLang(\'id\')"]').forEach(btn => {
-                btn.className = lang === 'id'
-                    ? 'text-xs font-bold px-3 py-1.5 bg-ink text-cream transition-all'
-                    : 'text-xs font-bold px-3 py-1.5 text-ink transition-all';
-            });
-            document.querySelectorAll('button[onclick="setLang(\'en\')"]').forEach(btn => {
-                btn.className = lang === 'en'
-                    ? 'text-xs font-bold px-3 py-1.5 bg-ink text-cream transition-all'
-                    : 'text-xs font-bold px-3 py-1.5 text-ink transition-all';
-            });
-
-            applyFilters();
-        }
-
-        // Mobile Menu
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const iconOpen = document.getElementById('icon-open');
-        const iconClose = document.getElementById('icon-close');
-        mobileMenuBtn?.addEventListener('click', () => {
-            mobileMenu.classList.toggle('open');
-            iconOpen.classList.toggle('hidden');
-            iconClose.classList.toggle('hidden');
-        });
-
-        searchInput?.addEventListener('input', () => { visibleCount = 12; applyFilters(); });
-        categoryFilter?.addEventListener('change', () => { visibleCount = 12; applyFilters(); });
-        sortFilter?.addEventListener('change', () => { visibleCount = 12; applyFilters(); });
-
-        document.getElementById('load-more-btn')?.addEventListener('click', () => {
-            visibleCount += 12;
-            applyFilters();
-        });
-
-        function resetFilters() {
-            if (searchInput) searchInput.value = '';
-            if (categoryFilter) categoryFilter.value = 'all';
-            if (sortFilter) sortFilter.value = 'newest';
-            visibleCount = 12;
-            applyFilters();
-        }
-
-        document.getElementById('reset-filters-btn')?.addEventListener('click', resetFilters);
-
-        // ── 5. Modal Lightbox Logic ──
-        grid?.addEventListener('click', (e) => {
-            const card = e.target.closest('.portfolio-card');
-            if (!card) return;
-            e.preventDefault();
-            
-            const videoId = card.dataset.videoId;
-            const title = card.dataset.title;
-            const category = card.dataset.category;
-            
-            openModal(videoId, title, category);
-        });
-
-        function openModal(videoId, title, category) {
-            const modal = document.getElementById('video-modal');
-            const player = document.getElementById('modal-player');
-            const catEl = document.getElementById('modal-category');
-            const titleEl = document.getElementById('modal-title');
-            const descEl = document.getElementById('modal-desc');
-            const ctaEl = document.getElementById('modal-cta');
-            if (!modal || !player) return;
-            
-            player.innerHTML = `
-                <iframe 
-                    src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0"
-                    title="${title}"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
-            `;
-            
-            if (catEl) catEl.textContent = categoryLabels[category] || category;
-            if (titleEl) titleEl.textContent = title;
-            if (descEl) descEl.textContent = categoryDescriptions[currentLang]?.[category] || categoryDescriptions.id[category] || '';
-            
-            const waText = encodeURIComponent(`Halo Rioz, saya tertarik video seperti ini: ${title}`);
-            if (ctaEl) ctaEl.href = `https://wa.me/62895413935821?text=${waText}`;
-            
-            modal.classList.add('open');
-            modal.setAttribute('aria-hidden', 'false');
-            document.body.classList.add('modal-open');
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('video-modal');
-            const player = document.getElementById('modal-player');
-            if (!modal || !player) return;
-            
-            player.innerHTML = '';
-            
-            modal.classList.remove('open');
-            modal.setAttribute('aria-hidden', 'true');
-            document.body.classList.remove('modal-open');
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const yearEl = document.getElementById('year');
-            if (yearEl) yearEl.textContent = new Date().getFullYear();
-            setLang(currentLang);
-            
-            if (typeof gsap !== 'undefined') {
-                gsap.from(allCards.slice(0, 12), { opacity: 0, y: 30, duration: 0.6, stagger: 0.05, ease: 'power2.out' });
-            }
-        });
-    </script>
+  function setLang(l){
+    lang=l;try{localStorage.setItem("rioz_lang",l)}catch(e){}
+    document.documentElement.lang=l;
+    document.querySelectorAll("[data-i]").forEach(function(el){var k=el.getAttribute("data-i");if(typeof T[l][k]==="string")el.innerHTML=T[l][k]});
+    document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-lang")===l?"true":"false")});
+    q.placeholder=T[l].ph;modal.querySelector(".x").setAttribute("aria-label",T[l].close);
+    drawChips();render();
+    if(modal.classList.contains("open"))document.getElementById("md").textContent=(DESC[l]||DESC.id)[list[cur][0]]||"";
+  }
+  document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-lang"))})});
+  document.getElementById("yr").textContent=new Date().getFullYear();
+  setLang(lang);
+})();
+</script>
 </body>
 </html>
