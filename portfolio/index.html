@@ -3,183 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Portofolio Rioz | 104 Video Shortform</title>
-<meta name="description" content="104 video vertikal hasil editing Rioz: talking head, edukasi, comedy skit, recap event, testimoni, dan product showcase.">
-<meta property="og:title" content="Portofolio Rioz | 104 Video Shortform">
+<title>Portoforioz | 104 Video Shortform oleh Rioz</title>
+<meta name="description" content="Portoforioz: 104 video vertikal hasil editing Rioz, dari talking head, edukasi, comedy skit, recap event, testimoni, sampai product showcase.">
+<meta property="og:title" content="Portoforioz | 104 Video Shortform oleh Rioz">
 <meta property="og:description" content="104 video vertikal hasil editing Rioz untuk UMKM, toko online, dan brand.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://riozzjr18.github.io/portoforiozz/portfolio/">
 <link rel="canonical" href="https://riozzjr18.github.io/portoforiozz/portfolio/">
+<meta name="theme-color" content="#111214">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
 <style>
-/* Same system as the homepage: dark ground, bone text, REC red. This page is the media bin. */
-:root{
-  --bg:#121315;--surface:#1B1D20;--ink:#EDE9E1;--muted:#8E9198;--line:rgba(237,233,225,.14);--accent:#FF4A2B;--on-accent:#121315;
-  --display:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;
-  --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
-  --gutter:40px;--max:1280px;--sp:clamp(80px,9vw,128px);--radius:8px;--panel-radius:24px;--ease:cubic-bezier(.22,1,.36,1);color-scheme:dark;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+/* Portoforioz: the media bin. Same system as the home page. */
 body.lock{overflow:hidden}
-a{color:inherit}
-h1,h2,h3{font-family:var(--display);font-weight:900;text-transform:uppercase;letter-spacing:-0.04em;line-height:.92;margin:0;text-wrap:balance}
-p{margin:0}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.head{position:relative;padding:150px 0 56px;overflow:hidden}
+.head .g12{align-items:end}
+.head h1{grid-column:1/9;font-size:clamp(64px,10.5vw,168px);letter-spacing:-0.055em;line-height:.86;position:relative}
+.head h1 i{font-style:normal;color:var(--accent)}
+.head .side{grid-column:9/13;padding-bottom:12px}
+.head .side p{color:var(--ink-soft);font-size:17px}
+.head .side .stk{margin-bottom:18px;transform:rotate(-5deg)}
+.mix{display:flex;gap:3px;height:8px;margin-top:48px;border-radius:999px;overflow:hidden}
+.mix span{display:block;height:100%;background:var(--surface-2);transition:background-color .3s}
+.mix span.on{background:var(--accent)}
 
-.top{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
-.top-row{display:flex;align-items:center;gap:28px;height:70px}
-.logo{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:22px;letter-spacing:-0.03em;text-decoration:none}
-.logo i{color:var(--accent);font-style:normal}
-.nav{display:flex;gap:26px;margin-left:auto;align-items:center}
-.nav a.l{font:400 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;text-decoration:none;color:var(--muted)}
-.nav a.l:hover,.nav a.l[aria-current]{color:var(--ink)}
-.nav a.l[aria-current]{box-shadow:inset 0 -1px 0 var(--accent);padding-bottom:3px}
-.lang{display:flex;gap:2px}
-.lang button{font:500 11px var(--mono);border:0;background:none;color:var(--muted);padding:4px 6px;cursor:pointer;letter-spacing:.06em}
-.lang button[aria-pressed="true"]{color:var(--ink);box-shadow:inset 0 -1px 0 var(--accent)}
-.pill{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:var(--on-accent);font:500 14px var(--body);padding:6px 6px 6px 18px;border-radius:999px;text-decoration:none;transition:transform .25s var(--ease)}
-.pill:hover{transform:translateY(-2px)}
-.pill span.c{width:30px;height:30px;border-radius:50%;background:var(--on-accent);color:var(--accent);display:grid;place-items:center}
-.pill.dark{background:var(--ink);color:var(--bg)}
-.pill.dark span.c{background:var(--bg);color:var(--ink)}
-.label{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
-.label b{color:var(--accent);font-weight:500}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:500 15px var(--body);text-decoration:none;border-radius:999px;padding:14px 24px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:transform .18s ease,background .18s ease,color .18s ease}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
-.btn.primary:hover{transform:translateY(-2px)}
-.btn.ghost:hover{background:var(--ink);color:var(--bg)}
-.btn.sm{padding:9px 18px;font-size:14px}
-
-.head{padding:72px 0 40px}
-.crumb{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:24px}
-.crumb a{text-decoration:none}
-.crumb a:hover{color:var(--ink)}
-.head-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:end}
-.head-grid h1{grid-column:1/13}
-.head-grid .sub{grid-column:9/13;margin-top:24px}
-h1{font-size:clamp(52px,10vw,150px);letter-spacing:-0.055em;line-height:.85}
-h1 sup{font:500 clamp(14px,1.6vw,20px) var(--mono);color:var(--accent);vertical-align:top;margin-left:6px;letter-spacing:0}
-.head p.sub{color:var(--muted);font-size:16px;line-height:1.55}
-.meter{display:flex;height:6px;overflow:hidden;margin-top:40px;gap:2px}
-.meter span{display:block;height:100%;background:color-mix(in srgb,var(--ink) 18%,var(--bg))}
-.meter span.on{background:var(--accent)}
-.meter-cap{display:flex;justify-content:space-between;gap:12px;font:400 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:8px;flex-wrap:wrap}
-
-.bar{position:sticky;top:70px;z-index:40;background:var(--bg);border-bottom:1px solid var(--line);padding:16px 0 0}
-.bar-row{display:flex;gap:20px;align-items:center}
-.bar-row>label:last-child{flex:none}
+.bar{position:sticky;top:68px;z-index:40;background:rgba(17,18,20,.94);padding:14px 0;box-shadow:0 1px 0 var(--line)}
+.bar-row{display:flex;gap:12px;align-items:center}
 .search{position:relative;flex:1 1 auto;min-width:0}
-.search input{width:100%;font:400 15px var(--body);color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:10px 12px 10px 30px}
-.search input:focus{border-color:var(--ink);outline:none}
-.search svg{position:absolute;left:2px;top:50%;transform:translateY(-50%);color:var(--muted)}
-.sort{font:400 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--ink);background:var(--bg);border:0;border-bottom:1px solid var(--line);padding:11px 4px;cursor:pointer}
-.chips{display:flex;gap:26px;overflow-x:auto;padding:18px 0 0;scrollbar-width:none}
+.search input{width:100%;font:500 16px var(--body);color:var(--ink);background:var(--surface);border:0;border-radius:999px;padding:13px 18px 13px 46px;box-shadow:inset 0 0 0 1.5px transparent;transition:box-shadow .2s}
+.search input:focus{outline:none;box-shadow:inset 0 0 0 1.5px var(--accent)}
+.search input::placeholder{color:var(--ink-soft)}
+.search svg{position:absolute;left:17px;top:50%;transform:translateY(-50%);color:var(--ink-soft)}
+.sort{flex:none;font:600 14px var(--body);color:var(--ink);background:var(--surface);border:0;border-radius:999px;padding:13px 18px;cursor:pointer}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-top:12px;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
-.chips button{flex:none;font:400 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;border:0;background:transparent;color:var(--muted);padding:0 0 14px;cursor:pointer;display:flex;gap:6px;align-items:baseline;box-shadow:inset 0 -2px 0 transparent}
-.chips button b{font-weight:400;font-size:10px;color:var(--muted)}
-.chips button:hover{color:var(--ink)}
-.chips button[aria-pressed="true"]{color:var(--ink);box-shadow:inset 0 -2px 0 var(--accent)}
-.chips button[aria-pressed="true"] b{color:var(--accent)}
-.count{font:400 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:24px 0 0}
-.count strong{color:var(--ink);font-weight:500}
+.chips button{flex:none;font:700 14px var(--display);letter-spacing:-0.01em;border:0;background:var(--surface);color:var(--ink-soft);padding:9px 15px;border-radius:999px;cursor:pointer;display:flex;gap:7px;align-items:baseline;transition:background-color .2s,color .2s,transform .3s var(--ease)}
+.chips button b{font:500 12px var(--body);opacity:.75}
+.chips button:hover{color:var(--ink);transform:translateY(-2px)}
+.chips button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
 
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:16px 0 0}
-.card{position:relative;aspect-ratio:9/16;border-radius:var(--radius);overflow:hidden;color:#fff;background:#14161b;isolation:isolate;border:1px solid var(--line);cursor:pointer;padding:0;font:inherit;text-align:left;transition:transform .25s ease}
-.card:hover{transform:translateY(-4px)}
-.card::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--surface)}
-.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
-.card::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,transparent 30%,transparent 55%,rgba(0,0,0,.8) 100%)}
-.card>*{position:absolute;z-index:1}
-.card .n{top:14px;left:14px;font:400 10px var(--mono);letter-spacing:.06em;color:var(--accent)}
-.card .tag{top:14px;right:14px;font:400 10px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.85)}
-.card .play{left:50%;top:50%;width:48px;height:48px;margin:-24px 0 0 -24px;opacity:0;border-radius:50%;background:var(--accent);display:grid;place-items:center;transition:transform .2s ease}
-.card:hover .play,.card:focus-visible .play{opacity:1;transform:scale(1.06)}
-.card .play::after{content:"";border-left:16px solid var(--on-accent);border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
-.card .ttl{left:14px;right:14px;bottom:14px;font:700 15px var(--display);text-transform:uppercase;letter-spacing:-0.01em;display:flex;justify-content:space-between;gap:8px}
-.card .ttl span{font:400 10px var(--mono);letter-spacing:.06em;opacity:.8;white-space:nowrap}
-.empty{text-align:center;padding:80px 0;color:var(--muted)}
-.empty h3{color:var(--ink);font-size:28px;text-transform:none;margin-bottom:8px}
-.more{display:flex;justify-content:center;margin:56px 0 0}
-
-.cta{background:var(--accent);color:var(--on-accent);border-radius:var(--panel-radius);padding:var(--sp) 0;margin:var(--sp) 16px 0}
-.cta .g{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
-.cta .label{grid-column:1/5;color:rgba(18,19,21,.65);padding-top:.6em}
-.cta .label b{color:var(--on-accent)}
-.cta .apc{grid-column:5/13}
-.cta h2{font-size:clamp(40px,5.4vw,84px);max-width:12em;margin:0 0 20px}
-.cta h2 mark{background:none;color:var(--on-accent);text-decoration:underline;text-decoration-thickness:.08em;text-underline-offset:.12em}
-.cta p{opacity:.8;max-width:32em;margin:0 0 32px;font-size:17px}
-footer.site{padding:40px 0 48px}
-footer.site .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:400 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
-footer.site a{text-decoration:none}
-footer.site a:hover{color:var(--ink)}
+.count{font-size:14px;color:var(--ink-soft);margin:28px 0 0}
+.count strong{color:var(--ink);font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 22px;padding:20px 0 0}
+.card{display:block;color:var(--ink);text-decoration:none}
+.card .fr{position:relative;aspect-ratio:9/16;border-radius:var(--r);overflow:hidden;transition:transform .5s var(--ease)}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.card .tag{position:absolute;top:12px;left:12px}
+.card .tag .stk{font-size:12px;padding:6px 10px}
+.card .play{position:absolute;left:50%;top:50%;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;background:var(--accent);display:grid;place-items:center;transform:scale(.6);opacity:0;transition:transform .45s cubic-bezier(.34,1.56,.64,1),opacity .25s}
+.card .play::after{content:"";border-left:17px solid var(--on-accent);border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px}
+.card:hover .fr,.card:focus-visible .fr{transform:rotate(-1.5deg) translateY(-6px)}
+.card:hover img{transform:scale(1.06)}
+.card:hover .play,.card:focus-visible .play{transform:none;opacity:1}
+.card h3{font-size:19px;letter-spacing:-0.02em;line-height:1.15;margin-top:14px}
+.card p{font-size:13px;color:var(--ink-soft);margin-top:4px}
+.empty{text-align:center;padding:96px 0;color:var(--ink-soft)}
+.empty h3{color:var(--ink);font-size:32px;margin-bottom:10px}
+.more{display:flex;justify-content:center;margin:64px 0 0}
+.gap{height:var(--sec)}
 
 .modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
 .modal.open{display:flex}
-.modal .bd{position:absolute;inset:0;background:rgba(8,9,11,.82);backdrop-filter:blur(6px)}
-.box{position:relative;display:grid;grid-template-columns:auto 340px;gap:0;background:var(--surface);border-radius:var(--panel-radius);overflow:hidden;max-height:calc(100vh - 40px);border:1px solid var(--line)}
-.player{background:#000;height:min(78vh,720px);aspect-ratio:9/16}
+.modal .bd{position:absolute;inset:0;background:rgba(8,9,11,.86)}
+.box{position:relative;display:grid;grid-template-columns:auto 360px;background:var(--surface);border-radius:28px;overflow:hidden;max-height:calc(100vh - 40px);animation:pop .45s var(--ease)}
+@keyframes pop{from{opacity:0;transform:translateY(20px) scale(.97)}}
+.player{background:#000;height:min(80vh,740px);aspect-ratio:9/16}
 .player iframe{width:100%;height:100%;border:0;display:block}
-.info{padding:30px 28px;display:flex;flex-direction:column;gap:16px;overflow:auto}
-.info .cat{font:400 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
-.info h2{font-size:28px;text-transform:none;letter-spacing:-0.02em}
-.info p{color:var(--muted);font-size:16px}
-.info .meta{font:500 13px var(--mono);color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:auto}
+.info{padding:34px 30px;display:flex;flex-direction:column;gap:18px;overflow:auto}
+.info .stk{align-self:flex-start;font-size:13px;padding:7px 12px}
+.info h2{font-size:32px;letter-spacing:-0.03em}
+.info p{color:var(--ink-soft);font-size:16px}
+.info .meta{font-size:13px;color:var(--ink-soft);margin-top:auto;padding-top:16px;box-shadow:0 -1px 0 var(--line)}
 .nav2{display:flex;gap:8px}
-.nav2 .btn{flex:1}
-.x{position:absolute;top:12px;right:12px;z-index:3;width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:500 20px var(--mono);cursor:pointer;display:grid;place-items:center}
-.wa{position:fixed;right:18px;bottom:18px;z-index:60;width:56px;height:56px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;text-decoration:none;font:700 13px var(--mono);box-shadow:0 10px 24px -8px rgba(0,0,0,.5);transition:transform .2s ease}
-.wa:hover{transform:scale(1.08)}
+.nav2 button{flex:1;font:600 14px var(--body);color:var(--ink);background:var(--surface-2);border:0;border-radius:999px;padding:12px;cursor:pointer}
+.nav2 button:disabled{opacity:.35;cursor:default}
+.x{position:absolute;top:14px;right:14px;z-index:3;width:42px;height:42px;border-radius:50%;border:0;background:var(--surface-2);color:var(--ink);cursor:pointer;display:grid;place-items:center}
 
-@media (max-width:980px){
-  :root{--gutter:32px}
-  .head-grid h1{grid-column:1/13}.head-grid .sub{grid-column:1/13;margin-top:20px;max-width:34em}
-  .cta .label,.cta .apc{grid-column:1/13}.cta .label{margin-bottom:16px;padding-top:0}
-  .grid{grid-template-columns:repeat(3,1fr)}
-  .box{grid-template-columns:1fr;width:min(100%,420px);overflow:auto}
+@media (max-width:1024px){
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .box{grid-template-columns:1fr;width:min(100%,430px);overflow:auto}
   .player{height:auto;width:100%;max-height:62vh}
-  .info{padding:22px}
+  .info{padding:24px}
 }
-@media (max-width:720px){
-  :root{--gutter:20px}
-  .nav{gap:14px}
-  .pill{font-size:13px;padding:5px 5px 5px 14px}
-  .pill span.c{width:26px;height:26px}
-  .meter-cap{flex-direction:column;gap:4px}
-  .chips{gap:20px}
-  .cta{margin:var(--sp) 8px 0}
-  .card .play{opacity:1}
-  body{font-size:16px}
-  .nav a.l{display:none}
-  .grid{grid-template-columns:repeat(2,1fr);gap:12px}
-  .card .play{width:46px;height:46px;margin:-23px 0 0 -23px}
-  .card .ttl{font-size:13px}
-  .cta{padding:44px 22px;border-radius:24px}
+@media (max-width:767px){
+  .head{padding:116px 0 40px}
+  .head h1,.head .side{grid-column:1/13}
+  .head h1{font-size:13.5vw}
+  .head .side{margin-top:24px;padding:0}
+  .bar{top:68px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}
+  .card .play{opacity:1;transform:scale(.8)}
+  .card h3{font-size:16px}
   .modal{padding:10px}
 }
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 
 <header class="top">
-  <div class="wrap top-row">
-    <a class="logo" href="../index.html" aria-label="Rioz, beranda">Rioz<i>.</i></a>
-    <nav class="nav" aria-label="Utama">
-      <a class="l" href="../index.html" data-i="nav_home">Beranda</a>
-      <a class="l" href="#" aria-current="page" data-i="nav_work">Portofolio</a>
-      <a class="l" href="../index.html#layanan" data-i="nav_svc">Layanan</a>
-      <div class="lang" role="group" aria-label="Bahasa">
-        <button type="button" data-lang="id" aria-pressed="true">ID</button>
-        <button type="button" data-lang="en" aria-pressed="false">EN</button>
-      </div>
-      <a class="pill" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20lihat%20portofolio%20kamu%20dan%20mau%20konsultasi%20gratis." target="_blank" rel="noopener noreferrer"><span data-i="nav_cta">Konsultasi gratis</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+  <div class="wrap">
+    <a class="wm" href="../index.html" aria-label="Rioz, beranda">Rioz<i>.</i></a>
+    <nav class="links" aria-label="Utama">
+      <a class="l" href="../index.html" data-i="n1">Beranda</a>
+      <a class="l" href="#" aria-current="page">Portoforioz</a>
+      <a class="l" href="../index.html#paket" data-i="n3">Paket</a>
+      <div class="lang" role="group" aria-label="Bahasa"><button type="button" data-lang="id" aria-pressed="true">ID</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
+      <a class="pill sm" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20lihat%20Portoforioz%20dan%20mau%20konsultasi%20gratis." target="_blank" rel="noopener noreferrer"><span data-i="cta">Konsultasi gratis</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </nav>
   </div>
 </header>
@@ -187,13 +118,14 @@ footer.site a:hover{color:var(--ink)}
 <main>
   <div class="head">
     <div class="wrap">
-      <p class="crumb"><span style="color:var(--accent)">000/</span> <a href="../index.html" data-i="nav_home">Beranda</a> / <span data-i="nav_work">Portofolio</span></p>
-      <div class="head-grid">
-        <h1 data-i="h1">Portofolio<sup>104</sup></h1>
-        <p class="sub" data-i="sub">Semua video shortform yang sudah saya kerjakan. Klik kartu untuk menonton.</p>
+      <div class="g12">
+        <h1 data-split>Portoforioz<i>.</i></h1>
+        <div class="side" data-up>
+          <span class="stk red num">104 video</span>
+          <p data-i="sub">Semua video shortform yang sudah saya edit, dalam 10 gaya. Pilih gaya, lalu klik kartu untuk menonton.</p>
+        </div>
       </div>
-      <div class="meter" id="meter" aria-hidden="true"></div>
-      <div class="meter-cap"><span data-i="meter">Komposisi 104 video per kategori</span><span>10 <span data-i="cats">kategori</span> / 5+ <span data-i="yrs">tahun</span></span></div>
+      <div class="mix" id="mix" aria-hidden="true"></div>
     </div>
   </div>
 
@@ -201,12 +133,12 @@ footer.site a:hover{color:var(--ink)}
     <div class="wrap">
       <div class="bar-row">
         <label class="search">
-          <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)" data-i="search_l">Cari video</span>
+          <span class="sr" data-i="search_l">Cari video</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-          <input id="q" type="search" autocomplete="off" placeholder="Cari judul atau kategori">
+          <input id="q" type="search" autocomplete="off" placeholder="Cari judul atau gaya">
         </label>
-        <label style="position:relative">
-          <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)" data-i="sort_l">Urutkan</span>
+        <label>
+          <span class="sr" data-i="sort_l">Urutkan</span>
           <select id="sort" class="sort">
             <option value="newest" data-i="s_new">Terbaru</option>
             <option value="oldest" data-i="s_old">Terlama</option>
@@ -214,53 +146,62 @@ footer.site a:hover{color:var(--ink)}
           </select>
         </label>
       </div>
-      <div class="chips" id="chips" role="group" aria-label="Kategori"></div>
-      <p class="count" id="count" aria-live="polite"></p>
+      <div class="chips" id="chips" role="group" aria-label="Gaya"></div>
     </div>
   </div>
 
   <div class="wrap">
+    <p class="count" id="count" aria-live="polite"></p>
     <div class="grid" id="grid"></div>
-    <div class="empty" id="empty" hidden><h3 data-i="e_h">Tidak ada video yang cocok</h3><p data-i="e_p">Coba kata lain atau pilih kategori Semua.</p></div>
-    <div class="more"><button type="button" class="btn ghost" id="more" data-i="more">Muat lebih banyak</button></div>
+    <div class="empty" id="empty" hidden><h3 data-i="e_h">Belum ada yang cocok</h3><p data-i="e_p">Coba kata lain atau pilih Semua.</p></div>
+    <div class="more"><button type="button" class="pill line" id="more"><span data-i="more">Muat lebih banyak</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span></button></div>
   </div>
 
-  <section class="cta">
-    <div class="wrap g">
-      <p class="label"><b>001/</b> <span data-i="c_l">Kerja bareng</span></p>
-      <div class="apc">
-        <h2 data-i="c_h">Suka gayanya? Video kamu berikutnya.</h2>
-        <p data-i="c_p">Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.</p>
-        <a class="pill dark" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20lihat%20portofolio%20kamu%20dan%20mau%20konsultasi%20gratis." target="_blank" rel="noopener noreferrer"><span data-i="c_b">Chat WhatsApp</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+  <div class="gap" aria-hidden="true"></div>
+  <section class="close" aria-labelledby="h-close">
+    <div class="wrap">
+      <h2 id="h-close" data-split data-i="c_h">Suka gayanya? Video kamu berikutnya.</h2>
+      <p data-up data-i="c_p">Konsultasi gratis lewat WhatsApp. Ceritakan produk atau brand kamu, saya bantu strategi videonya.</p>
+      <div class="acts" data-up>
+        <a class="pill ink" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20lihat%20Portoforioz%20dan%20mau%20konsultasi%20gratis." target="_blank" rel="noopener noreferrer"><span data-i="c_b">Chat WhatsApp</span><span class="c" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a class="tlink" href="../index.html#paket" data-i="c_l">Lihat paket</a>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="site">
-  <div class="wrap"><span>&copy; <span id="yr">2026</span> Rioz.</span><a href="../index.html" data-i="back">Kembali ke beranda</a></div>
+<footer>
+  <div class="wrap g12 ft">
+    <div class="a"><a href="mailto:damariozjr@gmail.com">damariozjr@gmail.com</a><p>WhatsApp +62 895 4139 35821</p></div>
+    <nav aria-label="Halaman"><a href="../index.html" data-i="n1">Beranda</a><a href="../index.html#paket" data-i="n3">Paket</a><a href="https://drive.google.com/file/d/11WC1K-IE0FJb7NVCzSWL7n8p2ZW-LWSq/view?usp=sharing" target="_blank" rel="noopener noreferrer">Download CV</a></nav>
+    <nav aria-label="Sosial"><a href="https://www.instagram.com/riozz18/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.linkedin.com/in/riozz18/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://linktr.ee/riozz" target="_blank" rel="noopener noreferrer">Linktree</a></nav>
+  </div>
+  <div class="rest" aria-hidden="true"><div class="walker"><span class="f1"></span></div></div>
+  <div class="giant" aria-hidden="true">Rioz<i>.</i></div>
+  <div class="wrap copyr"><span>&copy; <span id="yr">2026</span> Rioz. Portoforioz.</span><span data-i="foot">Editor video vertikal</span></div>
 </footer>
-
-<a class="wa" href="https://wa.me/62895413935821" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WA</a>
 
 <div class="modal" id="modal" aria-hidden="true">
   <div class="bd" data-close></div>
   <div class="box" role="dialog" aria-modal="true" aria-labelledby="mt">
-    <button type="button" class="x" data-close aria-label="Tutup">&times;</button>
+    <button type="button" class="x" data-close aria-label="Tutup"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     <div class="player" id="player"></div>
     <div class="info">
-      <p class="cat" id="mc"></p>
+      <span class="stk red" id="mc"></span>
       <h2 id="mt"></h2>
       <p id="md"></p>
-      <a class="btn primary" id="mw" href="#" target="_blank" rel="noopener noreferrer" data-i="m_cta">Mau video seperti ini</a>
-      <div class="nav2"><button type="button" class="btn ghost sm" id="prev" data-i="prev">Sebelumnya</button><button type="button" class="btn ghost sm" id="next" data-i="next">Berikutnya</button></div>
-      <p class="meta" id="mm"></p>
+      <a class="pill" id="mw" href="#" target="_blank" rel="noopener noreferrer"><span data-i="m_cta">Mau video seperti ini</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <div class="nav2"><button type="button" id="prev" data-i="prev">Sebelumnya</button><button type="button" id="next" data-i="next">Berikutnya</button></div>
+      <p class="meta num" id="mm"></p>
     </div>
   </div>
 </div>
 
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="../assets/site.js"></script>
 <script>
 (function(){
+  var R=window.Rioz;
   var V=[["ai", "LaKAMuOq0HI", "AI Generated Content 01", "2024-06-01"], ["ai", "dYAoe35bcRc", "AI Generated Content 02", "2024-05-31"], ["ai", "g3hjxWPCGX0", "AI Generated Content 03", "2024-05-30"], ["ai", "ewriqNLjOtA", "AI Generated Content 04", "2024-05-29"], ["edu", "1oazDgxpZjY", "Educational 01", "2024-05-28"], ["edu", "qlq898T6_1k", "Educational 02", "2024-05-27"], ["edu", "1Ev-ZArl3eI", "Educational 03", "2024-05-26"], ["edu", "_GORMH5jvro", "Educational 04", "2024-05-25"], ["edu", "OawdhCP6Bao", "Educational 05", "2024-05-24"], ["edu", "wZW9_Z1ReJU", "Educational 06", "2024-05-23"], ["edu", "mRmq7-tN-VA", "Educational 07", "2024-05-22"], ["edu", "KR2TbC3Phjk", "Educational 08", "2024-05-21"], ["edu", "5fL5JIz5kj4", "Educational 09", "2024-05-20"], ["edu", "gBQH60sAx4Y", "Educational 10", "2024-05-19"], ["edu", "rH82JFAOB_U", "Educational 11", "2024-05-18"], ["talking", "t_z4TG3IRy4", "Talking Head 01", "2024-05-17"], ["talking", "aLAjmtTa-ug", "Talking Head 02", "2024-05-16"], ["talking", "lexhy9yeQ5U", "Talking Head 03", "2024-05-15"], ["talking", "1ZHpn6AnRjQ", "Talking Head 04", "2024-05-14"], ["talking", "Tzj8d9rnYYg", "Talking Head 05", "2024-05-13"], ["talking", "pjQ0C0SZ6rU", "Talking Head 06", "2024-05-12"], ["talking", "cLrJubzwplI", "Talking Head 07", "2024-05-11"], ["talking", "RHfaChBBDPE", "Talking Head 08", "2024-05-10"], ["talking", "daOjyEgoAPs", "Talking Head 09", "2024-05-09"], ["talking", "nSV-vEDVYbM", "Talking Head 10", "2024-05-08"], ["talking", "eDoOvPNqh4w", "Talking Head 11", "2024-05-07"], ["talking", "ii2z0p6VtG8", "Talking Head 12", "2024-05-06"], ["talking", "6x5_QZcw3zg", "Talking Head 13", "2024-05-05"], ["talking", "5_Fo-B3eC3E", "Talking Head 14", "2024-05-04"], ["talking", "LhBjT7M3Tuw", "Talking Head 15", "2024-05-03"], ["talking", "17gg5cS9omc", "Talking Head 16", "2024-05-02"], ["talking", "fQXr-vwYDNA", "Talking Head 17", "2024-05-01"], ["regular", "QWQQ58m-Wyk", "Regular 01", "2024-04-30"], ["regular", "xjjbIIOFWKo", "Regular 02", "2024-04-29"], ["regular", "h6C_cErDAOA", "Regular 03", "2024-04-28"], ["regular", "TnPwOMfe_lY", "Regular 04", "2024-04-27"], ["regular", "Pk9X2juMQjg", "Regular 05", "2024-04-26"], ["regular", "hyTLMPHcN7E", "Regular 06", "2024-04-25"], ["regular", "g1T-cZ3tOLo", "Regular 07", "2024-04-24"], ["regular", "wNB9uBnXjr0", "Regular 08", "2024-04-23"], ["regular", "oYT4AcKvcCk", "Regular 09", "2024-04-22"], ["regular", "j8ohlMBWNtc", "Regular 10", "2024-04-21"], ["regular", "9ltmSy2irBw", "Regular 11", "2024-04-20"], ["regular", "6Ecub5UvLY8", "Regular 12", "2024-04-19"], ["regular", "_mkuyEdE0rU", "Regular 13", "2024-04-18"], ["regular", "nMCxenB1ZKM", "Regular 14", "2024-04-17"], ["regular", "gYFf-kxIVfI", "Regular 15", "2024-04-16"], ["regular", "dayGJjbcn1U", "Regular 16", "2024-04-15"], ["regular", "ESy-UfNNyZ4", "Regular 17", "2024-04-14"], ["regular", "iq6QKb4IvDU", "Regular 18", "2024-04-13"], ["regular", "LllSvCbLo3k", "Regular 19", "2024-04-12"], ["regular", "RstKlyV7VHY", "Regular 20", "2024-04-11"], ["regular", "kgy1uBu_gUg", "Regular 21", "2024-04-10"], ["regular", "ffIzVHljfKs", "Regular 22", "2024-04-09"], ["recap", "sOpKPZbFKCA", "Recap Event 01", "2024-04-08"], ["recap", "bpIEQIiw6RY", "Recap Event 02", "2024-04-07"], ["recap", "yR3ooStvFZ8", "Recap Event 03", "2024-04-06"], ["recap", "wPdBrEC8TZ8", "Recap Event 04", "2024-04-05"], ["recap", "YI2NC_93wzM", "Recap Event 05", "2024-04-04"], ["recap", "67SwI6tSpLk", "Recap Event 06", "2024-04-03"], ["recap", "NYdcFBf8DD0", "Recap Event 07", "2024-04-02"], ["recap", "dahQNsboV8k", "Recap Event 08", "2024-04-01"], ["recap", "bCXGFOKjStk", "Recap Event 09", "2024-03-31"], ["recap", "8s2VPIlA2c0", "Recap Event 10", "2024-03-30"], ["recap", "df5ZQ4yriU0", "Recap Event 11", "2024-03-29"], ["recap", "ZxIPJ3c4ivU", "Recap Event 12", "2024-03-28"], ["recap", "Pk9X2juMQjg", "Recap Event 13", "2024-03-27"], ["recap", "dayGJjbcn1U", "Recap Event 14", "2024-03-26"], ["comedy", "b0jUrrcQlas", "Comedy Skit 01", "2024-03-25"], ["comedy", "37gKFkgzLM0", "Comedy Skit 02", "2024-03-24"], ["comedy", "vVZ3VDWsNXc", "Comedy Skit 03", "2024-03-23"], ["comedy", "W-_uDSpDN38", "Comedy Skit 04", "2024-03-22"], ["comedy", "TLhvKwvTlHQ", "Comedy Skit 05", "2024-03-21"], ["comedy", "R66yKmu-m6I", "Comedy Skit 06", "2024-03-20"], ["comedy", "qHjkq_5sQaQ", "Comedy Skit 07", "2024-03-19"], ["comedy", "8gq53NfCfHI", "Comedy Skit 08", "2024-03-18"], ["comedy", "Fmz3tHZmviI", "Comedy Skit 09", "2024-03-17"], ["comedy", "CW9oCnJ66ts", "Comedy Skit 10", "2024-03-16"], ["comedy", "1euVr5By5w4", "Comedy Skit 11", "2024-03-15"], ["comedy", "bKi97B_l-is", "Comedy Skit 12", "2024-03-14"], ["comedy", "-KzUo7ZLifY", "Comedy Skit 13", "2024-03-13"], ["comedy", "I_eZvFQeXMY", "Comedy Skit 14", "2024-03-12"], ["comedy", "jT23-ohMkYc", "Comedy Skit 15", "2024-03-11"], ["comedy", "RohrrbN82xw", "Comedy Skit 16", "2024-03-10"], ["comedy", "xM4q9q9mO54", "Comedy Skit 17", "2024-03-09"], ["comedy", "gjbYcEJo2TM", "Comedy Skit 18", "2024-03-08"], ["motion", "gG73Po3sQHw", "Motion Graphics 01", "2024-03-07"], ["motion", "5kOv_hdRciQ", "Motion Graphics 02", "2024-03-06"], ["motion", "QPeBgBbDu2g", "Motion Graphics 03", "2024-03-05"], ["motion", "5fL5JIz5kj4", "Motion Graphics 04", "2024-03-04"], ["interview", "TJDEc6XyIbo", "Interview 01", "2024-03-03"], ["interview", "TUnVMRmr4SM", "Interview 02", "2024-03-02"], ["interview", "3eaddi5pIVc", "Interview 03", "2024-03-01"], ["interview", "lMppxIMExbQ", "Interview 04", "2024-02-29"], ["testimonial", "Ev0mClauYLg", "Testimonial 01", "2024-02-28"], ["testimonial", "Tv4UQ2XhEPA", "Testimonial 02", "2024-02-27"], ["testimonial", "Alzbc5Hxcjg", "Testimonial 03", "2024-02-26"], ["testimonial", "QMT3uGmYtH0", "Testimonial 04", "2024-02-25"], ["testimonial", "0ot3w0suosM", "Testimonial 05", "2024-02-24"], ["testimonial", "59ftRbeOt1c", "Testimonial 06", "2024-02-23"], ["testimonial", "4UgMLTEYlaY", "Testimonial 07", "2024-02-22"], ["testimonial", "LDcWh-bgMKw", "Testimonial 08", "2024-02-21"], ["product", "_W3PeEMlYVQ", "Product Showcase 01", "2024-02-20"], ["product", "hAjTjWVPdtw", "Product Showcase 02", "2024-02-19"]];
   var LBL={ai:"AI Content",edu:"Educational",regular:"Regular",recap:"Recap Event",comedy:"Comedy Skit",motion:"Motion",interview:"Interview",testimonial:"Testimonial",product:"Product Showcase",talking:"Talking Head"};
   var DESC={
@@ -291,75 +232,61 @@ footer.site a:hover{color:var(--ink)}
         };
   var ORDER=["regular","comedy","talking","recap","edu","testimonial","ai","motion","interview","product"];
   var T={
-    id:{nav_home:"Beranda",nav_work:"Portofolio",nav_svc:"Layanan",nav_cta:"Konsultasi gratis",h1:"Portofolio<sup>104</sup>",sub:"Semua video shortform yang sudah saya kerjakan. Klik kartu untuk menonton.",meter:"Komposisi 104 video per kategori",cats:"kategori",yrs:"tahun",search_l:"Cari video",sort_l:"Urutkan",s_new:"Terbaru",s_old:"Terlama",all:"Semua",e_h:"Tidak ada video yang cocok",e_p:"Coba kata lain atau pilih kategori Semua.",more:"Muat lebih banyak",c_h:"Suka gayanya? Video kamu berikutnya.",c_l:"Kerja bareng",c_p:"Konsultasi gratis. Ceritakan produk atau brand kamu, saya bantu strategi videonya.",c_b:"Chat WhatsApp",back:"Kembali ke beranda",m_cta:"Mau video seperti ini",prev:"Sebelumnya",next:"Berikutnya",ph:"Cari judul atau kategori",shown:function(a,b){return "Menampilkan <strong>"+a+"</strong> dari <strong>"+b+"</strong> video"},close:"Tutup"},
-    en:{nav_home:"Home",nav_work:"Work",nav_svc:"Services",nav_cta:"Free consultation",h1:"Work<sup>104</sup>",sub:"Every shortform video I have edited. Click a card to watch.",meter:"104 videos by category",cats:"categories",yrs:"years",search_l:"Search videos",sort_l:"Sort",s_new:"Newest",s_old:"Oldest",all:"All",e_h:"No matching videos",e_p:"Try another word or pick All.",more:"Load more",c_h:"Like the style? Your video is next.",c_l:"Work together",c_p:"Free consultation. Tell me about your product or brand and I will help with the video strategy.",c_b:"Chat on WhatsApp",back:"Back to home",m_cta:"I want a video like this",prev:"Previous",next:"Next",ph:"Search title or category",shown:function(a,b){return "Showing <strong>"+a+"</strong> of <strong>"+b+"</strong> videos"},close:"Close"}
+    id:{n1:"Beranda",n3:"Paket",cta:"Konsultasi gratis",sub:"Semua video shortform yang sudah saya edit, dalam 10 gaya. Pilih gaya, lalu klik kartu untuk menonton.",search_l:"Cari video",sort_l:"Urutkan",s_new:"Terbaru",s_old:"Terlama",all:"Semua",e_h:"Belum ada yang cocok",e_p:"Coba kata lain atau pilih Semua.",more:"Muat lebih banyak",c_h:"Suka gayanya? Video kamu berikutnya.",c_p:"Konsultasi gratis lewat WhatsApp. Ceritakan produk atau brand kamu, saya bantu strategi videonya.",c_b:"Chat WhatsApp",c_l:"Lihat paket",m_cta:"Mau video seperti ini",prev:"Sebelumnya",next:"Berikutnya",ph:"Cari judul atau gaya",foot:"Editor video vertikal",close:"Tutup",watch:"Tonton",
+      shown:function(a,b){return "Menampilkan <strong>"+a+"</strong> dari <strong>"+b+"</strong> video"},wa:function(t,c){return "Halo Rioz, saya mau video seperti \""+t+"\" ("+c+") di Portoforioz."}},
+    en:{n1:"Home",n3:"Packages",cta:"Free consultation",sub:"Every shortform video I have edited, in 10 styles. Pick a style, then click a card to watch.",search_l:"Search videos",sort_l:"Sort",s_new:"Newest",s_old:"Oldest",all:"All",e_h:"Nothing matches yet",e_p:"Try another word or pick All.",more:"Load more",c_h:"Like the style? Your video is next.",c_p:"Free consultation on WhatsApp. Tell me about your product or brand and I will help with the video strategy.",c_b:"Chat on WhatsApp",c_l:"See packages",m_cta:"I want a video like this",prev:"Previous",next:"Next",ph:"Search title or style",foot:"Vertical video editor",close:"Close",watch:"Watch",
+      shown:function(a,b){return "Showing <strong>"+a+"</strong> of <strong>"+b+"</strong> videos"},wa:function(t,c){return "Hi Rioz, I want a video like \""+t+"\" ("+c+") from Portoforioz."}}
   };
   var lang="id";try{lang=localStorage.getItem("rioz_lang")||"id"}catch(e){}if(!T[lang])lang="id";
   var PAGE=24,limit=PAGE,cat="all",list=[],cur=-1;
-  var counts={};V.forEach(function(v){counts[v[0]]=(counts[v[0]]||0)+1});
-  V.forEach(function(v,i){v.push(i)});
-
-  var grid=document.getElementById("grid"),q=document.getElementById("q"),sort=document.getElementById("sort"),
-      chips=document.getElementById("chips"),countEl=document.getElementById("count"),more=document.getElementById("more"),
-      empty=document.getElementById("empty"),meter=document.getElementById("meter");
-
+  var counts={};V.forEach(function(v,i){counts[v[0]]=(counts[v[0]]||0)+1;v.push(i)});
+  var grid=document.getElementById("grid"),q=document.getElementById("q"),sort=document.getElementById("sort"),chips=document.getElementById("chips"),countEl=document.getElementById("count"),more=document.getElementById("more"),empty=document.getElementById("empty"),mix=document.getElementById("mix");
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 
   function drawChips(){
-    var h='<button type="button" data-c="all" aria-pressed="'+(cat==="all")+'">'+T[lang].all+' <b>'+V.length+'</b></button>';
-    ORDER.forEach(function(c){h+='<button type="button" data-c="'+c+'" aria-pressed="'+(cat===c)+'">'+LBL[c]+' <b>'+counts[c]+'</b></button>'});
+    var h='<button type="button" data-c="all" aria-pressed="'+(cat==="all")+'">'+T[lang].all+" <b>"+V.length+"</b></button>";
+    ORDER.forEach(function(c){h+='<button type="button" data-c="'+c+'" aria-pressed="'+(cat===c)+'">'+LBL[c]+" <b>"+counts[c]+"</b></button>"});
     chips.innerHTML=h;
-    var m="";ORDER.forEach(function(c){m+='<span class="'+(cat===c?"on":"")+'" style="flex:'+counts[c]+'" title="'+LBL[c]+' '+counts[c]+'"></span>'});
-    meter.innerHTML=m;
+    mix.innerHTML=ORDER.map(function(c){return '<span class="'+(cat===c?"on":"")+'" style="flex:'+counts[c]+'" title="'+LBL[c]+" "+counts[c]+'"></span>'}).join("");
   }
-  chips.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;cat=b.getAttribute("data-c");limit=PAGE;drawChips();render()});
+  chips.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;cat=b.getAttribute("data-c");limit=PAGE;drawChips();render(true)});
 
   function filtered(){
     var s=q.value.trim().toLowerCase();
-    var r=V.filter(function(v){
-      if(cat!=="all"&&v[0]!==cat)return false;
-      if(!s)return true;
-      return (v[2]+" "+LBL[v[0]]).toLowerCase().indexOf(s)>-1;
-    });
+    var r=V.filter(function(v){if(cat!=="all"&&v[0]!==cat)return false;return !s||(v[2]+" "+LBL[v[0]]).toLowerCase().indexOf(s)>-1});
     var o=sort.value;
-    r.sort(function(a,b){
-      if(o==="az")return a[2].localeCompare(b[2],undefined,{numeric:true});
-      if(o==="oldest")return a[3]<b[3]?-1:a[3]>b[3]?1:b[4]-a[4];
-      return a[3]>b[3]?-1:a[3]<b[3]?1:a[4]-b[4];
-    });
+    r.sort(function(a,b){if(o==="az")return a[2].localeCompare(b[2],undefined,{numeric:true});if(o==="oldest")return a[3]<b[3]?-1:a[3]>b[3]?1:b[4]-a[4];return a[3]>b[3]?-1:a[3]<b[3]?1:a[4]-b[4]});
     return r;
   }
-
-  function render(){
+  function card(v,i){
+    return '<a class="card" href="https://www.youtube.com/watch?v='+v[1]+'" data-k="'+i+'" data-up style="transition-delay:'+((i%4)*70)+'ms" aria-label="'+T[lang].watch+": "+esc(v[2])+'"><div class="fr fb"><img src="https://i.ytimg.com/vi/'+v[1]+'/hqdefault.jpg" alt="" loading="lazy"><span class="tag"><span class="stk">'+LBL[v[0]]+'</span></span><span class="play"></span></div><h3>'+esc(v[2])+"</h3></a>";
+  }
+  function render(reset){
     list=filtered();
-    var show=list.slice(0,limit),h="";
-    show.forEach(function(v,i){
-      h+='<button type="button" class="card" data-k="'+i+'" aria-label="'+esc(v[2])+', '+LBL[v[0]]+'">'
-        +'<img src="https://i.ytimg.com/vi/'+v[1]+'/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">'
-        +'<span class="n">'+("00"+(v[4]+1)).slice(-3)+'</span><span class="tag">'+LBL[v[0]]+'</span><span class="play"></span>'
-        +'<span class="ttl">'+esc(v[2])+'<span>9:16</span></span></button>';
-    });
-    grid.innerHTML=h;
+    var show=list.slice(0,limit);
+    if(reset)grid.innerHTML=show.map(card).join("");
+    else{var have=grid.children.length;grid.insertAdjacentHTML("beforeend",show.slice(have).map(function(v,j){return card(v,have+j)}).join(""))}
     empty.hidden=list.length>0;
     more.parentNode.hidden=list.length<=limit;
     countEl.innerHTML=T[lang].shown(show.length,list.length);
+    R.refresh(grid);
   }
-  grid.addEventListener("click",function(e){var c=e.target.closest(".card");if(c)open(+c.getAttribute("data-k"))});
-  more.addEventListener("click",function(){limit+=PAGE;render()});
-  var tm;q.addEventListener("input",function(){clearTimeout(tm);tm=setTimeout(function(){limit=PAGE;render()},150)});
-  sort.addEventListener("change",function(){limit=PAGE;render()});
+  grid.addEventListener("click",function(e){var c=e.target.closest(".card");if(!c||e.metaKey||e.ctrlKey)return;e.preventDefault();open(+c.getAttribute("data-k"))});
+  more.addEventListener("click",function(){limit+=PAGE;render(false)});
+  var tm;q.addEventListener("input",function(){clearTimeout(tm);tm=setTimeout(function(){limit=PAGE;render(true)},150)});
+  sort.addEventListener("change",function(){limit=PAGE;render(true)});
 
-  var modal=document.getElementById("modal"),player=document.getElementById("player"),last=null;
+  var modal=document.getElementById("modal"),player=document.getElementById("player"),lastFocus=null;
   function open(k){
     if(k<0||k>=list.length)return;
     cur=k;var v=list[k];
-    if(!modal.classList.contains("open"))last=document.activeElement;
+    if(!modal.classList.contains("open")){lastFocus=document.activeElement;if(R.lenis)R.lenis.stop()}
     player.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+v[1]+'?autoplay=1&rel=0&playsinline=1" title="'+esc(v[2])+'" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
     document.getElementById("mc").textContent=LBL[v[0]];
     document.getElementById("mt").textContent=v[2];
     document.getElementById("md").textContent=(DESC[lang]||DESC.id)[v[0]]||"";
     document.getElementById("mm").textContent=(k+1)+" / "+list.length;
-    document.getElementById("mw").href="https://wa.me/62895413935821?text="+encodeURIComponent("Halo Rioz, saya mau video seperti \""+v[2]+"\" ("+LBL[v[0]]+") di portofolio kamu.");
+    document.getElementById("mw").href="https://wa.me/62895413935821?text="+encodeURIComponent(T[lang].wa(v[2],LBL[v[0]]));
     document.getElementById("prev").disabled=k===0;
     document.getElementById("next").disabled=k===list.length-1;
     modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.classList.add("lock");
@@ -367,14 +294,12 @@ footer.site a:hover{color:var(--ink)}
   }
   function close(){
     modal.classList.remove("open");modal.setAttribute("aria-hidden","true");player.innerHTML="";document.body.classList.remove("lock");
-    if(last)last.focus();
+    if(R.lenis)R.lenis.start();
+    if(lastFocus)lastFocus.focus();
   }
-  modal.addEventListener("click",function(e){if(e.target.hasAttribute("data-close"))close()});
+  modal.addEventListener("click",function(e){if(e.target.closest("[data-close]"))close()});
   document.getElementById("prev").addEventListener("click",function(){open(cur-1)});
-  document.getElementById("next").addEventListener("click",function(){
-    if(cur+1>=limit&&cur+1<list.length){limit+=PAGE;render()}
-    open(cur+1);
-  });
+  document.getElementById("next").addEventListener("click",function(){if(cur+1>=limit&&cur+1<list.length){limit+=PAGE;render(false)}open(cur+1)});
   document.addEventListener("keydown",function(e){
     if(!modal.classList.contains("open"))return;
     if(e.key==="Escape")close();
@@ -385,14 +310,13 @@ footer.site a:hover{color:var(--ink)}
   function setLang(l){
     lang=l;try{localStorage.setItem("rioz_lang",l)}catch(e){}
     document.documentElement.lang=l;
-    document.querySelectorAll("[data-i]").forEach(function(el){var k=el.getAttribute("data-i");if(typeof T[l][k]==="string")el.innerHTML=T[l][k]});
-    document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-lang")===l?"true":"false")});
+    document.querySelectorAll("[data-i]").forEach(function(el){var v=T[l][el.getAttribute("data-i")];if(typeof v!=="string")return;if(el.hasAttribute("data-split"))el.setAttribute("data-src",v);else el.innerHTML=v});
+    document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-lang")===l))});
     q.placeholder=T[l].ph;modal.querySelector(".x").setAttribute("aria-label",T[l].close);
-    drawChips();render();
+    drawChips();render(true);
     if(modal.classList.contains("open"))document.getElementById("md").textContent=(DESC[l]||DESC.id)[list[cur][0]]||"";
   }
   document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-lang"))})});
-  document.getElementById("yr").textContent=new Date().getFullYear();
   setLang(lang);
 })();
 </script>
