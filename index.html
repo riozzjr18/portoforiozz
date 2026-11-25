@@ -157,24 +157,39 @@
 .head::before{content:"";position:absolute;top:-6px;left:-5px;width:12px;height:10px;background:var(--accent);clip-path:polygon(0 0,100% 0,50% 100%)}
 .note{font-size:13px;color:var(--ink-soft)}
 
-/* Act 6: packages on bone, pointer response */
+/* Act 6: packages. Weight climbs with the tier: paper, navy, then navy with an ice edge. */
 .pk{margin:0 12px;border-radius:32px;background:var(--ink);color:var(--canvas);padding:var(--sec) 0}
 .pk .sh p{color:#46506A}
-.rows{border-top:1.5px solid var(--canvas)}
-.row{padding:36px 0;border-bottom:1px solid rgba(11,15,26,.16);align-items:start}
-.row h3{grid-column:1/5;font-size:clamp(30px,3vw,46px);letter-spacing:-0.035em;transition:transform .4s var(--ease)}
-.row h3 small{display:block;margin-top:12px}
-.row h3 small .stk{font-size:13px;padding:7px 12px}
-.row ul{grid-column:5/9;list-style:none;margin:0;padding:8px 0 0;display:grid;gap:8px;color:#2F3850;font-size:16px}
-.row .pr{grid-column:9/13;text-align:right;padding-top:6px}
-.row .pr strong{display:block;font:900 clamp(28px,2.6vw,40px) var(--display);letter-spacing:-0.03em}
-.row .pr>span{display:block;color:#56607A;font-size:14px;margin-top:4px}
-.row .pr a{display:inline-flex;margin-top:18px}
-.row:hover h3{transform:translateX(10px)}
-.peek{position:fixed;left:0;top:0;z-index:60;pointer-events:none;display:flex;gap:4px;padding:10px 12px;background:var(--canvas);border-radius:14px;opacity:0;transition:opacity .2s;box-shadow:0 18px 36px -14px rgba(0,0,0,.5)}
-.peek.on{opacity:1}
-.peek i{width:14px;aspect-ratio:9/16;border-radius:3px;background:var(--accent)}
-.peek b{align-self:center;font:700 12px var(--body);color:var(--ink);margin-left:8px;white-space:nowrap}
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch;padding-top:14px}
+.plan{position:relative;border-radius:26px;padding:34px 30px 30px;display:flex;flex-direction:column;transition:transform .5s var(--ease),box-shadow .5s var(--ease);transform-style:preserve-3d}
+.plan h3{font-size:clamp(26px,2.2vw,34px);letter-spacing:-0.035em}
+.plan .for{font-size:15px;margin-top:8px}
+.plan .frames{display:flex;flex-wrap:wrap;gap:5px;margin:26px 0 22px;min-height:22px}
+.plan .frames i{width:12px;aspect-ratio:9/16;border-radius:3px;transform:scaleY(.2);opacity:0;transition:transform .5s cubic-bezier(.34,1.56,.64,1),opacity .3s}
+.plan.in .frames i{transform:none;opacity:1}
+.plan .price{font:900 clamp(34px,2.7vw,44px)/.9 var(--display);white-space:nowrap;letter-spacing:-0.045em}
+.plan .unit{font-size:14px;margin-top:10px}
+.plan ul{list-style:none;margin:26px 0 30px;padding:24px 0 0;display:grid;gap:10px;font-size:16px;flex:1}
+.plan li{display:flex;gap:10px;align-items:baseline}
+.plan li::before{content:"";flex:none;width:7px;height:7px;border-radius:2px;transform:translateY(-2px)}
+.plan .pill{justify-content:space-between;width:100%}
+.plan .badge{position:absolute;top:-14px;right:24px;transform:rotate(4deg)}
+.plan.p1{background:#fff;color:var(--canvas);box-shadow:inset 0 0 0 1px rgba(11,15,26,.1)}
+.plan.p1 .for,.plan.p1 .unit{color:#56607A}
+.plan.p1 .frames i,.plan.p1 li::before{background:var(--canvas)}
+.plan.p1 ul{border-top:1px solid rgba(11,15,26,.12);color:#2F3850}
+.plan.p2{background:var(--surface);color:var(--ink);transform:translateY(-14px);box-shadow:0 30px 60px -30px rgba(11,15,26,.55)}
+.plan.p2 .for,.plan.p2 .unit{color:var(--ink-soft)}
+.plan.p2 .frames i,.plan.p2 li::before{background:var(--accent)}
+.plan.p2 ul{border-top:1px solid var(--line);color:#C9CFDB}
+.plan.p3{background:var(--canvas);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--accent),0 40px 70px -30px rgba(11,15,26,.7)}
+.plan.p3 .for,.plan.p3 .unit{color:var(--ink-soft)}
+.plan.p3 .price{color:var(--accent);font-size:clamp(38px,3.2vw,52px)}
+.plan.p3 .frames i,.plan.p3 li::before{background:var(--accent)}
+.plan.p3 ul{border-top:1px solid rgba(168,200,255,.22);color:#C9CFDB}
+.plan.p3 .badge{background:var(--canvas);color:var(--accent);box-shadow:inset 0 0 0 1.5px var(--accent),0 10px 24px -10px rgba(0,0,0,.6)}
+.plan.p1:hover{transform:translateY(-6px)}
+.plan.p2:hover{transform:translateY(-20px)}
 
 /* Act 7: clients */
 .cl{padding:var(--sec) 0}
@@ -220,7 +235,7 @@
 @media (max-width:1024px){
   .hero .copy{grid-column:1/8;position:relative;z-index:3}.stage{grid-column:8/13}
   .ph3.l,.ph3.r{display:none}
-  .row h3{grid-column:1/7}.row .pr{grid-column:7/13}.row ul{grid-column:1/13;grid-row:2;margin-top:12px}
+  .plans{grid-template-columns:1fr 1fr}.plan.p3{grid-column:1/3}
   .edit .copy{grid-column:1/7}.edit .vis{grid-column:7/13}
 }
 @media (max-width:767px){
@@ -250,12 +265,10 @@
   .tl{padding:10px}
   .trk{height:14px}
   .pk{margin:0 6px;border-radius:22px}
-  .row{grid-template-columns:1fr;row-gap:14px;padding:28px 0}
-  .row h3,.row ul,.row .pr{grid-column:1;grid-row:auto}
-  .row ul{margin:0}
-  .row .pr{text-align:left;display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px}
-  .row .pr a{margin:0 0 0 auto}
-  .peek{display:none}
+  .plans{grid-template-columns:1fr;gap:26px}
+  .plan.p3{grid-column:auto}
+  .plan{padding:30px 24px 24px;border-radius:22px}
+  .plan.p2,.plan.p2:hover,.plan.p1:hover{transform:none}
   .q{row-gap:14px;padding:30px 0}
   .q blockquote,.q figcaption{grid-column:1/13}
   .q figcaption{order:2;padding:0}
@@ -401,26 +414,33 @@
 <section class="pk" id="paket" aria-labelledby="h-pk">
   <div class="wrap">
     <div class="sh"><h2 id="h-pk" data-split data-i="p_h">Pilih paketnya.</h2><p data-up data-i="p_p">Alurnya sama di semua paket: chat gratis dulu, kirim footage mentah, draft jadi dalam 2-3 hari, revisi maksimal 2-3x per video.</p></div>
-    <div class="rows">
-      <article class="row g12" data-n="1" data-up>
-        <h3>Short-form<small><span class="stk out" data-i="p1s">Untuk coba dulu</span></small></h3>
+    <div class="plans">
+      <article class="plan p1" data-cursor="1 video">
+        <h3>Short-form</h3><p class="for" data-i="p1s">Untuk coba dulu</p>
+        <div class="frames" aria-hidden="true"><i style="transition-delay:0ms"></i></div>
+        <p class="price num">Rp300.000</p><p class="unit" data-i="p1u">per video</p>
         <ul><li data-i="p1a">1 video vertikal siap posting</li><li data-i="p1b">Hook, subtitle, b-roll</li><li data-i="p1c">Pengerjaan 2-3 hari</li></ul>
-        <div class="pr"><strong class="num">Rp300.000</strong><span data-i="p1u">per video</span><a class="pill sm ink" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Short-form%20(Rp300rb)" target="_blank" rel="noopener noreferrer"><span data-i="book">Booking</span><span class="c" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+        <a class="pill ink" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Short-form%20(Rp300rb)" target="_blank" rel="noopener noreferrer"><span data-i="book">Booking</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       </article>
-      <article class="row g12" data-n="8" data-up>
-        <h3>Bundling Growth<small><span class="stk red" data-i="p2s">Paling sering dipilih</span></small></h3>
+      <article class="plan p2" data-cursor="8 video">
+        <span class="stk red badge" data-i="p2s">Paling sering dipilih</span>
+        <h3>Bundling Growth</h3><p class="for" data-i="p2f">Untuk brand yang mulai konsisten</p>
+        <div class="frames" aria-hidden="true"><i style="transition-delay:0ms"></i><i style="transition-delay:45ms"></i><i style="transition-delay:90ms"></i><i style="transition-delay:135ms"></i><i style="transition-delay:180ms"></i><i style="transition-delay:225ms"></i><i style="transition-delay:270ms"></i><i style="transition-delay:315ms"></i></div>
+        <p class="price num">Rp2.000.000</p><p class="unit" data-i="p2u">8 video, jadi Rp250.000 per video</p>
         <ul><li data-i="p2a">8 video vertikal</li><li data-i="p2b">Prioritas pengerjaan</li><li data-i="p2c">Gratis konsultasi strategi konten</li></ul>
-        <div class="pr"><strong class="num">Rp2.000.000</strong><span data-i="p2u">8 video, jadi Rp250.000 per video</span><a class="pill sm" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Bundling%20Growth%20(Rp2jt)" target="_blank" rel="noopener noreferrer"><span data-i="book">Booking</span><span class="c" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+        <a class="pill" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Bundling%20Growth%20(Rp2jt)" target="_blank" rel="noopener noreferrer"><span data-i="book">Booking</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       </article>
-      <article class="row g12" data-n="12" data-up>
-        <h3>Retainer Premium<small><span class="stk out" data-i="p3s">Untuk brand yang posting rutin</span></small></h3>
+      <article class="plan p3" id="p3" data-cursor="12 video">
+        <span class="stk badge">Premium</span>
+        <h3>Retainer Premium</h3><p class="for" data-i="p3s">Untuk brand yang posting rutin</p>
+        <div class="frames" aria-hidden="true"><i style="transition-delay:0ms"></i><i style="transition-delay:45ms"></i><i style="transition-delay:90ms"></i><i style="transition-delay:135ms"></i><i style="transition-delay:180ms"></i><i style="transition-delay:225ms"></i><i style="transition-delay:270ms"></i><i style="transition-delay:315ms"></i><i style="transition-delay:360ms"></i><i style="transition-delay:405ms"></i><i style="transition-delay:450ms"></i><i style="transition-delay:495ms"></i></div>
+        <p class="price num">Rp3.500.000</p><p class="unit" data-i="p3u">per bulan, 12 video</p>
         <ul><li data-i="p3a">12 video per bulan</li><li data-i="p3b">Prioritas super dan komunikasi intensif</li><li data-i="p3c">Gratis thumbnail dan caption</li><li data-i="p3d">Konsultasi strategi 1-on-1 bulanan</li></ul>
-        <div class="pr"><strong class="num">Rp3.500.000</strong><span data-i="p3u">per bulan</span><a class="pill sm ink" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Retainer%20Premium%20(Rp3.5jt)" target="_blank" rel="noopener noreferrer"><span data-i="book">Booking</span><span class="c" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+        <a class="pill" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Retainer%20Premium%20(Rp3.5jt)" target="_blank" rel="noopener noreferrer"><span data-i="book">Booking</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       </article>
     </div>
   </div>
 </section>
-<div class="peek" id="peek" aria-hidden="true"></div>
 
 <div class="gap" aria-hidden="true"></div>
 <div class="band alt" aria-hidden="true"><div class="mq"><span>Wije.id</span><span>Melaminku.id</span><span>MyLO</span><span>Wije.id</span><span>Melaminku.id</span><span>MyLO</span></div></div>
@@ -476,9 +496,9 @@
       hook:"Jangan <em>skip</em> dulu",sub:"Ini cara bikin orang berhenti scroll",ctab:"Cek link di bio",note:"Contoh alur edit satu video talking head. Geser HP-nya, klik langkah, atau drag playhead.",w_hint:"Geser atau drag untuk lihat semua gaya",
       p_h:"Pilih paketnya.",p_p:"Alurnya sama di semua paket: chat gratis dulu, kirim footage mentah, draft jadi dalam 2-3 hari, revisi maksimal 2-3x per video.",
       p1s:"Untuk coba dulu",p1a:"1 video vertikal siap posting",p1b:"Hook, subtitle, b-roll",p1c:"Pengerjaan 2-3 hari",p1u:"per video",
-      p2s:"Paling sering dipilih",p2a:"8 video vertikal",p2b:"Prioritas pengerjaan",p2c:"Gratis konsultasi strategi konten",p2u:"8 video, jadi Rp250.000 per video",
-      p3s:"Untuk brand yang posting rutin",p3a:"12 video per bulan",p3b:"Prioritas super dan komunikasi intensif",p3c:"Gratis thumbnail dan caption",p3d:"Konsultasi strategi 1-on-1 bulanan",p3u:"per bulan",
-      book:"Booking",peek:function(n){return n+" video"},
+      p2s:"Paling sering dipilih",p2f:"Untuk brand yang mulai konsisten",p2a:"8 video vertikal",p2b:"Prioritas pengerjaan",p2c:"Gratis konsultasi strategi konten",p2u:"8 video, jadi Rp250.000 per video",
+      p3s:"Untuk brand yang posting rutin",p3a:"12 video per bulan",p3b:"Prioritas super dan komunikasi intensif",p3c:"Gratis thumbnail dan caption",p3d:"Konsultasi strategi 1-on-1 bulanan",p3u:"per bulan, 12 video",
+      book:"Booking",
       c_h:"Kata yang sudah kerja bareng.",q1:"Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!",q1r:"Peralatan dapur",q2:"Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.",q2r:"Perlengkapan melamin",q3:"Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.",q3r:"Platform parenting",
       x_h:"Ceritakan produkmu. Saya susun videonya.",x_p:"Konsultasi gratis lewat WhatsApp. Biasanya saya balas dalam hitungan menit.",x_a:"Chat WhatsApp",x_b:"Lihat Portoforioz",foot:"Editor video vertikal"},
     en:{g_h:"Your turn now.",g_p:"Cut the grey pauses as they cross the white line. Click, tap, or press Space. Don't cut the footage.",g_s:"Pauses cut",g_t:"Time left",g_b:"Your best",g_go:"Start",g_re:"Restart",g_again:"Play again",g_lj:"Pause, cut it",g_lf:"Footage, keep it",g_m0:"Press Start. You have 20 seconds.",g_cta:"Leave it to me",g_run:"Cut the pauses.",g_miss:"Missed. Wait until the pause hits the line.",g_bad:"You cut real footage. Minus 1.",g_ok:["Clean.","Pause gone.","Tighter already.","That's it.","Clean cut."],g_hi:function(n){return "Score "+n+". That's proper TikTok pacing. I'll handle the rest."},g_lo:function(n){return "Score "+n+". Tiring, right? Cutting pauses is my everyday job."},g_new:" New best.",k1:"3-second hook",k2:"Subtitles",k3:"2-3 revisions",k4:"Done in 2-3 days",n2:"Process",n3:"Packages",n4:"Contact",cta:"Free consultation",
@@ -491,9 +511,9 @@
       hook:"Don't <em>skip</em> yet",sub:"This is how you make people stop scrolling",ctab:"Link in bio",note:"Example edit flow for one talking head video. Swipe the phone, click a step, or drag the playhead.",w_hint:"Swipe or drag to see every style",
       p_h:"Pick a package.",p_p:"The flow is the same on every package: free chat first, send raw footage, draft ready in 2-3 days, up to 2-3 revisions per video.",
       p1s:"To try it out",p1a:"1 vertical video ready to post",p1b:"Hook, subtitles, b-roll",p1c:"2-3 day turnaround",p1u:"per video",
-      p2s:"Most chosen",p2a:"8 vertical videos",p2b:"Priority processing",p2c:"Free content strategy consultation",p2u:"8 videos, Rp250,000 each",
-      p3s:"For brands that post often",p3a:"12 videos per month",p3b:"Super priority and close communication",p3c:"Free thumbnails and captions",p3d:"Monthly 1-on-1 strategy session",p3u:"per month",
-      book:"Book",peek:function(n){return n+(n>1?" videos":" video")},
+      p2s:"Most chosen",p2f:"For brands getting consistent",p2a:"8 vertical videos",p2b:"Priority processing",p2c:"Free content strategy consultation",p2u:"8 videos, Rp250,000 each",
+      p3s:"For brands that post often",p3a:"12 videos per month",p3b:"Super priority and close communication",p3c:"Free thumbnails and captions",p3d:"Monthly 1-on-1 strategy session",p3u:"per month, 12 videos",
+      book:"Book",
       c_h:"From people I've worked with.",q1:"The promo video was neat and fast. The 3-second hook boosted my TikTok engagement. Recommended!",q1r:"Kitchenware",q2:"Fast turnaround, great communication, results matched our brand identity. Will definitely order again.",q2r:"Melamine goods",q3:"An editor who understands parenting content. The videos are warm and easy for our audience to follow.",q3r:"Parenting platform",
       x_h:"Tell me your product. I'll build the video.",x_p:"Free consultation on WhatsApp. I usually reply within minutes.",x_a:"Chat on WhatsApp",x_b:"See Portoforioz",foot:"Vertical video editor"}
   };
@@ -514,6 +534,7 @@
     document.getElementById("hookT").innerHTML=L.hook;
     document.getElementById("subt").innerHTML=L.sub.split(" ").map(function(w){return "<span>"+w+"</span>"}).join(" ");
     subw=[].slice.call(document.querySelectorAll("#subt span"));
+    document.querySelectorAll(".plan").forEach(function(p,i){var n=[1,8,12][i];p.setAttribute("data-cursor",n+(lang==="en"&&n>1?" videos":" video"))});
     last=-1;setEP(ep);R.refresh(document);upd();
   }
   function setLang(l){
@@ -612,15 +633,13 @@
     hero.addEventListener("pointermove",function(e){pointer.x=e.clientX/innerWidth-.5;pointer.y=e.clientY/innerHeight-.5;R.req()});
   }
 
-  var peek=document.getElementById("peek");
-  if(mq("(hover:hover) and (pointer:fine)")){
-    var tx=0,ty=0,cx=0,cy=0,raf=0;
-    var loop=function(){cx+=(tx-cx)*(still?1:.2);cy+=(ty-cy)*(still?1:.2);peek.style.transform="translate3d("+(cx+22)+"px,"+(cy+22)+"px,0)";raf=(Math.abs(tx-cx)+Math.abs(ty-cy)>.4)?requestAnimationFrame(loop):0};
-    document.querySelectorAll(".row").forEach(function(r){
-      r.addEventListener("pointerenter",function(e){var n=+r.getAttribute("data-n"),h="";for(var i=0;i<n;i++)h+="<i></i>";peek.innerHTML=h+"<b>"+T[lang].peek(n)+"</b>";cx=tx=e.clientX;cy=ty=e.clientY;peek.classList.add("on");loop()});
-      r.addEventListener("pointermove",function(e){tx=e.clientX;ty=e.clientY;if(!raf)raf=requestAnimationFrame(loop)});
-      r.addEventListener("pointerleave",function(){peek.classList.remove("on")});
-    });
+  /* Plans: frames count in when visible; premium card tilts with the pointer */
+  var plans=[].slice.call(document.querySelectorAll(".plan"));
+  if("IntersectionObserver" in window&&!still){var po=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");po.unobserve(e.target)}})},{threshold:.35});plans.forEach(function(p){po.observe(p)})}else plans.forEach(function(p){p.classList.add("in")});
+  var p3=document.getElementById("p3");
+  if(!still&&mq("(hover:hover) and (pointer:fine)")){
+    p3.addEventListener("pointermove",function(e){var r=p3.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;p3.style.transition="transform .12s linear";p3.style.transform="perspective(900px) rotateY("+(x*10)+"deg) rotateX("+(-y*8)+"deg) translateY(-8px)"});
+    p3.addEventListener("pointerleave",function(){p3.style.transition="";p3.style.transform=""});
   }
 
   /* Mini game: Potong Jeda */

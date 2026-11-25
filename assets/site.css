@@ -144,10 +144,6 @@ footer{padding:80px 0 0;overflow:hidden}
   .js [data-split] .ln>span,.js [data-up]{transform:none;opacity:1;transition:none}
 }
 
-/* Ice on the ivory panel: pale-on-pale needs the navy carrier */
-.pk .pill:not(.ink){background:var(--canvas);color:var(--accent)}
-.pk .pill:not(.ink) .c{background:var(--accent);color:var(--canvas)}
-.pk .stk.red{background:var(--canvas);color:var(--accent)}
 
 /* Blade cursor: split tool from the edit timeline. Desktop with a fine pointer only. */
 .blade-on,.blade-on *{cursor:none!important}
