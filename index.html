@@ -11,543 +11,644 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://riozzjr18.github.io/portoforiozz/">
 <link rel="canonical" href="https://riozzjr18.github.io/portoforiozz/">
+<meta name="theme-color" content="#111214">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;900&family=Instrument+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-/* Dark led. Ground ink, text bone, one REC red. Signature: a pixel editor carrying a vertical phone walks the hairline under the hero.
-   Rhythm: dark hero, dark work, surface statement, bone services panel, dark steps, dark clients, dark about, red panel, dark footer. */
+/* The page is an edit session. Scroll is the scrubber. One peak: the visitor edits a video by scrolling. */
 :root{
-  --ink:#121315;
-  --surface:#1B1D20;
-  --bone:#EDE9E1;
-  --muted:#8E9198;
-  --line:rgba(237,233,225,.14);
+  --canvas:#111214;
+  --surface:#1A1C1F;
+  --ink:#EDE9E1;
+  --ink-soft:#A3A6AD;
   --accent:#FF4A2B;
-  --on-accent:#121315;
-  --radius:8px;
-  --panel-radius:24px;
+  --on-accent:#111214;
+  --line:rgba(237,233,225,.14);
   --display:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;
   --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
-  --gut:40px;
-  --sp:clamp(80px,9vw,128px);
-  --col:24px;
+  --code:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gut:clamp(20px,4vw,48px);
   --max:1280px;
-  --ease:cubic-bezier(.22,1,.36,1);
+  --sp:clamp(96px,12vw,168px);
+  --r:10px;
+  --ease:cubic-bezier(.16,1,.3,1);
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{margin:0;background:var(--ink);color:var(--bone);font:400 16px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--canvas);color:var(--ink);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:clip}
+::selection{background:var(--accent);color:var(--on-accent)}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.2em}
+img{display:block;max-width:100%}
 p{margin:0}
-h1,h2,h3{margin:0;font-family:var(--display);font-weight:900;text-transform:uppercase;letter-spacing:-0.04em;line-height:.9;text-wrap:balance}
+h1,h2,h3{margin:0;font-family:var(--display);font-weight:900;letter-spacing:-0.035em;line-height:.95;text-wrap:balance}
+h2{font-size:clamp(40px,5.6vw,88px)}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
-.meta{font:400 11px/1.5 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
-.label{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
-.label b{color:var(--accent);font-weight:500}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-section{padding:var(--sp) 0}
-.g{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.num{font-variant-numeric:tabular-nums}
+.thumb-fallback{background:linear-gradient(160deg,#2a2c30,#16171a)}
 
-/* Nav */
-.nav{position:fixed;inset:0 0 auto;height:70px;z-index:50;transition:background .3s var(--ease),border-color .3s var(--ease);border-bottom:1px solid transparent}
-.nav.solid{background:var(--ink);border-bottom-color:var(--line)}
-.nav .wrap{height:100%;display:flex;align-items:center;gap:28px}
-.wm{font:900 22px var(--display);letter-spacing:-0.04em;text-transform:uppercase}
-.wm i{font-style:normal;color:var(--accent)}
-.links{display:flex;gap:26px;margin-left:auto;align-items:center}
-.links a.l{font:400 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);transition:color .2s}
-.links a.l:hover{color:var(--bone)}
+/* Header */
+.top{position:fixed;inset:0 0 auto;z-index:50;height:64px;border-bottom:1px solid transparent;transition:background-color .3s var(--ease),border-color .3s var(--ease)}
+.top.solid{background:var(--canvas);border-bottom-color:var(--line)}
+.top .wrap{height:100%;display:flex;align-items:center;gap:28px}
+.wm{font:900 22px var(--display);letter-spacing:-0.04em;text-transform:uppercase;text-decoration:none}
+.wm i,.fg i,.giant i{font-style:normal;color:var(--accent)}
+.links{display:flex;align-items:center;gap:24px;margin-left:auto}
+.links a.l{font-size:14px;font-weight:500;color:var(--ink-soft);text-decoration:none;transition:color .2s}
+.links a.l:hover{color:var(--ink)}
 .lang{display:flex;gap:2px}
-.lang button{font:500 11px var(--mono);border:0;background:none;color:var(--muted);padding:4px 6px;cursor:pointer;letter-spacing:.06em}
-.lang button[aria-pressed="true"]{color:var(--bone);box-shadow:inset 0 -1px 0 var(--accent)}
-.pill{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:var(--on-accent);font:500 14px var(--body);padding:6px 6px 6px 18px;border-radius:999px;transition:transform .25s var(--ease)}
+.lang button{font:600 12px var(--body);letter-spacing:.04em;border:0;background:none;color:var(--ink-soft);padding:6px;cursor:pointer}
+.lang button[aria-pressed="true"]{color:var(--ink);box-shadow:inset 0 -1.5px 0 var(--accent)}
+.pill{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:var(--on-accent);font:600 15px var(--body);padding:7px 7px 7px 20px;border-radius:999px;text-decoration:none;transition:transform .3s var(--ease)}
 .pill:hover{transform:translateY(-2px)}
-.pill span.c{width:30px;height:30px;border-radius:50%;background:var(--on-accent);color:var(--accent);display:grid;place-items:center}
-.pill.dark{background:var(--ink);color:var(--bone)}
-.pill.dark span.c{background:var(--bone);color:var(--ink)}
-.pill.line{background:transparent;color:var(--on-accent);box-shadow:inset 0 0 0 1.5px var(--on-accent)}
-.pill.line span.c{background:transparent;color:var(--on-accent);box-shadow:inset 0 0 0 1.5px var(--on-accent)}
+.pill .c{width:32px;height:32px;border-radius:50%;background:var(--on-accent);color:var(--accent);display:grid;place-items:center;transition:transform .3s var(--ease)}
+.pill:hover .c{transform:translateX(3px)}
+.pill.sm{font-size:14px;padding:5px 5px 5px 16px}
+.pill.sm .c{width:28px;height:28px}
+.pill.ink{background:var(--canvas);color:var(--ink)}
+.pill.ink .c{background:var(--ink);color:var(--canvas)}
+.tlink{font-weight:600;font-size:15px;text-decoration:underline;text-decoration-color:var(--accent)}
 
-/* Hero */
-.hero{position:relative;min-height:clamp(560px,80vh,860px);display:flex;flex-direction:column;justify-content:space-between;padding:110px 0 0;overflow:hidden}
-.art{position:absolute;inset:0;display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding:0 6px;z-index:0;animation:settle 1.3s var(--ease) both}
-.art div{position:relative;overflow:hidden;background:var(--surface)}
-.art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15) brightness(.6)}
-.art div:nth-child(3) img{filter:none;opacity:.85}
-.art div:nth-child(3)::after{content:"REC";position:absolute;top:84px;left:14px;font:500 11px var(--mono);letter-spacing:.06em;color:var(--bone);padding-left:14px;background:radial-gradient(circle at 4px 50%,var(--accent) 4px,transparent 5px)}
-.art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,19,21,.55) 0%,rgba(18,19,21,.25) 40%,rgba(18,19,21,.92) 82%,var(--ink) 100%)}
-@keyframes settle{from{transform:scale(1.04)}to{transform:scale(1)}}
-.hero .wrap{width:100%}
-.hero-top{position:relative;z-index:1;display:flex;justify-content:space-between;gap:24px;align-items:start}
-.hero-top p.line{font:500 clamp(20px,2.2vw,28px)/1.2 var(--display);max-width:16em;letter-spacing:-0.01em}
-.hero-top .meta{text-align:right;max-width:22em}
-.hero-bot{position:relative;z-index:1}
-.hero-bot .row{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:14px;flex-wrap:wrap}
-.big{font:900 clamp(96px,36.5vw,560px)/.78 var(--display);letter-spacing:-0.065em;text-transform:uppercase;margin:0 -0.04em;white-space:nowrap;animation:rise 1s var(--ease) both}
-.big i{font-style:normal;color:var(--accent)}
-@keyframes rise{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+/* Act 1: hero, four planes */
+.hero{position:relative;min-height:clamp(640px,92svh,940px);overflow:hidden;isolation:isolate;display:flex;flex-direction:column}
+.plane{position:absolute;will-change:transform}
+.bg{left:-20px;right:-20px;top:-40px;height:calc(100% + 80px);display:grid;grid-template-columns:repeat(6,1fr);gap:8px;z-index:0}
+.bg div{position:relative;overflow:hidden;border-radius:4px}
+.bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.42) contrast(1.1)}
+.bg div:nth-child(odd){transform:translateY(-36px)}
+.subject{z-index:2;right:max(var(--gut),calc((100vw - var(--max))/2 + var(--gut)));top:120px;width:clamp(210px,21vw,300px)}
+.phone{position:relative;aspect-ratio:9/16;border-radius:30px;border:7px solid #050506;background:#050506;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.9),0 12px 24px -12px rgba(0,0,0,.6);transform:rotate(4deg)}
+.phone img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.rec{position:absolute;top:14px;left:14px;display:flex;gap:7px;align-items:center;font:500 11px var(--code);color:#fff;z-index:3}
+.rec::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);animation:blink 1.2s steps(2,jump-none) infinite}
+@keyframes blink{50%{opacity:.2}}
+.fg{position:relative;z-index:3;margin-top:auto;margin-bottom:-0.13em;padding-top:56px;font:900 clamp(120px,27vw,420px)/.8 var(--display);letter-spacing:-0.065em;text-transform:uppercase;padding-left:calc(var(--gut) - .04em);white-space:nowrap;pointer-events:none;color:var(--ink)}
+.grain{position:absolute;inset:0;z-index:4;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero-copy{position:relative;z-index:5;width:100%;padding-top:clamp(120px,16svh,170px)}
+.hero-copy .in{max-width:min(640px,56%);position:relative}
+.hero-copy .in::before{content:"";position:absolute;inset:-60px -80px -60px -120px;z-index:-1;background:radial-gradient(60% 60% at 35% 45%,rgba(17,18,20,.88),rgba(17,18,20,0) 100%)}
+.hero h1{font-size:clamp(42px,5vw,80px)}
+.hero p.lede{margin-top:24px;font-size:clamp(17px,1.5vw,20px);color:var(--ink-soft);max-width:30em}
+.acts{display:flex;flex-wrap:wrap;align-items:center;gap:22px;margin-top:34px}
 
-/* Pixel line */
-.pxline{position:relative;height:56px;border-bottom:1px solid var(--line);overflow:hidden}
+.pxline{position:relative;height:52px;border-bottom:1px solid var(--line);overflow:hidden}
 .walker{position:absolute;bottom:0;left:0;width:48px;height:48px;animation:travel 40s steps(200) infinite}
-.walker .f{position:absolute;left:0;top:0;width:3px;height:3px}
+.walker span{position:absolute;left:0;top:0;width:3px;height:3px}
 .walker .f2{visibility:hidden}
 .walker .f1{animation:fa .5s steps(1) infinite}
 .walker .f2{animation:fb .5s steps(1) infinite}
 @keyframes fa{0%{visibility:visible}50%{visibility:hidden}}
 @keyframes fb{0%{visibility:hidden}50%{visibility:visible}}
 @keyframes travel{from{transform:translateX(-60px)}to{transform:translateX(calc(100vw + 10px))}}
-.pxline .meta{position:absolute;right:var(--gut);bottom:14px}
 
-/* Work index swap */
-.head{margin-bottom:56px;align-items:start}
-.head .label{grid-column:1/5;padding-top:.6em}
-.head>div,.head>h2{grid-column:5/13}
-.head h2{font-size:clamp(44px,6.2vw,96px)}
-.head .sub{margin-top:18px;max-width:34em;color:var(--muted)}
-.idx{align-items:start}
-.idx ul{grid-column:1/9;list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
-.idx li{border-bottom:1px solid var(--line)}
-.idx a.it{display:grid;grid-template-columns:48px 1fr auto;gap:16px;align-items:center;padding:20px 0;transition:color .2s}
-.idx .n{font:400 11px var(--mono);color:var(--muted)}
-.idx .t{font:900 clamp(30px,3.9vw,56px)/1 var(--display);text-transform:uppercase;letter-spacing:-0.04em;color:color-mix(in srgb,var(--bone) 38%,transparent);transition:color .2s var(--ease)}
-.idx li.on .t,.idx a.it:hover .t,.idx a.it:focus-visible .t{color:var(--bone)}
-.idx li.on .n{color:var(--accent)}
-.idx .c{font:400 11px var(--mono);color:var(--muted)}
-.idx .thumb{display:none}
-.viewer{grid-column:10/13;position:sticky;top:100px}
-.frame{position:relative;aspect-ratio:9/16;width:100%;max-width:300px;margin-left:auto;border-radius:var(--radius);overflow:hidden;background:var(--surface)}
-.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .2s linear}
-.frame img.on{opacity:1}
-.frame .play{position:absolute;left:16px;bottom:16px;z-index:2}
-.vmeta{display:flex;flex-direction:column;gap:8px;margin:16px 0 0 auto;max-width:300px}
-.vmeta p.d{font-size:15px;line-height:1.5;color:var(--bone)}
-.more{margin-top:40px}
+/* Act 2: kinetic statement, centred */
+.say{height:230vh;position:relative}
+.say .stick{position:sticky;top:0;height:100svh;display:grid;place-items:center}
+.kin{font:700 clamp(30px,4.2vw,64px)/1.08 var(--display);letter-spacing:-0.03em;text-align:center;max-width:17em;margin:0 auto;text-wrap:balance}
+.kin .w{opacity:.16;transition:opacity .35s var(--ease)}
+.kin .w.on{opacity:1}
+.kin .w.hl.on{color:var(--accent)}
 
-/* Statement */
-.surface{background:var(--surface)}
-.state .label{grid-column:1/5;padding-top:.5em}
-.state>div{grid-column:5/12}
-.state p.big2{font:400 clamp(20px,2vw,24px)/1.45 var(--body);color:var(--bone);max-width:34em}
-.state p.big2 em{font-style:normal;color:var(--accent)}
-.state .meta{margin-top:24px}
+/* Act 3: pan shelf, trailing anchor */
+.work{position:relative}
+.work .stick{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;gap:clamp(28px,4svh,48px);overflow:hidden}
+.work .hd{display:flex;justify-content:flex-end;text-align:right}
+.work .hd>div{max-width:620px}
+.work .hd p{margin-top:16px;color:var(--ink-soft)}
+.track{display:flex;gap:20px;padding:0 var(--gut);will-change:transform;width:max-content}
+.cat{flex:none;width:clamp(200px,17vw,250px);text-decoration:none;color:var(--ink)}
+.cat .fr{position:relative;aspect-ratio:9/16;border-radius:var(--r);overflow:hidden;background:var(--surface)}
+.cat img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.cat:hover img{transform:scale(1.04)}
+.cat h3{font-size:22px;letter-spacing:-0.02em;margin-top:14px;line-height:1.1}
+.cat p{font-size:14px;color:var(--ink-soft);margin-top:2px}
+.cat.end .fr{display:grid;place-items:center;background:transparent;border:1px solid var(--line);text-align:center;padding:20px}
+.cat.end .fr strong{font:900 clamp(40px,4vw,56px)/.9 var(--display);letter-spacing:-0.04em}
+.cat.end .fr span{display:block;margin-top:12px;font-weight:600;color:var(--accent)}
 
-/* Services bone panel */
-.panel{margin:16px;border-radius:var(--panel-radius);background:var(--bone);color:var(--ink);padding:var(--sp) 0}
-.panel .label{color:#5E6067}
-.panel .head h2{color:var(--ink)}
-.panel .head .sub{color:#45474D}
-.svc{border-top:1px solid rgba(18,19,21,.18)}
-.svc .r{position:relative;align-items:start;padding:32px 0;border-bottom:1px solid rgba(18,19,21,.18);cursor:default}
-.svc .nm{grid-column:1/5;display:flex;gap:16px}
-.svc .n{font:400 11px var(--mono);color:#5E6067;width:32px;flex:none;padding-top:.7em}
-.svc h3{font-size:clamp(26px,2.6vw,38px);letter-spacing:-0.035em;line-height:.95}
-.svc h3 small{display:block;font:500 11px var(--mono);letter-spacing:.06em;color:var(--accent);margin-top:10px;text-transform:uppercase}
-.svc ul{grid-column:5/10;list-style:none;margin:0;padding:4px 0 0;font-size:15px;color:#3B3D42;display:grid;gap:6px}
-.svc .p{grid-column:10/13;font:500 15px var(--mono);text-align:right;padding-top:4px}
-.svc .p span{display:block;color:#5E6067;font-size:11px;margin-top:4px}
-.svc .r:hover h3{color:var(--accent)}
-.svc .go{display:inline-block;margin-top:12px;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid currentColor;padding-bottom:2px}
-.svc .go:hover{color:var(--accent)}
-.tip{position:fixed;left:0;top:0;z-index:70;pointer-events:none;background:var(--ink);color:var(--bone);font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:8px 12px;border-radius:999px;opacity:0;transition:opacity .2s}
-.tip.on{opacity:1}
+/* Act 4: about, quiet split */
+.about{padding:var(--sp) 0}
+.about .g{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:end}
+.about .ph{grid-column:2/6;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;background:var(--surface);clip-path:inset(var(--clip,0%) 0 0 0 round var(--r))}
+.about .ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transform:scale(var(--zoom,1))}
+.about .tx{grid-column:7/12;padding-bottom:12px}
+.about .tx p{margin-top:24px;font-size:clamp(18px,1.6vw,21px);max-width:30em}
+.about .tx p.who{font-size:15px;color:var(--ink-soft);margin-top:20px}
 
-/* Steps */
-.rows{border-top:1px solid var(--line)}
-.rows .r{padding:28px 0;border-bottom:1px solid var(--line);align-items:baseline}
-.rows .nm{grid-column:1/5;display:flex;gap:16px;align-items:baseline}
-.rows .n{font:400 11px var(--mono);color:var(--accent);width:32px;flex:none}
-.rows .r>p{grid-column:5/11}
-.rows h3{font:700 clamp(20px,1.9vw,26px)/1.15 var(--display);text-transform:none;letter-spacing:-0.02em}
-.rows p{color:var(--muted);font-size:16px}
+/* Act 5: the edit (peak) */
+.edit{position:relative;height:640vh}
+.edit .stick{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:center;max-width:var(--max);margin:0 auto;padding:64px var(--gut) 24px}
+.edit .copy{grid-column:1/6}
+.edit h2{font-size:clamp(36px,4.4vw,68px)}
+.steps{list-style:none;margin:36px 0 0;padding:0;border-top:1px solid var(--line)}
+.steps li{border-bottom:1px solid var(--line);padding:14px 0}
+.steps li b{display:block;font:700 19px var(--display);letter-spacing:-0.01em;color:var(--ink-soft);transition:color .3s var(--ease)}
+.steps li span{display:block;font-size:15px;color:var(--ink-soft);max-height:0;opacity:0;overflow:hidden;transition:opacity .35s var(--ease)}
+.steps li.on b,.steps li.done b{color:var(--ink)}
+.steps li.on span{max-height:4em;opacity:1;margin-top:4px}
+.steps li.done b::after{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-left:10px;vertical-align:middle}
+.edit .vis{grid-column:7/13;display:flex;flex-direction:column;align-items:center;gap:20px}
+.ephone{position:relative;height:min(58svh,560px);aspect-ratio:9/16;border-radius:28px;border:7px solid #050506;background:#050506;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.9)}
+.ephone .lay{position:absolute;inset:0}
+.ephone img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.raw{transition:opacity .5s var(--ease)}
+.raw img{filter:grayscale(1) brightness(.75) contrast(.9);transform:rotate(-2.5deg) scale(1.12)}
+.dur{position:absolute;top:12px;right:12px;font:500 11px var(--code);color:#fff;background:rgba(0,0,0,.55);padding:3px 7px;border-radius:4px;z-index:5}
+.flash{background:#fff;opacity:0;pointer-events:none;z-index:6}
+.flash.go{animation:flash .45s var(--ease)}
+@keyframes flash{0%{opacity:.85}100%{opacity:0}}
+.hook{position:absolute;left:10%;right:10%;top:16%;text-align:center;font:900 clamp(22px,2.4vw,34px)/.95 var(--display);text-transform:uppercase;letter-spacing:-0.02em;color:#fff;opacity:0;transform:scale(.6);transition:opacity .3s var(--ease),transform .45s var(--ease);z-index:4}
+.hook em{font-style:normal;background:var(--accent);color:var(--on-accent);padding:0 .18em;border-radius:4px;display:inline-block;transform:rotate(-2deg)}
+.subt{position:absolute;left:8%;right:8%;bottom:24%;text-align:center;font:700 clamp(14px,1.3vw,18px)/1.25 var(--body);color:#fff;opacity:0;transform:translateY(10px);transition:opacity .3s var(--ease),transform .4s var(--ease);z-index:4}
+.subt span{padding:1px 3px;border-radius:3px}
+.subt span.on{background:var(--accent);color:var(--on-accent)}
+.broll{position:absolute;right:8%;top:40%;width:42%;aspect-ratio:1;border-radius:10px;overflow:hidden;border:3px solid #fff;transform:translateX(140%) rotate(6deg);transition:transform .55s var(--ease);z-index:3;box-shadow:0 14px 28px -10px rgba(0,0,0,.7)}
+.ctab{position:absolute;left:50%;bottom:8%;transform:translate(-50%,180%);background:#fff;color:#111;font:700 13px var(--body);padding:8px 16px;border-radius:999px;white-space:nowrap;transition:transform .5s var(--ease);z-index:4}
+.vig{background:linear-gradient(180deg,rgba(0,0,0,.35),transparent 30%,transparent 60%,rgba(0,0,0,.55));z-index:2}
+.s1 .raw{opacity:0}
+.s2 .hook{opacity:1;transform:none}
+.s3 .subt{opacity:1;transform:none}
+.s4 .broll{transform:none}
+.s5 .ctab{transform:translate(-50%,0)}
+.s5 .subt{transform:translateY(-36px)}
+.tl{width:min(100%,520px);background:var(--surface);border-radius:12px;padding:12px 14px 14px;border:1px solid var(--line)}
+.tl-top{display:flex;justify-content:space-between;font:500 11px var(--code);color:var(--ink-soft);margin-bottom:10px}
+.tl-top b{color:var(--ink);font-weight:500}
+.tracks{position:relative;display:grid;gap:6px}
+.trk{position:relative;height:20px;border-radius:4px;background:rgba(237,233,225,.05)}
+.clip{position:absolute;top:0;bottom:0;border-radius:4px;opacity:0;transform:scaleY(.4);transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.clip.v{background:#4A4D53}
+.clip.raw-c{background:#3A3C40}
+.clip.t{background:var(--accent)}
+.clip.s{background:var(--ink)}
+.clip.b{background:#8C9096}
+.clip.show{opacity:1;transform:none}
+.wave{position:absolute;inset:4px 0;background:repeating-linear-gradient(90deg,rgba(237,233,225,.45) 0 2px,transparent 2px 5px);border-radius:3px}
+.head{position:absolute;top:-4px;bottom:-4px;left:0;width:2px;background:var(--accent);z-index:3;will-change:transform}
+.head::before{content:"";position:absolute;top:-6px;left:-5px;width:12px;height:10px;background:var(--accent);clip-path:polygon(0 0,100% 0,50% 100%)}
+.note{font-size:13px;color:var(--ink-soft)}
 
-/* Clients ruled list */
-.ruled{border-top:1px solid var(--line)}
-.ruled .r{padding:28px 0;border-bottom:1px solid var(--line);align-items:baseline}
-.ruled .r>b{grid-column:1/5;padding-left:48px}
-.ruled .r>q{grid-column:5/11}
-.ruled .r>.meta{grid-column:11/13}
-.ruled b{font:700 18px var(--display);letter-spacing:-0.01em}
-.ruled q{quotes:none;font-size:18px;line-height:1.5;color:var(--bone)}
-.ruled .meta{text-align:right}
+/* Act 6: packages, bone panel, pointer response */
+.pk{margin:0 12px;border-radius:28px;background:var(--ink);color:var(--canvas);padding:var(--sp) 0}
+.pk .hd{max-width:760px}
+.pk .hd p{margin-top:20px;color:#4A4C52;max-width:36em}
+.rows{margin-top:56px;border-top:1px solid rgba(17,18,20,.16)}
+.row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;padding:34px 0;border-bottom:1px solid rgba(17,18,20,.16);align-items:start}
+.row h3{grid-column:1/5;font-size:clamp(28px,2.8vw,42px);letter-spacing:-0.03em;transition:color .25s var(--ease)}
+.row h3 small{display:block;font:500 15px var(--body);letter-spacing:0;color:#B8321B;margin-top:10px}
+.row ul{grid-column:5/9;list-style:none;margin:0;padding:6px 0 0;display:grid;gap:6px;color:#33353A;font-size:16px}
+.row .pr{grid-column:9/13;text-align:right;padding-top:4px}
+.row .pr strong{display:block;font:700 clamp(24px,2.2vw,32px) var(--display);letter-spacing:-0.02em}
+.row .pr span{display:block;color:#55575D;font-size:14px;margin-top:2px}
+.row .pr a{display:inline-block;margin-top:14px;font-weight:600;font-size:15px;color:var(--canvas);text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+.row:hover h3{color:#B8321B}
+.peek{position:fixed;left:0;top:0;z-index:60;pointer-events:none;display:flex;gap:4px;padding:10px;background:var(--canvas);border-radius:12px;opacity:0;transition:opacity .2s;box-shadow:0 16px 32px -12px rgba(0,0,0,.45)}
+.peek.on{opacity:1}
+.peek i{width:14px;aspect-ratio:9/16;border-radius:3px;background:var(--accent)}
+.peek b{align-self:center;font:600 12px var(--body);color:var(--ink);margin-left:6px;white-space:nowrap}
 
-/* About quote */
-.about{align-items:center}
-.about .ph{grid-column:2/5;justify-self:end}
-.about>div:last-child{grid-column:5/12}
-.ph{width:220px;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;background:var(--surface);position:relative;display:grid;place-items:center;font:900 64px var(--display);color:var(--accent)}
-.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05)}
-.about blockquote{margin:0;font:500 clamp(22px,2.4vw,28px)/1.35 var(--display);letter-spacing:-0.01em}
-.about .meta{margin-top:20px}
+/* Act 7: clients, lead anchor */
+.cl{padding:var(--sp) 0}
+.cl h2{max-width:8em}
+.qs{margin-top:64px}
+.q{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;padding:36px 0;border-top:1px solid var(--line);margin:0}
+.q blockquote{grid-column:4/11;margin:0;font:500 clamp(22px,2.2vw,32px)/1.3 var(--display);letter-spacing:-0.015em}
+.q figcaption{grid-column:1/4;padding-top:6px}
+.q figcaption b{display:block;font-size:17px}
+.q figcaption span{font-size:14px;color:var(--ink-soft)}
+.q:nth-child(2) blockquote{grid-column:5/12}
+.q:nth-child(3) blockquote{grid-column:3/10}
+.js .rv{opacity:.001;transform:translateY(28px);transition:opacity .8s var(--ease),transform .9s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
 
-/* Accent panel */
-.ap{margin:16px;border-radius:var(--panel-radius);background:var(--accent);color:var(--on-accent);padding:var(--sp) 0}
-.ap .label{color:rgba(18,19,21,.65)}
-.ap .label{grid-column:1/5;padding-top:.6em}
-.ap .apc{grid-column:5/13}
-.ap h2{font-size:clamp(40px,5.4vw,84px);margin:0 0 36px;max-width:12em}
-.ap .acts{display:flex;gap:12px;flex-wrap:wrap}
-.ap .meta{color:rgba(18,19,21,.7);margin-top:32px}
+/* Act 8: close */
+.close{margin:0 12px;border-radius:28px;background:var(--accent);color:var(--on-accent);padding:var(--sp) 0;text-align:center}
+.close h2{font-size:clamp(44px,6.4vw,104px);max-width:10em;margin:0 auto}
+.close p{margin:24px auto 36px;max-width:30em;font-size:18px;color:#3A1209}
+.close .acts{justify-content:center}
+.close .tlink{color:var(--on-accent);text-decoration-color:var(--on-accent)}
 
-/* Footer */
-footer{position:relative;padding:80px 0 0;overflow:hidden}
-.ft{padding-bottom:56px;row-gap:32px}
-.ft>div{grid-column:1/5}
-.ft>nav:nth-of-type(1){grid-column:5/8}
-.ft>nav:nth-of-type(2){grid-column:8/11}
-.ft p{color:var(--muted)}
-.ft p.e{color:var(--bone);font-size:18px}
-.ft nav{display:flex;flex-direction:column;gap:8px}
-.ft nav a{font:400 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
-.ft nav a:hover{color:var(--bone)}
-.rest{position:relative;height:56px;border-bottom:1px solid var(--line)}
+footer{padding:72px 0 0;overflow:hidden}
+.ft{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;padding-bottom:48px}
+.ft .a{grid-column:1/6}
+.ft .a a{font:700 clamp(22px,2.2vw,30px) var(--display);letter-spacing:-0.02em;text-decoration:none}
+.ft .a p{color:var(--ink-soft);margin-top:6px}
+.ft nav{display:flex;flex-direction:column;gap:8px;font-size:15px}
+.ft nav:nth-of-type(1){grid-column:7/10}
+.ft nav:nth-of-type(2){grid-column:10/13}
+.ft nav a{color:var(--ink-soft);text-decoration:none}
+.ft nav a:hover{color:var(--ink)}
+.rest{position:relative;height:52px;border-bottom:1px solid var(--line)}
 .rest .walker{animation:none;left:auto;right:var(--gut);transform:scaleX(-1)}
-.rest .walker .f1,.rest .walker .f2{animation:none}
-.giant{font:900 clamp(120px,38vw,600px)/.74 var(--display);letter-spacing:-0.07em;text-transform:uppercase;color:var(--surface);margin:0 -0.04em -0.12em;white-space:nowrap;user-select:none}
-.giant i{font-style:normal;color:color-mix(in srgb,var(--accent) 40%,var(--surface))}
-.copy{display:flex;justify-content:space-between;gap:16px;padding-top:20px;padding-bottom:28px}
+.rest .walker span{animation:none}
+.giant{font:900 clamp(120px,31vw,470px)/.74 var(--display);letter-spacing:-0.065em;text-transform:uppercase;color:var(--surface);margin-bottom:-0.12em;padding-left:calc(var(--gut) - .04em);white-space:nowrap;user-select:none}
+.copyr{display:flex;justify-content:space-between;gap:16px;padding-top:18px;padding-bottom:28px;font-size:13px;color:var(--ink-soft)}
 
 @media (max-width:1024px){
-  :root{--gut:32px;--col:20px}
-  .idx ul{grid-column:1/9}.viewer{grid-column:9/13}
-  .svc .nm{grid-column:1/7}.svc .p{grid-column:7/13}.svc ul{grid-column:1/13;padding-left:48px;margin-top:16px}
-  .ruled .r>q{grid-column:5/13}.ruled .r>.meta{grid-column:5/13;margin-top:8px}
+  .hero-copy .in{max-width:62%}
+  .row h3{grid-column:1/7}.row .pr{grid-column:7/13}.row ul{grid-column:1/13;grid-row:2}
+  .edit .copy{grid-column:1/7}.edit .vis{grid-column:7/13}
 }
 @media (max-width:767px){
-  :root{--gut:20px;--col:12px}
+  body{font-size:16px}
   .links a.l{display:none}
-  .pill{font-size:13px;padding:5px 5px 5px 14px}
-  .pill span.c{width:26px;height:26px}
-  .art{grid-template-columns:repeat(3,1fr)}
-  .art div:nth-child(n+4){display:none}
-  .hero-top{flex-direction:column;gap:14px}
-  .hero-top .meta{text-align:left}
-  .big{font-size:36vw}
+  .links{gap:12px}
+  .bg{grid-template-columns:repeat(3,1fr)}
+  .bg div:nth-child(n+4){display:none}
+  .hero{min-height:clamp(640px,96svh,820px)}
+  .hero-copy{padding-top:104px}
+  .hero-copy .in{max-width:none}
+  .subject{top:auto;bottom:21vw;right:var(--gut);width:38vw}
+  .phone{border-radius:20px;border-width:5px}
+  .fg{font-size:36vw}
   .walker{animation-duration:80s}
-  .g>*{grid-column:1/-1!important}
-  .head{margin-bottom:36px;row-gap:12px}
-  .head .label{padding-top:0}
-  .state{row-gap:16px}
-  .viewer{display:none}
-  .idx a.it{grid-template-columns:54px 1fr;gap:4px 14px;padding:16px 0}
-  .idx .c{grid-column:2}
-  .idx .thumb{display:block;width:54px;aspect-ratio:9/16;border-radius:6px;overflow:hidden;background:var(--surface);grid-row:span 2}
-  .idx .thumb img{width:100%;height:100%;object-fit:cover}
-  .idx .n{display:none}
-  .idx .t{color:var(--bone);font-size:28px}
-  .panel{margin:8px}
-  .svc .r{padding:24px 0;row-gap:14px}
-  .svc .n{display:none}
-  .svc ul{padding-left:0;margin-top:0}
-  .svc .p{text-align:left;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
-  .svc .p span{display:inline;margin:0}
-  .svc .go{margin:0 0 0 auto}
-  .tip{display:none}
-  .rows .r{row-gap:8px;padding:22px 0}
-  .rows .r>p{padding-left:48px}
-  .ruled .r{row-gap:8px;padding:22px 0}
-  .ruled .r>b{padding-left:0}
-  .ruled .meta{text-align:left}
-  .about{row-gap:24px}
-  .about .ph{justify-self:start;width:140px}
-  .ap{margin:8px}
-  .ap .label{padding-top:0;margin-bottom:16px}
-  .ft>nav:nth-of-type(1){grid-column:1/7!important}
-  .ft>nav:nth-of-type(2){grid-column:7/13!important}
+  .say{height:200vh}
+  .work{height:auto!important}
+  .work .stick{position:static;height:auto;padding:var(--sp) 0 0}
+  .work .hd{justify-content:flex-start;text-align:left}
+  .track{transform:none!important;width:auto;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:8px}
+  .track::-webkit-scrollbar{display:none}
+  .cat{width:58vw;scroll-snap-align:start;scroll-margin-left:var(--gut)}
+  .about .ph{grid-column:1/9}
+  .about .tx{grid-column:1/13}
+  .edit{height:560vh}
+  .edit .stick{grid-template-columns:1fr;align-content:start;gap:16px;padding-top:80px}
+  .edit .copy,.edit .vis{grid-column:1}
+  .edit h2{font-size:30px}
+  .steps{margin-top:14px;border:0}
+  .steps li{display:none;border:0;padding:0}
+  .steps li.on{display:block}
+  .steps li.on span{max-height:none}
+  .ephone{height:min(48svh,440px)}
+  .tl{padding:10px}
+  .trk{height:14px}
+  .pk,.close{margin:0 6px;border-radius:20px}
+  .row{grid-template-columns:1fr;gap:14px;padding:26px 0}
+  .row h3,.row ul,.row .pr{grid-column:1;grid-row:auto}
+  .row .pr{text-align:left;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+  .row .pr a{margin:0 0 0 auto}
+  .peek{display:none}
+  .q{grid-template-columns:1fr;gap:12px;padding:28px 0}
+  .q blockquote,.q figcaption,.q:nth-child(2) blockquote,.q:nth-child(3) blockquote{grid-column:1}
+  .q figcaption{order:2}
+  .ft{grid-template-columns:1fr 1fr}
+  .ft .a{grid-column:1/3}
+  .ft nav:nth-of-type(1){grid-column:1}.ft nav:nth-of-type(2){grid-column:2}
+  .giant{font-size:36vw}
 }
 @media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
   .walker{transform:translateX(var(--gut))}
+  .plane{transform:none!important}
+  .say{height:auto;padding:var(--sp) 0}
+  .say .stick{position:static;height:auto}
+  .kin .w{opacity:1}
+  .kin .w.hl{color:var(--accent)}
+  .work{height:auto!important}
+  .work .stick{position:static;height:auto;padding:var(--sp) 0 0}
+  .track{transform:none!important;width:auto;overflow-x:auto}
+  .edit{height:auto;padding:var(--sp) 0}
+  .edit .stick{position:static;height:auto}
+  .steps li{display:block!important}
+  .steps li span{max-height:none;opacity:1;margin-top:4px}
+  .steps li b{color:var(--ink)}
+  .js .rv{opacity:1;transform:none}
 }
 </style>
 </head>
 <body>
 
-<header class="nav" id="nav">
+<header class="top" id="nav">
   <div class="wrap">
-    <a class="wm" href="#top" aria-label="Rioz, beranda">Rioz<i>.</i></a>
+    <a class="wm" href="#top" aria-label="Rioz, ke atas">Rioz<i>.</i></a>
     <nav class="links" aria-label="Utama">
-      <a class="l" href="#work" data-i="n1">Portofolio</a>
-      <a class="l" href="#layanan" data-i="n2">Layanan</a>
-      <a class="l" href="#klien" data-i="n3">Klien</a>
+      <a class="l" href="#karya" data-i="n1">Karya</a>
+      <a class="l" href="#proses" data-i="n2">Proses</a>
+      <a class="l" href="#paket" data-i="n3">Paket</a>
       <a class="l" href="#kontak" data-i="n4">Kontak</a>
       <div class="lang" role="group" aria-label="Bahasa"><button type="button" data-lang="id" aria-pressed="true">ID</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
-      <a class="pill" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya." target="_blank" rel="noopener noreferrer"><span data-i="cta">Konsultasi gratis</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="pill sm" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya." target="_blank" rel="noopener noreferrer"><span data-i="cta">Konsultasi gratis</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </nav>
   </div>
 </header>
 
-<main id="top">
-<div class="hero">
-  <div class="art" aria-hidden="true">
-    <div><img src="https://i.ytimg.com/vi/t_z4TG3IRy4/hq720.jpg" alt="" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/t_z4TG3IRy4/hqdefault.jpg'"></div>
-    <div><img src="https://i.ytimg.com/vi/b0jUrrcQlas/hq720.jpg" alt="" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/b0jUrrcQlas/hqdefault.jpg'"></div>
-    <div><img src="https://i.ytimg.com/vi/1oazDgxpZjY/hq720.jpg" alt="" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/1oazDgxpZjY/hqdefault.jpg'"></div>
-    <div><img src="https://i.ytimg.com/vi/sOpKPZbFKCA/hq720.jpg" alt="" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/sOpKPZbFKCA/hqdefault.jpg'"></div>
-    <div><img src="https://i.ytimg.com/vi/LaKAMuOq0HI/hq720.jpg" alt="" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/LaKAMuOq0HI/hqdefault.jpg'"></div>
-    <div><img src="https://i.ytimg.com/vi/Ev0mClauYLg/hq720.jpg" alt="" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/Ev0mClauYLg/hqdefault.jpg'"></div>
+<main>
+<!-- Act 1: Recognition. Parallax across four planes. -->
+<section class="hero" id="top" aria-labelledby="h1">
+  <div class="plane bg" id="pBg" aria-hidden="true">
+    <div class="thumb-fallback"><img src="https://i.ytimg.com/vi/b0jUrrcQlas/hqdefault.jpg" alt=""></div>
+    <div class="thumb-fallback"><img src="https://i.ytimg.com/vi/sOpKPZbFKCA/hqdefault.jpg" alt=""></div>
+    <div class="thumb-fallback"><img src="https://i.ytimg.com/vi/1oazDgxpZjY/hqdefault.jpg" alt=""></div>
+    <div class="thumb-fallback"><img src="https://i.ytimg.com/vi/Ev0mClauYLg/hqdefault.jpg" alt=""></div>
+    <div class="thumb-fallback"><img src="https://i.ytimg.com/vi/QWQQ58m-Wyk/hqdefault.jpg" alt=""></div>
+    <div class="thumb-fallback"><img src="https://i.ytimg.com/vi/TJDEc6XyIbo/hqdefault.jpg" alt=""></div>
   </div>
-  <div class="wrap hero-top">
-    <p class="line" data-i="h_line">Saya bikin video pendek yang bikin orang berhenti scroll.</p>
-    <p class="meta" data-i="h_meta">Editor video vertikal. Sejak 2020. TikTok, Reels, Shorts.</p>
+  <div class="plane subject" id="pSub" aria-hidden="true">
+    <div class="phone thumb-fallback"><img src="https://i.ytimg.com/vi/LaKAMuOq0HI/hqdefault.jpg" alt=""><span class="rec">REC</span></div>
   </div>
-  <div class="hero-bot">
-    <div class="wrap row">
-      <p class="meta" data-i="h_meta2">Hook 3 detik. Subtitle. B-roll. Mulai Rp300.000.</p>
-      <p class="meta">104 video / 10 <span data-i="kat">kategori</span></p>
-    </div>
-    <h1 class="big"><span class="sr" data-i="h1">Rioz, editor video vertikal</span><span aria-hidden="true">Rioz<i>.</i></span></h1>
-  </div>
-</div>
-
-<div class="pxline" aria-hidden="true">
-  <div class="walker"><span class="f f1"></span><span class="f f2"></span></div>
-</div>
-
-<section id="work">
-  <div class="wrap">
-    <div class="head g">
-      <p class="label"><b>000/</b> <span data-i="w_l">Portofolio</span></p>
-      <h2 data-i="w_h">Apa yang saya edit</h2>
-    </div>
-    <div class="idx g">
-      <ul id="idx"></ul>
-      <div class="viewer" aria-hidden="true">
-        <div class="frame" id="frame"></div>
-        <div class="vmeta"><p class="d" id="vd"></p><p class="meta" id="vm"></p></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wrap hero-copy">
+    <div class="in">
+      <h1 id="h1" data-i="h1">Video pendek yang bikin orang berhenti scroll.</h1>
+      <p class="lede" data-i="lede">Saya Rioz, editor video vertikal untuk UMKM, toko online, dan brand. Hook 3 detik, subtitle, b-roll. Mulai Rp300.000 per video.</p>
+      <div class="acts">
+        <a class="pill" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya." target="_blank" rel="noopener noreferrer"><span data-i="cta">Konsultasi gratis</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a class="tlink" href="#karya" data-i="see">Lihat karya</a>
       </div>
     </div>
-    <div class="more"><a class="pill dark" href="portfolio/index.html" style="box-shadow:inset 0 0 0 1px var(--line)"><span data-i="w_all">Lihat semua 104 video</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+  </div>
+  <div class="plane fg" id="pFg" aria-hidden="true">Rioz<i>.</i></div>
+</section>
+
+<div class="pxline" aria-hidden="true"><div class="walker"><span class="f1"></span><span class="f2"></span></div></div>
+
+<!-- Act 2: Tension. Kinetic type, words light up with scroll. -->
+<section class="say" id="say" aria-label="Tiga detik pertama">
+  <div class="stick"><div class="wrap"><p class="kin" id="kin"></p></div></div>
+</section>
+
+<!-- Act 3: Range. Horizontal pan. -->
+<section class="work" id="karya" aria-labelledby="h-work">
+  <div class="stick">
+    <div class="wrap hd"><div><h2 id="h-work" data-i="w_h">104 video, 10 gaya.</h2><p data-i="w_p">Dari talking head sampai recap event. Geser untuk lihat tiap gaya, klik untuk menonton semuanya.</p></div></div>
+    <div class="track" id="track"></div>
   </div>
 </section>
 
-<section class="surface">
-  <div class="wrap state g">
-    <p class="label"><b>001/</b> <span data-i="s_l">Pendekatan</span></p>
-    <div>
-      <p class="big2" data-i="s_p">Orang memutuskan lanjut nonton atau scroll dalam <em>tiga detik pertama</em>. Jadi saya mulai dari situ: hook dulu, baru isi. Subtitle supaya video tetap jalan tanpa suara, b-roll supaya mata tidak bosan, dan potongan yang cukup cepat untuk ritme TikTok tanpa bikin pusing. Rapi itu standar. Yang saya kejar adalah video yang dipakai buat jualan.</p>
-      <p class="meta" data-i="s_m">Hook 3 detik. Subtitle. B-roll. CTA.</p>
+<!-- Act 4: Quiet. Who. -->
+<section class="about" aria-labelledby="h-about">
+  <div class="wrap g">
+    <div class="ph" id="ph"><img src="assets/img/profile.jpg" alt="Damario Indra Wibowo, editor video vertikal" loading="lazy"></div>
+    <div class="tx">
+      <h2 id="h-about" data-i="a_h">Halo, saya Rioz.</h2>
+      <p data-i="a_p">Mahasiswa Teknik Informatika yang jatuh cinta sama editing video. Sejak 2020 saya bantu UMKM, toko online, dan content creator bikin video pendek yang dipakai buat jualan, bukan cuma enak dilihat.</p>
+      <p class="who">Damario Indra Wibowo</p>
     </div>
   </div>
 </section>
 
-<div class="panel" id="layanan">
-  <div class="wrap">
-    <div class="head g">
-      <p class="label"><b>002/</b> <span data-i="p_l">Layanan</span></p>
-      <div>
-        <h2 data-i="p_h">Tiga paket</h2>
-        <p class="sub" data-i="p_s">Revisi maksimal 2-3x per video di semua paket. Butuh custom? Chat WhatsApp.</p>
-      </div>
+<!-- Act 5: Turn, the peak. Scroll edits a video. -->
+<section class="edit" id="proses" aria-labelledby="h-edit">
+  <div class="stick">
+    <div class="copy">
+      <h2 id="h-edit" data-i="e_h">Scroll pelan. Videonya saya edit di depan kamu.</h2>
+      <ol class="steps" id="steps">
+        <li><b data-i="s0b">Footage mentah</b><span data-i="s0p">Rekaman HP, 47 detik, banyak jeda.</span></li>
+        <li><b data-i="s1b">Potong</b><span data-i="s1p">Jeda dibuang. Tinggal 30 detik dengan ritme TikTok.</span></li>
+        <li><b data-i="s2b">Hook</b><span data-i="s2p">Tiga detik pertama dapat kalimat paling kuat.</span></li>
+        <li><b data-i="s3b">Subtitle</b><span data-i="s3p">Banyak orang nonton tanpa suara. Subtitle bikin video tetap jalan.</span></li>
+        <li><b data-i="s4b">B-roll</b><span data-i="s4p">Potongan pendukung supaya mata tidak bosan.</span></li>
+        <li><b data-i="s5b">Ajakan</b><span data-i="s5p">Ditutup dengan satu langkah yang jelas untuk penonton.</span></li>
+      </ol>
     </div>
-    <div class="svc">
-      <div class="r g" data-tip="p1_t">
-        <div class="nm"><span class="n">01</span><h3>Short-form<small data-i="p1_s">Untuk coba dulu</small></h3></div>
-        <ul><li data-i="p1a">1 video vertikal siap posting</li><li data-i="p1b">Hook, subtitle, b-roll</li><li data-i="p1c">Pengerjaan 2-3 hari</li></ul>
-        <p class="p">Rp300.000<span data-i="p1_u">/ video</span><a class="go" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Short-form%20(Rp300rb)" target="_blank" rel="noopener noreferrer" data-i="book">Booking</a></p>
+    <div class="vis" aria-hidden="true">
+      <div class="ephone thumb-fallback" id="ephone">
+        <div class="lay"><img src="https://i.ytimg.com/vi/t_z4TG3IRy4/hqdefault.jpg" alt=""></div>
+        <div class="lay raw thumb-fallback"><img src="https://i.ytimg.com/vi/t_z4TG3IRy4/hqdefault.jpg" alt=""></div>
+        <div class="lay vig"></div>
+        <span class="dur num" id="dur">0:47</span>
+        <p class="hook" id="hookT"></p>
+        <div class="broll thumb-fallback"><img src="https://i.ytimg.com/vi/_W3PeEMlYVQ/hqdefault.jpg" alt=""></div>
+        <p class="subt" id="subt"></p>
+        <span class="ctab" data-i="ctab">Cek link di bio</span>
+        <div class="lay flash" id="flash"></div>
       </div>
-      <div class="r g" data-tip="p2_t">
-        <div class="nm"><span class="n">02</span><h3>Bundling Growth<small data-i="p2_s">Paling populer</small></h3></div>
-        <ul><li data-i="p2a">8 video vertikal</li><li data-i="p2b">Prioritas pengerjaan</li><li data-i="p2c">Gratis konsultasi strategi konten</li></ul>
-        <p class="p">Rp2.000.000<span data-i="p2_u">/ 8 video, Rp250rb per video</span><a class="go" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Bundling%20Growth%20(Rp2jt)" target="_blank" rel="noopener noreferrer" data-i="book">Booking</a></p>
+      <div class="tl">
+        <div class="tl-top"><span data-i="tl_l">Timeline</span><b class="num" id="tc">00:00</b></div>
+        <div class="tracks">
+          <div class="trk"><i class="clip raw-c show" style="left:0;width:100%"></i><i class="clip v" style="left:0;width:18%"></i><i class="clip v" style="left:19%;width:22%"></i><i class="clip v" style="left:42%;width:17%"></i><i class="clip v" style="left:60%;width:21%"></i><i class="clip v" style="left:82%;width:18%"></i></div>
+          <div class="trk"><i class="clip t" style="left:0;width:10%"></i><i class="clip s" style="left:11%;width:15%"></i><i class="clip s" style="left:27%;width:15%"></i><i class="clip s" style="left:43%;width:15%"></i><i class="clip s" style="left:59%;width:15%"></i><i class="clip t" style="left:84%;width:16%"></i></div>
+          <div class="trk"><i class="clip b" style="left:24%;width:14%"></i><i class="clip b" style="left:52%;width:16%"></i></div>
+          <div class="trk"><i class="wave"></i></div>
+          <i class="head" id="head"></i>
+        </div>
       </div>
-      <div class="r g" data-tip="p3_t">
-        <div class="nm"><span class="n">03</span><h3>Retainer Premium<small data-i="p3_s">Untuk brand yang posting rutin</small></h3></div>
-        <ul><li data-i="p3a">12 video per bulan</li><li data-i="p3b">Prioritas super dan komunikasi intensif</li><li data-i="p3c">Gratis thumbnail dan caption</li><li data-i="p3d">Konsultasi strategi 1-on-1 bulanan</li></ul>
-        <p class="p">Rp3.500.000<span data-i="p3_u">/ bulan</span><a class="go" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Retainer%20Premium%20(Rp3.5jt)" target="_blank" rel="noopener noreferrer" data-i="book">Booking</a></p>
-      </div>
+      <p class="note" data-i="note">Contoh alur edit untuk satu video talking head.</p>
     </div>
   </div>
-</div>
-<div class="tip" id="tip" aria-hidden="true"></div>
+</section>
 
-<section>
+<!-- Act 6: Substance. Packages, pointer response. -->
+<section class="pk" id="paket" aria-labelledby="h-pk">
   <div class="wrap">
-    <div class="head g">
-      <p class="label"><b>003/</b> <span data-i="c_l">Cara kerja</span></p>
-      <h2 data-i="c_h">Empat langkah</h2>
+    <div class="hd">
+      <h2 id="h-pk" data-i="p_h">Pilih paketnya.</h2>
+      <p data-i="p_p">Alurnya sama di semua paket: chat gratis dulu, kirim footage mentah, draft jadi dalam 2-3 hari, revisi maksimal 2-3x per video.</p>
     </div>
     <div class="rows">
-      <div class="r g"><div class="nm"><span class="n">01</span><h3 data-i="c1h">Chat dulu, gratis.</h3></div><p data-i="c1p">Ceritakan produk, target penonton, dan platformnya lewat WhatsApp.</p></div>
-      <div class="r g"><div class="nm"><span class="n">02</span><h3 data-i="c2h">Kirim footage mentah.</h3></div><p data-i="c2p">Rekaman HP sudah cukup. Saya yang rapikan, potong, dan susun hook-nya.</p></div>
-      <div class="r g"><div class="nm"><span class="n">03</span><h3 data-i="c3h">Draft dalam 2-3 hari.</h3></div><p data-i="c3p">Revisi maksimal 2-3x per video sampai pas.</p></div>
-      <div class="r g"><div class="nm"><span class="n">04</span><h3 data-i="c4h">Siap posting.</h3></div><p data-i="c4p">File 9:16 untuk TikTok, Reels, dan Shorts.</p></div>
+      <article class="row" data-n="1">
+        <h3>Short-form<small data-i="p1s">Untuk coba dulu</small></h3>
+        <ul><li data-i="p1a">1 video vertikal siap posting</li><li data-i="p1b">Hook, subtitle, b-roll</li><li data-i="p1c">Pengerjaan 2-3 hari</li></ul>
+        <div class="pr"><strong class="num">Rp300.000</strong><span data-i="p1u">per video</span><a href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Short-form%20(Rp300rb)" target="_blank" rel="noopener noreferrer" data-i="book">Booking via WhatsApp</a></div>
+      </article>
+      <article class="row" data-n="8">
+        <h3>Bundling Growth<small data-i="p2s">Paling sering dipilih</small></h3>
+        <ul><li data-i="p2a">8 video vertikal</li><li data-i="p2b">Prioritas pengerjaan</li><li data-i="p2c">Gratis konsultasi strategi konten</li></ul>
+        <div class="pr"><strong class="num">Rp2.000.000</strong><span data-i="p2u">8 video, jadi Rp250.000 per video</span><a href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Bundling%20Growth%20(Rp2jt)" target="_blank" rel="noopener noreferrer" data-i="book">Booking via WhatsApp</a></div>
+      </article>
+      <article class="row" data-n="12">
+        <h3>Retainer Premium<small data-i="p3s">Untuk brand yang posting rutin</small></h3>
+        <ul><li data-i="p3a">12 video per bulan</li><li data-i="p3b">Prioritas super dan komunikasi intensif</li><li data-i="p3c">Gratis thumbnail dan caption</li><li data-i="p3d">Konsultasi strategi 1-on-1 bulanan</li></ul>
+        <div class="pr"><strong class="num">Rp3.500.000</strong><span data-i="p3u">per bulan</span><a href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20booking%20paket%20Retainer%20Premium%20(Rp3.5jt)" target="_blank" rel="noopener noreferrer" data-i="book">Booking via WhatsApp</a></div>
+      </article>
     </div>
   </div>
 </section>
+<div class="peek" id="peek" aria-hidden="true"></div>
 
-<section id="klien" style="padding-top:0">
+<!-- Act 7: Reassurance. -->
+<section class="cl" aria-labelledby="h-cl">
   <div class="wrap">
-    <div class="head g">
-      <p class="label"><b>004/</b> <span data-i="k_l">Klien</span></p>
-      <h2 data-i="k_h">Kata mereka</h2>
-    </div>
-    <div class="ruled">
-      <div class="r g"><b>Wije.id</b><q data-i="q1">Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!</q><p class="meta" data-i="q1r">Peralatan dapur</p></div>
-      <div class="r g"><b>Melaminku.id</b><q data-i="q2">Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.</q><p class="meta" data-i="q2r">Perlengkapan melamin</p></div>
-      <div class="r g"><b>MyLO</b><q data-i="q3">Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.</q><p class="meta" data-i="q3r">Platform parenting</p></div>
+    <h2 id="h-cl" class="rv" data-i="c_h">Kata yang sudah kerja bareng.</h2>
+    <div class="qs">
+      <figure class="q rv"><blockquote data-i="q1">Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!</blockquote><figcaption><b>Wije.id</b><span data-i="q1r">Peralatan dapur</span></figcaption></figure>
+      <figure class="q rv"><blockquote data-i="q2">Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.</blockquote><figcaption><b>Melaminku.id</b><span data-i="q2r">Perlengkapan melamin</span></figcaption></figure>
+      <figure class="q rv"><blockquote data-i="q3">Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.</blockquote><figcaption><b>MyLO</b><span data-i="q3r">Platform parenting</span></figcaption></figure>
     </div>
   </div>
 </section>
 
-<section style="padding-top:0">
-  <div class="wrap about g">
-    <div class="ph">R<img src="assets/img/profile.jpg" alt="Damario Indra Wibowo" loading="lazy" onerror="this.remove()"></div>
-    <div>
-      <blockquote data-i="a_q">Mahasiswa Teknik Informatika yang jatuh cinta sama editing video. Sejak 2020 saya bantu UMKM, toko online, dan content creator bikin video yang beneran jualan.</blockquote>
-      <p class="meta">Damario Indra Wibowo / Rioz</p>
-    </div>
-  </div>
-</section>
-
-<div class="ap" id="kontak">
+<!-- Act 8: Commitment. -->
+<section class="close" id="kontak" aria-labelledby="h-close">
   <div class="wrap">
-    <div class="g"><p class="label"><b style="color:var(--on-accent)">005/</b> <span data-i="x_l">Kerja bareng</span></p>
-    <div class="apc"><h2 data-i="x_h">Ceritakan produkmu, saya susun videonya.</h2>
+    <h2 id="h-close" data-i="x_h">Ceritakan produkmu. Saya susun videonya.</h2>
+    <p data-i="x_p">Konsultasi gratis lewat WhatsApp. Biasanya saya balas dalam hitungan menit.</p>
     <div class="acts">
-      <a class="pill dark" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya." target="_blank" rel="noopener noreferrer"><span data-i="x_a">Chat WhatsApp</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      <a class="pill line" href="#layanan"><span data-i="x_b">Lihat paket</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="pill ink" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20mau%20konsultasi%20gratis%20untuk%20konten%20video%20saya." target="_blank" rel="noopener noreferrer"><span data-i="x_a">Chat WhatsApp</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="tlink" href="#paket" data-i="x_b">Lihat paket lagi</a>
     </div>
-    <p class="meta" data-i="x_m">Konsultasi gratis. Biasanya membalas dalam hitungan menit.</p></div></div>
   </div>
-</div>
+</section>
 </main>
 
 <footer>
-  <div class="wrap ft g">
-    <div><p class="e">damariozjr@gmail.com</p><p style="margin-top:6px">WhatsApp +62 895 4139 35821</p></div>
-    <nav aria-label="Tautan"><a href="portfolio/index.html" data-i="n1">Portofolio</a><a href="#layanan" data-i="n2">Layanan</a><a href="https://drive.google.com/file/d/11WC1K-IE0FJb7NVCzSWL7n8p2ZW-LWSq/view?usp=sharing" target="_blank" rel="noopener noreferrer">Download CV</a></nav>
+  <div class="wrap ft">
+    <div class="a"><a href="mailto:damariozjr@gmail.com">damariozjr@gmail.com</a><p>WhatsApp +62 895 4139 35821</p></div>
+    <nav aria-label="Halaman"><a href="portfolio/index.html" data-i="f1">Semua karya</a><a href="#paket" data-i="n3">Paket</a><a href="https://drive.google.com/file/d/11WC1K-IE0FJb7NVCzSWL7n8p2ZW-LWSq/view?usp=sharing" target="_blank" rel="noopener noreferrer">Download CV</a></nav>
     <nav aria-label="Sosial"><a href="https://www.instagram.com/riozz18/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.linkedin.com/in/riozz18/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://linktr.ee/riozz" target="_blank" rel="noopener noreferrer">Linktree</a></nav>
   </div>
-  <div class="rest" aria-hidden="true"><div class="walker"><span class="f f1"></span></div></div>
+  <div class="rest" aria-hidden="true"><div class="walker"><span class="f1"></span></div></div>
   <div class="giant" aria-hidden="true">Rioz<i>.</i></div>
-  <div class="wrap copy"><p class="meta">&copy; <span id="yr">2026</span> Rioz.</p><p class="meta" data-i="foot">Editor video vertikal</p></div>
+  <div class="wrap copyr"><span>&copy; <span id="yr">2026</span> Rioz.</span><span data-i="foot">Editor video vertikal</span></div>
 </footer>
 
 <script>
 (function(){
-  /* Pixel sprite: 16x16, one span per frame, painted with box-shadow. a = REC red, b = bone, p = phone screen */
-  var A=[
-"................",
-".....aaaa.......",
-"....aaaaaa......",
-".....bbbb.......",
-".....b.bb.......",
-".....bbbb.......",
-"......bb....bb..",
-"....bbbbbbbbpb..",
-"...bbbbbb...pb..",
-"...b.bbbb...bb..",
-"...b.bbbb.......",
-".....bbbb.......",
-".....b..b.......",
-"....bb...b......",
-"....b....bb.....",
-"...bb..........."];
-  var B=A.slice(0,12).concat([
-".....b..b.......",
-".....b..b.......",
-".....bb.bb......",
-"................"]);
-  var C={a:"#FF4A2B",b:"#EDE9E1",p:"#FF4A2B"};
-  function paint(m){var s=[];m.forEach(function(r,y){for(var x=0;x<16;x++){var c=C[r[x]];if(c)s.push((x*3)+"px "+(y*3)+"px 0 "+c)}});return s.join(",")}
-  var fa=paint(A),fb=paint(B);
-  document.querySelectorAll(".walker .f1").forEach(function(e){e.style.boxShadow=fa});
-  document.querySelectorAll(".walker .f2").forEach(function(e){e.style.boxShadow=fb});
-
-  var CATS=[
-    {k:"talking",id:"t_z4TG3IRy4",n:17},
-    {k:"edu",id:"1oazDgxpZjY",n:11},
-    {k:"comedy",id:"b0jUrrcQlas",n:18},
-    {k:"recap",id:"sOpKPZbFKCA",n:14},
-    {k:"testimonial",id:"Ev0mClauYLg",n:8},
-    {k:"ai",id:"LaKAMuOq0HI",n:4}
-  ];
-  var NAME={talking:"Talking Head",edu:"Educational",comedy:"Comedy Skit",recap:"Recap Event",testimonial:"Testimonial",ai:"AI Content"};
-  var T={
-    id:{n1:"Portofolio",n2:"Layanan",n3:"Klien",n4:"Kontak",cta:"Konsultasi gratis",
-      h_line:"Saya bikin video pendek yang bikin orang berhenti scroll.",h_meta:"Editor video vertikal. Sejak 2020. TikTok, Reels, Shorts.",h_meta2:"Hook 3 detik. Subtitle. B-roll. Mulai Rp300.000.",kat:"kategori",h1:"Rioz, editor video vertikal",
-      w_l:"Portofolio",w_h:"Apa yang saya edit",w_all:"Lihat semua 104 video",vid:"video",
-      d:{talking:"Jump cut, subtitle, dan b-roll untuk edukasi, review, dan personal branding.",edu:"Materi padat dibuka dengan hook kuat, ditutup dengan poin yang gampang diingat.",comedy:"Timing punchline, jump cut, dan sound effect yang pas.",recap:"Highlight acara dengan potongan cepat dan musik yang energik.",testimonial:"Testimoni klien dengan caption, nama, dan visual bersih.",ai:"Video AI dengan pacing, color grading, dan sound design yang natural."},
-      s_l:"Pendekatan",s_p:"Orang memutuskan lanjut nonton atau scroll dalam <em>tiga detik pertama</em>. Jadi saya mulai dari situ: hook dulu, baru isi. Subtitle supaya video tetap jalan tanpa suara, b-roll supaya mata tidak bosan, dan potongan yang cukup cepat untuk ritme TikTok tanpa bikin pusing. Rapi itu standar. Yang saya kejar adalah video yang dipakai buat jualan.",s_m:"Hook 3 detik. Subtitle. B-roll. CTA.",
-      p_l:"Layanan",p_h:"Tiga paket",p_s:"Revisi maksimal 2-3x per video di semua paket. Butuh custom? Chat WhatsApp.",
-      p1_s:"Untuk coba dulu",p1a:"1 video vertikal siap posting",p1b:"Hook, subtitle, b-roll",p1c:"Pengerjaan 2-3 hari",p1_u:"/ video",
-      p2_s:"Paling populer",p2a:"8 video vertikal",p2b:"Prioritas pengerjaan",p2c:"Gratis konsultasi strategi konten",p2_u:"/ 8 video, Rp250rb per video",
-      p3_s:"Untuk brand yang posting rutin",p3a:"12 video per bulan",p3b:"Prioritas super dan komunikasi intensif",p3c:"Gratis thumbnail dan caption",p3d:"Konsultasi strategi 1-on-1 bulanan",p3_u:"/ bulan",
-      book:"Booking",p1_t:"1 video, 2-3 hari",p2_t:"Hemat Rp400rb dari harga satuan",p3_t:"12 video tiap bulan",
-      c_l:"Cara kerja",c_h:"Empat langkah",c1h:"Chat dulu, gratis.",c1p:"Ceritakan produk, target penonton, dan platformnya lewat WhatsApp.",c2h:"Kirim footage mentah.",c2p:"Rekaman HP sudah cukup. Saya yang rapikan, potong, dan susun hook-nya.",c3h:"Draft dalam 2-3 hari.",c3p:"Revisi maksimal 2-3x per video sampai pas.",c4h:"Siap posting.",c4p:"File 9:16 untuk TikTok, Reels, dan Shorts.",
-      k_l:"Klien",k_h:"Kata mereka",q1:"Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!",q1r:"Peralatan dapur",q2:"Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.",q2r:"Perlengkapan melamin",q3:"Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.",q3r:"Platform parenting",
-      a_q:"Mahasiswa Teknik Informatika yang jatuh cinta sama editing video. Sejak 2020 saya bantu UMKM, toko online, dan content creator bikin video yang beneran jualan.",
-      x_l:"Kerja bareng",x_h:"Ceritakan produkmu, saya susun videonya.",x_a:"Chat WhatsApp",x_b:"Lihat paket",x_m:"Konsultasi gratis. Biasanya membalas dalam hitungan menit.",foot:"Editor video vertikal"},
-    en:{n1:"Work",n2:"Services",n3:"Clients",n4:"Contact",cta:"Free consultation",
-      h_line:"I edit short videos that make people stop scrolling.",h_meta:"Vertical video editor. Since 2020. TikTok, Reels, Shorts.",h_meta2:"3-second hook. Subtitles. B-roll. From Rp300,000.",kat:"categories",h1:"Rioz, vertical video editor",
-      w_l:"Work",w_h:"What I edit",w_all:"See all 104 videos",vid:"videos",
-      d:{talking:"Jump cuts, subtitles, and b-roll for education, reviews, and personal branding.",edu:"Dense material opened with a strong hook and closed with a point that sticks.",comedy:"Punchline timing, jump cuts, and the right sound effects.",recap:"Event highlights with fast cuts and energetic music.",testimonial:"Client testimonials with captions, names, and clean visuals.",ai:"AI video with natural pacing, color grading, and sound design."},
-      s_l:"Approach",s_p:"People decide to keep watching or scroll in the <em>first three seconds</em>. So I start there: hook first, then the body. Subtitles so the video works on mute, b-roll so the eye stays busy, and cuts fast enough for TikTok without making anyone dizzy. Polished is the baseline. What I aim for is a video that sells.",s_m:"3-second hook. Subtitles. B-roll. CTA.",
-      p_l:"Services",p_h:"Three packages",p_s:"Up to 2-3 revisions per video on every package. Need custom? Chat on WhatsApp.",
-      p1_s:"To try it out",p1a:"1 vertical video ready to post",p1b:"Hook, subtitles, b-roll",p1c:"2-3 day turnaround",p1_u:"/ video",
-      p2_s:"Most popular",p2a:"8 vertical videos",p2b:"Priority processing",p2c:"Free content strategy consultation",p2_u:"/ 8 videos, Rp250k per video",
-      p3_s:"For brands that post often",p3a:"12 videos per month",p3b:"Super priority and close communication",p3c:"Free thumbnails and captions",p3d:"Monthly 1-on-1 strategy session",p3_u:"/ month",
-      book:"Book",p1_t:"1 video, 2-3 days",p2_t:"Save Rp400k vs single price",p3_t:"12 videos every month",
-      c_l:"Process",c_h:"Four steps",c1h:"Chat first, for free.",c1p:"Tell me the product, the audience, and the platform on WhatsApp.",c2h:"Send raw footage.",c2p:"Phone footage is fine. I clean it, cut it, and build the hook.",c3h:"Draft in 2-3 days.",c3p:"Up to 2-3 revisions per video until it fits.",c4h:"Ready to post.",c4p:"9:16 files for TikTok, Reels, and Shorts.",
-      k_l:"Clients",k_h:"What they say",q1:"The promo video was neat and fast. The 3-second hook boosted my TikTok engagement. Recommended!",q1r:"Kitchenware",q2:"Fast turnaround, great communication, results matched our brand identity. Will definitely order again.",q2r:"Melamine goods",q3:"An editor who understands parenting content. The videos are warm and easy for our audience to follow.",q3r:"Parenting platform",
-      a_q:"An Informatics Engineering student who fell in love with video editing. Since 2020 I have helped SMEs, online shops, and content creators make videos that actually sell.",
-      x_l:"Work together",x_h:"Tell me your product, I will build the video.",x_a:"Chat on WhatsApp",x_b:"See packages",x_m:"Free consultation. Usually replies within minutes.",foot:"Vertical video editor"}
-  };
-
-  var idx=document.getElementById("idx"),frame=document.getElementById("frame"),vd=document.getElementById("vd"),vm=document.getElementById("vm");
-  var lang="id";try{lang=localStorage.getItem("rioz_lang")||"id"}catch(e){}if(!T[lang])lang="id";
-  var cur=0;
-  function th(id,big){return "https://i.ytimg.com/vi/"+id+"/"+(big?"hq720":"hqdefault")+".jpg"}
-  function thFb(id){return "this.onerror=null;this.src='"+th(id,false)+"'"}
-  frame.innerHTML=CATS.map(function(c,i){return '<img src="'+th(c.id,true)+'" alt="" loading="'+(i?"lazy":"eager")+'" onerror="'+thFb(c.id)+'">'}).join("");
-  function drawIdx(){
-    idx.innerHTML=CATS.map(function(c,i){
-      return '<li data-k="'+i+'"><a class="it" href="portfolio/index.html"><span class="thumb"><img src="'+th(c.id,false)+'" alt="" loading="lazy"></span><span class="n">'+("0"+(i+1)).slice(-2)+'</span><span class="t">'+NAME[c.k]+'</span><span class="c">'+c.n+' '+T[lang].vid+'</span></a></li>';
-    }).join("");
-    pick(cur);
-  }
-  function pick(i){
-    cur=i;
-    idx.querySelectorAll("li").forEach(function(l,j){l.classList.toggle("on",j===i)});
-    frame.querySelectorAll("img").forEach(function(m,j){m.classList.toggle("on",j===i)});
-    vd.textContent=T[lang].d[CATS[i].k];
-    vm.textContent=CATS[i].n+" "+T[lang].vid+" / 9:16";
-  }
-  idx.addEventListener("mouseover",function(e){var l=e.target.closest("li");if(l)pick(+l.getAttribute("data-k"))});
-  idx.addEventListener("focusin",function(e){var l=e.target.closest("li");if(l)pick(+l.getAttribute("data-k"))});
-
-  /* Cursor tip on service rows, soft follow */
-  var tip=document.getElementById("tip"),tx=0,ty=0,cx=0,cy=0,raf=0;
-  var fine=window.matchMedia("(hover:hover) and (pointer:fine)").matches;
+  var root=document.documentElement;root.classList.add("js");
   var still=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  function loop(){cx+=(tx-cx)*(still?1:.18);cy+=(ty-cy)*(still?1:.18);tip.style.transform="translate("+(cx+18)+"px,"+(cy+18)+"px)";raf=(Math.abs(tx-cx)+Math.abs(ty-cy)>.5)?requestAnimationFrame(loop):0}
-  if(fine){
-    document.querySelectorAll(".svc .r").forEach(function(r){
-      r.addEventListener("mouseenter",function(e){tip.textContent=T[lang][r.getAttribute("data-tip")];cx=tx=e.clientX;cy=ty=e.clientY;tip.classList.add("on");loop()});
-      r.addEventListener("mousemove",function(e){tx=e.clientX;ty=e.clientY;if(!raf)raf=requestAnimationFrame(loop)});
-      r.addEventListener("mouseleave",function(){tip.classList.remove("on")});
+  function mq(q){return window.matchMedia(q).matches}
+  function clamp(v){return v<0?0:v>1?1:v}
+  function noBroken(scope){scope.querySelectorAll("img").forEach(function(i){i.addEventListener("error",function(){i.remove()});if(i.complete&&i.naturalWidth===0&&i.src)i.remove()})}
+  noBroken(document);
+
+  /* Pixel walker sprite */
+  var A=["................",".....aaaa.......","....aaaaaa......",".....bbbb.......",".....b.bb.......",".....bbbb.......","......bb....bb..","....bbbbbbbbpb..","...bbbbbb...pb..","...b.bbbb...bb..","...b.bbbb.......",".....bbbb.......",".....b..b.......","....bb...b......","....b....bb.....","...bb..........."];
+  var B=A.slice(0,12).concat([".....b..b.......",".....b..b.......",".....bb.bb......","................"]);
+  var C={a:"#FF4A2B",b:"#EDE9E1",p:"#FF4A2B"};
+  function paint(m){var s=[];m.forEach(function(r,y){for(var x=0;x<16;x++){var c=C[r[x]];if(c)s.push(x*3+"px "+y*3+"px 0 "+c)}});return s.join(",")}
+  document.querySelectorAll(".walker .f1").forEach(function(e){e.style.boxShadow=paint(A)});
+  document.querySelectorAll(".walker .f2").forEach(function(e){e.style.boxShadow=paint(B)});
+
+  var CATS=[["Talking Head",17,"t_z4TG3IRy4"],["Regular",22,"QWQQ58m-Wyk"],["Comedy Skit",18,"b0jUrrcQlas"],["Recap Event",14,"sOpKPZbFKCA"],["Educational",11,"1oazDgxpZjY"],["Testimonial",8,"Ev0mClauYLg"],["AI Content",4,"LaKAMuOq0HI"],["Motion",4,"gG73Po3sQHw"],["Interview",4,"TJDEc6XyIbo"],["Product Showcase",2,"_W3PeEMlYVQ"]];
+
+  var T={
+    id:{n1:"Karya",n2:"Proses",n3:"Paket",n4:"Kontak",cta:"Konsultasi gratis",
+      h1:"Video pendek yang bikin orang berhenti scroll.",lede:"Saya Rioz, editor video vertikal untuk UMKM, toko online, dan brand. Hook 3 detik, subtitle, b-roll. Mulai Rp300.000 per video.",see:"Lihat karya",
+      kin:"Barusan kamu memutuskan untuk lanjut scroll. Penonton TikTok melakukan hal yang sama, dalam *tiga *detik *pertama. Setiap video yang saya edit dibuat untuk menang di tiga detik itu.",
+      w_h:"104 video, 10 gaya.",w_p:"Dari talking head sampai recap event. Geser untuk lihat tiap gaya, klik untuk menonton semuanya.",vid:"video",end:"Tonton semuanya",
+      a_h:"Halo, saya Rioz.",a_p:"Mahasiswa Teknik Informatika yang jatuh cinta sama editing video. Sejak 2020 saya bantu UMKM, toko online, dan content creator bikin video pendek yang dipakai buat jualan, bukan cuma enak dilihat.",
+      e_h:"Scroll pelan. Videonya saya edit di depan kamu.",
+      s0b:"Footage mentah",s0p:"Rekaman HP, 47 detik, banyak jeda.",s1b:"Potong",s1p:"Jeda dibuang. Tinggal 30 detik dengan ritme TikTok.",s2b:"Hook",s2p:"Tiga detik pertama dapat kalimat paling kuat.",s3b:"Subtitle",s3p:"Banyak orang nonton tanpa suara. Subtitle bikin video tetap jalan.",s4b:"B-roll",s4p:"Potongan pendukung supaya mata tidak bosan.",s5b:"Ajakan",s5p:"Ditutup dengan satu langkah yang jelas untuk penonton.",
+      hook:"Jangan <em>skip</em> dulu",sub:"Ini cara bikin orang berhenti scroll",ctab:"Cek link di bio",tl_l:"Timeline",note:"Contoh alur edit untuk satu video talking head.",
+      p_h:"Pilih paketnya.",p_p:"Alurnya sama di semua paket: chat gratis dulu, kirim footage mentah, draft jadi dalam 2-3 hari, revisi maksimal 2-3x per video.",
+      p1s:"Untuk coba dulu",p1a:"1 video vertikal siap posting",p1b:"Hook, subtitle, b-roll",p1c:"Pengerjaan 2-3 hari",p1u:"per video",
+      p2s:"Paling sering dipilih",p2a:"8 video vertikal",p2b:"Prioritas pengerjaan",p2c:"Gratis konsultasi strategi konten",p2u:"8 video, jadi Rp250.000 per video",
+      p3s:"Untuk brand yang posting rutin",p3a:"12 video per bulan",p3b:"Prioritas super dan komunikasi intensif",p3c:"Gratis thumbnail dan caption",p3d:"Konsultasi strategi 1-on-1 bulanan",p3u:"per bulan",
+      book:"Booking via WhatsApp",peek:function(n){return n+" video"},
+      c_h:"Kata yang sudah kerja bareng.",q1:"Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!",q1r:"Peralatan dapur",q2:"Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.",q2r:"Perlengkapan melamin",q3:"Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.",q3r:"Platform parenting",
+      x_h:"Ceritakan produkmu. Saya susun videonya.",x_p:"Konsultasi gratis lewat WhatsApp. Biasanya saya balas dalam hitungan menit.",x_a:"Chat WhatsApp",x_b:"Lihat paket lagi",f1:"Semua karya",foot:"Editor video vertikal"},
+    en:{n1:"Work",n2:"Process",n3:"Packages",n4:"Contact",cta:"Free consultation",
+      h1:"Short videos that make people stop scrolling.",lede:"I'm Rioz, a vertical video editor for small businesses, online shops, and brands. 3-second hooks, subtitles, b-roll. From Rp300,000 per video.",see:"See the work",
+      kin:"You just decided to keep scrolling. TikTok viewers make the same call, in the *first *three *seconds. Every video I edit is built to win those three seconds.",
+      w_h:"104 videos, 10 styles.",w_p:"From talking heads to event recaps. Browse each style, click to watch them all.",vid:"videos",end:"Watch them all",
+      a_h:"Hi, I'm Rioz.",a_p:"An Informatics Engineering student who fell in love with video editing. Since 2020 I have helped small businesses, online shops, and content creators make short videos that sell, not just videos that look nice.",
+      e_h:"Scroll slowly. I'll edit the video in front of you.",
+      s0b:"Raw footage",s0p:"Phone footage, 47 seconds, lots of pauses.",s1b:"Cut",s1p:"Pauses removed. Down to 30 seconds at TikTok pace.",s2b:"Hook",s2p:"The first three seconds get the strongest line.",s3b:"Subtitles",s3p:"Many people watch on mute. Subtitles keep the video working.",s4b:"B-roll",s4p:"Supporting shots so the eye never gets bored.",s5b:"Call to action",s5p:"It ends with one clear next step for the viewer.",
+      hook:"Don't <em>skip</em> yet",sub:"This is how you make people stop scrolling",ctab:"Link in bio",tl_l:"Timeline",note:"Example edit flow for one talking head video.",
+      p_h:"Pick a package.",p_p:"The flow is the same on every package: free chat first, send raw footage, draft ready in 2-3 days, up to 2-3 revisions per video.",
+      p1s:"To try it out",p1a:"1 vertical video ready to post",p1b:"Hook, subtitles, b-roll",p1c:"2-3 day turnaround",p1u:"per video",
+      p2s:"Most chosen",p2a:"8 vertical videos",p2b:"Priority processing",p2c:"Free content strategy consultation",p2u:"8 videos, Rp250,000 each",
+      p3s:"For brands that post often",p3a:"12 videos per month",p3b:"Super priority and close communication",p3c:"Free thumbnails and captions",p3d:"Monthly 1-on-1 strategy session",p3u:"per month",
+      book:"Book via WhatsApp",peek:function(n){return n+(n>1?" videos":" video")},
+      c_h:"From people I've worked with.",q1:"The promo video was neat and fast. The 3-second hook boosted my TikTok engagement. Recommended!",q1r:"Kitchenware",q2:"Fast turnaround, great communication, results matched our brand identity. Will definitely order again.",q2r:"Melamine goods",q3:"An editor who understands parenting content. The videos are warm and easy for our audience to follow.",q3r:"Parenting platform",
+      x_h:"Tell me your product. I'll build the video.",x_p:"Free consultation on WhatsApp. I usually reply within minutes.",x_a:"Chat on WhatsApp",x_b:"See packages again",f1:"All work",foot:"Vertical video editor"}
+  };
+  var lang="id";try{lang=localStorage.getItem("rioz_lang")||"id"}catch(e){}if(!T[lang])lang="id";
+
+  var nav=document.getElementById("nav"),hero=document.querySelector(".hero"),pBg=document.getElementById("pBg"),pSub=document.getElementById("pSub"),pFg=document.getElementById("pFg");
+  var say=document.getElementById("say"),kin=document.getElementById("kin"),work=document.getElementById("karya"),track=document.getElementById("track"),ph=document.getElementById("ph"),edit=document.getElementById("proses");
+  var ephone=document.getElementById("ephone"),steps=[].slice.call(document.querySelectorAll("#steps li")),dur=document.getElementById("dur"),tc=document.getElementById("tc"),head=document.getElementById("head"),flash=document.getElementById("flash");
+  var clipsV=[].slice.call(document.querySelectorAll(".clip.v")),clipRaw=document.querySelector(".clip.raw-c"),clipsT=[].slice.call(document.querySelectorAll(".clip.t")),clipsS=[].slice.call(document.querySelectorAll(".clip.s")),clipsB=[].slice.call(document.querySelectorAll(".clip.b"));
+  var words=[],subw=[],pointer={x:0,y:0},lastStage=-1,ticking=false,panW=0;
+
+  function build(){
+    var L=T[lang];
+    kin.innerHTML=L.kin.split(" ").map(function(w){var h=w.charAt(0)==="*";return '<span class="w'+(h?" hl":"")+'">'+(h?w.slice(1):w)+"</span>"}).join(" ");
+    words=[].slice.call(kin.querySelectorAll(".w"));
+    track.innerHTML=CATS.map(function(c){return '<a class="cat" href="portfolio/index.html"><div class="fr thumb-fallback"><img src="https://i.ytimg.com/vi/'+c[2]+'/hqdefault.jpg" alt="" loading="lazy"></div><h3>'+c[0]+'</h3><p class="num">'+c[1]+" "+L.vid+"</p></a>"}).join("")
+      +'<a class="cat end" href="portfolio/index.html"><div class="fr"><div><strong class="num">104</strong><span>'+L.end+"</span></div></div></a>";
+    noBroken(track);
+    document.getElementById("hookT").innerHTML=L.hook;
+    document.getElementById("subt").innerHTML=L.sub.split(" ").map(function(w){return "<span>"+w+"</span>"}).join(" ");
+    subw=[].slice.call(document.querySelectorAll("#subt span"));
+    sizeWork();lastStage=-1;frame();
+  }
+  function setLang(l){
+    lang=l;try{localStorage.setItem("rioz_lang",l)}catch(e){}
+    root.lang=l;
+    document.querySelectorAll("[data-i]").forEach(function(el){var v=T[l][el.getAttribute("data-i")];if(typeof v==="string")el.innerHTML=v});
+    document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-lang")===l))});
+    build();
+  }
+  document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-lang"))})});
+
+  /* Scroll engine: one rAF per scroll, transform and opacity only */
+  function span(el){var r=el.getBoundingClientRect(),s=r.height-innerHeight;return s>0?clamp(-r.top/s):0}
+  function sizeWork(){
+    if(still||mq("(max-width:767px)")){work.style.height="";track.style.transform="";panW=0;return}
+    panW=Math.max(0,track.scrollWidth-innerWidth);
+    work.style.height=(innerHeight+panW)+"px";
+  }
+  function mmss(s){s=Math.round(s);return "0"+Math.floor(s/60)+":"+("0"+s%60).slice(-2)}
+
+  function frame(){
+    ticking=false;
+    nav.classList.toggle("solid",scrollY>80);
+    if(still){setStage(5,1,1);return}
+    var hr=hero.getBoundingClientRect(),hp=clamp(-hr.top/hr.height);
+    pBg.style.transform="translate3d("+(pointer.x*-10)+"px,"+(hp*90+pointer.y*-8)+"px,0)";
+    pSub.style.transform="translate3d("+(pointer.x*14)+"px,"+(hp*-110+pointer.y*10)+"px,0) rotate("+(pointer.x*2)+"deg)";
+    pFg.style.transform="translate3d(0,"+(hp*-60)+"px,0)";
+    var sp=span(say),lit=Math.round(clamp((sp-0.08)/0.72)*words.length);
+    for(var i=0;i<words.length;i++)words[i].classList.toggle("on",i<lit);
+    if(panW)track.style.transform="translate3d("+(-span(work)*panW)+"px,0,0)";
+    var ar=ph.getBoundingClientRect(),ap=clamp((innerHeight-ar.top)/(innerHeight*0.9));
+    ph.style.setProperty("--clip",((1-ap)*14).toFixed(2)+"%");
+    ph.style.setProperty("--zoom",(1.08-ap*0.08).toFixed(3));
+    var ep=span(edit),st=Math.min(5,Math.floor(ep*6)),loc=ep*6-st;
+    setStage(st,loc,ep);
+  }
+  function setStage(st,loc,ep){
+    if(st!==lastStage){
+      if(st===1&&lastStage===0&&!still){flash.classList.remove("go");void flash.offsetWidth;flash.classList.add("go")}
+      for(var k=1;k<=5;k++)ephone.classList.toggle("s"+k,st>=k);
+      steps.forEach(function(li,j){li.classList.toggle("on",j===st);li.classList.toggle("done",j<st)});
+      clipRaw.classList.toggle("show",st<1);
+      clipsV.forEach(function(c){c.classList.toggle("show",st>=1)});
+      clipsT[0].classList.toggle("show",st>=2);
+      clipsS.forEach(function(c){c.classList.toggle("show",st>=3)});
+      clipsB.forEach(function(c){c.classList.toggle("show",st>=4)});
+      clipsT[1].classList.toggle("show",st>=5);
+      lastStage=st;
+    }
+    var total=st===0?47:(st===1?47-17*loc:30);
+    dur.textContent=mmss(total);
+    head.style.transform="translateX("+(ep*(head.parentNode.clientWidth-2))+"px)";
+    tc.textContent=mmss(ep*total);
+    var a=st<3?-1:Math.min(subw.length-1,Math.floor((st===3?loc:1)*subw.length));
+    subw.forEach(function(s,j){s.classList.toggle("on",j===a)});
+  }
+  function req(){if(!ticking){ticking=true;requestAnimationFrame(frame)}}
+  addEventListener("scroll",req,{passive:true});
+  addEventListener("resize",function(){sizeWork();req()});
+  if(!still&&mq("(hover:hover) and (pointer:fine)")){
+    hero.addEventListener("pointermove",function(e){pointer.x=e.clientX/innerWidth-.5;pointer.y=e.clientY/innerHeight-.5;req()});
+  }
+
+  var rv=[].slice.call(document.querySelectorAll(".rv"));
+  if("IntersectionObserver" in window&&!still){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -12% 0px"});
+    rv.forEach(function(r,i){r.style.transitionDelay=(i%4)*80+"ms";io.observe(r)});
+  }else rv.forEach(function(r){r.classList.add("in")});
+
+  var peek=document.getElementById("peek");
+  if(mq("(hover:hover) and (pointer:fine)")){
+    var tx=0,ty=0,cx=0,cy=0,raf=0;
+    var loop=function(){cx+=(tx-cx)*(still?1:.2);cy+=(ty-cy)*(still?1:.2);peek.style.transform="translate3d("+(cx+20)+"px,"+(cy+20)+"px,0)";raf=(Math.abs(tx-cx)+Math.abs(ty-cy)>.4)?requestAnimationFrame(loop):0};
+    document.querySelectorAll(".row").forEach(function(r){
+      r.addEventListener("pointerenter",function(e){
+        var n=+r.getAttribute("data-n"),h="";for(var i=0;i<n;i++)h+="<i></i>";
+        peek.innerHTML=h+"<b>"+T[lang].peek(n)+"</b>";
+        cx=tx=e.clientX;cy=ty=e.clientY;peek.classList.add("on");loop();
+      });
+      r.addEventListener("pointermove",function(e){tx=e.clientX;ty=e.clientY;if(!raf)raf=requestAnimationFrame(loop)});
+      r.addEventListener("pointerleave",function(){peek.classList.remove("on")});
     });
   }
 
-  var nav=document.getElementById("nav");
-  function sc(){nav.classList.toggle("solid",window.scrollY>80)}
-  window.addEventListener("scroll",sc,{passive:true});sc();
-
-  function setLang(l){
-    lang=l;try{localStorage.setItem("rioz_lang",l)}catch(e){}
-    document.documentElement.lang=l;
-    document.querySelectorAll("[data-i]").forEach(function(el){var v=T[l][el.getAttribute("data-i")];if(typeof v==="string")el.innerHTML=v});
-    document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-lang")===l?"true":"false")});
-    drawIdx();
-  }
-  document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-lang"))})});
   document.getElementById("yr").textContent=new Date().getFullYear();
   setLang(lang);
 })();
