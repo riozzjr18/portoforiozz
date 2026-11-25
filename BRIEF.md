@@ -3,7 +3,7 @@
 Self-authored under explicit creative delegation. Rioz meminta redesign memakai skill scroll-craft dan impeccable tanpa jawaban brief baru, jadi brief ini ditulis dari percakapan dan isi website yang sudah ada.
 
 ## Vibe
-Gelap, tegas, terasa seperti ruang edit jam dua pagi. Referensi: timeline CapCut, tanda REC di kamera, layar HP di kamar gelap.
+Navy gelap, elegan, mewah dengan aksen biru es (Ice). Referensi: timeline CapCut, tanda REC di kamera, layar HP di kamar gelap.
 
 ## Untuk siapa, dan aksi akhirnya
 Pemilik UMKM, toko online, dan content creator yang butuh editor video vertikal. Di akhir halaman mereka harus percaya bahwa Rioz paham kenapa video ditonton, bukan cuma cara merapikannya. Aksi tunggal: chat WhatsApp untuk konsultasi gratis.

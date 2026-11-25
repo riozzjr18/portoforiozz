@@ -60,7 +60,7 @@
   /* Walker sprite */
   var A=["................",".....aaaa.......","....aaaaaa......",".....bbbb.......",".....b.bb.......",".....bbbb.......","......bb....bb..","....bbbbbbbbpb..","...bbbbbb...pb..","...b.bbbb...bb..","...b.bbbb.......",".....bbbb.......",".....b..b.......","....bb...b......","....b....bb.....","...bb..........."];
   var B=A.slice(0,12).concat([".....b..b.......",".....b..b.......",".....bb.bb......","................"]);
-  var C={a:"#FF4A2B",b:"#EDE9E1",p:"#FF4A2B"};
+  var C={a:"#A8C8FF",b:"#F2EEE6",p:"#A8C8FF"};
   function paint(m){var s=[];m.forEach(function(r,y){for(var x=0;x<16;x++){var c=C[r[x]];if(c)s.push(x*3+"px "+y*3+"px 0 "+c)}});return s.join(",")}
   document.querySelectorAll(".walker .f1").forEach(function(e){e.style.boxShadow=paint(A)});
   document.querySelectorAll(".walker .f2").forEach(function(e){e.style.boxShadow=paint(B)});

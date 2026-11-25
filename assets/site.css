@@ -1,13 +1,13 @@
-/* Rioz shared system. Dark edit-room, bone ink, one REC red. Used by index.html and portfolio/index.html. */
+/* Rioz shared system. Navy edit-room, ivory ink, one ice-blue accent. Used by index.html and portfolio/index.html. */
 :root{
-  --canvas:#111214;
-  --surface:#1A1C1F;
-  --surface-2:#232529;
-  --ink:#EDE9E1;
-  --ink-soft:#A3A6AD;
-  --accent:#FF4A2B;
-  --on-accent:#111214;
-  --line:rgba(237,233,225,.14);
+  --canvas:#0B0F1A;
+  --surface:#141A27;
+  --surface-2:#1D2433;
+  --ink:#F2EEE6;
+  --ink-soft:#9AA3B5;
+  --accent:#A8C8FF;
+  --on-accent:#0B0F1A;
+  --line:rgba(242,238,230,.14);
   --display:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;
   --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
   --code:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
@@ -34,7 +34,7 @@ h1,h2,h3{margin:0;font-family:var(--display);font-weight:900;letter-spacing:-0.0
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
 .fb{background:var(--surface-2)}
-html{scrollbar-color:#3a3c41 var(--canvas)}
+html{scrollbar-color:#2A3348 var(--canvas)}
 
 /* Section header: one pattern everywhere. Title left, note right, baselines aligned. */
 .sh{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:end;margin-bottom:clamp(40px,5vw,72px)}
@@ -43,7 +43,7 @@ html{scrollbar-color:#3a3c41 var(--canvas)}
 
 /* Header */
 .top{position:fixed;inset:0 0 auto;z-index:50;height:68px;transition:background-color .35s var(--ease),box-shadow .35s var(--ease)}
-.top.solid{background:rgba(17,18,20,.92);box-shadow:0 1px 0 var(--line)}
+.top.solid{background:rgba(11,15,26,.9);box-shadow:0 1px 0 var(--line)}
 .top .wrap{height:100%;display:flex;align-items:center;gap:28px}
 .wm{font:900 24px var(--display);letter-spacing:-0.045em;text-transform:uppercase;text-decoration:none}
 .wm i{font-style:normal;color:var(--accent)}
@@ -101,7 +101,7 @@ html{scrollbar-color:#3a3c41 var(--canvas)}
 /* Close + footer */
 .close{margin:0 12px;border-radius:32px;background:var(--accent);color:var(--on-accent);padding:var(--sec) 0;text-align:center;overflow:hidden;position:relative}
 .close h2{font-size:clamp(48px,7vw,112px);max-width:9.5em;margin:0 auto}
-.close p{margin:26px auto 38px;max-width:30em;font-size:18px;color:#3A1209}
+.close p{margin:26px auto 38px;max-width:30em;font-size:18px;color:#2A3550}
 .close .acts{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:center}
 .close .tlink{color:var(--on-accent);text-decoration-color:var(--on-accent)}
 footer{padding:80px 0 0;overflow:hidden}
@@ -119,7 +119,7 @@ footer{padding:80px 0 0;overflow:hidden}
 .rest .walker{animation:none;left:auto;right:var(--gut);transform:scaleX(-1)}
 .rest .walker span{animation:none}
 .giant{font:900 clamp(120px,30vw,470px)/.74 var(--display);letter-spacing:-0.065em;text-transform:uppercase;color:var(--surface);margin-bottom:-0.12em;padding-left:calc(var(--gut) - .04em);white-space:nowrap;user-select:none}
-.giant i{font-style:normal;color:#3b1a14}
+.giant i{font-style:normal;color:#22304D}
 .copyr{display:flex;justify-content:space-between;gap:16px;padding-top:18px;padding-bottom:28px;font-size:13px;color:var(--ink-soft)}
 
 @media (max-width:900px){
@@ -143,3 +143,8 @@ footer{padding:80px 0 0;overflow:hidden}
   .walker{transform:translateX(var(--gut))}
   .js [data-split] .ln>span,.js [data-up]{transform:none;opacity:1;transition:none}
 }
+
+/* Ice on the ivory panel: pale-on-pale needs the navy carrier */
+.pk .pill:not(.ink){background:var(--canvas);color:var(--accent)}
+.pk .pill:not(.ink) .c{background:var(--accent);color:var(--canvas)}
+.pk .stk.red{background:var(--canvas);color:var(--accent)}
