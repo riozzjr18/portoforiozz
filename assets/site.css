@@ -148,3 +148,18 @@ footer{padding:80px 0 0;overflow:hidden}
 .pk .pill:not(.ink){background:var(--canvas);color:var(--accent)}
 .pk .pill:not(.ink) .c{background:var(--accent);color:var(--canvas)}
 .pk .stk.red{background:var(--canvas);color:var(--accent)}
+
+/* Blade cursor: split tool from the edit timeline. Desktop with a fine pointer only. */
+.blade-on,.blade-on *{cursor:none!important}
+.blade-on input,.blade-on textarea,.blade-on select{cursor:text!important}
+.blade-on select{cursor:pointer!important}
+#blade{position:fixed;left:0;top:0;z-index:9999;pointer-events:none;opacity:0;transition:opacity .2s}
+#blade.show{opacity:1}
+#blade-line{position:fixed;top:0;bottom:0;left:0;width:0;z-index:9998;pointer-events:none;border-left:1.5px dashed rgba(168,200,255,.38);opacity:0;transition:opacity .2s,border-color .15s}
+#blade-line.show{opacity:1}
+#blade .knife{position:absolute;left:-11px;top:-11px;width:22px;height:22px;color:var(--accent);filter:drop-shadow(0 1px 1.5px rgba(5,8,15,.85));transform:rotate(-90deg);transition:transform .25s var(--ease)}
+#blade .tag{position:absolute;left:18px;top:-11px;background:var(--canvas);color:var(--accent);box-shadow:inset 0 0 0 1.5px var(--accent);font:700 12px var(--body);padding:4px 11px;border-radius:999px;white-space:nowrap;opacity:0;transform:translateX(-6px) scale(.9);transition:opacity .2s,transform .3s var(--ease)}
+#blade.hit .tag{opacity:1;transform:none}
+#blade.hit .knife{transform:rotate(-90deg) scale(1.15)}
+#blade.snip .knife{transform:rotate(-120deg) scale(.9)}
+#blade-line.snip{border-left:1.5px solid var(--accent)}

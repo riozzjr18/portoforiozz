@@ -68,6 +68,37 @@
   /* Broken thumbnails fall back to the surface colour */
   function noBroken(scope){(scope||document).querySelectorAll("img").forEach(function(i){if(i.dataset.fb)return;i.dataset.fb=1;i.addEventListener("error",function(){i.style.visibility="hidden"});if(i.complete&&i.src&&i.naturalWidth===0)i.style.visibility="hidden"})}
 
+
+  /* Blade cursor */
+  (function(){
+    if(!window.matchMedia("(hover:hover) and (pointer:fine)").matches)return;
+    var el=document.createElement("div");el.id="blade";el.setAttribute("aria-hidden","true");
+    var line=document.createElement("div");line.id="blade-line";line.setAttribute("aria-hidden","true");document.body.appendChild(line);
+    el.innerHTML='<svg class="knife" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/><path d="M9.15 14.85 18 4"/><path d="M6 4l8.85 10.85"/></svg><span class="tag"></span>';
+    document.body.appendChild(el);root.classList.add("blade-on");
+    var tag=el.querySelector(".tag"),cur=null;
+    var L={id:{a:"Buka",b:"Klik",v:"Tonton",w:"Chat"},en:{a:"Open",b:"Click",v:"Play",w:"Chat"}};
+    function label(t){
+      var d=t.getAttribute("data-cursor");if(d)return d;
+      var l=L[root.lang]||L.id,h=t.getAttribute("href")||"";
+      if(h.indexOf("wa.me")>-1)return l.w;
+      if(t.classList.contains("card")||t.classList.contains("cat"))return l.v;
+      return t.tagName==="A"?l.a:l.b;
+    }
+    document.addEventListener("pointermove",function(e){
+      if(e.pointerType&&e.pointerType!=="mouse")return;
+      var x=e.clientX,y=e.clientY;
+      el.style.transform="translate3d("+x+"px,"+y+"px,0)";
+      line.style.transform="translate3d("+x+"px,0,0)";
+      var field=e.target.closest&&e.target.closest("input,textarea");
+      el.classList.toggle("show",!field);line.classList.toggle("show",!field);
+      var t=e.target.closest&&e.target.closest("a,button,.card,.cat,[data-cursor]");
+      if(t!==cur){cur=t;if(t)tag.textContent=label(t);el.classList.toggle("hit",!!t)}
+    },{passive:true});
+    document.addEventListener("mouseout",function(e){if(!e.relatedTarget){el.classList.remove("show");line.classList.remove("show")}});
+    document.addEventListener("pointerdown",function(){el.classList.add("snip");line.classList.add("snip");setTimeout(function(){el.classList.remove("snip");line.classList.remove("snip")},180)});
+  })();
+
   var nav=document.querySelector(".top");
   function frame(){
     ticking=false;
