@@ -99,6 +99,20 @@
     document.addEventListener("pointerdown",function(){el.classList.add("snip");line.classList.add("snip");setTimeout(function(){el.classList.remove("snip");line.classList.remove("snip")},180)});
   })();
 
+
+  /* Click = cut */
+  document.addEventListener("pointerdown",function(e){
+    if(e.button!==0)return;
+    if(e.target.closest&&e.target.closest("input,textarea,select,.gtrk,.player"))return;
+    var x=e.clientX,y=e.clientY,h=document.documentElement.scrollHeight-innerHeight;
+    var sec=Math.round((h>0?window.scrollY/h:0)*60);
+    var l=document.createElement("div");l.className="cutfx-line";l.style.left=x+"px";
+    var tc=document.createElement("div");tc.className="cutfx-tc";tc.textContent="CUT 00:"+("0"+sec).slice(-2);
+    tc.style.transform="translate3d("+(x+12)+"px,"+(y-12)+"px,0)";
+    document.body.appendChild(l);document.body.appendChild(tc);
+    setTimeout(function(){l.remove();tc.remove()},800);
+  },{passive:true});
+
   var nav=document.querySelector(".top");
   function frame(){
     ticking=false;

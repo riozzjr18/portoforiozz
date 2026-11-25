@@ -163,3 +163,10 @@ footer{padding:80px 0 0;overflow:hidden}
 #blade.hit .knife{transform:rotate(-90deg) scale(1.15)}
 #blade.snip .knife{transform:rotate(-120deg) scale(.9)}
 #blade-line.snip{border-left:1.5px solid var(--accent)}
+
+/* Click = cut: a split line drops where you click, with the timecode of the page */
+.cutfx-line{position:fixed;top:0;bottom:0;left:0;width:2px;margin-left:-1px;background:var(--accent);z-index:9997;pointer-events:none;transform-origin:var(--oy,50%) top;animation:cutl .55s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes cutl{0%{opacity:1;transform:scaleY(0)}30%{opacity:1;transform:scaleY(1)}100%{opacity:0;transform:scaleY(1)}}
+.cutfx-tc{position:fixed;left:0;top:0;z-index:9999;pointer-events:none;background:var(--accent);color:var(--on-accent);font:500 11px var(--code);padding:4px 9px;border-radius:999px;white-space:nowrap;animation:cutt .75s var(--ease) forwards}
+@keyframes cutt{0%{opacity:0;translate:0 6px}20%{opacity:1;translate:0 0}100%{opacity:0;translate:0 -22px}}
+@media (prefers-reduced-motion:reduce){.cutfx-line,.cutfx-tc{animation:cutr .6s linear forwards}@keyframes cutr{0%{opacity:1}100%{opacity:0}}}

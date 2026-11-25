@@ -169,6 +169,37 @@
 .q blockquote{grid-column:5/12;margin:0;font:600 clamp(22px,2.3vw,34px)/1.28 var(--display);letter-spacing:-0.02em}
 .gap{height:var(--sec)}
 
+/* Mini game: Potong Jeda */
+.game{padding:var(--sec) 0}
+.gp{background:var(--surface);border-radius:28px;padding:clamp(20px,3vw,36px);position:relative;overflow:hidden}
+.ghud{display:flex;align-items:center;gap:28px;flex-wrap:wrap;margin-bottom:22px}
+.ghud .st{display:flex;flex-direction:column}
+.ghud .st small{font-size:13px;color:var(--ink-soft)}
+.ghud .st b{font:900 clamp(30px,3vw,44px)/1 var(--display);letter-spacing:-0.03em}
+.ghud .st b.hi{color:var(--accent)}
+.ghud .pill{margin-left:auto}
+.gtrk{position:relative;height:clamp(96px,10vw,128px);border-radius:16px;background:var(--canvas);overflow:hidden;cursor:pointer;touch-action:manipulation;box-shadow:inset 0 0 0 1px var(--line)}
+.gtrk:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.gb{position:absolute;top:12px;bottom:12px;left:0;border-radius:10px;overflow:hidden;will-change:transform;display:flex;align-items:flex-end;padding:8px 10px;font:700 12px var(--body)}
+.gb.j{background:repeating-linear-gradient(135deg,#3D4A6B 0 8px,#2A3550 8px 16px);color:var(--ink);box-shadow:inset 0 0 0 1px rgba(168,200,255,.25);align-items:center;justify-content:center}
+.gb.f{background:var(--surface-2);color:#fff}
+.gb.f img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85}
+.gb.f span{position:relative;background:rgba(11,15,26,.7);padding:2px 7px;border-radius:999px}
+.gb.cut{animation:snipped .35s var(--ease) forwards}
+@keyframes snipped{to{opacity:0;transform:var(--tx) scaleY(.15)}}
+.gph{position:absolute;top:0;bottom:0;left:30%;width:2px;background:var(--ink);z-index:3;pointer-events:none}
+.gph::before{content:"";position:absolute;top:0;left:-6px;width:14px;height:10px;background:var(--ink);clip-path:polygon(0 0,100% 0,50% 100%)}
+.gflash{position:absolute;top:0;bottom:0;left:30%;width:2px;background:var(--accent);z-index:4;opacity:0;pointer-events:none}
+.gflash.go{animation:gf .4s ease-out}
+@keyframes gf{0%{opacity:1;transform:scaleX(3)}100%{opacity:0;transform:scaleX(1)}}
+.gmsg{margin-top:18px;min-height:1.6em;color:var(--ink-soft);font-size:16px}
+.gmsg b{color:var(--ink)}
+.gend{display:none;margin-top:18px;align-items:center;gap:18px;flex-wrap:wrap}
+.gend.on{display:flex}
+.gend p{font:800 clamp(20px,2vw,28px)/1.2 var(--display);letter-spacing:-0.02em;max-width:22em}
+.legend{display:flex;gap:18px;margin-top:14px;font-size:13px;color:var(--ink-soft)}
+.legend i{display:inline-block;width:14px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}
+
 @media (max-width:1024px){
   .hero .copy{grid-column:1/8;position:relative;z-index:3}.stage{grid-column:8/13}
   .ph3.l,.ph3.r{display:none}
@@ -176,6 +207,9 @@
   .edit .copy{grid-column:1/7}.edit .vis{grid-column:7/13}
 }
 @media (max-width:767px){
+  .ghud{gap:20px}
+  .ghud .pill{margin:0;width:100%;justify-content:space-between}
+  .gp{border-radius:20px}
   .hero{padding:100px 0 40px;min-height:0}
   .hero .copy,.stage{grid-column:1/13}
   .stage{height:430px;margin-top:28px}
@@ -331,6 +365,24 @@
   </div>
 </section>
 
+<section class="game" id="game" aria-labelledby="h-game">
+  <div class="wrap">
+    <div class="sh"><h2 id="h-game" data-split data-i="g_h">Sekarang giliran kamu.</h2><p data-up data-i="g_p">Potong jeda abu-abu saat lewat garis putih. Klik, tap, atau tekan Spasi. Jangan sampai footage ikut kepotong.</p></div>
+    <div class="gp" data-up>
+      <div class="ghud">
+        <div class="st"><small data-i="g_s">Jeda terpotong</small><b class="num hi" id="gS">0</b></div>
+        <div class="st"><small data-i="g_t">Sisa waktu</small><b class="num" id="gT">20</b></div>
+        <div class="st"><small data-i="g_b">Rekor kamu</small><b class="num" id="gB">0</b></div>
+        <button type="button" class="pill" id="gGo"><span data-i="g_go">Mulai</span><span class="c" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></button>
+      </div>
+      <div class="gtrk" id="gTrk" tabindex="0" role="button" aria-label="Timeline game, tekan untuk memotong" data-cursor="Cut"><div class="gph"></div><div class="gflash" id="gF"></div></div>
+      <div class="legend" aria-hidden="true"><span><i style="background:repeating-linear-gradient(135deg,#3D4A6B 0 3px,#2A3550 3px 6px)"></i><span data-i="g_lj">Jeda, potong</span></span><span><i style="background:var(--ink)"></i><span data-i="g_lf">Footage, biarkan</span></span></div>
+      <p class="gmsg" id="gM" aria-live="polite" data-i="g_m0">Tekan Mulai. Kamu punya 20 detik.</p>
+      <div class="gend" id="gE"><p id="gR"></p><a class="pill" href="https://wa.me/62895413935821?text=Halo%20Rioz%2C%20saya%20habis%20main%20Potong%20Jeda%20dan%20mau%20videonya%20diedit%20beneran." target="_blank" rel="noopener noreferrer"><span data-i="g_cta">Serahkan ke saya</span><span class="c" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+    </div>
+  </div>
+</section>
+
 <section class="pk" id="paket" aria-labelledby="h-pk">
   <div class="wrap">
     <div class="sh"><h2 id="h-pk" data-split data-i="p_h">Pilih paketnya.</h2><p data-up data-i="p_p">Alurnya sama di semua paket: chat gratis dulu, kirim footage mentah, draft jadi dalam 2-3 hari, revisi maksimal 2-3x per video.</p></div>
@@ -399,7 +451,7 @@
   function clamp(v){return v<0?0:v>1?1:v}
   var CATS=[["Talking Head",17,"t_z4TG3IRy4"],["Regular",22,"QWQQ58m-Wyk"],["Comedy Skit",18,"b0jUrrcQlas"],["Recap Event",14,"sOpKPZbFKCA"],["Educational",11,"1oazDgxpZjY"],["Testimonial",8,"Ev0mClauYLg"],["AI Content",4,"LaKAMuOq0HI"],["Motion",4,"gG73Po3sQHw"],["Interview",4,"TJDEc6XyIbo"],["Product Showcase",2,"_W3PeEMlYVQ"]];
   var T={
-    id:{k1:"Hook 3 detik",k2:"Subtitle",k3:"Revisi 2-3x",k4:"Jadi 2-3 hari",n2:"Proses",n3:"Paket",n4:"Kontak",cta:"Konsultasi gratis",
+    id:{g_h:"Sekarang giliran kamu.",g_p:"Potong jeda abu-abu saat lewat garis putih. Klik, tap, atau tekan Spasi. Jangan sampai footage ikut kepotong.",g_s:"Jeda terpotong",g_t:"Sisa waktu",g_b:"Rekor kamu",g_go:"Mulai",g_re:"Ulangi",g_again:"Main lagi",g_lj:"Jeda, potong",g_lf:"Footage, biarkan",g_m0:"Tekan Mulai. Kamu punya 20 detik.",g_cta:"Serahkan ke saya",g_run:"Potong jedanya.",g_miss:"Meleset. Tunggu jedanya pas di garis.",g_bad:"Footage penting kepotong. Skor minus 1.",g_ok:["Rapi.","Jeda hilang.","Ritmenya makin rapat.","Nah, gitu.","Clean cut."],g_hi:function(n){return "Skor "+n+". Ritme kamu udah TikTok banget. Sisanya biar saya yang rapikan."},g_lo:function(n){return "Skor "+n+". Capek kan motongin jeda satu-satu? Itu kerjaan saya tiap hari."},g_new:" Rekor baru.",k1:"Hook 3 detik",k2:"Subtitle",k3:"Revisi 2-3x",k4:"Jadi 2-3 hari",n2:"Proses",n3:"Paket",n4:"Kontak",cta:"Konsultasi gratis",
       h1:"Video pendek yang bikin orang <em>berhenti scroll.</em>",lede:"Saya Rioz, editor video vertikal untuk UMKM, toko online, dan brand. Hook 3 detik, subtitle, b-roll. Mulai Rp300.000 per video.",see:"Buka Portoforioz",
       kin:"Barusan kamu memutuskan untuk lanjut scroll. Penonton TikTok melakukan hal yang sama, dalam *tiga *detik *pertama. Setiap video yang saya edit dibuat untuk menang di tiga detik itu.",
       w_p:"104 video dalam 10 gaya, dari talking head sampai recap event. Scroll untuk menggeser, klik untuk menonton.",vid:"video",end:"Buka semua",
@@ -414,7 +466,7 @@
       book:"Booking",peek:function(n){return n+" video"},
       c_h:"Kata yang sudah kerja bareng.",q1:"Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!",q1r:"Peralatan dapur",q2:"Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.",q2r:"Perlengkapan melamin",q3:"Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.",q3r:"Platform parenting",
       x_h:"Ceritakan produkmu. Saya susun videonya.",x_p:"Konsultasi gratis lewat WhatsApp. Biasanya saya balas dalam hitungan menit.",x_a:"Chat WhatsApp",x_b:"Lihat Portoforioz",foot:"Editor video vertikal"},
-    en:{k1:"3-second hook",k2:"Subtitles",k3:"2-3 revisions",k4:"Done in 2-3 days",n2:"Process",n3:"Packages",n4:"Contact",cta:"Free consultation",
+    en:{g_h:"Your turn now.",g_p:"Cut the grey pauses as they cross the white line. Click, tap, or press Space. Don't cut the footage.",g_s:"Pauses cut",g_t:"Time left",g_b:"Your best",g_go:"Start",g_re:"Restart",g_again:"Play again",g_lj:"Pause, cut it",g_lf:"Footage, keep it",g_m0:"Press Start. You have 20 seconds.",g_cta:"Leave it to me",g_run:"Cut the pauses.",g_miss:"Missed. Wait until the pause hits the line.",g_bad:"You cut real footage. Minus 1.",g_ok:["Clean.","Pause gone.","Tighter already.","That's it.","Clean cut."],g_hi:function(n){return "Score "+n+". That's proper TikTok pacing. I'll handle the rest."},g_lo:function(n){return "Score "+n+". Tiring, right? Cutting pauses is my everyday job."},g_new:" New best.",k1:"3-second hook",k2:"Subtitles",k3:"2-3 revisions",k4:"Done in 2-3 days",n2:"Process",n3:"Packages",n4:"Contact",cta:"Free consultation",
       h1:"Short videos that make people <em>stop scrolling.</em>",lede:"I'm Rioz, a vertical video editor for small businesses, online shops, and brands. 3-second hooks, subtitles, b-roll. From Rp300,000 per video.",see:"Open Portoforioz",
       kin:"You just decided to keep scrolling. TikTok viewers make the same call, in the *first *three *seconds. Every video I edit is built to win those three seconds.",
       w_p:"104 videos in 10 styles, from talking heads to event recaps. Scroll to slide, click to watch.",vid:"videos",end:"Open all",
@@ -518,6 +570,54 @@
       r.addEventListener("pointerleave",function(){peek.classList.remove("on")});
     });
   }
+
+  /* Mini game: Potong Jeda */
+  (function(){
+    var trk=document.getElementById("gTrk"),go=document.getElementById("gGo"),S=document.getElementById("gS"),Tm=document.getElementById("gT"),Bs=document.getElementById("gB"),M=document.getElementById("gM"),E=document.getElementById("gE"),Rs=document.getElementById("gR"),F=document.getElementById("gF");
+    var THUMB=["t_z4TG3IRy4","b0jUrrcQlas","sOpKPZbFKCA","1oazDgxpZjY","Ev0mClauYLg","QWQQ58m-Wyk"];
+    var bl=[],run=false,score=0,left=20,last=0,spawn=0,speed=0,best=0,okI=0;
+    try{best=+localStorage.getItem("rioz_best")||0}catch(e){}
+    Bs.textContent=best;
+    function L(){return T[lang]}
+    function add(){
+      var w=trk.clientWidth,h=trk.clientHeight-24,j=Math.random()<.58,el=document.createElement("div");
+      var bw=j?h*(0.8+Math.random()*.5):h*(0.9+Math.random()*.7);
+      el.className="gb "+(j?"j":"f");el.style.width=bw+"px";
+      el.innerHTML=j?"<span>"+(lang==="en"?"pause":"jeda")+"</span>":'<img src="https://i.ytimg.com/vi/'+THUMB[(Math.random()*THUMB.length)|0]+'/hqdefault.jpg" alt=""><span>footage</span>';
+      trk.appendChild(el);bl.push({el:el,x:w,w:bw,j:j,dead:false});
+    }
+    function step(t){
+      if(!run)return;
+      var dt=last?Math.min(.05,(t-last)/1000):0;last=t;left-=dt;spawn-=dt;speed+=dt*(trk.clientWidth*.012);
+      if(spawn<=0){add();spawn=.55+Math.random()*.55}
+      for(var i=0;i<bl.length;i++){var b=bl[i];if(b.dead)continue;b.x-=speed*dt;b.el.style.transform="translate3d("+b.x+"px,0,0)"}
+      bl=bl.filter(function(b){if(b.x+b.w<-10){b.el.remove();return false}return true});
+      Tm.textContent=Math.max(0,Math.ceil(left));
+      if(left<=0)return end();
+      requestAnimationFrame(step);
+    }
+    function cut(){
+      if(!run)return;
+      F.classList.remove("go");void F.offsetWidth;F.classList.add("go");
+      var px=trk.clientWidth*.3,hit=null;
+      for(var i=0;i<bl.length;i++){var b=bl[i];if(!b.dead&&b.x<=px&&b.x+b.w>=px){hit=b;break}}
+      if(!hit){M.textContent=L().g_miss;return}
+      hit.dead=true;hit.el.style.setProperty("--tx","translate3d("+hit.x+"px,0,0)");hit.el.classList.add("cut");
+      if(hit.j){score++;M.textContent=L().g_ok[okI++%L().g_ok.length]}else{score=Math.max(0,score-1);M.innerHTML="<b>"+L().g_bad+"</b>"}
+      S.textContent=score;
+    }
+    function end(){
+      run=false;go.querySelector("span").textContent=L().g_again;bl.forEach(function(b){b.el.style.transition="opacity .4s";b.el.style.opacity="0"});
+      var nb=score>best;if(nb){best=score;Bs.textContent=best;try{localStorage.setItem("rioz_best",best)}catch(e){}}
+      M.textContent="";Rs.textContent=(score>=12?L().g_hi(score):L().g_lo(score))+(nb&&score>0?L().g_new:"");E.classList.add("on");
+    }
+    go.addEventListener("click",function(){
+      bl.forEach(function(b){b.el.remove()});bl=[];score=0;left=20;last=0;spawn=0;speed=trk.clientWidth*.22;okI=0;
+      S.textContent=0;E.classList.remove("on");M.textContent=L().g_run;run=true;go.querySelector("span").textContent=L().g_re;trk.focus({preventScroll:true});requestAnimationFrame(step);
+    });
+    trk.addEventListener("pointerdown",function(e){e.preventDefault();cut()});
+    document.addEventListener("keydown",function(e){if(!run)return;if(e.code==="Space"||e.key==="Enter"){var r=trk.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;e.preventDefault();cut()}});
+  })();
   setLang(lang);
 })();
 </script>
