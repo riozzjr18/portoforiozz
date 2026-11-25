@@ -20,11 +20,12 @@
 body.lock{overflow:hidden}
 .head{position:relative;padding:150px 0 56px;overflow:hidden}
 .head .g12{align-items:end}
-.head h1{grid-column:1/9;font-size:clamp(64px,10.5vw,168px);letter-spacing:-0.055em;line-height:.86;position:relative}
+.head h1{grid-column:1/13;font-size:clamp(64px,13.4vw,196px);letter-spacing:-0.055em;line-height:.86;position:relative}
 .head h1 i{font-style:normal;color:var(--accent)}
-.head .side{grid-column:9/13;padding-bottom:12px}
-.head .side p{color:var(--ink-soft);font-size:17px}
-.head .side .stk{margin-bottom:18px;transform:rotate(-5deg)}
+.head .side{grid-column:1/13;display:flex;align-items:center;gap:20px;margin-top:28px;flex-wrap:wrap}
+.head .side .stk{margin:0}
+.head .side p{color:var(--ink-soft);font-size:17px;max-width:34em}
+.head .side .stk{transform:rotate(-5deg)}
 .mix{display:flex;gap:3px;height:8px;margin-top:48px;border-radius:999px;overflow:hidden}
 .mix span{display:block;height:100%;background:var(--surface-2);transition:background-color .3s}
 .mix span.on{background:var(--accent)}
@@ -91,7 +92,7 @@ body.lock{overflow:hidden}
   .head{padding:116px 0 40px}
   .head h1,.head .side{grid-column:1/13}
   .head h1{font-size:13.5vw}
-  .head .side{margin-top:24px;padding:0}
+  .head .side{margin-top:20px}
   .bar{top:68px}
   .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}
   .card .play{opacity:1;transform:scale(.8)}
@@ -121,7 +122,7 @@ body.lock{overflow:hidden}
       <div class="g12">
         <h1 data-split>Portoforioz<i>.</i></h1>
         <div class="side" data-up>
-          <span class="stk red num">104 video</span>
+          <span class="stk red num" data-i="cnt">104 video</span>
           <p data-i="sub">Semua video shortform yang sudah saya edit, dalam 10 gaya. Pilih gaya, lalu klik kartu untuk menonton.</p>
         </div>
       </div>
@@ -232,9 +233,9 @@ body.lock{overflow:hidden}
         };
   var ORDER=["regular","comedy","talking","recap","edu","testimonial","ai","motion","interview","product"];
   var T={
-    id:{n1:"Beranda",n3:"Paket",cta:"Konsultasi gratis",sub:"Semua video shortform yang sudah saya edit, dalam 10 gaya. Pilih gaya, lalu klik kartu untuk menonton.",search_l:"Cari video",sort_l:"Urutkan",s_new:"Terbaru",s_old:"Terlama",all:"Semua",e_h:"Belum ada yang cocok",e_p:"Coba kata lain atau pilih Semua.",more:"Muat lebih banyak",c_h:"Suka gayanya? Video kamu berikutnya.",c_p:"Konsultasi gratis lewat WhatsApp. Ceritakan produk atau brand kamu, saya bantu strategi videonya.",c_b:"Chat WhatsApp",c_l:"Lihat paket",m_cta:"Mau video seperti ini",prev:"Sebelumnya",next:"Berikutnya",ph:"Cari judul atau gaya",foot:"Editor video vertikal",close:"Tutup",watch:"Tonton",
+    id:{cnt:"104 video",n1:"Beranda",n3:"Paket",cta:"Konsultasi gratis",sub:"Semua video shortform yang sudah saya edit, dalam 10 gaya. Pilih gaya, lalu klik kartu untuk menonton.",search_l:"Cari video",sort_l:"Urutkan",s_new:"Terbaru",s_old:"Terlama",all:"Semua",e_h:"Belum ada yang cocok",e_p:"Coba kata lain atau pilih Semua.",more:"Muat lebih banyak",c_h:"Suka gayanya? Video kamu berikutnya.",c_p:"Konsultasi gratis lewat WhatsApp. Ceritakan produk atau brand kamu, saya bantu strategi videonya.",c_b:"Chat WhatsApp",c_l:"Lihat paket",m_cta:"Mau video seperti ini",prev:"Sebelumnya",next:"Berikutnya",ph:"Cari judul atau gaya",foot:"Editor video vertikal",close:"Tutup",watch:"Tonton",
       shown:function(a,b){return "Menampilkan <strong>"+a+"</strong> dari <strong>"+b+"</strong> video"},wa:function(t,c){return "Halo Rioz, saya mau video seperti \""+t+"\" ("+c+") di Portoforioz."}},
-    en:{n1:"Home",n3:"Packages",cta:"Free consultation",sub:"Every shortform video I have edited, in 10 styles. Pick a style, then click a card to watch.",search_l:"Search videos",sort_l:"Sort",s_new:"Newest",s_old:"Oldest",all:"All",e_h:"Nothing matches yet",e_p:"Try another word or pick All.",more:"Load more",c_h:"Like the style? Your video is next.",c_p:"Free consultation on WhatsApp. Tell me about your product or brand and I will help with the video strategy.",c_b:"Chat on WhatsApp",c_l:"See packages",m_cta:"I want a video like this",prev:"Previous",next:"Next",ph:"Search title or style",foot:"Vertical video editor",close:"Close",watch:"Watch",
+    en:{cnt:"104 videos",n1:"Home",n3:"Packages",cta:"Free consultation",sub:"Every shortform video I have edited, in 10 styles. Pick a style, then click a card to watch.",search_l:"Search videos",sort_l:"Sort",s_new:"Newest",s_old:"Oldest",all:"All",e_h:"Nothing matches yet",e_p:"Try another word or pick All.",more:"Load more",c_h:"Like the style? Your video is next.",c_p:"Free consultation on WhatsApp. Tell me about your product or brand and I will help with the video strategy.",c_b:"Chat on WhatsApp",c_l:"See packages",m_cta:"I want a video like this",prev:"Previous",next:"Next",ph:"Search title or style",foot:"Vertical video editor",close:"Close",watch:"Watch",
       shown:function(a,b){return "Showing <strong>"+a+"</strong> of <strong>"+b+"</strong> videos"},wa:function(t,c){return "Hi Rioz, I want a video like \""+t+"\" ("+c+") from Portoforioz."}}
   };
   var lang="id";try{lang=localStorage.getItem("rioz_lang")||"id"}catch(e){}if(!T[lang])lang="id";

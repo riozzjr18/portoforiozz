@@ -151,7 +151,7 @@
 .row ul{grid-column:5/9;list-style:none;margin:0;padding:8px 0 0;display:grid;gap:8px;color:#33353A;font-size:16px}
 .row .pr{grid-column:9/13;text-align:right;padding-top:6px}
 .row .pr strong{display:block;font:900 clamp(28px,2.6vw,40px) var(--display);letter-spacing:-0.03em}
-.row .pr span{display:block;color:#55575D;font-size:14px;margin-top:4px}
+.row .pr>span{display:block;color:#55575D;font-size:14px;margin-top:4px}
 .row .pr a{display:inline-flex;margin-top:18px}
 .row:hover h3{transform:translateX(10px)}
 .peek{position:fixed;left:0;top:0;z-index:60;pointer-events:none;display:flex;gap:4px;padding:10px 12px;background:var(--canvas);border-radius:14px;opacity:0;transition:opacity .2s;box-shadow:0 18px 36px -14px rgba(0,0,0,.5)}
@@ -255,8 +255,8 @@
         <figure class="ph3 c fb"><img src="https://i.ytimg.com/vi/t_z4TG3IRy4/hqdefault.jpg" alt=""><span class="rec">REC</span></figure>
       </div>
       <div class="front" id="pFront">
-        <span class="stk red s1">Hook 3 detik</span>
-        <span class="stk s2">Subtitle</span>
+        <span class="stk red s1" data-i="k1">Hook 3 detik</span>
+        <span class="stk s2" data-i="k2">Subtitle</span>
         <span class="stk out s3">B-roll</span>
       </div>
     </div>
@@ -264,7 +264,7 @@
   <div class="grain" aria-hidden="true"></div>
 </section>
 
-<div class="band" aria-hidden="true"><div class="mq"><span>Hook 3 detik</span><span>Subtitle</span><span>B-roll</span><span>TikTok</span><span>Reels</span><span>Shorts</span><span>Revisi 2-3x</span><span>Jadi 2-3 hari</span></div></div>
+<div class="band" aria-hidden="true"><div class="mq"><span data-i="k1">Hook 3 detik</span><span data-i="k2">Subtitle</span><span>B-roll</span><span>TikTok</span><span>Reels</span><span>Shorts</span><span data-i="k3">Revisi 2-3x</span><span data-i="k4">Jadi 2-3 hari</span></div></div>
 
 <section class="say" id="say" aria-label="Tiga detik pertama">
   <div class="stick"><div class="wrap"><p class="kin" id="kin"></p></div></div>
@@ -399,7 +399,7 @@
   function clamp(v){return v<0?0:v>1?1:v}
   var CATS=[["Talking Head",17,"t_z4TG3IRy4"],["Regular",22,"QWQQ58m-Wyk"],["Comedy Skit",18,"b0jUrrcQlas"],["Recap Event",14,"sOpKPZbFKCA"],["Educational",11,"1oazDgxpZjY"],["Testimonial",8,"Ev0mClauYLg"],["AI Content",4,"LaKAMuOq0HI"],["Motion",4,"gG73Po3sQHw"],["Interview",4,"TJDEc6XyIbo"],["Product Showcase",2,"_W3PeEMlYVQ"]];
   var T={
-    id:{n2:"Proses",n3:"Paket",n4:"Kontak",cta:"Konsultasi gratis",
+    id:{k1:"Hook 3 detik",k2:"Subtitle",k3:"Revisi 2-3x",k4:"Jadi 2-3 hari",n2:"Proses",n3:"Paket",n4:"Kontak",cta:"Konsultasi gratis",
       h1:"Video pendek yang bikin orang <em>berhenti scroll.</em>",lede:"Saya Rioz, editor video vertikal untuk UMKM, toko online, dan brand. Hook 3 detik, subtitle, b-roll. Mulai Rp300.000 per video.",see:"Buka Portoforioz",
       kin:"Barusan kamu memutuskan untuk lanjut scroll. Penonton TikTok melakukan hal yang sama, dalam *tiga *detik *pertama. Setiap video yang saya edit dibuat untuk menang di tiga detik itu.",
       w_p:"104 video dalam 10 gaya, dari talking head sampai recap event. Scroll untuk menggeser, klik untuk menonton.",vid:"video",end:"Buka semua",
@@ -414,7 +414,7 @@
       book:"Booking",peek:function(n){return n+" video"},
       c_h:"Kata yang sudah kerja bareng.",q1:"Video promosi yang dihasilkan rapi dan cepat. Hook 3 detiknya bikin engagement TikTok saya naik. Recommended!",q1r:"Peralatan dapur",q2:"Pengerjaan cepat, komunikasi enak, hasil sesuai brand identity kami. Pasti repeat order lagi.",q2r:"Perlengkapan melamin",q3:"Editor yang paham konten parenting. Videonya hangat dan mudah dipahami audiens kami.",q3r:"Platform parenting",
       x_h:"Ceritakan produkmu. Saya susun videonya.",x_p:"Konsultasi gratis lewat WhatsApp. Biasanya saya balas dalam hitungan menit.",x_a:"Chat WhatsApp",x_b:"Lihat Portoforioz",foot:"Editor video vertikal"},
-    en:{n2:"Process",n3:"Packages",n4:"Contact",cta:"Free consultation",
+    en:{k1:"3-second hook",k2:"Subtitles",k3:"2-3 revisions",k4:"Done in 2-3 days",n2:"Process",n3:"Packages",n4:"Contact",cta:"Free consultation",
       h1:"Short videos that make people <em>stop scrolling.</em>",lede:"I'm Rioz, a vertical video editor for small businesses, online shops, and brands. 3-second hooks, subtitles, b-roll. From Rp300,000 per video.",see:"Open Portoforioz",
       kin:"You just decided to keep scrolling. TikTok viewers make the same call, in the *first *three *seconds. Every video I edit is built to win those three seconds.",
       w_p:"104 videos in 10 styles, from talking heads to event recaps. Scroll to slide, click to watch.",vid:"videos",end:"Open all",
