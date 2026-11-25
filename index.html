@@ -52,19 +52,28 @@
 .grain{position:absolute;inset:0;z-index:4;pointer-events:none;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* Act 2: kinetic statement */
-.say{position:relative;height:240vh}
-.say .stick{position:sticky;top:0;height:100svh;display:grid;place-items:center}
+.say{position:relative;padding:var(--sec) 0}
+.say .stick{display:grid;place-items:center;min-height:60svh}
 .kin{font:800 clamp(34px,4.6vw,72px)/1.06 var(--display);letter-spacing:-0.035em;text-align:center;max-width:16em;margin:0 auto;text-wrap:balance}
 .kin .w{opacity:.14;transition:opacity .3s var(--ease),color .3s var(--ease)}
 .kin .w.on{opacity:1}
 .kin .w.hl.on{color:var(--accent)}
 
 /* Act 3: Portoforioz shelf, horizontal pan */
-.work{position:relative}
-.work .stick{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding-top:68px}
+.work{position:relative;padding-top:var(--sec);--gl:max(var(--gut),calc((100vw - var(--max))/2 + var(--gut)))}
 .work .sh{margin-bottom:40px}
-.track{display:flex;gap:22px;width:max-content;padding:0 var(--gut);will-change:transform}
-.cat{flex:none;width:clamp(210px,17vw,250px);text-decoration:none;color:var(--ink)}
+.shelf{overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab;padding-bottom:10px;overscroll-behavior-x:contain}
+.shelf::-webkit-scrollbar{display:none}
+.shelf.drag{cursor:grabbing;scroll-snap-type:none}
+.shelf.drag .cat{pointer-events:none}
+.track{display:flex;gap:22px;width:max-content;padding:0 var(--gl)}
+.cat{flex:none;width:clamp(210px,17vw,250px);text-decoration:none;color:var(--ink);scroll-snap-align:start;scroll-margin-left:var(--gl);-webkit-user-drag:none}
+.cat img{-webkit-user-drag:none;user-select:none}
+.snav{display:flex;align-items:center;gap:10px;justify-content:flex-end;margin-top:22px}
+.snav span{margin-right:auto;font-size:14px;color:var(--ink-soft)}
+.rb{width:50px;height:50px;border-radius:50%;border:0;background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:background-color .2s,color .2s,transform .35s var(--ease)}
+.rb:hover{background:var(--accent);color:var(--on-accent);transform:translateY(-2px)}
+.rb:disabled{opacity:.3;pointer-events:none}
 .cat .fr{position:relative;aspect-ratio:9/16;border-radius:var(--r);overflow:hidden;transition:transform .5s var(--ease)}
 .cat img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
 .cat:hover .fr{transform:rotate(-2deg) translateY(-6px)}
@@ -89,12 +98,14 @@
 .about .tx .who{font-size:15px;color:var(--ink-soft);margin-top:22px}
 
 /* Act 5: the edit (peak) */
-.edit{position:relative;height:640vh}
-.edit .stick{position:sticky;top:0;height:100svh;max-width:var(--max);margin:0 auto;padding:88px var(--gut) 28px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:center}
+.edit{position:relative;padding:var(--sec) 0}
+.edit .stick{max-width:var(--max);margin:0 auto;padding:0 var(--gut);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:center}
 .edit .copy{grid-column:1/6}
 .edit h2{font-size:clamp(40px,4.6vw,72px)}
 .steps{list-style:none;margin:40px 0 0;padding:0}
-.steps li{display:grid;grid-template-columns:36px 1fr;column-gap:14px;padding:12px 0;border-top:1px solid var(--line)}
+.steps li{border-top:1px solid var(--line)}
+.steps .stp{display:grid;grid-template-columns:36px 1fr;column-gap:14px;width:100%;padding:12px 0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.steps .stp:hover b{color:var(--ink)}
 .steps li:last-child{border-bottom:1px solid var(--line)}
 .steps li i{grid-row:span 2;width:26px;height:26px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--line);display:grid;place-items:center;font:700 12px var(--body);font-style:normal;color:var(--ink-soft);transition:background-color .3s,color .3s,box-shadow .3s}
 .steps li b{font:800 20px/1.3 var(--display);letter-spacing:-0.015em;color:var(--ink-soft);transition:color .3s}
@@ -130,7 +141,13 @@
 .tl{width:min(100%,540px);background:var(--surface);border-radius:14px;padding:12px 14px 14px;box-shadow:inset 0 0 0 1px var(--line)}
 .tl-top{display:flex;justify-content:space-between;font:500 11px var(--code);color:var(--ink-soft);margin-bottom:10px}
 .tl-top b{color:var(--ink);font-weight:500}
-.tracks{position:relative;display:grid;gap:6px}
+.tracks{position:relative;display:grid;gap:6px;cursor:ew-resize;touch-action:pan-y}
+.ephone{touch-action:pan-y;cursor:grab}
+.ectl{display:flex;align-items:center;gap:14px;width:min(100%,540px)}
+.ectl .rb{width:44px;height:44px;flex:none}
+.dots{flex:1;display:flex;gap:6px;justify-content:center}
+.dots button{width:26px;height:6px;border-radius:999px;border:0;padding:0;background:var(--surface-2);cursor:pointer;transition:background-color .25s,width .35s var(--ease)}
+.dots button.on{background:var(--accent);width:40px}
 .trk{position:relative;height:20px;border-radius:5px;background:rgba(242,238,230,.05)}
 .clip{position:absolute;top:0;bottom:0;border-radius:5px;opacity:0;transform:scaleY(.3);transition:opacity .35s var(--ease),transform .45s cubic-bezier(.34,1.56,.64,1)}
 .clip.v{background:#3A4660}.clip.rw{background:#283044}.clip.t{background:var(--accent)}.clip.s{background:var(--ink)}.clip.b{background:#7F8AA3}
@@ -217,22 +234,18 @@
   .ph3.c{width:170px}
   .ph3.l{transform:translate(-112%,-44%) rotate(-10deg)}.ph3.r{transform:translate(12%,-46%) rotate(9deg)}
   .front .s2{right:-4px}
-  .say{height:200vh}
-  .work{height:auto!important}
-  .work .stick{position:static;height:auto;padding:var(--sec) 0 0}
-  .track{transform:none!important;width:auto;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:8px}
-  .track::-webkit-scrollbar{display:none}
-  .cat{width:62vw;scroll-snap-align:start;scroll-margin-left:var(--gut)}
+  .cat{width:62vw}
+  .snav span{display:none}
   .about .pic{grid-column:1/12}
   .about .tx{grid-column:1/13;margin-top:40px}
   .about .pic .stk{right:-6px}
-  .edit{height:560vh}
-  .edit .stick{grid-template-columns:1fr;align-content:start;row-gap:14px;padding-top:84px}
+  .edit .stick{grid-template-columns:1fr;row-gap:18px}
   .edit .copy,.edit .vis{grid-column:1}
   .edit h2{font-size:32px}
   .steps{margin-top:12px}
-  .steps li{display:none;border:0;padding:0}
-  .steps li.on{display:grid}
+  .steps li{display:none;border:0}
+  .steps li.on{display:block}
+  .steps .stp{padding:0;cursor:default}
   .ephone{height:min(46svh,430px)}
   .tl{padding:10px}
   .trk{height:14px}
@@ -305,9 +318,10 @@
 </section>
 
 <section class="work" id="portoforioz" aria-labelledby="h-work">
-  <div class="stick">
-    <div class="wrap sh"><h2 id="h-work" data-split>Portoforioz.</h2><p data-up data-i="w_p">104 video dalam 10 gaya, dari talking head sampai recap event. Scroll untuk menggeser, klik untuk menonton.</p></div>
-    <div class="track" id="track"></div>
+  <div>
+    <div class="wrap sh"><h2 id="h-work" data-split>Portoforioz.</h2><p data-up data-i="w_p">104 video dalam 10 gaya, dari talking head sampai recap event. Geser untuk lihat tiap gaya, klik untuk menonton.</p></div>
+    <div class="shelf" id="shelf"><div class="track" id="track"></div></div>
+    <div class="wrap snav"><span data-i="w_hint">Geser atau drag untuk lihat semua gaya</span><button type="button" class="rb" id="sPrev" aria-label="Sebelumnya"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><button type="button" class="rb" id="sNext" aria-label="Berikutnya"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
   </div>
 </section>
 
@@ -328,18 +342,18 @@
 <section class="edit" id="proses" aria-labelledby="h-edit">
   <div class="stick">
     <div class="copy">
-      <h2 id="h-edit" data-split data-i="e_h">Scroll pelan. Videonya saya edit di depan kamu.</h2>
+      <h2 id="h-edit" data-split data-i="e_h">Satu video, enam langkah. Geser buat lihat saya ngedit.</h2>
       <ol class="steps" id="steps">
-        <li><i>1</i><b data-i="s0b">Footage mentah</b><span data-i="s0p">Rekaman HP, 47 detik, banyak jeda.</span></li>
-        <li><i>2</i><b data-i="s1b">Potong</b><span data-i="s1p">Jeda dibuang. Tinggal 30 detik dengan ritme TikTok.</span></li>
-        <li><i>3</i><b data-i="s2b">Hook</b><span data-i="s2p">Tiga detik pertama dapat kalimat paling kuat.</span></li>
-        <li><i>4</i><b data-i="s3b">Subtitle</b><span data-i="s3p">Banyak orang nonton tanpa suara. Subtitle bikin video tetap jalan.</span></li>
-        <li><i>5</i><b data-i="s4b">B-roll</b><span data-i="s4p">Potongan pendukung supaya mata tidak bosan.</span></li>
-        <li><i>6</i><b data-i="s5b">Ajakan</b><span data-i="s5p">Ditutup dengan satu langkah yang jelas untuk penonton.</span></li>
+        <li><button type="button" class="stp" data-s="0"><i>1</i><b data-i="s0b">Footage mentah</b><span data-i="s0p">Rekaman HP, 47 detik, banyak jeda.</span></button></li>
+        <li><button type="button" class="stp" data-s="1"><i>2</i><b data-i="s1b">Potong</b><span data-i="s1p">Jeda dibuang. Tinggal 30 detik dengan ritme TikTok.</span></button></li>
+        <li><button type="button" class="stp" data-s="2"><i>3</i><b data-i="s2b">Hook</b><span data-i="s2p">Tiga detik pertama dapat kalimat paling kuat.</span></button></li>
+        <li><button type="button" class="stp" data-s="3"><i>4</i><b data-i="s3b">Subtitle</b><span data-i="s3p">Banyak orang nonton tanpa suara. Subtitle bikin video tetap jalan.</span></button></li>
+        <li><button type="button" class="stp" data-s="4"><i>5</i><b data-i="s4b">B-roll</b><span data-i="s4p">Potongan pendukung supaya mata tidak bosan.</span></button></li>
+        <li><button type="button" class="stp" data-s="5"><i>6</i><b data-i="s5b">Ajakan</b><span data-i="s5p">Ditutup dengan satu langkah yang jelas untuk penonton.</span></button></li>
       </ol>
     </div>
-    <div class="vis" aria-hidden="true">
-      <div class="ephone fb" id="ephone">
+    <div class="vis">
+      <div class="ephone fb" id="ephone" aria-hidden="true">
         <div class="lay"><img src="https://i.ytimg.com/vi/t_z4TG3IRy4/hqdefault.jpg" alt=""></div>
         <div class="lay raw fb"><img src="https://i.ytimg.com/vi/t_z4TG3IRy4/hqdefault.jpg" alt=""></div>
         <div class="lay vig"></div>
@@ -350,7 +364,7 @@
         <span class="ctab" data-i="ctab">Cek link di bio</span>
         <div class="lay flash" id="flash"></div>
       </div>
-      <div class="tl">
+      <div class="tl" aria-hidden="true">
         <div class="tl-top"><span>Timeline</span><b class="num" id="tc">00:00</b></div>
         <div class="tracks">
           <div class="trk"><i class="clip rw show" style="left:0;width:100%"></i><i class="clip v" style="left:0;width:18%"></i><i class="clip v" style="left:19%;width:22%"></i><i class="clip v" style="left:42%;width:17%"></i><i class="clip v" style="left:60%;width:21%"></i><i class="clip v" style="left:82%;width:18%"></i></div>
@@ -360,6 +374,7 @@
           <i class="head" id="head"></i>
         </div>
       </div>
+      <div class="ectl"><button type="button" class="rb" id="ePrev" aria-label="Langkah sebelumnya"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><div class="dots" id="dots"><button type="button" aria-label="Langkah 1"></button><button type="button" aria-label="Langkah 2"></button><button type="button" aria-label="Langkah 3"></button><button type="button" aria-label="Langkah 4"></button><button type="button" aria-label="Langkah 5"></button><button type="button" aria-label="Langkah 6"></button></div><button type="button" class="rb" id="eNext" aria-label="Langkah berikutnya"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
       <p class="note" data-i="note">Contoh alur edit untuk satu video talking head.</p>
     </div>
   </div>
@@ -454,11 +469,11 @@
     id:{g_h:"Sekarang giliran kamu.",g_p:"Potong jeda abu-abu saat lewat garis putih. Klik, tap, atau tekan Spasi. Jangan sampai footage ikut kepotong.",g_s:"Jeda terpotong",g_t:"Sisa waktu",g_b:"Rekor kamu",g_go:"Mulai",g_re:"Ulangi",g_again:"Main lagi",g_lj:"Jeda, potong",g_lf:"Footage, biarkan",g_m0:"Tekan Mulai. Kamu punya 20 detik.",g_cta:"Serahkan ke saya",g_run:"Potong jedanya.",g_miss:"Meleset. Tunggu jedanya pas di garis.",g_bad:"Footage penting kepotong. Skor minus 1.",g_ok:["Rapi.","Jeda hilang.","Ritmenya makin rapat.","Nah, gitu.","Clean cut."],g_hi:function(n){return "Skor "+n+". Ritme kamu udah TikTok banget. Sisanya biar saya yang rapikan."},g_lo:function(n){return "Skor "+n+". Capek kan motongin jeda satu-satu? Itu kerjaan saya tiap hari."},g_new:" Rekor baru.",k1:"Hook 3 detik",k2:"Subtitle",k3:"Revisi 2-3x",k4:"Jadi 2-3 hari",n2:"Proses",n3:"Paket",n4:"Kontak",cta:"Konsultasi gratis",
       h1:"Video pendek yang bikin orang <em>berhenti scroll.</em>",lede:"Saya Rioz, editor video vertikal untuk UMKM, toko online, dan brand. Hook 3 detik, subtitle, b-roll. Mulai Rp300.000 per video.",see:"Buka Portoforioz",
       kin:"Barusan kamu memutuskan untuk lanjut scroll. Penonton TikTok melakukan hal yang sama, dalam *tiga *detik *pertama. Setiap video yang saya edit dibuat untuk menang di tiga detik itu.",
-      w_p:"104 video dalam 10 gaya, dari talking head sampai recap event. Scroll untuk menggeser, klik untuk menonton.",vid:"video",end:"Buka semua",
+      w_p:"104 video dalam 10 gaya, dari talking head sampai recap event. Geser untuk lihat tiap gaya, klik untuk menonton.",vid:"video",end:"Buka semua",
       since:"Ngedit sejak 2020",a_h:"Halo, saya Rioz.",a_p:"Mahasiswa Teknik Informatika yang jatuh cinta sama editing video. Saya bantu UMKM, toko online, dan content creator bikin video pendek yang dipakai buat jualan, bukan cuma enak dilihat.",
-      e_h:"Scroll pelan. Videonya saya edit di depan kamu.",
+      e_h:"Satu video, enam langkah. Geser buat lihat saya ngedit.",
       s0b:"Footage mentah",s0p:"Rekaman HP, 47 detik, banyak jeda.",s1b:"Potong",s1p:"Jeda dibuang. Tinggal 30 detik dengan ritme TikTok.",s2b:"Hook",s2p:"Tiga detik pertama dapat kalimat paling kuat.",s3b:"Subtitle",s3p:"Banyak orang nonton tanpa suara. Subtitle bikin video tetap jalan.",s4b:"B-roll",s4p:"Potongan pendukung supaya mata tidak bosan.",s5b:"Ajakan",s5p:"Ditutup dengan satu langkah yang jelas untuk penonton.",
-      hook:"Jangan <em>skip</em> dulu",sub:"Ini cara bikin orang berhenti scroll",ctab:"Cek link di bio",note:"Contoh alur edit untuk satu video talking head.",
+      hook:"Jangan <em>skip</em> dulu",sub:"Ini cara bikin orang berhenti scroll",ctab:"Cek link di bio",note:"Contoh alur edit satu video talking head. Geser HP-nya, klik langkah, atau drag playhead.",w_hint:"Geser atau drag untuk lihat semua gaya",
       p_h:"Pilih paketnya.",p_p:"Alurnya sama di semua paket: chat gratis dulu, kirim footage mentah, draft jadi dalam 2-3 hari, revisi maksimal 2-3x per video.",
       p1s:"Untuk coba dulu",p1a:"1 video vertikal siap posting",p1b:"Hook, subtitle, b-roll",p1c:"Pengerjaan 2-3 hari",p1u:"per video",
       p2s:"Paling sering dipilih",p2a:"8 video vertikal",p2b:"Prioritas pengerjaan",p2c:"Gratis konsultasi strategi konten",p2u:"8 video, jadi Rp250.000 per video",
@@ -469,11 +484,11 @@
     en:{g_h:"Your turn now.",g_p:"Cut the grey pauses as they cross the white line. Click, tap, or press Space. Don't cut the footage.",g_s:"Pauses cut",g_t:"Time left",g_b:"Your best",g_go:"Start",g_re:"Restart",g_again:"Play again",g_lj:"Pause, cut it",g_lf:"Footage, keep it",g_m0:"Press Start. You have 20 seconds.",g_cta:"Leave it to me",g_run:"Cut the pauses.",g_miss:"Missed. Wait until the pause hits the line.",g_bad:"You cut real footage. Minus 1.",g_ok:["Clean.","Pause gone.","Tighter already.","That's it.","Clean cut."],g_hi:function(n){return "Score "+n+". That's proper TikTok pacing. I'll handle the rest."},g_lo:function(n){return "Score "+n+". Tiring, right? Cutting pauses is my everyday job."},g_new:" New best.",k1:"3-second hook",k2:"Subtitles",k3:"2-3 revisions",k4:"Done in 2-3 days",n2:"Process",n3:"Packages",n4:"Contact",cta:"Free consultation",
       h1:"Short videos that make people <em>stop scrolling.</em>",lede:"I'm Rioz, a vertical video editor for small businesses, online shops, and brands. 3-second hooks, subtitles, b-roll. From Rp300,000 per video.",see:"Open Portoforioz",
       kin:"You just decided to keep scrolling. TikTok viewers make the same call, in the *first *three *seconds. Every video I edit is built to win those three seconds.",
-      w_p:"104 videos in 10 styles, from talking heads to event recaps. Scroll to slide, click to watch.",vid:"videos",end:"Open all",
+      w_p:"104 videos in 10 styles, from talking heads to event recaps. Swipe to browse, click to watch.",vid:"videos",end:"Open all",
       since:"Editing since 2020",a_h:"Hi, I'm Rioz.",a_p:"An Informatics Engineering student who fell in love with video editing. I help small businesses, online shops, and content creators make short videos that sell, not just videos that look nice.",
-      e_h:"Scroll slowly. I'll edit the video in front of you.",
+      e_h:"One video, six steps. Swipe to watch me edit.",
       s0b:"Raw footage",s0p:"Phone footage, 47 seconds, lots of pauses.",s1b:"Cut",s1p:"Pauses removed. Down to 30 seconds at TikTok pace.",s2b:"Hook",s2p:"The first three seconds get the strongest line.",s3b:"Subtitles",s3p:"Many people watch on mute. Subtitles keep the video working.",s4b:"B-roll",s4p:"Supporting shots so the eye never gets bored.",s5b:"Call to action",s5p:"It ends with one clear next step for the viewer.",
-      hook:"Don't <em>skip</em> yet",sub:"This is how you make people stop scrolling",ctab:"Link in bio",note:"Example edit flow for one talking head video.",
+      hook:"Don't <em>skip</em> yet",sub:"This is how you make people stop scrolling",ctab:"Link in bio",note:"Example edit flow for one talking head video. Swipe the phone, click a step, or drag the playhead.",w_hint:"Swipe or drag to see every style",
       p_h:"Pick a package.",p_p:"The flow is the same on every package: free chat first, send raw footage, draft ready in 2-3 days, up to 2-3 revisions per video.",
       p1s:"To try it out",p1a:"1 vertical video ready to post",p1b:"Hook, subtitles, b-roll",p1c:"2-3 day turnaround",p1u:"per video",
       p2s:"Most chosen",p2a:"8 vertical videos",p2b:"Priority processing",p2c:"Free content strategy consultation",p2u:"8 videos, Rp250,000 each",
@@ -488,7 +503,7 @@
   var say=document.getElementById("say"),kin=document.getElementById("kin"),work=document.getElementById("portoforioz"),track=document.getElementById("track"),ph=document.getElementById("ph"),edit=document.getElementById("proses");
   var ephone=document.getElementById("ephone"),steps=[].slice.call(document.querySelectorAll("#steps li")),dur=document.getElementById("dur"),tc=document.getElementById("tc"),head=document.getElementById("head"),flash=document.getElementById("flash");
   var cV=[].slice.call(document.querySelectorAll(".clip.v")),cR=document.querySelector(".clip.rw"),cT=[].slice.call(document.querySelectorAll(".clip.t")),cS=[].slice.call(document.querySelectorAll(".clip.s")),cB=[].slice.call(document.querySelectorAll(".clip.b"));
-  var words=[],subw=[],pointer={x:0,y:0},last=-1,panW=0;
+  var words=[],subw=[],pointer={x:0,y:0},last=-1;
 
   function build(){
     var L=T[lang];
@@ -499,7 +514,7 @@
     document.getElementById("hookT").innerHTML=L.hook;
     document.getElementById("subt").innerHTML=L.sub.split(" ").map(function(w){return "<span>"+w+"</span>"}).join(" ");
     subw=[].slice.call(document.querySelectorAll("#subt span"));
-    size();last=-1;R.refresh(document);
+    last=-1;setEP(ep);R.refresh(document);upd();
   }
   function setLang(l){
     lang=l;try{localStorage.setItem("rioz_lang",l)}catch(e){}
@@ -511,12 +526,6 @@
   document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-lang"))})});
 
   function span(el){var r=el.getBoundingClientRect(),s=r.height-innerHeight;return s>0?clamp(-r.top/s):0}
-  function size(){
-    if(mq("(max-width:767px)")){work.style.height="";track.style.transform="";panW=0;return}
-    panW=Math.max(0,track.scrollWidth-innerWidth);
-    work.style.height=(innerHeight+panW*1.1)+"px";
-  }
-  addEventListener("resize",size);
   function mmss(s){s=Math.round(s);return "0"+Math.floor(s/60)+":"+("0"+s%60).slice(-2)}
 
   R.onScroll(function(){
@@ -529,12 +538,55 @@
       ph.style.setProperty("--clip",((1-ap)*16).toFixed(2)+"%");
       ph.style.setProperty("--zoom",(1.12-ap*0.12).toFixed(3));
     }
-    var lit=Math.round(clamp((span(say)-0.06)/0.74)*words.length);
+    var sr=say.getBoundingClientRect(),sp=clamp((innerHeight*0.9-sr.top)/(sr.height*0.95));
+    var lit=Math.round(sp*words.length);
     for(var i=0;i<words.length;i++)words[i].classList.toggle("on",i<lit);
-    if(panW)track.style.transform="translate3d("+(-span(work)*panW)+"px,0,0)";
-    var ep=span(edit),st=Math.min(5,Math.floor(ep*6)),loc=ep*6-st;
-    stage(st,loc,ep);
   });
+
+  /* Portoforioz shelf: native horizontal scroll, mouse drag, arrows */
+  var shelf=document.getElementById("shelf"),sPrev=document.getElementById("sPrev"),sNext=document.getElementById("sNext");
+  function upd(){var m=shelf.scrollWidth-shelf.clientWidth-2;sPrev.disabled=shelf.scrollLeft<=2;sNext.disabled=shelf.scrollLeft>=m}
+  function stepW(){var c=track.querySelector(".cat");return c?(c.getBoundingClientRect().width+22)*2:400}
+  sPrev.addEventListener("click",function(){shelf.scrollBy({left:-stepW(),behavior:still?"auto":"smooth"})});
+  sNext.addEventListener("click",function(){shelf.scrollBy({left:stepW(),behavior:still?"auto":"smooth"})});
+  shelf.addEventListener("scroll",upd,{passive:true});addEventListener("resize",upd);
+  (function(){var down=false,x0=0,s0=0,moved=0;
+    shelf.addEventListener("pointerdown",function(e){if(e.pointerType!=="mouse"||e.button!==0)return;down=true;moved=0;x0=e.clientX;s0=shelf.scrollLeft});
+    addEventListener("pointermove",function(e){if(!down)return;var dx=e.clientX-x0;if(Math.abs(dx)>4){moved=1;shelf.classList.add("drag")}shelf.scrollLeft=s0-dx});
+    addEventListener("pointerup",function(){if(!down)return;down=false;setTimeout(function(){shelf.classList.remove("drag")},0)});
+    shelf.addEventListener("click",function(e){if(moved){e.preventDefault();e.stopPropagation();moved=0}},true);
+    shelf.addEventListener("dragstart",function(e){e.preventDefault()});
+  })();
+
+  /* The edit: swipe, steps, dots or playhead drag. Autoplays while visible until touched. */
+  var ep=0,auto=!still,vis=false,lt=0,hold=0,SEG=2.2,dots=[].slice.call(document.querySelectorAll("#dots button"));
+  function setEP(v){ep=clamp(v);var st=Math.min(5,Math.floor(ep*6)),loc=Math.min(1,ep*6-st);stage(st,loc,ep);dots.forEach(function(d,j){d.classList.toggle("on",j===st);d.setAttribute("aria-current",j===st?"step":"false")})}
+  function cur(){return Math.min(5,Math.floor(ep*6))}
+  function go(st){auto=false;setEP((Math.max(0,Math.min(5,st))+0.62)/6)}
+  function tick(t){
+    if(!vis||!auto){lt=0;return}
+    var dt=lt?(t-lt)/1000:0;lt=t;
+    if(hold){if(t>hold){hold=0;setEP(0)}}
+    else{var v=ep+dt/(SEG*6);if(v>=1){v=1;hold=t+1800}setEP(v)}
+    requestAnimationFrame(tick);
+  }
+  if("IntersectionObserver" in window){new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis&&auto)requestAnimationFrame(tick)},{threshold:.35}).observe(edit)}
+  document.querySelectorAll(".stp").forEach(function(b){b.addEventListener("click",function(){go(+b.getAttribute("data-s"))})});
+  dots.forEach(function(d,j){d.addEventListener("click",function(){go(j)})});
+  document.getElementById("ePrev").addEventListener("click",function(){go(cur()-1)});
+  document.getElementById("eNext").addEventListener("click",function(){go(cur()+1)});
+  (function(){var tr=document.querySelector(".tracks"),dn=false;
+    function at(e){var r=tr.getBoundingClientRect();auto=false;setEP((e.clientX-r.left)/r.width)}
+    tr.addEventListener("pointerdown",function(e){dn=true;tr.setPointerCapture(e.pointerId);at(e)});
+    tr.addEventListener("pointermove",function(e){if(dn)at(e)});
+    tr.addEventListener("pointerup",function(){dn=false});tr.addEventListener("pointercancel",function(){dn=false});
+  })();
+  (function(){var x0=null,y0=0;
+    ephone.addEventListener("pointerdown",function(e){x0=e.clientX;y0=e.clientY});
+    ephone.addEventListener("pointerup",function(e){if(x0===null)return;var dx=e.clientX-x0,dy=e.clientY-y0;x0=null;if(Math.abs(dx)>36&&Math.abs(dx)>Math.abs(dy))go(cur()+(dx<0?1:-1));else if(Math.abs(dx)<8&&Math.abs(dy)<8)go(cur()+1)});
+    ephone.addEventListener("pointercancel",function(){x0=null});
+  })();
+  edit.addEventListener("keydown",function(e){if(e.target.closest("input"))return;if(e.key==="ArrowRight"){e.preventDefault();go(cur()+1)}else if(e.key==="ArrowLeft"){e.preventDefault();go(cur()-1)}});
   function stage(st,loc,ep){
     if(st!==last){
       if(st===1&&last===0&&!still){flash.classList.remove("go");void flash.offsetWidth;flash.classList.add("go")}
